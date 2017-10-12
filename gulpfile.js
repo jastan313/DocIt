@@ -34,22 +34,22 @@ gulp.task('default', ['jshint', 'sass', 'compress'], function () {
 
 // Watch task: js lint, sass,
 gulp.task('watch', function() {
-   gulp.watch('Raw/*.js', ['jshint']);
-   gulp.watch('Raw/*.scss', ['sass']);
+   gulp.watch('raw/*.js', ['jshint']);
+   gulp.watch('raw/*.scss', ['sass']);
 });
 
 // jshint lint task
 gulp.task('jshint', function() {
-  return gulp.src('Raw/*.js')
+  return gulp.src('raw/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
 // sass task to build CSS
 gulp.task('sass', function () {
-  return gulp.src('Raw/*.scss')
+  return gulp.src('raw/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('Min'));
+    .pipe(gulp.dest('min'));
 });
 
 // Compresses raw JS, HTML, and CSS source files
@@ -58,9 +58,9 @@ gulp.task('compress', ['js-compress', 'html-compress', 'css-compress']);
 // Compresses raw JS source files
 gulp.task('js-compress', function (cb) {
     pump([
-        gulp.src('Raw/*.js'),
+        gulp.src('raw/*.js'),
         uglify(),
-        gulp.dest('Min')
+        gulp.dest('min')
     ],
     cb
   );
@@ -69,9 +69,9 @@ gulp.task('js-compress', function (cb) {
 // Compresses raw HTML source files
 gulp.task('html-compress', function (cb) {
     pump([
-        gulp.src('Raw/*.html'),
+        gulp.src('raw/*.html'),
         htmlmin({collapseWhitespace: true}),
-        gulp.dest('Min')
+        gulp.dest('min')
     ],
     cb
   );
@@ -80,9 +80,9 @@ gulp.task('html-compress', function (cb) {
 // Compresses raw CSS source files
 gulp.task('css-compress', function (cb) {
     pump([
-        gulp.src('Raw/*.css'),
+        gulp.src('raw/*.css'),
         cleancss(),
-        gulp.dest('Min')
+        gulp.dest('min')
     ],
     cb
   );

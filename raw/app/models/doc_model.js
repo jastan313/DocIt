@@ -7,11 +7,11 @@ var objectId = Schema.ObjectId;
 // define document schema
 var docSchema = new Schema({
     id: objectId,
-    author: {type: String, ref: 'User', required: true},
+    author: {type: String, ref: 'User'},
     date: {type: Date, default: Date.now},
-    title: {type: String, default: 'Untitled', required: true},
-    body: {type: String, default: '', required: true},
-    comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
+    title: {type: String, default: 'Untitled'},
+    body: {type: String, default: ''},
+    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 });
 // Apply the uniqueValidator plugin to docSchema.
 docSchema.plugin(uniqueValidator);

@@ -7,9 +7,9 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
 // models ===========================================
-var User = require('../app/models/user');
-var Doc = require('../app/models/doc');
-var Comment = require('../app/models/comment');
+var User = require('../app/models/user_model');
+var Doc = require('../app/models/doc_model');
+var Comment = require('../app/models/comment_model');
 
 // configuration ===========================================
 
@@ -36,11 +36,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('X-HTTP-Method-Override')); 
 
 // routes ==================================================
-require('../app/routes')(app); // configure our routes
+require('../app/routes/users_route')(app);
+require('../app/routes/docs_route')(app);
+require('../app/routes/comments_route')(app); // configure our routes
+
 
 // start app ===============================================
 // startup our app at http://localhost:8080
 app.listen(port);
+
+console.log('Magic happens on port ' + port);
 
 // expose app           
 exports = module.exports = app;     

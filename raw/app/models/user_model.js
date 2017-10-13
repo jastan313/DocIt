@@ -7,13 +7,10 @@ var objectId = Schema.ObjectId;
 // define user schema
 var userSchema = new Schema({
     id: objectId,
-    account: {
-        username: {type: String, unique: true},
-        password: String,
-        required: true
-    },
-    documents: [{type: Schema.Types.ObjectId, ref: 'Doc'}],
-    comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
+    username: {type: String, required: true, unique: true},
+    password: {type: String, required: true},
+    documents: [{type: mongoose.Schema.Types.ObjectId, ref: 'Doc'}],
+    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 });
 // Apply the uniqueValidator plugin to userSchema.
 userSchema.plugin(uniqueValidator);

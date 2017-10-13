@@ -1,5 +1,3 @@
-var User = require('./models/user');
-
 module.exports = function (app) {
     // GET: Get all users
     app.get('/api/users', function (req, res) {

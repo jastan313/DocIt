@@ -1,5 +1,3 @@
-var Doc = require('./models/Doc');
-
 module.exports = function (app) {
     // GET: Get all docs
     app.get('/api/docs', function (req, res) {

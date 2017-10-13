@@ -1,5 +1,3 @@
-var Comment = require('./models/Comment');
-
 module.exports = function (app) {
     // GET: Get all comments
     app.get('/api/comments', function (req, res) {

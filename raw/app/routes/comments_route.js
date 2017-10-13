@@ -41,5 +41,14 @@ module.exports = function (app) {
             });
         });
     });
+
+    // DELETE: Delete a comment
+    app.delete('/api/comments/:id', function (req, res) {
+        Comment.remove(req.params.id, function (err, result) {
+            if (err)
+                res.send(err);
+            res.json({message: 'Comment deleted.'});
+        });
+    });
 };
 

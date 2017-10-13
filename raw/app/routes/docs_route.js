@@ -43,5 +43,14 @@ module.exports = function (app) {
             });
         });
     });
+
+    // DELETE: Delete a doc
+    app.delete('/api/docs/:id', function (req, res) {
+        Doc.remove(req.params.id, function (err, result) {
+            if (err)
+                res.send(err);
+            res.json({message: 'Doc deleted.'});
+        });
+    });
 };
 

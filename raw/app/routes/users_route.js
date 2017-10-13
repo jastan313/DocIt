@@ -41,5 +41,14 @@ module.exports = function (app) {
             });
         });
     });
+    
+    // DELETE: Delete a user
+    app.delete('/api/users/:id', function (req, res) {
+        User.remove(req.params.id, function (err, result) {
+            if (err)
+                res.send(err);
+            res.json({message: 'User deleted.'});
+        });
+    });
 };
 

@@ -35,8 +35,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override')); 
 
-app.use(express.static(path.join(__dirname, 'raw/client')));
-
 // routes ==================================================
 require('../app/routes/index_route')(app);
 require('../app/routes/users_route')(app);

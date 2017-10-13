@@ -1,0 +1,1 @@
+angular.module('DocIt App', ['ngRoute', 'AppRoutes', 'MainCtrl', 'LoginCtrl', 'SignupCtrl', 'DocboardCtrl', 'DocCtrl', 'UserService', 'DocService', 'CommentService']);

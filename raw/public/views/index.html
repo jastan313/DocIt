@@ -27,16 +27,18 @@
     <script src="js/appRoutes.js"></script>
     <script src="js/app.js"></script>
 </head>
-<body ng-app="DocIt App" ng-controller="LoginController">
-    <div class="container">
-        <!-- LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE -->
-        <a href="/login">Login</a>
-        <a href="/signup">Signup</a>
-        <a href="/docboard">Docboard</a>
-        <a href="/doc">Doc</a>
+<body ng-app="DocIt App" ng-controller="MainController">
+    <div id="doc-background">
+        <div class="container" id="doc-content">
+            <!-- LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE -->
+            <a href="/login">Login</a>
+            <a href="/signup">Signup</a>
+            <a href="/docboard">Docboard</a>
+            <a href="/doc">Doc</a>
 
-        <!-- ANGULAR DYNAMIC CONTENT -->
-        <div ng-view>hiii</div>
+            <!-- ANGULAR DYNAMIC CONTENT -->
+            <div ng-view>hiii</div>
+        </div>
     </div>
 </body>
 </html>

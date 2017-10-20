@@ -11,10 +11,12 @@ and open the template in the editor.
 body {
     background-color: #f2f5f5;   /* Slight blue-r background */
     padding: 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 13x;
 }
 
 #doc-content {
-    background-color: #fefefe;
+    background-color: #fcfcfc;
     position: absolute;
     margin: auto;
     padding: 30px;

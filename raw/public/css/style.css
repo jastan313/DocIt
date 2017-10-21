@@ -8,27 +8,123 @@ and open the template in the editor.
     Author     : Jason Tan
 */
 
+
+/**************************************************************
+ *                             GENERAL                        *
+ **************************************************************/
 body {
-    background-color: #f2f5f5;   /* Slight blue-r background */
+    background-color: #f2f5f5;   /* Slight blue-ish background */
     padding: 20px;
-    font-family: 'Courier New', monospace;
-    font-size: 13x;
 }
 
-#doc-content {
-    background-color: #fcfcfc;
+body * {
+    font-family: 'Courier New', monospace;   /* Typewriter-like font */
+}
+
+/* Input style: simple, underlined fields with highlighted, pencil cursor on hover */
+input {
+    text-align: center;
+    color: #666666;
+    border: none;
+    border: 1px solid transparent;
+    border-bottom: black 2px outset;
+    background-color: white;
+}
+input:hover {
+    background-color: yellow;
+    cursor: url('../resources/pencil_cursor.cur'), auto;
+}
+
+/* Button style: simple black-and-white button with color inversion, pointer cursor on hover */
+button {
+    text-align: center;
+    color: black;
+    border: 2px solid black;
+    background-color: white;
+}
+
+button:hover {
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+
+#doc-container {
     position: absolute;
     margin: auto;
-    padding: 30px;
+    padding: 25px 20px 25px 20px;
     left: 0; right: 0;   /* horizontal center */
     top: 0; bottom: 0;   /* vertical center */
-    width: 100vw;
-    height: 129.4118vw;   /* width:height ratio = 850:1100 */
-    max-width: 65.6818vh;  
-    max-height: 85vh;   /* scaled with viewport height */
+    
+    /* Doc dimensions */
+    min-height: 600px;
+    width: 55.636vw;   /* width:height ratio = 850:1375 (golden ratio) */
+    height: 90vw;      /* scaled with viewport width */
+    max-width: 55.636vh;  
+    max-height: 90vh;   /* max dimensions scaled with viewport height */
     
     /* Paper-esque styling */
+    background-image: url('../imgs/white_paper20.jpg');
+    background-color: #fcfcfc;
     border: 1px #eeeeee solid;
     box-shadow: 0px 12px 35px #bbbbbb, -5px 8px 10px black;
     cursor: text;
+}
+#doc-content {
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* Hide scrollbar in IE 10+ */
+    overflow: -moz-scrollbars-none;  /* Hide scrollbar in Firefox */
+}
+
+#doc-content::-webkit-scrollbar { 
+   display: none;  /* Hide scrollbar in Safari and Chrome */
+}
+
+/* Type-writer animation */
+.typewriter {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .1em solid black; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  letter-spacing: .05em;
+  animation: 
+    typing 2.5s steps(30, end),
+    blink-caret .2s step-end infinite;
+  animation-fill-mode: forwards;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100%; }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: black; }
+}
+
+/**************************************************************
+ *                             SIGNUP                         *
+ **************************************************************/
+#login-container > h1 {
+    font-weight: bolder;
+}
+
+#login-container > h2 {
+    font-weight: bold;
+    font-style: italic;
+}
+
+#login-container > #login-form {
+    text-align: center;
+}
+
+#login-form {
+    padding-top: 50%;
+    padding-bottom: 50%;
+}
+
+#login-form > h3 {
+    font-weight: lighter;
 }

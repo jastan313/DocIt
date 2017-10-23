@@ -1,0 +1,378 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 22, 2017, 9:16:46 PM
+    Author     : Jason Tan
+*/
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+    /**************************************************************
+     *                             GENERAL                        *
+     **************************************************************/
+    #doc-container {
+        /* Doc height:width ratio based on golden ratio, 1:1.618, 
+           and 90% viewport width */
+        width: 90vw;
+        height: 55.623vw;
+        min-width: 320px;
+        max-width: 460px;
+        
+        border: 5px solid brown;
+    }
+
+    .typewriter {
+        letter-spacing: 2px;
+        border-right: 2px solid black;  /* The typwriter cursor */
+    }
+    /**************************************************************
+     *                             SIGNUP                         *
+     **************************************************************/
+    #login-container > h1 {
+        font-size: 14px;
+    }
+
+    #login-container > h2 {
+        font-size: 12px;
+    }
+    
+    #login-form {
+        margin-top: 25%;
+    }
+    
+    #login-form > * {
+        font-size: 10px;
+    }
+
+    #login-navigation > *{
+        font-size: 8px;
+    }
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen 
+and (min-width : 321px) {
+    /**************************************************************
+     *                             GENERAL                        *
+     **************************************************************/
+    #doc-container {
+        /* Doc width:height ratio based on golden ratio, 1:1.618,
+           and 90% viewport height */
+        width: 55.623vh;
+        height: 90vh;
+        min-width: 321px;
+        max-width: 55.623vw;
+
+        border: 5px solid pink;
+    }
+
+    .typewriter {
+        letter-spacing: 1px;
+        border-right: 2px solid black;  /* The typwriter cursor */
+    }
+    /**************************************************************
+     *                             SIGNUP                         *
+     **************************************************************/
+    #login-container > h1 {
+        font-size: 20px;
+    }
+
+    #login-container > h2 {
+        font-size: 6px;
+    }
+    
+    #login-form {
+        margin-top: 40%;
+    }
+    
+    #login-form > * {
+        font-size: 17px;
+    }
+
+    #login-navigation > *{
+        font-size: 10px;
+    }
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+and (max-width : 320px) {
+    /**************************************************************
+     *                             GENERAL                        *
+     **************************************************************/
+    #doc-container {
+        /* Doc width:height ratio based on golden ratio, 1:1.618,
+           and 90% viewport height */
+        width: 55.623vh;
+        height: 90vh;
+        max-width: 300px;
+        max-height: 90vh;
+        
+        border: 5px solid purple;
+    }
+
+    .typewriter {
+        letter-spacing: 0px;
+        border-right: 1px solid black;  /* The typwriter cursor */
+    }
+    /**************************************************************
+     *                             SIGNUP                         *
+     **************************************************************/
+    #login-container > h1 {
+        font-size: 18px;
+    }
+
+    #login-container > h2 {
+        font-size: 5px;
+    }
+    
+    #login-form {
+        margin-top: 25%;
+    }
+
+    #login-form > * {
+        font-size: 13px;
+    }
+
+    #login-navigation > *{
+        font-size: 7px;
+    }
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+    /**************************************************************
+     *                             GENERAL                        *
+     **************************************************************/
+    #doc-container {
+        /* Doc height:width ratio based on golden ratio, 1:1.618,
+           and 90% viewport width */
+        width: 90vw;
+        height: 55.623vw;
+        min-width: 768px;
+        max-width: 1004px;
+        max-height: 90vh;
+        
+        border: 5px solid blue;
+    }
+
+    .typewriter {
+        letter-spacing: 2px;
+        border-right: 2px solid black;  /* The typwriter cursor */
+    }
+    /**************************************************************
+     *                             SIGNUP                         *
+     **************************************************************/
+    #login-container > h1 {
+        font-size: 14px;
+    }
+
+    #login-container > h2 {
+        font-size: 12px;
+    }
+    
+    #login-form {
+        margin-top: 25%;
+    }
+    
+    #login-form > * {
+        font-size: 10px;
+    }
+
+    #login-navigation > *{
+        font-size: 8px;
+    }
+}
+
+/* iPads (landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+    /**************************************************************
+     *                             GENERAL                        *
+     **************************************************************/
+    #doc-container {
+        /* Doc height:width ratio based on golden ratio, 1:1.618,
+           and 90% viewport width */
+        width: 90vw;
+        height: 55.623vw;
+        min-width: 768px;
+        max-width: 1004px;
+        max-height: 90vh;
+        
+        border: 5px solid green;
+    }
+
+    .typewriter {
+        letter-spacing: 2px;
+        border-right: 2px solid black;  /* The typwriter cursor */
+    }
+    /**************************************************************
+     *                             SIGNUP                         *
+     **************************************************************/
+    #login-container > h1 {
+        font-size: 16px;
+    }
+
+    #login-container > h2 {
+        font-size: 12px;
+    }
+    
+    #login-form {
+        margin-top: 25%;
+    }
+    
+    #login-form > * {
+        font-size: 10px;
+    }
+
+    #login-navigation > * {
+        font-size: 8px;
+    }
+}
+
+/* iPads (portrait) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+/*and (orientation : portrait)*/ {
+    /**************************************************************
+     *                             GENERAL                        *
+     **************************************************************/
+    #doc-container {
+        /* Doc height:width ratio based on golden ratio, 1:1.618,
+           and 90% viewport width */
+        width: 90vw;
+        height: 55.623vw;
+        min-width: 768px;
+        max-width: 1004px;
+        max-height: 90vh;
+        
+        border: 5px solid yellow;
+    }
+
+    .typewriter {
+        letter-spacing: 2px;
+        border-right: 2px solid black;  /* The typwriter cursor */
+    }
+    /**************************************************************
+     *                             SIGNUP                         *
+     **************************************************************/
+    #login-container > h1 {
+        font-size: 14px;
+    }
+
+    #login-container > h2 {
+        font-size: 12px;
+    }
+    
+    #login-form {
+        margin-top: 25%;
+    }
+    
+    #login-form > * {
+        font-size: 10px;
+    }
+
+    #login-navigation > * {
+        font-size: 8px;
+    }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen 
+and (min-width : 1224px) {
+    /**************************************************************
+     *                             GENERAL                        *
+     **************************************************************/
+    #doc-container {
+        /* Doc width:height ratio based on golden ratio, 1:1.618,
+           and 90% viewport height */
+        width: 55.623vh;
+        height: 90vh;
+        min-width: 1224px;
+        max-width: 55.623vw;
+        
+        border: 5px solid orange;
+    }
+
+    .typewriter {
+        letter-spacing: 3px;
+        border-right: 3px solid black;  /* The typwriter cursor */
+    }
+    /**************************************************************
+     *                             SIGNUP                         *
+     **************************************************************/
+    #login-container > h1 {
+        font-size: 30px;
+    }
+
+    #login-container > h2 {
+        font-size: 18px;
+    }
+    
+    #login-form {
+        margin-top: 12%;
+    }
+    
+    #login-form > * {
+        font-size: 28px;
+    }
+
+    #login-navigation > * {
+        font-size: 18px;
+    }
+}
+
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) {
+    /**************************************************************
+     *                             GENERAL                        *
+     **************************************************************/
+    #doc-container {
+        /* Doc width:height ratio based on golden ratio, 1:1.618,
+           and 90% viewport height */
+        width: 55.623vh;
+        height: 90vh;
+        min-width: 1824px;
+        max-width: 55.623vw;
+        
+        border: 5px solid red;
+    }
+
+    .typewriter {
+        letter-spacing: 4px;
+        border-right: 3px solid black;  /* The typwriter cursor */
+    }
+    /**************************************************************
+     *                             SIGNUP                         *
+     **************************************************************/
+    #login-container > h1 {
+        font-size: 40px;
+    }
+
+    #login-container > h2 {
+        font-size: 20px;
+    }
+    
+    #login-form {
+        margin-top: 7%;
+    }
+    
+    #login-form > * {
+        font-size: 32px;
+    }
+
+    #login-navigation > * {
+        font-size: 22px;
+    }
+}

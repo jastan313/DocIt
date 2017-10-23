@@ -58,21 +58,17 @@ button:hover {
     left: 0; right: 0;   /* horizontal center */
     top: 0; bottom: 0;   /* vertical center */
     
-    /* Doc dimensions */
-    min-width: 320px;
-    min-height: 518px;
-    width: 55.636vw;   /* width:height ratio = 850:1375 (golden ratio) */
-    height: 90vw;      /* scaled with viewport width */
-    max-width: 55.636vh;  
-    max-height: 90vh;   /* max dimensions scaled with viewport height */
-    
     /* Paper-esque styling */
     background-image: url('../imgs/white_paper25.jpg');
     background-color: #fcfcfc;
     border: 1px #eeeeee solid;
     box-shadow: 0px 12px 35px #bbbbbb, -5px 8px 10px black;
     cursor: text;
+    
+    /* See media.css for #doc-container width, height */
 }
+
+
 #doc-content {
     overflow-y: scroll;
     -ms-overflow-style: none;  /* Hide scrollbar in IE 10+ */
@@ -86,13 +82,13 @@ button:hover {
 /* Type-writer animation */
 .typewriter {
   overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: .1em solid black; /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
-  letter-spacing: .05em;
   animation: 
     typing 2.5s steps(30, end),
     blink-caret .2s step-end infinite;
   animation-fill-mode: forwards;
+  
+  /* See media.css for .typewriter letter-spacing, border-right */
 }
 
 /* The typing effect */
@@ -112,21 +108,21 @@ button:hover {
  **************************************************************/
 #login-container > h1 {
     font-weight: bolder;
-    font-size: calc(23px + .5vw + .5vh);
+    
+    /* See media.css for #login-container > h1 font-size */
 }
 
 #login-container > h2 {
     font-weight: bold;
     font-style: italic;
-    font-size: calc(6px + .3vw);
-}
-
-#login-container > #login-form {
-    text-align: center;
+    
+    /* See media.css for #login-container > h2 font-size */
 }
 
 #login-form {
-    padding-top: 25%;
+    text-align: center;
+    
+    /* See media.css for #login-form height */
 }
 
 #login-form > h3 {
@@ -134,7 +130,7 @@ button:hover {
 }
 
 #login-form > * {
-    font-size: calc(10px + .5vw + .5vh);
+    /* See media.css for #login-form > * font-size */
 }
 
 #login-navigation {
@@ -147,6 +143,7 @@ button:hover {
 
 #login-navigation > * {
    font-weight: bold;
-   font-size: calc(7px + .25vw + .1vh);
-   display: inline-block;   
+   display: inline-block;
+   
+   /* See media.css for #login-navigation > * font-size */
 }

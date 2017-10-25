@@ -56,7 +56,7 @@ and (max-device-width : 480px) {
 
 /* Smartphones (landscape) ----------- */
 /* Width-Scale Focused Display */
-/@media only screen 
+@media only screen 
 and (min-width : 321px)
 and (orientation : landscape) {
     /**************************************************************
@@ -145,11 +145,11 @@ and (max-width : 320px) {
     }
 }
 
-/* iPads (portrait and landscape) ----------- */
+/* iPads (portrait and landscape (primarily portrait)) ----------- */
 /* Portrait Focused Display */
 @media only screen 
 and (min-device-width : 768px) 
-and (max-device-width : 1024px) {
+and (max-device-width : 1024px)  {
     /**************************************************************
      *                             GENERAL                        *
      **************************************************************/
@@ -192,11 +192,11 @@ and (max-device-width : 1024px) {
 }
 
 /* iPads (landscape) ----------- */
-/* TODO: HERE */
+/* Width-Scale Focused Display */
 @media only screen 
 and (min-device-width : 768px) 
-/* and (max-device-width : 1024px) */
-/* and (orientation : landscape) */ {
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
     /**************************************************************
      *                             GENERAL                        *
      **************************************************************/
@@ -213,83 +213,41 @@ and (min-device-width : 768px)
     }
 
     .typewriter {
-        letter-spacing: 2px;
-        border-right: 2px solid black;  /* The typwriter cursor */
+        letter-spacing: 1px;
+        border-right: 3px solid black;  /* The typwriter cursor */
     }
     /**************************************************************
      *                             SIGNUP                         *
      **************************************************************/
     #login-container > h1 {
-        font-size: 16px;
+        font-size: calc(18px + 1.2vw);
     }
 
     #login-container > h2 {
-        font-size: 12px;
+        font-size: calc(10px + .7vw);
     }
     
     #login-form {
-        margin-top: 25%;
+        margin-top: 5vw;
     }
     
     #login-form > * {
-        font-size: 10px;
+        font-size: calc(11px + 1.2vw);
     }
 
     #login-navigation > * {
-        font-size: 8px;
+        font-size: calc(12px + .5vw);
     }
 }
 
-/* iPads (portrait) ----------- */
-/@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
-/*and (orientation : portrait)*/ {
-    /**************************************************************
-     *                             GENERAL                        *
-     **************************************************************/
-    #doc-container {
-        /* Doc height:width ratio based on golden ratio, 1:1.618,
-           and 90% viewport width */
-        width: 90vw;
-        height: 55.623vw;
-        min-width: 768px;
-        max-width: 1004px;
-        max-height: 90vh;
-        
-        border: 5px solid yellow;
-    }
+/* Small desktops and laptop screens ----------- */
+/* Static Focused Display */
+@media only screen 
+and (min-width : ) /* TODO: this query and also research common mobile queries again */
 
-    .typewriter {
-        letter-spacing: 2px;
-        border-right: 2px solid black;  /* The typwriter cursor */
-    }
-    /**************************************************************
-     *                             SIGNUP                         *
-     **************************************************************/
-    #login-container > h1 {
-        font-size: 14px;
-    }
-
-    #login-container > h2 {
-        font-size: 12px;
-    }
-    
-    #login-form {
-        margin-top: 25%;
-    }
-    
-    #login-form > * {
-        font-size: 10px;
-    }
-
-    #login-navigation > * {
-        font-size: 8px;
-    }
-}
-
-/* Desktops and laptops ----------- */
-/@media only screen 
+/* Medium desktops and laptop screens ----------- */
+/* Static Focused Display */
+@media only screen 
 and (min-width : 1224px) {
     /**************************************************************
      *                             GENERAL                        *
@@ -333,8 +291,9 @@ and (min-width : 1224px) {
     }
 }
 
-/* Large screens ----------- */
-/@media only screen 
+/* Large desktop screens ----------- */
+/* Static Focused Display */
+@media only screen 
 and (min-width : 1824px) {
     /**************************************************************
      *                             GENERAL                        *

@@ -7,7 +7,7 @@ var objectId = Schema.ObjectId;
 // define user schema
 var userSchema = new Schema({
     id: objectId,
-    username: {type: String, required: true, unique: true},
+    alias: {type: String, required: true, unique: true},
     password: {type: String, required: true},
     documents: [{type: mongoose.Schema.Types.ObjectId, ref: 'Doc'}],
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]

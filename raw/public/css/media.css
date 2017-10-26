@@ -264,7 +264,7 @@ and (orientation : landscape) {
         border-right: 4px solid black;  /* The typwriter cursor */
     }
     /**************************************************************
-     *                             SIGNUP                         *
+     *                          SIGNUP/LOGIN                      *
      **************************************************************/
     #login-container > h1 {
         font-size: 30px;

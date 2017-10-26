@@ -57,7 +57,7 @@ and (max-device-width : 480px) {
 /* Smartphones (landscape) ----------- */
 /* Width-Scale Focused Display */
 @media only screen 
-and (min-width : 321px)
+and (min-device-width : 321px)
 and (orientation : landscape) {
     /**************************************************************
      *                             GENERAL                        *
@@ -104,7 +104,7 @@ and (orientation : landscape) {
 /* Smartphones (portrait) ----------- */
 /* Slight Width-Scale Focused Display */
 @media only screen 
-and (max-width : 320px) {
+and (max-device-width : 320px) {
     /**************************************************************
      *                             GENERAL                        *
      **************************************************************/
@@ -240,32 +240,28 @@ and (orientation : landscape) {
     }
 }
 
-/* Small desktops and laptop screens ----------- */
+/* Desktop screens ----------- */
 /* Static Focused Display */
-@media only screen 
-and (min-width : ) /* TODO: this query and also research common mobile queries again */
-
-/* Medium desktops and laptop screens ----------- */
-/* Static Focused Display */
-@media only screen 
-and (min-width : 1224px) {
-    /**************************************************************
+@media only screen {
+     /**************************************************************
      *                             GENERAL                        *
      **************************************************************/
     #doc-container {
-        /* Doc width:height ratio based on golden ratio, 1:1.618,
-           and 90% viewport height */
-        width: 55.623vh;
+        /* Doc static width of 320px and 90% viewport height,
+           and width:max-height ratio based on golden ratio , 1:1.618 */
+        width: 800px;
         height: 90vh;
-        min-width: 1224px;
-        max-width: 55.623vw;
+        min-width: 800px;
+        max-width: 800px;
+        min-height: 700px;
+        max-height: 1456px;
         
-        border: 5px solid orange;
+        border: 5px solid black;
     }
 
     .typewriter {
-        letter-spacing: 3px;
-        border-right: 3px solid black;  /* The typwriter cursor */
+        letter-spacing: 2px;
+        border-right: 4px solid black;  /* The typwriter cursor */
     }
     /**************************************************************
      *                             SIGNUP                         *
@@ -275,64 +271,18 @@ and (min-width : 1224px) {
     }
 
     #login-container > h2 {
-        font-size: 18px;
+        font-size: 16px;
     }
     
     #login-form {
-        margin-top: 12%;
+        margin-top: 22%;
     }
     
     #login-form > * {
-        font-size: 28px;
+        font-size: 25px;
     }
 
-    #login-navigation > * {
-        font-size: 18px;
-    }
-}
-
-/* Large desktop screens ----------- */
-/* Static Focused Display */
-@media only screen 
-and (min-width : 1824px) {
-    /**************************************************************
-     *                             GENERAL                        *
-     **************************************************************/
-    #doc-container {
-        /* Doc width:height ratio based on golden ratio, 1:1.618,
-           and 90% viewport height */
-        width: 55.623vh;
-        height: 90vh;
-        min-width: 1824px;
-        max-width: 55.623vw;
-        
-        border: 5px solid red;
-    }
-
-    .typewriter {
-        letter-spacing: 4px;
-        border-right: 3px solid black;  /* The typwriter cursor */
-    }
-    /**************************************************************
-     *                             SIGNUP                         *
-     **************************************************************/
-    #login-container > h1 {
-        font-size: 40px;
-    }
-
-    #login-container > h2 {
-        font-size: 20px;
-    }
-    
-    #login-form {
-        margin-top: 7%;
-    }
-    
-    #login-form > * {
-        font-size: 32px;
-    }
-
-    #login-navigation > * {
-        font-size: 22px;
+    #login-navigation > *{
+        font-size: 17px;
     }
 }

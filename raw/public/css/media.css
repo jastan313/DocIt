@@ -52,6 +52,9 @@ and (max-device-width : 480px) {
     #login-navigation > *, #signup-navigation > *{
         font-size: 10px;
     }
+    /**************************************************************
+     *                          SIGNUP/LOGIN                      *
+     **************************************************************/
 }
 
 /* Smartphones (landscape) ----------- */
@@ -99,6 +102,9 @@ and (orientation : landscape) {
     #login-navigation > *, #signup-navigation > * {
         font-size: calc(6px + 0.7vw);
     }
+    /**************************************************************
+     *                          SIGNUP/LOGIN                      *
+     **************************************************************/
 }
 
 /* Smartphones (portrait) ----------- */
@@ -143,6 +149,9 @@ and (max-device-width : 320px) {
     #login-navigation > *, #signup-navigation > * {
         font-size: calc(6px + .2vw);
     }
+    /**************************************************************
+     *                          SIGNUP/LOGIN                      *
+     **************************************************************/
 }
 
 /* iPads (portrait and landscape (primarily portrait)) ----------- */
@@ -189,6 +198,9 @@ and (max-device-width : 1024px)  {
     #login-navigation > *, #signup-navigation > * {
         font-size: 18px;
     }
+    /**************************************************************
+     *                          SIGNUP/LOGIN                      *
+     **************************************************************/
 }
 
 /* iPads (landscape) ----------- */
@@ -238,6 +250,9 @@ and (orientation : landscape) {
     #login-navigation > * {
         font-size: calc(12px + .5vw);
     }
+    /**************************************************************
+     *                          SIGNUP/LOGIN                      *
+     **************************************************************/
 }
 
 /* Desktop screens ----------- */
@@ -285,4 +300,7 @@ and (orientation : landscape) {
     #login-navigation > *, #signup-navigation > * {
         font-size: 17px;
     }
+    /**************************************************************
+     *                          SIGNUP/LOGIN                      *
+     **************************************************************/
 }

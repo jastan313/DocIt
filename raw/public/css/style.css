@@ -117,11 +117,12 @@ button:hover {
  **************************************************************/
 #login-container > h1, #signup-container > h1 {
     font-weight: bolder;
-    
+    margin: 0 0 5px 0;
     /* See media.css for #login-container > h1, #signup-container > h1 font-size */
 }
 
 #login-container > h2, #signup-container > h2 {
+    margin: 0 0 5px 0;
     font-weight: bold;
     font-style: italic;
     
@@ -136,6 +137,7 @@ button:hover {
 
 #login-form > h3, #signup-form > h3 {
     font-weight: lighter;
+    margin: 14px 0px 6px 0px;
 }
 
 #login-form > *, #signup-form > * {
@@ -152,8 +154,8 @@ button:hover {
 }
 
 #login-navigation, #signup-navigation {
-    padding-left: 20px;
-    padding-bottom: 15px;
+    margin-left: 20px;
+    margin-bottom: 5px;
     position: absolute;
     bottom: 0;
     left: 0;

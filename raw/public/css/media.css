@@ -43,19 +43,19 @@ and (max-device-width : 480px) {
     }
     
     #login-form {
-        margin-top: 26%;
+        margin-top: 32%;
     }
     
     #signup-form {
-        margin-top: 18%;
+        margin-top: 14%;
     }
     
     #login-form > * {
-        font-size: 16px;
+        font-size: 18px;
     }
     
     #signup-form > * {
-        font-size: 14px;
+        font-size: 15px;
     }
 
     #login-navigation > * {
@@ -103,32 +103,44 @@ and (orientation : landscape) {
     /**************************************************************
      *                          SIGNUP/LOGIN                      *
      **************************************************************/
-    #login-container > h1, #signup-container > h1 {
-        font-size: calc(14px + 1vw);
-    }
-
-    #login-container > h2, #signup-container > h2 {
-        font-size: calc(6px + .9vw);
+    #login-container > h1 {
+        font-size: calc(7px + 2vw);
     }
     
-    #login-form, #signup-form {
-        margin-top: 5%;
+    #signup-container > h1 {
+        font-size: calc(7px + 2vw);
+    }
+
+    #login-container > h2 {
+        font-size: calc(5px + 1vw);
+    }
+    
+    #signup-container > h2 {
+        font-size: calc(2px + 1.4vw);
+    }
+    
+    #login-form {
+        margin-top: 7%;
+    }
+    
+    #signup-form {
+        margin-top: 4%
     }
     
     #login-form > * {
-        font-size: calc(9px + 1.1vw);
+        font-size: calc(1px + 2.6vw);
     }
     
     #signup-form > * {
-        font-size: calc(6px + 1.1vw);
+        font-size: calc( 2vw);
     }
 
     #login-navigation > * {
-        font-size: calc(8px + 0.7vw);
+        font-size: calc(5px + 0.9vw);
     }
     
     #signup-navigation > * {
-        font-size: calc(6px + 0.9vw);
+        font-size: calc(2px + 1.4vw);
     }
     /**************************************************************
      *                             DOCIT                          *
@@ -173,19 +185,23 @@ and (max-device-width : 320px) {
     }
     
     #signup-container > h2 {
-        font-size: calc(7px + 0.7vw);
+        font-size: calc(8px + 0.7vw);
     }
     
     #login-form {
-        margin-top: 30%;
+        margin-top: 35%;
     }
     
     #signup-form {
-        margin-top: 20%;
+        margin-top: 18%;
     }
 
-    #login-form > *, #signup-form > * {
-        font-size: calc(11px + .5vw);
+    #login-form > * {
+        font-size: calc(11px + .8vw);
+    }
+    
+    #signup-form > * {
+        font-size: calc(9px + .9vw);
     }
 
     #login-navigation > * {
@@ -193,7 +209,7 @@ and (max-device-width : 320px) {
     }
     
     #signup-navigation > * {
-        font-size: calc(6px + .8vw);
+        font-size: calc(6px + .9vw);
     }
     /**************************************************************
      *                             DOCIT                          *
@@ -206,7 +222,7 @@ and (max-device-width : 320px) {
 
 /* iPads (portrait and landscape (primarily portrait)) ----------- */
 /* Portrait Focused Display */
-@media only screen 
+/@media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px)  {
     /**************************************************************
@@ -239,19 +255,19 @@ and (max-device-width : 1024px)  {
     }
     
     #login-form {
-        margin-top: 18%;
+        margin-top: 24%;
     }
     
     #signup-form {
-        margin-top: 16%;
+        margin-top: 18%;
     }
     
     #login-form > * {
-        font-size: 24px;
+        font-size: 26px;
     }
     
     #signup-form > * {
-        font-size: 21px;
+        font-size: 22px;
     }
 
     #login-navigation > *, #signup-navigation > * {
@@ -268,7 +284,7 @@ and (max-device-width : 1024px)  {
 
 /* iPads (landscape) ----------- */
 /* Width-Scale Focused Display */
-@media only screen 
+/@media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : landscape) {
@@ -304,7 +320,7 @@ and (orientation : landscape) {
     }
     
     #login-form {
-        margin-top: 5.5vw;
+        margin-top: 8vw;
     }
     
     #signup-form {
@@ -312,11 +328,11 @@ and (orientation : landscape) {
     }
     
     #login-form > * {
-        font-size: calc(11px + 1.2vw);
+        font-size: calc(11px + 1.6vw);
     }
     
     #signup-form > * {
-        font-size: calc(6px + 1.2vw);
+        font-size: calc(6px + 1.4vw);
     }
 
     #login-navigation > * {
@@ -369,16 +385,20 @@ and (orientation : landscape) {
         font-size: 16px;
     }
     
-    #login-form, #signup-form {
-        margin-top: 15%;
+    #login-form {
+        margin-top: 25%;
+    }
+    
+    #signup-form {
+        margin-top: 21%;
     }
     
     #login-form > * {
-        font-size: 25px;
+        font-size: 28px;
     }
     
     #signup-form > * {
-        font-size: 21px;
+        font-size: 22px;
     }
 
     #login-navigation > *, #signup-navigation > * {

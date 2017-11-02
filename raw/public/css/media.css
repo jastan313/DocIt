@@ -42,11 +42,11 @@ and (max-device-width : 480px) {
     }
     
     #login-form {
-        margin-top: 22%;
+        margin-top: 26%;
     }
     
     #signup-form {
-        margin-top: 17%;
+        margin-top: 18%;
     }
     
     #login-form > * {
@@ -139,7 +139,7 @@ and (orientation : landscape) {
 
 /* Smartphones (portrait) ----------- */
 /* Slight Width-Scale Focused Display */
-@media only screen 
+/@media only screen 
 and (max-device-width : 320px) {
     /**************************************************************
      *                             GENERAL                        *
@@ -148,6 +148,7 @@ and (max-device-width : 320px) {
         /* Doc with 75% viewport width and 90% viewport height */
         width: 75vw;
         height: 90vh;
+        max-width: 320px;
         max-height: 453px;
         
         border: 5px solid purple;
@@ -164,20 +165,32 @@ and (max-device-width : 320px) {
         font-size: calc(16px + .5vw);
     }
 
-    #login-container > h2, #signup-container > h2 {
-        font-size: calc(5px + 0.3vw);
+    #login-container > h2 {
+        font-size: calc(4px + .9vw);
     }
     
-    #login-form, #signup-form {
+    #signup-container > h2 {
+        font-size: calc(7px + 0.7vw);
+    }
+    
+    #login-form {
         margin-top: 30%;
+    }
+    
+    #signup-form {
+        margin-top: 20%;
     }
 
     #login-form > *, #signup-form > * {
         font-size: calc(11px + .5vw);
     }
 
-    #login-navigation > *, #signup-navigation > * {
-        font-size: calc(6px + .2vw);
+    #login-navigation > * {
+        font-size: calc(6px + .4vw);
+    }
+    
+    #signup-navigation > * {
+        font-size: calc(6px + .8vw);
     }
     /**************************************************************
      *                              DOC                           *
@@ -190,7 +203,7 @@ and (max-device-width : 320px) {
 
 /* iPads (portrait and landscape (primarily portrait)) ----------- */
 /* Portrait Focused Display */
-/@media only screen 
+@media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px)  {
     /**************************************************************
@@ -207,7 +220,7 @@ and (max-device-width : 1024px)  {
     }
 
     .typewriter {
-        letter-spacing: 1px;
+        letter-spacing: 0.5px;
         border-right: 3px solid black;  /* The typewriter cursor */
     }
     /**************************************************************
@@ -221,12 +234,20 @@ and (max-device-width : 1024px)  {
         font-size: 17px;
     }
     
-    #login-form, #signup-form {
-        margin-top: 19%;
+    #login-form {
+        margin-top: 18%;
     }
     
-    #login-form > *, #signup-form > * {
-        font-size: 27px;
+    #signup-form {
+        margin-top: 16%;
+    }
+    
+    #login-form > * {
+        font-size: 24px;
+    }
+    
+    #signup-form > * {
+        font-size: 21px;
     }
 
     #login-navigation > *, #signup-navigation > * {
@@ -243,7 +264,7 @@ and (max-device-width : 1024px)  {
 
 /* iPads (landscape) ----------- */
 /* Width-Scale Focused Display */
-/@media only screen 
+@media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : landscape) {

@@ -29,12 +29,21 @@ input {
     color: #666666;
     border: none;
     border: 1px solid transparent;
-    border-bottom: black 2px outset;
+    border-bottom: black 2px inset;
     background-color: transparent;
 }
+
 input:hover {
-    background-color: yellow;
+    background-color: #ffff99;
     cursor: url('../resources/pencil_cursor.cur'), auto;
+}
+
+input:focus {
+    border-bottom: black 2px outset;
+}
+
+input:focus::placeholder {
+    color: #999999;
 }
 
 /* Button style: simple black-and-white button with color inversion, pointer cursor on hover */
@@ -131,6 +140,15 @@ button:hover {
 
 #login-form > *, #signup-form > * {
     /* See media.css for #login-form > *, #signup-form > * font-size */
+}
+
+#not-human-displaynone {
+    display: none;
+}
+
+#not-human-offscreen {
+    position: absolute;
+    left: -9000px;
 }
 
 #login-navigation, #signup-navigation {

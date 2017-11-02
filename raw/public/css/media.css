@@ -30,6 +30,7 @@ and (max-device-width : 480px) {
         letter-spacing: -1px;
         border-right: 1px solid black;  /* The typewriter cursor */
     }
+    
     /**************************************************************
      *                          SIGNUP/LOGIN                      *
      **************************************************************/
@@ -66,7 +67,7 @@ and (max-device-width : 480px) {
     }
     
     /**************************************************************
-     *                              DOC                           *
+     *                             DOCIT                          *
      **************************************************************/
     
     /**************************************************************
@@ -98,6 +99,7 @@ and (orientation : landscape) {
         letter-spacing: 0.75px;
         border-right: 2px solid black;  /* The typewriter cursor */
     }
+    
     /**************************************************************
      *                          SIGNUP/LOGIN                      *
      **************************************************************/
@@ -129,7 +131,7 @@ and (orientation : landscape) {
         font-size: calc(6px + 0.9vw);
     }
     /**************************************************************
-     *                              DOC                           *
+     *                             DOCIT                          *
      **************************************************************/
     
     /**************************************************************
@@ -158,6 +160,7 @@ and (max-device-width : 320px) {
         letter-spacing: -0.25px;
         border-right: 1px solid black;  /* The typewriter cursor */
     }
+    
     /**************************************************************
      *                          SIGNUP/LOGIN                      *
      **************************************************************/
@@ -193,7 +196,7 @@ and (max-device-width : 320px) {
         font-size: calc(6px + .8vw);
     }
     /**************************************************************
-     *                              DOC                           *
+     *                             DOCIT                          *
      **************************************************************/
     
     /**************************************************************
@@ -223,6 +226,7 @@ and (max-device-width : 1024px)  {
         letter-spacing: 0.5px;
         border-right: 3px solid black;  /* The typewriter cursor */
     }
+    
     /**************************************************************
      *                          SIGNUP/LOGIN                      *
      **************************************************************/
@@ -254,7 +258,7 @@ and (max-device-width : 1024px)  {
         font-size: 18px;
     }
     /**************************************************************
-     *                              DOC                           *
+     *                             DOCIT                          *
      **************************************************************/
     
     /**************************************************************
@@ -284,9 +288,10 @@ and (orientation : landscape) {
     }
 
     .typewriter {
-        letter-spacing: 1px;
+        letter-spacing: 0.75px;
         border-right: 3px solid black;  /* The typewriter cursor */
     }
+    
     /**************************************************************
      *                          SIGNUP/LOGIN                      *
      **************************************************************/
@@ -295,22 +300,34 @@ and (orientation : landscape) {
     }
 
     #login-container > h2, #signup-container > h2 {
-        font-size: calc(10px + .7vw);
+        font-size: calc(9px + .7vw);
     }
     
-    #login-form, #signup-form {
-        margin-top: 5vw;
+    #login-form {
+        margin-top: 5.5vw;
     }
     
-    #login-form > *, #signup-form > * {
+    #signup-form {
+        margin-top: 5.5vw;
+    }
+    
+    #login-form > * {
         font-size: calc(11px + 1.2vw);
+    }
+    
+    #signup-form > * {
+        font-size: calc(6px + 1.2vw);
     }
 
     #login-navigation > * {
-        font-size: calc(12px + .5vw);
+        font-size: calc(9px + .5vw);
+    }
+    
+    #signup-navigation > * {
+        font-size: calc(10px + .6vw);
     }
     /**************************************************************
-     *                              DOC                           *
+     *                             DOCIT                          *
      **************************************************************/
     
     /**************************************************************
@@ -320,7 +337,7 @@ and (orientation : landscape) {
 
 /* Desktop screens ----------- */
 /* Static Focused Display */
-/@media only screen {
+@media only screen {
      /**************************************************************
      *                             GENERAL                        *
      **************************************************************/
@@ -338,7 +355,7 @@ and (orientation : landscape) {
     }
 
     .typewriter {
-        letter-spacing: 2px;
+        letter-spacing: 1.5px;
         border-right: 4px solid black;  /* The typewriter cursor */
     }
     /**************************************************************
@@ -353,18 +370,22 @@ and (orientation : landscape) {
     }
     
     #login-form, #signup-form {
-        margin-top: 22%;
+        margin-top: 15%;
     }
     
-    #login-form > *, #signup-form > * {
+    #login-form > * {
         font-size: 25px;
+    }
+    
+    #signup-form > * {
+        font-size: 21px;
     }
 
     #login-navigation > *, #signup-navigation > * {
         font-size: 17px;
     }
     /**************************************************************
-     *                              DOC                           *
+     *                             DOCIT                          *
      **************************************************************/
     
     /**************************************************************

@@ -32,16 +32,13 @@ input {
     border-bottom: black 2px inset;
     background-color: transparent;
 }
-
 input:hover {
     background-color: #ffff99;
     cursor: url('../resources/pencil_cursor.cur'), auto;
 }
-
 input:focus {
     border-bottom: black 2px outset;
 }
-
 input:focus::placeholder {
     color: #999999;
 }
@@ -53,7 +50,6 @@ button {
     border: 2px solid black;
     background-color: white;
 }
-
 button:hover {
     color: white;
     background-color: black;
@@ -77,13 +73,12 @@ button:hover {
     /* See media.css for #doc-container width, height */
 }
 
-
 #doc-content {
     overflow-y: scroll;
     -ms-overflow-style: none;  /* Hide scrollbar in IE 10+ */
     overflow: -moz-scrollbars-none;  /* Hide scrollbar in Firefox */
+    height: 100%;
 }
-
 #doc-content::-webkit-scrollbar { 
    display: none;  /* Hide scrollbar in Safari and Chrome */
 }
@@ -169,8 +164,37 @@ button:hover {
 }
 
 /**************************************************************
-*                              DOC                            *
+*                             DOCIT                           *
 **************************************************************/
+#docit {
+    height: 100%;
+}
+
+#docit-header > * {
+    margin: 0 0 10px 0;
+    font-size: 13px;
+}
+
+#docit-alias, #docit-date {
+    display: inline-block;
+    font-weight: normal;
+}
+
+#docit-name {
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* Textarea for typing docs, no background with vertical scrollability */
+#docit-body {
+    width: 102%;  /* Hide vertical scrollbar and increase right-side page margin */
+    height: calc(100% - 40px - 20px);   /* Occupy parent's remaining height, 40px for header, 20px for bottom page margin */
+    background: none;
+    border: none;
+    resize: none;
+    overflow-y: scroll;
+    font-weight: light;
+}
 
 /**************************************************************
 *                            DOCBOARD                         *

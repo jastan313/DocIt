@@ -31,6 +31,10 @@ input {
     border: 1px solid transparent;
     border-bottom: black 2px inset;
     background-color: transparent;
+    
+    &:hover {
+        
+    }
 }
 input:hover {
     background-color: #ffff99;
@@ -185,12 +189,10 @@ button:hover {
     margin: 0 0 10px 0;
     font-size: 13px;
 }
-
 .doc-alias, .doc-date {
     display: inline-block;
     font-weight: normal;
 }
-
 .doc-name {
     font-style: italic;
     font-weight: bold;

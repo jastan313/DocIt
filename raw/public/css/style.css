@@ -171,14 +171,7 @@ button:hover {
 *                            DOCVIEW                          *
 **************************************************************/
 #docview-body {
-    border: none;
-    color: transparent;
-    text-shadow: 0 0 0 gray;
-    text-align: center;
-
-    &:focus {
-        outline: none;  /* Remove blinking typing cursor */ 
-    }
+    color: transparent;  /* Remove blinking typing cursor */ 
 }
 
 /**************************************************************

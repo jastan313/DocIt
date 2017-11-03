@@ -218,6 +218,7 @@ button:hover {
     background: white;
     color: black;
     display: none;
+    box-shadow: 3px 5px 10px rgba(0,0,0,.5);
 }
 
 /* Directory menu options, simple black-and-white buttons with color inversion, pointer cursor on hover */

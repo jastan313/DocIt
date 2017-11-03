@@ -193,7 +193,6 @@ button:hover {
     border: none;
     resize: none;
     overflow-y: scroll;
-    font-weight: light;
 }
 
 /**************************************************************
@@ -201,9 +200,38 @@ button:hover {
 **************************************************************/
 
 /**************************************************************
-*                          DOC + DOCBOARD                     *
+*                         DOCIT + DOCBOARD                    *
 **************************************************************/
-#directory-btn {
-    float: right;
-    padding: 3px;
+.directory-btn {
+    padding: 8px 3px 7px 3px;
 }
+
+.directory-btn, .directory {
+    position: absolute;  /* Directory float right, allow for menu overlap */
+    right: 25px;
+}
+
+/* Directory menu */
+.directory {
+    width: 83px;  /* Overlap directory button width (button's width is 77px) */
+    border: 2px solid black;
+    background: white;
+    color: black;
+    display: none;
+}
+
+/* Directory menu options, simple black-and-white buttons with color inversion, pointer cursor on hover */
+.directory-opt {
+    width: 100%;
+    text-align: center;
+    padding: 8px 0 7px 0;
+}
+.directory-opt:not(:last-child) {
+    border-bottom: 1px black solid;
+}
+.directory-opt:hover {
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+

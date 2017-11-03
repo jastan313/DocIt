@@ -1,16 +1,31 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
+<!doctype html>
+<html lang="en">
     <head>
-        <title>TODO supply a title</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>| DocIt |</title>
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/media.css"> 
     </head>
     <body>
-        <div>TODO write content</div>
+        <div id="doc-container">
+            <div id="doc-content">
+                <button id="docview-directory-btn" class="directory-btn" type="button">|DIRECTORY|</button>
+                <div id="docview-directory" class="directory">
+                    <div id="docview-directory-edit-btn" class="directory-opt">|EDIT|</div>
+                    <div id="docview-directory-todocboard-btn" class="directory-opt">|DOCBOARD|</div>
+                    <div id="docview-directory-logout-btn" class="directory-opt">|LOG OUT|</div>
+                </div>
+                <div id="docview" class="doc">
+                    <div id="docview-header" class="doc-header">
+                        <h3 id="docview-alias" class="doc-alias">|ALIAS: ALIAS_NAME|</h3>
+                        <h3 id="docview-date" class="doc-date">|DATE: DOC_DATE|</h3>
+                        <h1 id="docview-name" class="doc-name">|DOC: DOC_NAME|</h1>
+                    </div>
+                    <textarea id="docview-body" class="doc-body" rows="10" cols="10" placeholder="It appears someone is coping with writer's block..." readonly></textarea>
+                </div>
+            </div>
+        </div>
+        <script src="../js/navigation.js"></script>
     </body>
 </html>
+

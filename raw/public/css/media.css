@@ -12,7 +12,7 @@ and open the template in the editor.
 /* Portrait Focused Display */
 /@media only screen 
 and (min-device-width : 320px) 
-and (max-device-width : 480px) {
+/* and (max-device-width : 480px) */ {
     /**************************************************************
      *                             GENERAL                        *
      **************************************************************/
@@ -78,7 +78,7 @@ and (max-device-width : 480px) {
      *                        DOCIT + DOCVIEW                     *
      **************************************************************/
     .doc-header > * {
-        margin: 0 0 4px 0;
+        margin: 0 0 5px 0;
         font-size: 12px;
     }
 
@@ -87,8 +87,8 @@ and (max-device-width : 480px) {
     }
 
     .doc-body {
-        width: 105%;  /* Hide vertical scrollbar and increase right-side page margin */
-        height: calc(100% - 50px - 5px);   /* Occupy parent's remaining height, 50px for header, 5px for bottom page margin */
+        width: 104.4%;  /* Hide vertical scrollbar by increasing right-side page margin */
+        height: calc(100% - 52px - 10px);   /* Occupy parent's remaining height, 52px for header, 10px for extra space */
     }
     
     /**************************************************************
@@ -179,7 +179,7 @@ and (orientation : landscape) {
      *                        DOCIT + DOCVIEW                     *
      **************************************************************/
     .doc-header > * {
-        margin: 0 0 4px 0;
+        margin: 0 0 6px 0;
         font-size: 15px;
     }
 
@@ -188,8 +188,8 @@ and (orientation : landscape) {
     }
 
     .doc-body {
-        width: 102%;  /* Hide vertical scrollbar and increase right-side page margin */
-        height: calc(100% - 40px - 5px);   /* Occupy parent's remaining height, 40px for header, 5px for bottom page margin */
+        width: 102%;  /* Hide vertical scrollbar by increasing right-side page margin */
+        height: calc(100% - 42px - 10px);   /* Occupy parent's remaining height, 42px for header, 10px for extra space */
     }
     
     /**************************************************************
@@ -204,7 +204,7 @@ and (orientation : landscape) {
 /* Smartphones (portrait) ----------- */
 /* Slight Width-Scale Focused Display */
 /@media only screen 
-and (max-device-width : 320px) {
+/* and (max-device-width : 320px) */ {
     /**************************************************************
      *                             GENERAL                        *
      **************************************************************/
@@ -272,6 +272,19 @@ and (max-device-width : 320px) {
     /**************************************************************
      *                        DOCIT + DOCVIEW                     *
      **************************************************************/
+    .doc-header > * {
+        margin: 0 0 4px 0;
+        font-size: 12px;
+    }
+
+    .doc-alias, .doc-date {
+        display: inherit;
+    }
+
+    .doc-body {
+        width: 104.4%;  /* Hide vertical scrollbar by increasing right-side page margin */
+        height: calc(100% - 50px - 10px);   /* Occupy parent's remaining height, 50px for header, 10px for extra space */
+    }
     
     /**************************************************************
      *                            DOCBOARD                        *
@@ -286,7 +299,7 @@ and (max-device-width : 320px) {
 /* Portrait Focused Display */
 /@media only screen 
 and (min-device-width : 768px) 
-and (max-device-width : 1024px)  {
+/* and (max-device-width : 1024px) */ {
     /**************************************************************
      *                             GENERAL                        *
      **************************************************************/
@@ -346,6 +359,19 @@ and (max-device-width : 1024px)  {
     /**************************************************************
      *                        DOCIT + DOCVIEW                     *
      **************************************************************/
+    .doc-header > * {
+        margin: 0 0 5px 0;
+        font-size: 16px;
+    }
+
+    .doc-alias, .doc-date {
+        display: inline-block;
+    }
+
+    .doc-body {
+        width: 102%;  /* Hide vertical scrollbar by increasing right-side page margin */
+        height: calc(100% - 43px - 10px);   /* Occupy parent's remaining height, 43px for header, 10px for extra space */
+    }
     
     /**************************************************************
      *                            DOCBOARD                        *
@@ -358,9 +384,9 @@ and (max-device-width : 1024px)  {
 
 /* iPads (landscape) ----------- */
 /* Width-Scale Focused Display */
-/@media only screen 
+@media only screen 
 and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
+/*and (max-device-width : 1024px) */
 and (orientation : landscape) {
     /**************************************************************
      *                             GENERAL                        *
@@ -427,6 +453,19 @@ and (orientation : landscape) {
     /**************************************************************
      *                        DOCIT + DOCVIEW                     *
      **************************************************************/
+    .doc-header > * {
+        margin: 0 0 6px 0;
+        font-size: 15px;
+    }
+
+    .doc-alias, .doc-date {
+        display: inline-block;
+    }
+    
+    .doc-body {
+        width: 101.75%;  /* Hide vertical scrollbar by increasing right-side page margin */
+        height: calc(100% - 42px - 10px);   /* Occupy parent's remaining height, 42px for header, 10px for extra space */
+    }
     
     /**************************************************************
      *                            DOCBOARD                        *
@@ -439,7 +478,7 @@ and (orientation : landscape) {
 
 /* Desktop screens ----------- */
 /* Static Focused Display */
-/@media only screen {
+@media only screen {
      /**************************************************************
      *                             GENERAL                        *
      **************************************************************/
@@ -502,18 +541,17 @@ and (orientation : landscape) {
      *                        DOCIT + DOCVIEW                     *
      **************************************************************/
     .doc-header > * {
-        margin: 0 0 10px 0;
-        font-size: 13px;
+        margin: 0 0 6px 0;
+        font-size: 16px;
     }
-
 
     .doc-alias, .doc-date {
         display: inline-block;
     }
 
     .doc-body {
-        width: 102%;  /* Hide vertical scrollbar and increase right-side page margin */
-        height: calc(100% - 40px - 20px);   /* Occupy parent's remaining height, 40px for header, 20px for bottom page margin */
+        width: 101.75%;  /* Hide vertical scrollbar by increasing right-side page margin */
+        height: calc(100% - 44px - 20px);   /* Occupy parent's remaining height, 44px for header, 20px for bottom page margin */
     }
 
     /**************************************************************

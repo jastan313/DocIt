@@ -188,7 +188,7 @@ button:hover {
 }
 #docview-body:hover {
     cursor: n-resize;
-}
+}   
 
 /**************************************************************
  *                        DOCIT + DOCIEW                      *
@@ -223,9 +223,32 @@ button:hover {
 /**************************************************************
  *                            DOCBOARD                        *
 **************************************************************/
+#docboard-header > * {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+#docboard-header > h1 {
+    font-size: 28px;
+}
+#docboard-alias {
+    font-size: 14px;
+}
+
+#docboard-docs {
+    width: 100%;
+    height: 500px;
+    background-color: lightblue;
+}
+
+#docboard-feed {
+    width: 100%;
+    height: 400px   ;
+    background-color: lightgreen;
+}
 
 /**************************************************************
- *                         DOCIT + DOCBOARD                   *
+ *                    DOCIT + DOCVIEW + DOCBOARD              *
  **************************************************************/
 .directory-btn {
     padding: 8px 3px 7px 3px;

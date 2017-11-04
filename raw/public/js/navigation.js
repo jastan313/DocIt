@@ -6,6 +6,7 @@ window.onload = function () {
     var docitDirBtn = document.getElementById('docit-directory-btn');
     var docitDirectory = document.getElementById('docit-directory');
     var docitDirSaveBtn = document.getElementById('docit-directory-save-btn');
+    var docitDirDeleteBtn = document.getElementById('docit-directory-delete-btn');
     var docitDirToDocboardBtn = document.getElementById('docit-directory-todocboard-btn');
     var docitDirLogoutBtn = document.getElementById('docit-directory-logout-btn');
 
@@ -45,6 +46,13 @@ window.onload = function () {
         });
     }
     if (docitDirSaveBtn) {
+        docitDirSaveBtn.addEventListener('click', function (e) {
+            docitDirBtn.style.display = "inherit";
+            docitDirectory.style.display = "none";
+            e.stopPropagation();
+        });
+    }
+    if (docitDirDeleteBtn) {
         docitDirSaveBtn.addEventListener('click', function (e) {
             docitDirBtn.style.display = "inherit";
             docitDirectory.style.display = "none";

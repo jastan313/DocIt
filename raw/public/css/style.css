@@ -168,30 +168,30 @@ button:hover {
 }
 
 /**************************************************************
-*                             DOCIT                           *
-**************************************************************/
+ *                             DOCIT                          *
+ **************************************************************/
 
 /**************************************************************
-*                            DOCVIEW                          *
-**************************************************************/
+ *                            DOCVIEW                         *
+ **************************************************************/
 #docview-body {
     color: transparent;  /* Remove blinking typing cursor */ 
 }
 
 /**************************************************************
-*                        DOCIT + DOCVIEW                      *
-**************************************************************/
+ *                        DOCIT + DOCIEW                      *
+ **************************************************************/
 .doc {
     height: 100%;
 }
 
 .doc-header > * {
-    margin: 0 0 10px 0;
-    font-size: 13px;
+    /* See media.css for .doc-header > * margin, font-size */
 }
 .doc-alias, .doc-date {
-    display: inline-block;
     font-weight: normal;
+    
+    /* See media.css for .doc-alias, .doc-date display */
 }
 .doc-name {
     font-style: italic;
@@ -200,21 +200,21 @@ button:hover {
 
 /* Textarea for typing docs, no background with vertical scrollability */
 .doc-body {
-    width: 102%;  /* Hide vertical scrollbar and increase right-side page margin */
-    height: calc(100% - 40px - 20px);   /* Occupy parent's remaining height, 40px for header, 20px for bottom page margin */
     background: none;
     border: none;
     resize: none;
     overflow-y: scroll;
+    
+    /* See media.css for .doc-body width, height */
 }
 
 /**************************************************************
-*                            DOCBOARD                         *
+ *                            DOCBOARD                        *
 **************************************************************/
 
 /**************************************************************
-*                         DOCIT + DOCBOARD                    *
-**************************************************************/
+ *                         DOCIT + DOCBOARD                   *
+ **************************************************************/
 .directory-btn {
     padding: 8px 3px 7px 3px;
 }

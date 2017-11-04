@@ -13,12 +13,12 @@ and open the template in the editor.
  *                             GENERAL                        *
  **************************************************************/
 body {
-    background-color: #f2f5f5;   /* Slight blue-ish background */
+    background-color: #f2f5f5;  /* Slight blue-ish background */
     padding: 20px;
 }
 
 body * {
-    font-family: 'Courier New', monospace;   /* Typewriter-like font */
+    font-family: 'Courier New', monospace;  /* Typewriter-like font */
     font-size: 12px;
     text-shadow: 0.25px 0.35px #c2c5c5;
 }
@@ -85,6 +85,12 @@ button:hover {
 }
 #doc-content::-webkit-scrollbar { 
     display: none;  /* Hide scrollbar in Safari and Chrome */
+}
+#doc-content *::selection {
+    background-color: #ffffaa;  /* Yellow when highlighting text */
+}
+#doc-content *::-moz-selection {
+    background-color: #ffffaa;
 }
 
 /* Type-writer animation */
@@ -174,9 +180,6 @@ button:hover {
 /**************************************************************
  *                            DOCVIEW                         *
  **************************************************************/
-#docview-body {
-    color: transparent;  /* Remove blinking typing cursor */ 
-}
 
 /**************************************************************
  *                        DOCIT + DOCIEW                      *

@@ -224,11 +224,10 @@ button:hover {
  *                            DOCBOARD                        *
 **************************************************************/
 #docboard {
-    display: flex;
+    display: flex;  /* Create flex display to cover entire screen */
     flex-flow: column;
     min-height: 100%;
 }
-
 #docboard > * {
     margin: 0;
 }
@@ -253,11 +252,27 @@ button:hover {
 
 #docboard-docs {
     flex: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    overflow-y: scroll;
+    
     background-color: lightblue;
 }
 
+.docboard-mydoc {
+    height: calc(100% * (1/2) - 14px);
+    width: calc(100% * (1/8) - 14px);
+    margin: 0px 6px 12px 6px;
+
+    border: 1px solid black;
+    background-color: white;
+}
+
 #docboard-feed {
-    flex: 1;
+    flex: 2;
+    
     background-color: lightgreen;
 
 }

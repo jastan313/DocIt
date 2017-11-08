@@ -233,23 +233,25 @@ button:hover {
 }
 
 #docboard > h2 {
-    font-size: 18px;
-    margin: 10px 0px 10px 0px;
     text-decoration: underline;
+    
+    /* See media.css for #docboard > h2 font-size, margin */
 }
 
 #docboard-header > * {
     display: inline-block;
-    padding: 0 0 10px 0;
     margin: 0;
+    
+    /* See media.css for #docboard-header > * padding */
 }
 
 #docboard-header > h1 {
-    font-size: 26px;
     margin: 0;
+    
+    /* See media.css for #docboard-header > h1 font-size */
 }
 #docboard-alias {
-    font-size: 14px;
+    /* See media.css for #docboard-alias font-size */
 }
 
 #docboard-docs {

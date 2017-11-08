@@ -10,7 +10,7 @@ and open the template in the editor.
 
 /* Smartphones (portrait and landscape) ----------- */
 /* Portrait Focused Display */
-/@media only screen 
+@media only screen 
 and (min-device-width : 320px) 
 /* and (max-device-width : 480px) */ {
     /**************************************************************
@@ -94,6 +94,22 @@ and (min-device-width : 320px)
     /**************************************************************
      *                            DOCBOARD                        *
      **************************************************************/
+    #docboard > h2 {
+        font-size: 12px;
+        margin: 3px 0px 3px 0px;
+    }
+
+    #docboard-header > * {
+        padding: 0 0 4px 0;
+    }
+
+    #docboard-header > h1 {
+        font-size: 15px;
+    }
+
+    #docboard-alias {
+        font-size: 10px;
+    }
 
     /**************************************************************
      *                    DOCIT + DOCVIEW + DOCBOARD              *
@@ -195,6 +211,22 @@ and (orientation : landscape) {
     /**************************************************************
      *                            DOCBOARD                        *
      **************************************************************/
+    #docboard > h2 {
+        font-size: 18px;
+        margin: 10px 0px 10px 0px;
+    }
+
+    #docboard-header > * {
+        padding: 0 0 10px 0;
+    }
+
+    #docboard-header > h1 {
+        font-size: 26px;
+    }
+
+    #docboard-alias {
+        font-size: 14px;
+    }
 
     /**************************************************************
      *                    DOCIT + DOCVIEW + DOCBOARD              *
@@ -289,6 +321,22 @@ and (orientation : landscape) {
     /**************************************************************
      *                            DOCBOARD                        *
      **************************************************************/
+    #docboard > h2 {
+        font-size: 18px;
+        margin: 10px 0px 10px 0px;
+    }
+
+    #docboard-header > * {
+        padding: 0 0 10px 0;
+    }
+
+    #docboard-header > h1 {
+        font-size: 26px;
+    }
+
+    #docboard-alias {
+        font-size: 14px;
+    }
 
     /**************************************************************
      *                    DOCIT + DOCVIEW + DOCBOARD              *
@@ -376,6 +424,22 @@ and (min-device-width : 768px)
     /**************************************************************
      *                            DOCBOARD                        *
      **************************************************************/
+    #docboard > h2 {
+        font-size: 18px;
+        margin: 10px 0px 10px 0px;
+    }
+
+    #docboard-header > * {
+        padding: 0 0 10px 0;
+    }
+
+    #docboard-header > h1 {
+        font-size: 26px;
+    }
+
+    #docboard-alias {
+        font-size: 14px;
+    }
 
     /**************************************************************
      *                    DOCIT + DOCVIEW + DOCBOARD              *
@@ -470,6 +534,22 @@ and (orientation : landscape) {
     /**************************************************************
      *                            DOCBOARD                        *
      **************************************************************/
+    #docboard > h2 {
+        font-size: 18px;
+        margin: 10px 0px 10px 0px;
+    }
+
+    #docboard-header > * {
+        padding: 0 0 10px 0;
+    }
+
+    #docboard-header > h1 {
+        font-size: 26px;
+    }
+
+    #docboard-alias {
+        font-size: 14px;
+    }
 
     /**************************************************************
      *                    DOCIT + DOCVIEW + DOCBOARD              *
@@ -478,7 +558,7 @@ and (orientation : landscape) {
 
 /* Desktop screens ----------- */
 /* Static Focused Display */
-@media only screen {
+/@media only screen {
      /**************************************************************
      *                             GENERAL                        *
      **************************************************************/
@@ -557,6 +637,22 @@ and (orientation : landscape) {
     /**************************************************************
      *                            DOCBOARD                        *
      **************************************************************/
+    #docboard > h2 {
+        font-size: 18px;
+        margin: 10px 0px 10px 0px;
+    }
+
+    #docboard-header > * {
+        padding: 0 0 10px 0;
+    }
+
+    #docboard-header > h1 {
+        font-size: 26px;
+    }
+
+    #docboard-alias {
+        font-size: 14px;
+    }
 
     /**************************************************************
      *                    DOCIT + DOCVIEW + DOCBOARD              *

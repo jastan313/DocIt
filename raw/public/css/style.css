@@ -272,12 +272,12 @@ button:hover {
     /* Paper-esque styling */
     background-image: url('../imgs/white_paper25.jpg');
     background-color: #fcfcfc;
-    border: 1px #aaaaaa solid;
-    box-shadow: 1px 12px 20px #777777;
+    border: 2px #aaaaaa solid;
+    box-shadow: 4px 7px 7px #555555;
 }
 .docboard-mydoc:hover {
     color: #555555;
-    border: 1px black solid;
+    border: 2px black solid;
 }
 
 #docboard-feed {
@@ -300,12 +300,12 @@ button:hover {
     /* Paper-esque styling */
     background-image: url('../imgs/white_paper25.jpg');
     background-color: #fcfcfc;
-    border: 1px #aaaaaa solid;
-    box-shadow: 1px 12px 20px #777777;
+    border: 2px #aaaaaa solid;
+    box-shadow: 4px 7px 7px #555555;
 }
 .docboard-feeddoc:hover {
     color: #555555;
-    border: 1px black solid;
+    border: 2px black solid;
 }
 
 /**************************************************************

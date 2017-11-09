@@ -255,10 +255,10 @@ button:hover {
 }
 
 #docboard-docs {
-    flex: 1;
-    display: flex;
+    flex: 1;  /* 1:2 ratio for height allocation between docs:doc feed */
+    display: flex;  /* Create flex display for inner mydocs */
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: wrap;  
     align-items: center;
     overflow-y: scroll;
     border: 3px black solid;
@@ -266,10 +266,13 @@ button:hover {
 }
 
 .docboard-mydoc {
-    height: calc(100% * (1/1.92) - 14px);
+    height: calc(100% * (1/1.92) - 14px);  /* Fit ten mydocs in one scrollable view */
     width: calc(100% * (1/4.94) - 14px);
     margin: 0px 6px 12px 6px;
-    overflow: hidden;
+    
+    display: flex;  /* Create flex display for inner data */
+    text-align: center;
+    align-items: center;
 
     /* Paper-esque styling */
     background-image: url('../imgs/white_paper25.jpg');
@@ -280,11 +283,15 @@ button:hover {
 .docboard-mydoc:hover {
     color: #555555;
     border: 2px black solid;
+    cursor: pointer;
+}
+
+.docboard-mydoc > * {
 }
 
 #docboard-feed {
-    flex: 2;
-    display: flex;
+    flex: 2;  /* 1:2 ratio for height allocation between docs:doc feed */
+    display: flex;  /* Create flex display for inner doc feed */
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
@@ -294,10 +301,13 @@ button:hover {
 }
 
 .docboard-feeddoc {
-    height: calc(100% * (1/2.92) - 14px);
+    height: calc(100% * (1/2.92) - 14px);  /* Fit ten mydocs in one scrollable view */
     width: calc(100% * (1/4.94) - 14px);
     margin: 0px 6px 12px 6px;
-    overflow: hidden;
+    
+    text-align: center;  /* Create flex display for inner data */
+    display: flex;
+    align-items: center;
 
     /* Paper-esque styling */
     background-image: url('../imgs/white_paper25.jpg');
@@ -308,6 +318,7 @@ button:hover {
 .docboard-feeddoc:hover {
     color: #555555;
     border: 2px black solid;
+    cursor: pointer;
 }
 
 /**************************************************************

@@ -266,8 +266,8 @@ button:hover {
 }
 
 .docboard-mydoc {
-    height: calc(100% * (1/1.92) - 14px);  /* Fit ten mydocs in one scrollable view */
-    width: calc(100% * (1/4.94) - 14px);
+    height: calc(100% * (1/1.92) - 14px);
+    width: calc(100% * (1/4.1) - 14px);
     margin: 0px 6px 12px 6px;
     
     display: flex;  /* Create flex display for inner data */
@@ -286,7 +286,15 @@ button:hover {
     cursor: pointer;
 }
 
-.docboard-mydoc > * {
+.docboard-doc-title {
+    margin: 0 0 6px 0;
+    font-weight: bolder;
+}
+.docboard-doc-date {
+    margin: 0 0 3px 0;
+}
+.docboard-doc-rating {
+    font-style: italic;
 }
 
 #docboard-feed {

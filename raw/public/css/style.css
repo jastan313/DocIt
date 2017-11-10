@@ -287,14 +287,15 @@ button:hover {
 }
 
 .docboard-doc-title {
-    margin: 0 0 6px 0;
+    margin: 0 0 8px 0;
     font-weight: bolder;
 }
 .docboard-doc-date {
-    margin: 0 0 3px 0;
+    margin: 0 0 4px 0;
 }
 .docboard-doc-rating {
     font-style: italic;
+    text-decoration: underline;
 }
 
 #docboard-feed {

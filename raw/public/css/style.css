@@ -228,12 +228,7 @@ button:hover {
 }
 #docboard > * {
     margin: 0;
-}
-
-#docboard > h2 {
-    text-decoration: underline;
     
-    /* See media.css for #docboard > h2 font-size, margin */
 }
 
 #docboard-header > * {
@@ -250,6 +245,12 @@ button:hover {
 }
 #docboard-alias {
     /* See media.css for #docboard-alias font-size */
+}
+
+#docboard-docs-container > h2, #docboard-feed-container > h2 {
+    text-decoration: underline;
+    
+    /* See media.css for #docboard-docs-container > h2, #docboard-feed-container > h2 font-size, margin */
 }
 
 #docboard-docs {

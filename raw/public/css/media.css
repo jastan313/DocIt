@@ -94,7 +94,7 @@ and (min-device-width : 320px)
     /**************************************************************
      *                            DOCBOARD                        *
      **************************************************************/
-    #docboard > h2 {
+    #docboard-docs-container > h2, #docboard-feed-container > h2 {
         font-size: 12px;
         margin: 3px 0px 3px 0px;
     }
@@ -115,12 +115,7 @@ and (min-device-width : 320px)
         height: 218px;
     }
     
-    .docboard-mydoc {
-        width: 281px;
-        height: 212px;
-    }
-    
-    .docboard-feeddoc {
+    .docboard-mydoc, .docboard-feeddoc {
         width: 281px;
         height: 212px;
     }
@@ -225,7 +220,11 @@ and (min-device-width : 321px)
     /**************************************************************
      *                            DOCBOARD                        *
      **************************************************************/
-    #docboard > h2 {
+    #docboard-docs-container, #docboard-feed-container {
+        display: inline-block;
+    }
+    
+    #docboard-docs-container > h2, #docboard-feed-container > h2 {
         font-size: 16px;
         margin: 10px 0px 10px 0px;
     }
@@ -243,17 +242,14 @@ and (min-device-width : 321px)
     }
     
     #docboard-docs, #docboard-feed {
-        height: 170px;
+        width: 43vw;
+        height: 40vw;
+        
     }
     
-    .docboard-mydoc {
-        width: 209px;
-        height: 165px;
-    }
-    
-    .docboard-feeddoc {
-        width: 209px;
-        height: 165px;
+    .docboard-mydoc, .docboard-feeddoc {
+        width: 39vw;
+        height: 39vw;
     }
 
     /**************************************************************
@@ -349,7 +345,7 @@ and (min-device-width : 321px)
     /**************************************************************
      *                            DOCBOARD                        *
      **************************************************************/
-    #docboard > h2 {
+    #docboard-docs-container > h2, #docboard-feed-container > h2 {
         font-size: 12px;
         margin: 3px 0px 3px 0px;
     }
@@ -370,12 +366,7 @@ and (min-device-width : 321px)
         height: 185px;
     }
     
-    .docboard-mydoc {
-        width: 281px;
-        height: 180px;
-    }
-    
-    .docboard-feeddoc {
+    .docboard-mydoc, .docboard-feeddoc {
         width: 281px;
         height: 180px;
     }
@@ -466,7 +457,7 @@ and (min-device-width : 768px)
     /**************************************************************
      *                            DOCBOARD                        *
      **************************************************************/
-    #docboard > h2 {
+    #docboard-docs-container > h2, #docboard-feed-container > h2 {
         font-size: 18px;
         margin: 8px 0px 8px 0px;
     }
@@ -483,16 +474,15 @@ and (min-device-width : 768px)
         font-size: 14px;
     }
     
-    #docboard-docs, #docboard-feed {
-        height: 362px;
+    #docboard-docs {
+        height: 181px;
     }
     
-    .docboard-mydoc {
-        width: 170px;
-        height: 170px;
+    #docboard-feed {
+        height: calc(97vh - 390px);
     }
     
-    .docboard-feeddoc {
+    .docboard-mydoc, .docboard-feeddoc {
         width: 170px;
         height: 170px;
     }
@@ -590,7 +580,7 @@ and (orientation : landscape) {
     /**************************************************************
      *                            DOCBOARD                        *
      **************************************************************/
-    #docboard > h2 {
+    #docboard-docs-container > h2, #docboard-feed-container > h2 {
         font-size: 15px;
         margin: 5px 0px 5px 0px;
     }
@@ -608,17 +598,16 @@ and (orientation : landscape) {
     }
     
     #docboard-docs, #docboard-feed {
-        height: 186px;
+        height: 175px;
     }
     
-    .docboard-mydoc {
-        width: 170px;
-        height: 180px;
+    #docboard-feed {
+        height: calc(34vw - 100px);
     }
     
-    .docboard-feeddoc {
-        width: 170px;
-        height: 180px;
+    .docboard-mydoc, .docboard-feeddoc {
+        width: calc(19.25vw + 6px);
+        height: 169px;
     }
 
     /**************************************************************
@@ -707,7 +696,7 @@ and (orientation : landscape) {
     /**************************************************************
      *                            DOCBOARD                        *
      **************************************************************/
-    #docboard > h2 {
+    #docboard-docs-container > h2, #docboard-feed-container > h2 {
         font-size: 18px;
         margin: 10px 0px 10px 0px;
     }

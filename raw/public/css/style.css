@@ -188,8 +188,38 @@ button:hover {
 }
 
 #docview-rateup, #docview-ratedown {
-    margin: 0;
+    border: 2px grey inset;
 }
+#docview-rateup:hover {
+    color: white;
+    border: 2px #003b00 outset;
+    background-color: #003b00;
+}
+#docview-ratedown:hover {
+    color: white;
+    border: 2px darkred outset;
+    background-color: darkred;
+}
+
+#docview-rateup.ratedup {
+    color: #003b00;
+    border: 2px #003b00 inset;
+}
+#docview-rateup.ratedup:hover {
+    color: white;
+    border: 2px #003b00 outset;
+    background-color: #003b00;
+}
+#docview-ratedown.rateddown {
+    color: darkred;
+    border: 2px darkred inset;
+}
+#docview-ratedown.rateddown:hover {
+    color: white;
+    border: 2px darkred outset;
+    background-color: darkred;
+}
+
 
 #docview-body {
     color: #555555;

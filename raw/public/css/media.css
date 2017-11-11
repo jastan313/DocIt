@@ -112,17 +112,17 @@ and (min-device-width : 320px)
     }
     
     #docboard-docs, #docboard-feed {
-        height: 357px;
+        height: 218px;
     }
     
     .docboard-mydoc {
-        width: 178px;
-        height: 168px;
+        width: 281px;
+        height: 212px;
     }
     
     .docboard-feeddoc {
-        width: 178px;
-        height: 168px;
+        width: 281px;
+        height: 212px;
     }
 
     /**************************************************************
@@ -132,9 +132,9 @@ and (min-device-width : 320px)
 
 /* Smartphones (landscape) ----------- */
 /* Width-Scale Focused Display */
-/@media only screen 
+@media only screen 
 and (min-device-width : 321px)
-and (orientation : landscape) {
+/* and (orientation : landscape) */ {
     /**************************************************************
      *                             GENERAL                        *
      **************************************************************/
@@ -243,17 +243,17 @@ and (orientation : landscape) {
     }
     
     #docboard-docs, #docboard-feed {
-        height: 357px;
+        height: 170px;
     }
     
     .docboard-mydoc {
-        width: 178px;
-        height: 168px;
+        width: 209px;
+        height: 165px;
     }
     
     .docboard-feeddoc {
-        width: 178px;
-        height: 168px;
+        width: 209px;
+        height: 165px;
     }
 
     /**************************************************************
@@ -628,7 +628,7 @@ and (orientation : landscape) {
 
 /* Desktop screens ----------- */
 /* Static Focused Display */
-@media only screen {
+/@media only screen {
      /**************************************************************
      *                             GENERAL                        *
      **************************************************************/

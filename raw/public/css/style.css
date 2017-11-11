@@ -288,6 +288,10 @@ button:hover {
     margin: 0 0 8px 0;
     font-weight: bolder;
 }
+.docboard-doc-alias {
+    font-weight: bolder;
+    margin: 0 0 8px 0;
+}
 .docboard-doc-date {
     margin: 0 0 4px 0;
 }

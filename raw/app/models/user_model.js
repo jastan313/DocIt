@@ -8,6 +8,7 @@ var objectId = Schema.ObjectId;
 var userSchema = new Schema({
     id: objectId,
     alias: {type: String, required: true, unique: true},
+    email: {type: String, required: true, unique: true},
     password: {type: String, required: true},
     documents: [{type: mongoose.Schema.Types.ObjectId, ref: 'Doc'}],
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]

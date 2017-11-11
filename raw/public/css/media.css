@@ -110,6 +110,20 @@ and (min-device-width : 320px)
     #docboard-alias {
         font-size: 10px;
     }
+    
+    #docboard-docs, #docboard-feed {
+        height: 357px;
+    }
+    
+    .docboard-mydoc {
+        width: 178px;
+        height: 168px;
+    }
+    
+    .docboard-feeddoc {
+        width: 178px;
+        height: 168px;
+    }
 
     /**************************************************************
      *                    DOCIT + DOCVIEW + DOCBOARD              *
@@ -227,6 +241,20 @@ and (orientation : landscape) {
     #docboard-alias {
         font-size: 14px;
     }
+    
+    #docboard-docs, #docboard-feed {
+        height: 357px;
+    }
+    
+    .docboard-mydoc {
+        width: 178px;
+        height: 168px;
+    }
+    
+    .docboard-feeddoc {
+        width: 178px;
+        height: 168px;
+    }
 
     /**************************************************************
      *                    DOCIT + DOCVIEW + DOCBOARD              *
@@ -337,6 +365,20 @@ and (orientation : landscape) {
     #docboard-alias {
         font-size: 14px;
     }
+    
+    #docboard-docs, #docboard-feed {
+        height: 357px;
+    }
+    
+    .docboard-mydoc {
+        width: 178px;
+        height: 168px;
+    }
+    
+    .docboard-feeddoc {
+        width: 178px;
+        height: 168px;
+    }
 
     /**************************************************************
      *                    DOCIT + DOCVIEW + DOCBOARD              *
@@ -439,6 +481,20 @@ and (min-device-width : 768px)
 
     #docboard-alias {
         font-size: 14px;
+    }
+    
+    #docboard-docs, #docboard-feed {
+        height: 357px;
+    }
+    
+    .docboard-mydoc {
+        width: 178px;
+        height: 168px;
+    }
+    
+    .docboard-feeddoc {
+        width: 178px;
+        height: 168px;
     }
 
     /**************************************************************
@@ -549,6 +605,20 @@ and (orientation : landscape) {
 
     #docboard-alias {
         font-size: 14px;
+    }
+    
+    #docboard-docs, #docboard-feed {
+        height: 357px;
+    }
+    
+    .docboard-mydoc {
+        width: 178px;
+        height: 168px;
+    }
+    
+    .docboard-feeddoc {
+        width: 178px;
+        height: 168px;
     }
 
     /**************************************************************

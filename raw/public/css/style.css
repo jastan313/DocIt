@@ -224,8 +224,6 @@ button:hover {
  *                            DOCBOARD                        *
 **************************************************************/
 #docboard {
-    display: flex;  /* Create flex display to cover entire screen */
-    flex-flow: column;
     min-height: 100%;
 }
 #docboard > * {
@@ -255,7 +253,6 @@ button:hover {
 }
 
 #docboard-docs {
-    flex: 1;  /* 1:2 ratio for height allocation between docs:doc feed */
     display: flex;  /* Create flex display for inner mydocs */
     flex-direction: row;
     flex-wrap: wrap;  
@@ -263,13 +260,12 @@ button:hover {
     overflow-y: scroll;
     border: 3px black solid;
     padding: 3px 0px 0px 0px;
+    
+    /* See media.css for #docboard-docs height */
 }
 
 .docboard-mydoc {
-    height: calc(100% * (1/1.92) - 14px);
-    width: calc(100% * (1/4.1) - 14px);
     margin: 0px 6px 12px 6px;
-    
     display: flex;  /* Create flex display for inner data */
     text-align: center;
     align-items: center;
@@ -279,6 +275,8 @@ button:hover {
     background-color: #fcfcfc;
     border: 2px #aaaaaa solid;
     box-shadow: 4px 7px 7px #555555;
+    
+    /* See media.css for .docboard-mydoc width, height */
 }
 .docboard-mydoc:hover {
     color: #555555;
@@ -299,7 +297,6 @@ button:hover {
 }
 
 #docboard-feed {
-    flex: 2;  /* 1:2 ratio for height allocation between docs:doc feed */
     display: flex;  /* Create flex display for inner doc feed */
     flex-direction: row;
     flex-wrap: wrap;
@@ -307,13 +304,12 @@ button:hover {
     overflow-y: scroll;
     border: 3px black solid;
     padding: 3px 0px 0px 0px;
+    
+    /* See media.css for #docboard-feed height */
 }
 
 .docboard-feeddoc {
-    height: calc(100% * (1/2.92) - 14px);  /* Fit ten mydocs in one scrollable view */
-    width: calc(100% * (1/4.94) - 14px);
     margin: 0px 6px 12px 6px;
-    
     text-align: center;  /* Create flex display for inner data */
     display: flex;
     align-items: center;
@@ -323,6 +319,8 @@ button:hover {
     background-color: #fcfcfc;
     border: 2px #aaaaaa solid;
     box-shadow: 4px 7px 7px #555555;
+    
+    /* See media.css for .docboard-feeddoc width, height */
 }
 .docboard-feeddoc:hover {
     color: #555555;

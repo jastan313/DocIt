@@ -653,7 +653,21 @@ and (orientation : landscape) {
     #docboard-alias {
         font-size: 14px;
     }
-
+    
+    #docboard-docs, #docboard-feed {
+        height: 357px;
+    }
+    
+    .docboard-mydoc {
+        width: 178px;
+        height: 168px;
+    }
+    
+    .docboard-feeddoc {
+        width: 178px;
+        height: 168px;
+    }
+    
     /**************************************************************
      *                    DOCIT + DOCVIEW + DOCBOARD              *
      **************************************************************/

@@ -10,6 +10,7 @@ var userSchema = new Schema({
     alias: {type: String, required: true, unique: true},
     email: {type: String, required: true, unique: true},
     password: {type: String, required: true},
+    login_attempts: {type: Number, default: 0, min: 0, max: 3},
     documents: [{type: mongoose.Schema.Types.ObjectId, ref: 'Doc'}],
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 });

@@ -11,7 +11,8 @@ var docSchema = new Schema({
     date: {type: Date, default: Date.now},
     title: {type: String, default: 'Untitled'},
     body: {type: String, default: ''},
-    ratings: [[{type: mongoose.Schema.Types.ObjectId, ref: 'User'}, {type: Number, 'vote': 1}]],
+    published: {type: Boolean, default: false},
+    ratings: [{user_id: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}, rating: {type: Number, default: 0}}],
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 });
 // Apply the uniqueValidator plugin to docSchema.

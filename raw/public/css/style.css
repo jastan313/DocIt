@@ -176,6 +176,17 @@ button:hover {
 /**************************************************************
  *                             DOCIT                          *
  **************************************************************/
+#docit-alias, #docit-date, #docit-name {
+    /* See media.css for #docit-alias, #docit-date, #docit-name width, max-width */
+}
+
+#docit-name {
+    text-overflow: ellipsis;
+}
+#docit-name:hover {
+    background-color: transparent;
+}
+
 #docit-body:hover {
     cursor: url('../resources/pencil_cursor.cur'), auto;
 }
@@ -183,6 +194,10 @@ button:hover {
 /**************************************************************
  *                            DOCVIEW                         *
  **************************************************************/
+#docview-alias, #docview-date, #docview-name {
+    /* See media.css for #docview-alias, #docview-date, #docview-name width, max-width */
+}
+
 .doc-name, #docview-rateup, #docview-ratedown {
     display: inline-block;
 }
@@ -240,12 +255,16 @@ button:hover {
 }
 .doc-alias, .doc-date {
     font-weight: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
     
     /* See media.css for .doc-alias, .doc-date display */
 }
 .doc-name {
     font-style: italic;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Textarea for typing docs, no background with vertical scrollability */

@@ -132,7 +132,7 @@ and (min-device-width : 320px)
 
 /* Smartphones (landscape) ----------- */
 /* Width-Scale Focused Display */
-@media only screen 
+/@media only screen 
 and (min-device-width : 321px)
 /* and (orientation : landscape) */ {
     /**************************************************************
@@ -226,12 +226,12 @@ and (min-device-width : 321px)
      *                            DOCBOARD                        *
      **************************************************************/
     #docboard > h2 {
-        font-size: 18px;
+        font-size: 16px;
         margin: 10px 0px 10px 0px;
     }
 
     #docboard-header > * {
-        padding: 0 0 10px 0;
+        padding: 0 0 0 0;
     }
 
     #docboard-header > h1 {
@@ -350,34 +350,34 @@ and (min-device-width : 321px)
      *                            DOCBOARD                        *
      **************************************************************/
     #docboard > h2 {
-        font-size: 18px;
-        margin: 10px 0px 10px 0px;
+        font-size: 12px;
+        margin: 3px 0px 3px 0px;
     }
 
     #docboard-header > * {
-        padding: 0 0 10px 0;
+        padding: 0 0 4px 0;
     }
 
     #docboard-header > h1 {
-        font-size: 26px;
+        font-size: 16px;
     }
 
     #docboard-alias {
-        font-size: 14px;
+        font-size: 10px;
     }
     
     #docboard-docs, #docboard-feed {
-        height: 357px;
+        height: 185px;
     }
     
     .docboard-mydoc {
-        width: 178px;
-        height: 168px;
+        width: 281px;
+        height: 180px;
     }
     
     .docboard-feeddoc {
-        width: 178px;
-        height: 168px;
+        width: 281px;
+        height: 180px;
     }
 
     /**************************************************************

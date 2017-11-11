@@ -183,12 +183,20 @@ button:hover {
 /**************************************************************
  *                            DOCVIEW                         *
  **************************************************************/
+.doc-name, #docview-rateup, #docview-ratedown {
+    display: inline-block;
+}
+
+#docview-rateup, #docview-ratedown {
+    margin: 0;
+}
+
 #docview-body {
     color: #555555;
 }
 #docview-body:hover {
     cursor: n-resize;
-}   
+}
 
 /**************************************************************
  *                        DOCIT + DOCIEW                      *
@@ -255,14 +263,17 @@ button:hover {
 
 #docboard-docs {
     display: flex;  /* Create flex display for inner mydocs */
-    flex-direction: row;
-    flex-wrap: wrap;  
-    align-items: center;
+    flex-wrap: wrap;
     overflow-y: scroll;
     border: 3px black solid;
     padding: 3px 0px 0px 0px;
     
     /* See media.css for #docboard-docs height */
+}
+
+#docboard-createdoc {
+    justify-content: center;
+    font-weight: bolder;
 }
 
 .docboard-mydoc {
@@ -303,9 +314,7 @@ button:hover {
 
 #docboard-feed {
     display: flex;  /* Create flex display for inner doc feed */
-    flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
     overflow-y: scroll;
     border: 3px black solid;
     padding: 3px 0px 0px 0px;

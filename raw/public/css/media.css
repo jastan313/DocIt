@@ -617,7 +617,7 @@ and (orientation : landscape) {
 
 /* Desktop screens ----------- */
 /* Static Focused Display */
-/@media only screen {
+@media only screen {
      /**************************************************************
      *                             GENERAL                        *
      **************************************************************/
@@ -679,7 +679,7 @@ and (orientation : landscape) {
     /**************************************************************
      *                        DOCIT + DOCVIEW                     *
      **************************************************************/
-    .doc-header > * {
+    .doc-alias, .doc-date, .doc-name {
         margin: 0 0 6px 0;
         font-size: 16px;
     }
@@ -713,8 +713,13 @@ and (orientation : landscape) {
         font-size: 14px;
     }
     
-    #docboard-docs, #docboard-feed {
+    #docboard-docs {
         height: 357px;
+    }
+    
+    #docboard-feed {
+        min-height: 174px;
+        height: calc(93vh - 530px);
     }
     
     .docboard-mydoc {

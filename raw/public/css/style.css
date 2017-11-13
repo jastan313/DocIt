@@ -177,6 +177,7 @@ button:hover {
  *                             DOCIT                          *
  **************************************************************/
 #docit-alias, #docit-date, #docit-name {
+
     /* See media.css for #docit-alias, #docit-date, #docit-name width, max-width */
 }
 
@@ -256,6 +257,7 @@ button:hover {
 .doc-alias, .doc-date {
     font-weight: normal;
     overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
     
     /* See media.css for .doc-alias, .doc-date display */

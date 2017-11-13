@@ -177,7 +177,6 @@ button:hover {
  *                             DOCIT                          *
  **************************************************************/
 #docit-alias, #docit-date, #docit-name {
-
     /* See media.css for #docit-alias, #docit-date, #docit-name width, max-width */
 }
 
@@ -256,22 +255,21 @@ button:hover {
     height: 100%;
 }
 
-.doc-header > * {
+.doc-alias, .doc-date, .doc-name {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    
     /* See media.css for .doc-header > * margin, font-size */
 }
 .doc-alias, .doc-date {
     font-weight: normal;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     
     /* See media.css for .doc-alias, .doc-date display */
 }
 .doc-name {
     font-style: italic;
     font-weight: bold;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 /* Textarea for typing docs, no background with vertical scrollability */

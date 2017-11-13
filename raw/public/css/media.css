@@ -10,7 +10,7 @@ and open the template in the editor.
 
 /* Smartphones (portrait and landscape) ----------- */
 /* Portrait Focused Display */
-@media only screen 
+/@media only screen 
 and (min-device-width : 320px) 
 /* and (max-device-width : 480px) */ {
     /**************************************************************
@@ -84,6 +84,17 @@ and (min-device-width : 320px)
     /**************************************************************
      *                            DOCVIEW                         *
      **************************************************************/
+    #docview-alias {
+        max-width: 220px;
+    }
+    
+    #docview-date {
+        max-width: 140px;
+    }
+    
+    #docview-name {
+        max-width: 315px;
+    }
     
     /**************************************************************
      *                        DOCIT + DOCVIEW                     *
@@ -221,12 +232,23 @@ and (min-device-width : 321px)
     /**************************************************************
      *                            DOCVIEW                         *
      **************************************************************/
+    #docview-alias {
+        max-width: calc(85vw - 250px);
+    }
+    
+    #docview-date {
+        max-width: 175px;
+    }
+    
+    #docview-name {
+        max-width: calc(85vw - 70px);
+    }
     
     /**************************************************************
      *                        DOCIT + DOCVIEW                     *
      **************************************************************/
     .doc-alias, .doc-date, .doc-name {
-        margin: 4px 0 6px 0;
+        margin: 0 0 4px 0;
         font-size: 15px;
     }
 
@@ -357,6 +379,17 @@ and (min-device-width : 321px)
     /**************************************************************
      *                            DOCVIEW                         *
      **************************************************************/
+    #docview-alias {
+        max-width: calc(60vw - 48px);
+    }
+    
+    #docview-date {
+        max-width: 135px;
+    }
+    
+    #docview-name {
+        max-width: calc(70vw + 12px);
+    }
     
     /**************************************************************
      *                        DOCIT + DOCVIEW                     *
@@ -480,6 +513,17 @@ and (min-device-width : 768px)
     /**************************************************************
      *                            DOCVIEW                         *
      **************************************************************/
+    #docview-alias {
+        max-width: 460px;
+    }
+    
+    #docview-date {
+        max-width: 190px;
+    }
+    
+    #docview-name {
+        max-width: 660px;
+    }
     
     /**************************************************************
      *                        DOCIT + DOCVIEW                     *
@@ -614,12 +658,23 @@ and (orientation : landscape) {
     /**************************************************************
      *                            DOCVIEW                         *
      **************************************************************/
+    #docview-alias {
+        max-width: calc(75vw - 160px);
+    }
+    
+    #docview-date {
+        max-width: 175px;
+    }
+    
+    #docview-name {
+        max-width: calc(75vw + 25px);
+    }
     
     /**************************************************************
      *                        DOCIT + DOCVIEW                     *
      **************************************************************/
     .doc-alias, .doc-date, .doc-name {
-        margin: 0 0 6px 0;
+        margin: 0 0 4px 0;
         font-size: 15px;
     }
 
@@ -672,7 +727,7 @@ and (orientation : landscape) {
 
 /* Desktop screens ----------- */
 /* Static Focused Display */
-/@media only screen {
+@media only screen {
      /**************************************************************
      *                             GENERAL                        *
      **************************************************************/
@@ -741,12 +796,23 @@ and (orientation : landscape) {
     /**************************************************************
      *                            DOCVIEW                         *
      **************************************************************/
+    #docview-alias {
+        max-width: 495px;
+    }
+    
+    #docview-date {
+       max-width: 185px;
+    }
+    
+    #docview-name {
+        max-width: 690px;
+    }
 
     /**************************************************************
      *                        DOCIT + DOCVIEW                     *
      **************************************************************/
     .doc-alias, .doc-date, .doc-name {
-        margin: 0 0 6px 0;
+        margin: 0 0 4px 0;
         font-size: 16px;
     }
 

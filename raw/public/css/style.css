@@ -23,6 +23,18 @@ body * {
     text-shadow: 0.25px 0.35px #c2c5c5;
 }
 
+/* Class to enable highlighting */
+.highlight-disabled {
+    /* Disable highlighting */
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                          supported by Chrome and Opera */
+}
+
 /* Input style: simple, underlined fields with highlighted, pencil cursor on hover */
 input {
     text-align: center;
@@ -31,10 +43,6 @@ input {
     border: 1px solid transparent;
     border-bottom: black 2px inset;
     background-color: transparent;
-    
-    &:hover {
-        
-    }
 }
 input:hover {
     background-color: #ffff99;
@@ -60,6 +68,7 @@ button:hover {
     cursor: pointer;
 }
 
+/* Styling for the document-looking container */
 #doc-container {
     position: absolute;
     margin: auto;
@@ -77,20 +86,21 @@ button:hover {
     /* See media.css for #doc-container width, height */
 }
 
+/* Styling for the content inside the document-looking container */
 #doc-content {
     overflow-y: scroll;
-    -ms-overflow-style: none;  /* Hide scrollbar in IE 10+ */
-    overflow: -moz-scrollbars-none;  /* Hide scrollbar in Firefox */
+    -ms-overflow-style: none;  /* Hide right-side scrollbar in IE 10+ */
+    overflow: -moz-scrollbars-none;  /* Hide right-side scrollbar in Firefox */
     height: 100%;
 }
 #doc-content::-webkit-scrollbar { 
-    display: none;  /* Hide scrollbar in Safari and Chrome */
+    display: none;  /* Hide right-side scrollbar in Safari and Chrome */
 }
 #doc-content *::selection {
     background-color: #ffffaa;  /* Yellow when highlighting text */
 }
 #doc-content *::-moz-selection {
-    background-color: #ffffaa;
+    background-color: #ffffaa;  /* Yellow when highlighting text */
 }
 
 /* Type-writer animation */
@@ -123,6 +133,7 @@ button:hover {
 #login-container > h1, #signup-container > h1 {
     font-weight: bolder;
     margin: 0 0 5px 0;
+    
     /* See media.css for #login-container > h1, #signup-container > h1 font-size */
 }
 
@@ -149,10 +160,10 @@ button:hover {
     /* See media.css for #login-form > *, #signup-form > * font-size */
 }
 
+/* Styling for honey pot mechanisms */
 #not-human-displaynone {
     display: none;
 }
-
 #not-human-offscreen {
     position: absolute;
     left: -9000px;
@@ -203,6 +214,7 @@ button:hover {
     padding: 0;
 }
 
+/* Styling for rating buttons in directory menu */
 #docview-rateup-btn, #docview-ratedown-btn {
     border: 2px grey inset;
     display: inline-block;
@@ -240,7 +252,6 @@ button:hover {
     background-color: darkred;
 }
 
-
 #docview-body {
     color: #555555;
 }
@@ -259,6 +270,7 @@ button:hover {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    
     
     /* See media.css for .doc-header > * margin, font-size */
 }

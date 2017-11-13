@@ -199,38 +199,43 @@ button:hover {
     /* See media.css for #docview-alias, #docview-date, #docview-name width, max-width */
 }
 
-.doc-name, #docview-rateup, #docview-ratedown {
+#docview-directory-rating-container {
     display: inline-block;
+    padding: 0;
 }
 
-#docview-rateup, #docview-ratedown {
+#docview-rateup-btn, #docview-ratedown-btn {
     border: 2px grey inset;
+    display: inline-block;
+    width: calc(50% - 4px);
 }
-#docview-rateup:hover {
+#docview-rateup-btn:hover {
     color: white;
     border: 2px #003b00 outset;
     background-color: #003b00;
+    cursor: pointer;
 }
-#docview-ratedown:hover {
+#docview-ratedown-btn:hover {
     color: white;
     border: 2px darkred outset;
     background-color: darkred;
+    cursor: pointer;
 }
 
-#docview-rateup.ratedup {
+#docview-rateup-btn.ratedup {
     color: #003b00;
     border: 2px #003b00 inset;
 }
-#docview-rateup.ratedup:hover {
+#docview-rateup-btn.ratedup:hover {
     color: white;
     border: 2px #003b00 outset;
     background-color: #003b00;
 }
-#docview-ratedown.rateddown {
+#docview-ratedown-btn.rateddown {
     color: darkred;
     border: 2px darkred inset;
 }
-#docview-ratedown.rateddown:hover {
+#docview-ratedown-btn.rateddown:hover {
     color: white;
     border: 2px darkred outset;
     background-color: darkred;
@@ -424,7 +429,7 @@ button:hover {
 .directory-opt:not(:last-child) {
     border-bottom: 1px black solid;
 }
-.directory-opt:hover {
+.directory-opt:hover:not(#docview-directory-rating-container) {
     color: white;
     background-color: black;
     cursor: pointer;

@@ -306,6 +306,7 @@ button:hover {
     /* See media.css for #docboard-header > h1 font-size */
 }
 #docboard-alias {
+    text-overflow: ellipsis;
     /* See media.css for #docboard-alias font-size */
 }
 

@@ -22,8 +22,6 @@ and (min-device-width : 320px)
         width: 320px;
         height: 90vh;
         max-height: 517px;
-        
-        border: 5px solid teal;
     }
 
     .typewriter {
@@ -163,8 +161,6 @@ and (min-device-width : 321px)
         min-width: 321px;
         max-width: 700px;
         max-height: 90vh;
-        
-        border: 5px solid pink;
     }
 
     .typewriter {
@@ -314,8 +310,6 @@ and (min-device-width : 321px)
         height: 90vh;
         max-width: 320px;
         max-height: 453px;
-        
-        border: 5px solid purple;
     }
 
     .typewriter {
@@ -456,8 +450,6 @@ and (min-device-width : 768px)
         width: 768px;
         height: 90vh;
         max-height: 1245px;
-        
-        border: 5px solid blue;
     }
 
     .typewriter {
@@ -597,8 +589,6 @@ and (orientation : landscape) {
         min-width: 768px;
         max-width: 1004px;
         max-height: 90vh;
-        
-        border: 5px solid green;
     }
 
     .typewriter {
@@ -740,8 +730,6 @@ and (orientation : landscape) {
         max-width: 800px;
         min-height: 700px;
         max-height: 1456px;
-        
-        border: 5px solid gray;
     }
 
     .typewriter {
@@ -842,7 +830,7 @@ and (orientation : landscape) {
     }
 
     #docboard-alias {
-        font-size: 14px;
+        font-size: 15px;
     }
     
     #docboard-docs {

@@ -10,7 +10,7 @@ and open the template in the editor.
 
 /* Smartphones (portrait and landscape) ----------- */
 /* Portrait Focused Display */
-/@media only screen 
+@media only screen 
 and (min-device-width : 320px) 
 /* and (max-device-width : 480px) */ {
     /**************************************************************
@@ -119,25 +119,31 @@ and (min-device-width : 320px)
         margin: 3px 0px 3px 0px;
     }
 
+    #docboard-header {
+        flex-direction: column;
+        align-items: left;
+    }
+    
     #docboard-header > * {
         padding: 0 0 4px 0;
     }
 
     #docboard-header > h1 {
-        font-size: 15px;
+        font-size: 14px;
     }
 
     #docboard-alias {
-        font-size: 10px;
+        font-size: 11px;
+        max-width: 240px;
     }
     
     #docboard-docs, #docboard-feed {
-        height: 218px;
+        height: 210px;
     }
     
     .docboard-mydoc, .docboard-feeddoc {
         width: 281px;
-        height: 212px;
+        height: 203px;
     }
 
     /**************************************************************
@@ -274,11 +280,12 @@ and (min-device-width : 321px)
     }
 
     #docboard-header > h1 {
-        font-size: 26px;
+        font-size: 20px;
     }
 
     #docboard-alias {
         font-size: 14px;
+        max-width: calc(85vw - 190px);
     }
     
     #docboard-docs, #docboard-feed {
@@ -410,25 +417,31 @@ and (min-device-width : 321px)
         margin: 3px 0px 3px 0px;
     }
 
+    #docboard-header {
+        flex-direction: column;
+        align-items: left;
+    }
+    
     #docboard-header > * {
         padding: 0 0 4px 0;
     }
 
     #docboard-header > h1 {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     #docboard-alias {
-        font-size: 10px;
+        font-size: 11px;
+        max-width: calc(70vw - 65px);
     }
     
     #docboard-docs, #docboard-feed {
-        height: 185px;
+        height: 178px;
     }
     
     .docboard-mydoc, .docboard-feeddoc {
         width: 281px;
-        height: 180px;
+        height: 172px;
     }
 
     /**************************************************************
@@ -551,7 +564,8 @@ and (min-device-width : 768px)
     }
 
     #docboard-alias {
-        font-size: 14px;
+        font-size: 15px;
+        max-width: 520px;
     }
     
     #docboard-docs {
@@ -559,6 +573,7 @@ and (min-device-width : 768px)
     }
     
     #docboard-feed {
+        min-height: 174px;
         height: calc(97vh - 390px);
     }
     
@@ -694,7 +709,8 @@ and (orientation : landscape) {
     }
 
     #docboard-alias {
-        font-size: 14px;
+        font-size: 15px;
+        max-width: calc(83vw - 170px);
     }
     
     #docboard-docs, #docboard-feed {
@@ -706,7 +722,7 @@ and (orientation : landscape) {
     }
     
     .docboard-mydoc, .docboard-feeddoc {
-        width: calc(19.25vw + 6px);
+        width: calc(22vw - 18px);
         height: 169px;
     }
 
@@ -717,7 +733,7 @@ and (orientation : landscape) {
 
 /* Desktop screens ----------- */
 /* Static Focused Display */
-@media only screen {
+/@media only screen {
      /**************************************************************
      *                             GENERAL                        *
      **************************************************************/
@@ -828,9 +844,18 @@ and (orientation : landscape) {
     #docboard-header > h1 {
         font-size: 26px;
     }
-
+    
     #docboard-alias {
-        font-size: 15px;
+        font-size: 16px;
+        max-width: 540px;
+        
+          -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
     }
     
     #docboard-docs {

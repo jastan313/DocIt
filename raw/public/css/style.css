@@ -290,24 +290,33 @@ button:hover {
 }
 #docboard > * {
     margin: 0;
-    
+    text-align: center;
+}
+
+#docboard-header {
+    display: flex;
+    align-items: center;
 }
 
 #docboard-header > * {
-    display: inline-block;
     margin: 0;
     
     /* See media.css for #docboard-header > * padding */
 }
 
 #docboard-header > h1 {
-    margin: 0;
+    margin: 0 12px 0 0;
     
     /* See media.css for #docboard-header > h1 font-size */
 }
+
 #docboard-alias {
+    white-space: nowrap;
     text-overflow: ellipsis;
-    /* See media.css for #docboard-alias font-size */
+    overflow: hidden;
+    font-weight: normal;
+    
+    /* See media.css for #docboard-alias font-size, max-width */
 }
 
 #docboard-docs-container > h2, #docboard-feed-container > h2 {

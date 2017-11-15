@@ -1,5 +1,3 @@
-angular.module('MainCtrl', []).controller('MainController', function ($scope) {
-    $scope.changePage = function(page) {
-        $location.path('/' + page);
-    };
+angular.module('MainCtrl', []).controller('MainController', function ($scope, PageService) {
+    $scope.title = PageService.getTitle();
 });

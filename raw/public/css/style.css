@@ -271,7 +271,6 @@ button:hover {
     text-overflow: ellipsis;
     overflow: hidden;
     
-    
     /* See media.css for .doc-header > * margin, font-size */
 }
 .doc-alias, .doc-date {
@@ -286,6 +285,7 @@ button:hover {
 
 /* Textarea for typing docs, no background with vertical scrollability */
 .doc-body {
+    margin: 10px 0 0 0;
     background: none;
     border: none;
     resize: none;
@@ -337,6 +337,7 @@ button:hover {
     /* See media.css for #docboard-docs-container > h2, #docboard-feed-container > h2 font-size, margin */
 }
 
+/* Styling for doc archive, scrollable window with doc items */
 #docboard-docs {
     display: flex;  /* Create flex display for inner mydocs */
     flex-wrap: wrap;
@@ -388,6 +389,7 @@ button:hover {
     text-decoration: underline;
 }
 
+/* Styling for docfeed, scrollable window with doc items */
 #docboard-feed {
     display: flex;  /* Create flex display for inner doc feed */
     flex-wrap: wrap;

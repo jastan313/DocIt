@@ -29,6 +29,6 @@
     "mongoose-unique-validator": "^1.0.6"
   },
   "scripts": {
-    "start": "node raw/server/server.js"
+    "start": "node server\/server.js"
   }
 }

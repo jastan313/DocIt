@@ -2,7 +2,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         $routeProvider
                 // home page
                 .when('/', {
-                    templateUrl: 'views/home.html',
+                    templateUrl: '/views/index.html',
                     controller: 'MainController'
                 })
 

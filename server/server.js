@@ -11,16 +11,25 @@ var User = require('../app/models/user_model');
 var Doc = require('../app/models/doc_model');
 var Comment = require('../app/models/comment_model');
 
-// configuration ===========================================
 
-// config files
+
+// database =========================================
+// connect to our mongoDB database 
 var db = require('../config/db.js');
 
+var mongooseStates = {0: 'Disconnected', 1: 'Connected', 2: 'Connecting', 3: 'Disconnecting'};
+mongoose.connect(db.url, { useMongoClient: true }, function(error) {
+    if(error) {
+        console.log("Mongoose Connection Error: " + error);
+    }
+    else {
+        console.log("Mongoose Connection Success: " + mongooseStates[mongoose.connection.readyState]);
+    }
+});
+
+// configuration ===========================================
 // set our port
 var port = process.env.PORT || 8080; 
-
-// connect to our mongoDB database 
-mongoose.connect(db.url, { useMongoClient: true });
 
 // get all data/stuff of the body (POST) parameters
 // parse application/json 
@@ -49,7 +58,7 @@ require('../app/routes/comments_route')(app); // configure our routes
 // startup our app at http://localhost:8080
 app.listen(port);
 
-console.log('DocIt starting on port: ' + port);
+console.log('DocIt Start On Port: ' + port);
 
 // expose app           
 exports = module.exports = app;     

@@ -1,3 +1,5 @@
 angular.module('MainCtrl', []).controller('MainController', function ($scope) {
-    $scope.tagline = 'This is MainCtrl';   
+    $scope.changePage = function(page) {
+        $location.path('/' + page);
+    };
 });

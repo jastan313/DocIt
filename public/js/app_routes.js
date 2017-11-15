@@ -18,12 +18,6 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
                     controller: 'LoginController'
                 })
 
-                // docboard page that will use the DocboardController
-                .when('/docboard', {
-                    templateUrl: 'views/docboard.html',
-                    controller: 'DocboardController'
-                })
-
                 // docit page that will use the DocController
                 .when('/docit', {
                     templateUrl: 'views/docit.html',
@@ -34,6 +28,12 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
                 .when('/docview', {
                     templateUrl: 'views/docview.html',
                     controller: 'DocviewController'
+                })
+
+                // docboard page that will use the DocboardController
+                .when('/docboard', {
+                    templateUrl: 'views/docboard.html',
+                    controller: 'DocboardController'
                 });
         $locationProvider.html5Mode(true);
     }]);

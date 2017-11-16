@@ -1,3 +1,3 @@
-angular.module('MainCtrl', []).controller('MainController', function ($scope, PageService) {
-    $scope.title = PageService.getTitle();
+angular.module('MainCtrl', []).controller('MainController', function ($scope) {
+    $scope.title = 'test';
 });

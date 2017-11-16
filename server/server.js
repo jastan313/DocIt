@@ -7,11 +7,9 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
 // models ===========================================
-var User = require('../app/models/user_model');
-var Doc = require('../app/models/doc_model');
-var Comment = require('../app/models/comment_model');
-
-
+var User = require('../app/models/UserModel');
+var Doc = require('../app/models/DocModel');
+var Comment = require('../app/models/CommentModel');
 
 // database =========================================
 // connect to our mongoDB database 
@@ -42,16 +40,16 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // set the static files location
-app.use(express.static(__dirname + '/public/')); 
+app.use(express.static(path.join(__dirname, 'public'))); 
 
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override')); 
 
 // routes ==================================================
-require('../app/routes/index_route')(app);
-require('../app/routes/users_route')(app);
-require('../app/routes/docs_route')(app);
-require('../app/routes/comments_route')(app); // configure our routes
+require('../app/routes/IndexRoute')(app);
+require('../app/routes/UsersRoute')(app);
+require('../app/routes/DocsRoute')(app);
+require('../app/routes/CommentsRoute')(app); // configure our routes
 
 
 // start app ===============================================

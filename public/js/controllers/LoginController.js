@@ -1,4 +1,4 @@
-angular.module('LoginCtrl', []).controller('LoginControlller', function ($scope, User) {
+angular.module('LoginCtrl', []).controller('LoginControlller', function ($scope, Page, User) {
     $scope.submit = function () {
         var aliasRegex = new RegExp('^[A-Za-z0-9]{6,15}$');
         var passwordRegex = new RegExp('^[A-Za-z0-9@!#\$\^%&*()+=\-\[\]\\\';,\.\/\{\}\|\":<>\? ]{6,}$');
@@ -6,7 +6,7 @@ angular.module('LoginCtrl', []).controller('LoginControlller', function ($scope,
             User.getByAlias($scope.formAlias).then(function (user) {
                 if (user != 'null') {
                     if ($scope.formPassword === user["password"]) {
-                        $parent.userID = user["id"];
+                        Page.setUserID(user["id"]);
                         $parent.changePage('docboard');
                     }
                     else {

@@ -19,7 +19,7 @@ module.exports = function (app) {
     
     // GET: Get a specific user by alias
     app.get('/api/users/alias/:alias', function (req, res) {
-        User.find({'alias': alias}, function (err, result) {
+        User.find({alias: req.params.alias}, function (err, result) {
             if (err)
                 res.send(err);
             res.json(result); // Return the specific user
@@ -28,7 +28,7 @@ module.exports = function (app) {
 
     // GET: Get a specific user by email
     app.get('/api/users/email/:email', function (req, res) {
-        User.find({'email': email}, function (err, result) {
+        User.find({email: req.params.email}, function (err, result) {
             if (err)
                 res.send(err);
             res.json(result); // Return the specific user

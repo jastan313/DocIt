@@ -1,3 +1,9 @@
-angular.module('DocboardCtrl', []).controller('DocboardControlller', function($scope) {
-    $scope.tagline = 'This is DocboardCtrl';   
+angular.module('DocboardCtrl', []).controller('DocboardControlller', function($scope, Page, User, Doc) {
+    $scope.getDocs = function(userID) {
+        
+    };
+    
+    $scope.getDocFeed = function(num) {
+        
+    };
 });

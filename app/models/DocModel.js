@@ -12,9 +12,27 @@ var docSchema = new Schema({
     title: {type: String, default: 'Untitled'},
     body: {type: String, default: ''},
     published: {type: Boolean, default: false},
+    rating: {type: Number, default: 0},
     ratings: [{user_id: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}, rating: {type: Number, default: 0}}],
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 });
+
+docSchema.post('save', function (doc) {
+   var totalRating = 0;
+   for(var i = 0; i < ratings.length; i++) {
+       totalRating += this.ratings[i].rating;
+   }
+   this.rating = totalRating;
+});
+
+docSchema.post('update', function (doc) {
+   var totalRating = 0;
+   for(var i = 0; i < ratings.length; i++) {
+       totalRating += this.ratings[i].rating;
+   }
+   this.rating = totalRating;
+});
+
 // Apply the uniqueValidator plugin to docSchema.
 docSchema.plugin(uniqueValidator);
 

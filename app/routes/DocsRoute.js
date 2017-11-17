@@ -26,20 +26,20 @@ module.exports = function (app) {
         doc.save(function (err) {
             if (err)
                 res.send(err);
-            res.json({message: 'Doc, \"' + req.body.title + "\", created."});
+            res.json({id: doc._id, message: 'Doc, \"' + req.body.title + "\", created."});
             });
         });
     
     // PUT: Update a doc
     app.put('/api/docs/:id', function (req, res) {
-        Doc.findbyId(req.params.id, function (err, result) {
+        Doc.findbyId(req.params.id, function (err, doc) {
             doc.title = req.body.title;
             doc.body = req.body.body;
             doc.comments = req.body.comments;
             doc.save(function (err) {
                 if (err)
                     res.send(err);
-                res.json({message: 'Doc, \"' + req.body.title + "\", updated."});
+                res.json({id: doc._id, message: 'Doc, \"' + req.body.title + "\", updated."});
             });
         });
     });

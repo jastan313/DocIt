@@ -6,7 +6,7 @@ var objectId = Schema.ObjectId;
 
 // define document schema
 var docSchema = new Schema({
-    id: objectId,
+    _id: {type: objectId, auto: true},
     author: {type: String, ref: 'User'},
     date: {type: Date, default: Date.now},
     title: {type: String, default: 'Untitled'},

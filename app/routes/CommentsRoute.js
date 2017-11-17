@@ -26,7 +26,7 @@ module.exports = function (app) {
         comment.save(function (err) {
             if (err)
                 res.send(err);
-            res.json({message: 'Comment, \"' + req.body.title.substring(0, 10) + "..., created."});
+            res.json({id: comment._id, message: 'Comment, \"' + req.body.title.substring(0, 10) + "..., created."});
         });
     });
 
@@ -37,7 +37,7 @@ module.exports = function (app) {
             comment.save(function (err) {
                 if (err)
                     res.send(err);
-                res.json({message: 'Comment, \"' + req.body.title.substring(0, 10) + "..., updated."});
+                res.json({id: comment._id, message: 'Comment, \"' + req.body.title.substring(0, 10) + "..., updated."});
             });
         });
     });

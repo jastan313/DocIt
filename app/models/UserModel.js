@@ -6,7 +6,7 @@ var objectId = Schema.ObjectId;
 
 // define user schema
 var userSchema = new Schema({
-    id: objectId,
+    _id: {type: objectId, auto: true},
     alias: {type: String, required: true, unique: true},
     email: {type: String, required: true, unique: true},
     password: {type: String, required: true},

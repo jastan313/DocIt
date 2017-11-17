@@ -8,19 +8,39 @@
                 <input id='not-human-displaynone' type="email" name="email-displaynone">
                 <input id='not-human-hidden' type="hidden" name="email-hidden">
                 <input id='not-human-offscreen' type="email" tabindex='-1' name="email-offscreen">
-                <input id='signup-email' type="email" required name="email" placeholder="type email" size="30">.
+                <input id='signup-email' type="email" required name="email" placeholder="type email"
+                       title="Enter a valid email." 
+                       oninvalid="this.setCustomValidity('Enter a valid email.')"
+                       oninput="setCustomValidity('')"
+                       size="30"
+                       ng-model="formEmail">.
                 <h3>My considerably professional, yet eccentric new |ALIAS| is</h3>
-                <input id="signup-alias" type="text" required placeholder="type alias" size="25">!
+                <input id="signup-alias" type="text" required placeholder="type Alias" 
+                       title="Enter an unique Alias. Alphanumeric [A-Z, a-z, 0-9] characters only. Maximum character length: 15." 
+                       oninvalid="this.setCustomValidity('Enter an unique Alias. Alphanumeric [A-Z, a-z, 0-9] characters only. Maximum character length: 15.')"
+                       oninput="setCustomValidity('')"
+                       size="25"
+                       ng-model="formAlias">!
                 <h3>My new cryptic password is</h3>
-                <input id="signup-password" type="password" required placeholder="type password" size="25">.
+                <input id="signup-password" type="password" required placeholder="type password" 
+                       title="Enter a password. Alphanumeric and special characters allowed. Minimum character length: 6." 
+                       oninvalid="this.setCustomValidity('Enter a password. Alphanumeric and special characters allowed. Minimum character length: 6.')"
+                       oninput="setCustomValidity('')"
+                       size="25"
+                       ng-model="formPassword">.
                 <h3>And just to make sure I got that right, the password was</h3>
-                <input id="signup-password-confirm" type="password" required placeholder="retype password" size="25">.
+                <input id="signup-password-confirm" type="password" required placeholder="retype password" 
+                       title="Retype password to confirm correctness." 
+                       oninvalid="this.setCustomValidity('Retype password to confirm correctness.')"
+                       oninput="setCustomValidity('')"
+                       size="25"
+                       ng-mode="formPasswordConfirm">.
                 <h3>OK, good enough. Let's do it.</h3>
                 <button type="submit">|CREATE|</button>
             </form>
             <div id="signup-navigation">
                 <p>Forget it. I want to go</p>
-                <button id='signup-tologin-btn' type="button">back</button>.
+                <button id='signup-tologin-btn' type="button" ng-click="changePage('login')">back</button>.
             </div>
         </div>
     </div>

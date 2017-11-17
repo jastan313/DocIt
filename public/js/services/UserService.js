@@ -5,9 +5,19 @@ angular.module('UserService', []).factory('User', ['$http', function ($http) {
                 return $http.get('/api/users');
             },
 
-            // Call to get a user
+            // Call to get a user by id
             get: function (id) {
                 return $http.get('/api/users/' + id);
+            },
+
+            // Call to get a user by alias
+            getByAlias: function (alias) {
+                return $http.get('/api/users/alias/' + alias);
+            },
+
+            // Call to get a user by email
+            getByAlias: function (email) {
+                return $http.get('/api/users/email/' + email);
             },
 
             // Call to create a new user

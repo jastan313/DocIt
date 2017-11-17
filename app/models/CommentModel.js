@@ -6,7 +6,7 @@ var objectId = Schema.ObjectId;
 
 // define comment schema
 var commentSchema = new Schema({
-    id: objectId,
+    id: {type: objectId, auto: true},
     author: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     document: {type: mongoose.Schema.Types.ObjectId, ref: 'Document'},
     text: {type: String, default: ''},

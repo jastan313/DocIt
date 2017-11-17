@@ -1,6 +1,6 @@
-app.factory("PageService", function () {
+angular.module('PageService', []).factory('Page', function ($http) {
     var pageObj = {};
-    
+
     pageObj.page = 'login';
     pageObj.titles = {'login': '|DOCIT| Login',
         'signup': '|DOCIT| Signup',
@@ -18,11 +18,11 @@ app.factory("PageService", function () {
     pageObj.getPage = function () {
         return this.page;
     }
-    
-    pageObj.getTitle = function() {
+
+    pageObj.getTitle = function () {
         return this.titles[this.page];
     }
-    
+
     pageObj.changePage = function (scope, location, page) {
         if (this.titles[page]) {
             scope.page = page;
@@ -32,6 +32,6 @@ app.factory("PageService", function () {
         }
         return 0;
     };
-    
+
     return pageObj;
 });

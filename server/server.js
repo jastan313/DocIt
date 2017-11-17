@@ -40,7 +40,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // set the static files location
-app.use(express.static(path.join(__dirname, 'public'))); 
+app.use(express.static('public'));
 
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override')); 

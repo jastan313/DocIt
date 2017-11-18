@@ -7,7 +7,7 @@ var objectId = Schema.ObjectId;
 // define document schema
 var docSchema = new Schema({
     _id: {type: objectId, auto: true},
-    author: {type: String, ref: 'User'},
+    author: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     date: {type: Date, default: Date.now},
     title: {type: String, default: 'Untitled'},
     body: {type: String, default: ''},

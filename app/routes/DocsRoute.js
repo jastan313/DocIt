@@ -11,10 +11,10 @@ module.exports = function (app) {
     // GET: Get docs based on user id
     app.get('/api/docs/user/:id', function (req, res) {
         Doc.find({author: req.params.id}).exec(function (err, result) {
-                    if (err)
-                        res.send(err);
-                    res.json(result); // Return docs
-                });
+            if (err)
+                res.send(err);
+            res.json(result); // Return docs
+        });
     });
 
     // GET: Get docs based on ratings, limited to top num items
@@ -22,6 +22,7 @@ module.exports = function (app) {
         Doc.find({published: true})
                 .sort({'rating': -1})
                 .limit(req.params.num)
+                .populate('author')
                 .exec(function (err, result) {
                     if (err)
                         res.send(err);
@@ -34,6 +35,7 @@ module.exports = function (app) {
         Doc.find({published: true, timestamp: {$gte: new Date(new Date() - req.params.d * 60 * 60 * 24 * 1000)}})
                 .sort({'rating': -1})
                 .limit(req.params.num)
+                .populate('author')
                 .exec(function (err, result) {
                     if (err)
                         res.send(err);
@@ -43,7 +45,9 @@ module.exports = function (app) {
 
     // GET: Get a specific doc
     app.get('/api/docs/:id', function (req, res) {
-        Doc.findbyId(req.params.id, function (err, result) {
+        Doc.findbyId(req.params.id)
+                .populate('author')
+                .exec(function (err, result) {
             if (err)
                 res.send(err);
             res.json(result); // Return the specific doc

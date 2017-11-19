@@ -5,7 +5,22 @@ angular.module('DocService', []).factory('Doc', ['$http', function ($http) {
                 return $http.get('/api/docs');
             },
 
-            // Call to get a doc
+            // Call to get docs based on user id
+            getByUserID: function (id) {
+                return $http.get('/api/docs/user/' + id);
+            },
+
+            // Call to get docs based on ratings, limited to top num items
+            getByRating: function (num) {
+                return $http.get('/api/docs/items/' + num);
+            },
+
+            // Call to get docs based on ratings within the past d days, limited to top num items
+            getByRatingAndTime: function (num, d) {
+                return $http.get('/api/docs/items/' + num + "/days/" + d);
+            },
+
+            // Call to get a specific doc
             get: function (id) {
                 return $http.get('/api/docs/' + id);
             },

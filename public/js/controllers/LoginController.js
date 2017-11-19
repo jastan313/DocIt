@@ -5,22 +5,22 @@ angular.module('LoginCtrl', []).controller('LoginControlller', function ($scope,
         if ($scope.formAlias.match(aliasRegex) && $scope.formPassword.match(passwordRegex)) {
             User.getByAlias($scope.formAlias).then(function (user) {
                 if (user != 'null') {
-                    if ($scope.formPassword === user["password"]) {
-                        Page.setUserID(user["id"]);
+                    if ($scope.formPassword === user.password) {
+                        Page.setUser(user);
                         $parent.changePage('docboard');
                     }
                     else {
-                        console.log("Login Password Does Not Match Error.");
+                        console.log("Login: Password Does Not Match Error.");
                     }
                 }
                 else {
-                    console.log("Login Alias Does Not Exist Error.");
+                    console.log("Login: Alias Does Not Exist Error.");
                 }
             }, function (err) {
-                console.log("Login Submit Error:" + err);
+                console.log("Login: Submit Error:" + err);
             });
         } else {
-            console.log("Login Validation Error.");
+            console.log("Login: Validation Error.");
         }
     }
 });

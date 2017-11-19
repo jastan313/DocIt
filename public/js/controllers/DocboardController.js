@@ -11,7 +11,7 @@ angular.module('DocboardCtrl', []).controller('DocboardControlller', function ($
                 
             }
         }, function (err) {
-            console.log("Doc Archive Get Error: " + err);
+            console.log("Docboard: Doc Archive Get Error: " + err);
         });
     };
 
@@ -28,7 +28,25 @@ angular.module('DocboardCtrl', []).controller('DocboardControlller', function ($
                 
             }
         }, function (err) {
-            console.log("Doc Feed Get Error: " + err);
+            console.log("Docboard: Doc Feed Get Error: " + err);
         });
     };
+    
+    $scope.goDocit = function(docID) {
+        Doc.get(docID).then(function (doc) {
+            Page.setDoc(doc);
+            Page.changePage('docit');
+        }, function (err) {
+            console.log("Docboard: Go Docit Error: " + err);
+        });
+    }
+    
+    $scope.goDocview = function(docID) {
+        Doc.get(docID).then(function (doc) {
+            Page.setDoc(doc);
+            Page.changePage('docview');
+        }, function (err) {
+            console.log("Docboard: Go Docview Error: " + err);
+        });
+    }
 });

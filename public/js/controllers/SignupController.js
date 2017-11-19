@@ -8,35 +8,35 @@ angular.module('SignupCtrl', []).controller('SignupControlller', function ($scop
                 $scope.formPassword.match(passwordRegex) &&
                 $scope.formPassword === $scope.formPasswordConfirm) {
             User.getByAlias($scope.formAlias).then(function (user) {
-                if (user == 'null') {
+                if (user == null) {
                     User.getByAlias($scope.formEmail).then(function (user) {
-                        if (user == 'null') {
+                        if (user == null) {
                             var userData = {
                                 'alias': $scope.formAlias,
                                 'email': $scope.formEmail,
                                 'password': $scope.password
                             };
                             User.create(userData).then(function (data) {
-                                Page.setUserID(data["id"]);
+                                Page.setUser(data);
                                 $parent.changePage('docboard');
                             }, function (err) {
-                                console.log("Signup User Creation Error: " + err);
+                                console.log("Signup: User Creation Error: " + err);
                             });
                         } else {
-                            console.log("Signup Email Taken Error.");
+                            console.log("Signup: Email Taken Error.");
                         }
                     }, function (err) {
-                        console.log("Signup Email Submit Error:" + err);
+                        console.log("Signup: Email Submit Error:" + err);
                     });
                 } else {
-                    console.log("Signup Alias Taken Error.");
+                    console.log("Signup: Alias Taken Error.");
                 }
 
             }, function (err) {
-                console.log("Signup Alias Submit Error:" + err);
+                console.log("Signup: Alias Submit Error:" + err);
             });
         } else {
-            console.log("Signup Validation Error.");
+            console.log("Signup: Validation Error.");
         }
     }
 });

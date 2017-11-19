@@ -3,7 +3,8 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
     $scope.changePage = function (page) {
         if (Page.setPage(page)) {
             if (page === 'login' || page === 'signup') {
-                Page.setUserID(null);
+                Page.setUser(null);
+                Page.setDoc(null);
             }
             $scope.pageTitle = Page.getTitle();
             $location.path(Page.getPage());

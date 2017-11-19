@@ -7,7 +7,8 @@ angular.module('PageService', []).factory('Page', ['$rootScope', '$location', fu
             'docit': '|DOCIT| Docit',
             'docview': '|DOCIT| Docview',
             'docboard': '|DOCIT| Docboard'};
-        pageObj.userID = null;
+        pageObj.user = null;
+        pageObj.doc = null;
 
         pageObj.setPage = function (page) {
             if (this.titles[page]) {
@@ -16,7 +17,7 @@ angular.module('PageService', []).factory('Page', ['$rootScope', '$location', fu
             }
             return null;
         }
-        
+
         pageObj.getPage = function () {
             return this.page;
         }
@@ -25,13 +26,22 @@ angular.module('PageService', []).factory('Page', ['$rootScope', '$location', fu
             return this.titles[this.page];
         }
 
-        pageObj.setUserID = function (id) {
-            this.userID = id;
-            return id;
+        pageObj.setUser = function (user) {
+            this.user = user;
+            return user;
         }
-        
+
         pageObj.getUserID = function () {
-            return this.userID;
+            return this.user;
+        }
+
+        pageObj.setDoc = function (doc) {
+            this.doc = doc;
+            return doc;
+        }
+
+        pageObj.getDoc = function () {
+            return this.doc;
         }
 
         return pageObj;

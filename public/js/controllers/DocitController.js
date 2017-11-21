@@ -19,4 +19,16 @@ angular.module('DocitCtrl', []).controller('DocitControlller', function($scope, 
             $scope.changePage("docboard");
         }
     }
+    
+    $scope.saveDoc = function() {
+        
+    }
+    
+    $scope.publishDoc = function() {
+        
+    }
+    
+    $scope.deleteDoc = function() {
+        
+    }
 });

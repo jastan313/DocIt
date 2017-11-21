@@ -38,4 +38,12 @@ angular.module('DocviewCtrl', []).controller('DocviewControlller', function ($sc
             $scope.changePage("docboard");
         }
     }
+    
+    $scope.rateUpDoc = function() {
+        
+    }
+    
+    $scope.rateDownDoc = function() {
+        
+    }
 });

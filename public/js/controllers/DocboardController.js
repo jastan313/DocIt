@@ -1,4 +1,7 @@
 angular.module('DocboardCtrl', []).controller('DocboardControlller', function ($scope, Page, User, Doc) {
+    $scope.docArchive = [];
+    $scope.docFeed = [];
+
     $scope.getDocs = function () {
         var user = Page.getUser();
         if (user) {
@@ -10,7 +13,12 @@ angular.module('DocboardCtrl', []).controller('DocboardControlller', function ($
                             "/" + docs[i].date.getDate() +
                             "/" + docs[i].date.getFullYear();
                     var docRating = docs[i].published ? docs[i].rating : "Not Published";
-
+                    $scope.docArchive.push(
+                            {_id: docID,
+                                title: docTitle,
+                                date: docDate,
+                                rating: docRating}
+                    );
                 }
             }, function (err) {
                 console.log("Docboard: Doc Archive Get Error: " + err);
@@ -30,7 +38,22 @@ angular.module('DocboardCtrl', []).controller('DocboardControlller', function ($
                         "/" + docs[i].date.getDate() +
                         "/" + docs[i].date.getFullYear();
                 var docRating = docs[i].rating;
-
+                if(docRating === 0) {
+                    docRating = "0 Rating";
+                }
+                else if(docRating > 0) {
+                    docRating = "+" + docRating + " Rating";
+                }
+                else {
+                    docRating = "-" + docRating + " Rating";
+                }
+                $scope.docFeed.push(
+                        {_id: docID,
+                            title: docTitle,
+                            alias: docAlias,
+                            date: docDate,
+                            rating: docRating}
+                );
             }
         }, function (err) {
             console.log("Docboard: Doc Feed Get Error: " + err);

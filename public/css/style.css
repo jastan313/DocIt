@@ -187,14 +187,14 @@ button:hover {
 /**************************************************************
  *                             DOCIT                          *
  **************************************************************/
-#docit-alias, #docit-date, #docit-name {
-    /* See media.css for #docit-alias, #docit-date, #docit-name width, max-width */
+#docit-alias, #docit-date, #docit-title {
+    /* See media.css for #docit-alias, #docit-date, #docit-title width, max-width */
 }
 
-#docit-name {
+#docit-title {
     text-overflow: ellipsis;
 }
-#docit-name:hover {
+#docit-title:hover {
     background-color: transparent;
 }
 
@@ -205,8 +205,8 @@ button:hover {
 /**************************************************************
  *                            DOCVIEW                         *
  **************************************************************/
-#docview-alias, #docview-date, #docview-name {
-    /* See media.css for #docview-alias, #docview-date, #docview-name width, max-width */
+#docview-alias, #docview-date, #docview-title {
+    /* See media.css for #docview-alias, #docview-date, #docview-title width, max-width */
 }
 
 #docview-directory-rating-container {
@@ -266,7 +266,7 @@ button:hover {
     height: 100%;
 }
 
-.doc-alias, .doc-date, .doc-name {
+.doc-alias, .doc-date, .doc-title {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -278,7 +278,7 @@ button:hover {
     
     /* See media.css for .doc-alias, .doc-date display */
 }
-.doc-name {
+.doc-title {
     font-style: italic;
     font-weight: bold;
 }

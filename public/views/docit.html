@@ -12,11 +12,17 @@
         </div>
         <div id="docit" class="doc">
             <div id="docit-header" class="doc-header">
-                <h3 id="docit-alias" class="doc-alias">ALIAS: RandomAliasName</h3>
-                <h3 id="docit-date" class="doc-date">DATE: Mar 23 2017</h3>
-                <div><h1 class="doc-name">DOC: <input id="docit-name" type="text" placeholder="Untitled"></h1></div>
+                <h3 id="docit-alias" class="doc-alias">ALIAS: {{ docAlias }} </h3>
+                <h3 id="docit-date" class="doc-date">DATE: {{ docDate }} </h3>
+                <div>
+                    <h1 class="doc-name">DOC: 
+                        <input id="docit-title" type="text" placeholder="Untitled" 
+                               ng-model="docName">
+                    </h1>
+                </div>
             </div>
-            <textarea id="docit-body" class="doc-body" rows="10" cols="10" placeholder="Get those knuckles cracking and start typing..." autofocus></textarea>
+            <textarea id="docit-body" class="doc-body" rows="10" cols="10" 
+                      placeholder="Get those knuckles cracking and start typing..." autofocus> {{ docBody }}</textarea>
         </div>
     </div>
 </div>

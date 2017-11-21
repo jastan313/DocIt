@@ -43,6 +43,18 @@ angular.module('PageService', []).factory('Page', ['$rootScope', '$location', fu
         pageObj.getDoc = function () {
             return this.doc;
         }
+        
+        pageObj.addElement = function(target, element) {
+            var newElement = angular.element(element);
+            var targetElement = document.getElementById(target);
+            if(targetElement) {
+                angular.element(target).append(newElement);
+                return newElement;
+            }
+            else {
+                return null;
+            }
+        }
 
         return pageObj;
     }]);

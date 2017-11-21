@@ -75,7 +75,7 @@ and (min-device-width : 320px)
         max-width: 135px;
     }
     
-    #docit-name {
+    #docit-title {
         width: 275px;
     }
 
@@ -90,14 +90,14 @@ and (min-device-width : 320px)
         max-width: 140px;
     }
     
-    #docview-name {
+    #docview-title {
         max-width: 315px;
     }
     
     /**************************************************************
      *                        DOCIT + DOCVIEW                     *
      **************************************************************/
-    .doc-alias, .doc-date, .doc-name {
+    .doc-alias, .doc-date, .doc-title {
         margin: 0 0 5px 0;
         font-size: 12px;
     }
@@ -227,7 +227,7 @@ and (min-device-width : 321px)
         max-width: 175px;
     }
     
-    #docit-name {
+    #docit-title {
         width: calc(85vw - 120px);
     }
 
@@ -242,14 +242,14 @@ and (min-device-width : 321px)
         max-width: 175px;
     }
     
-    #docview-name {
+    #docview-title {
         max-width: calc(85vw - 70px);
     }
     
     /**************************************************************
      *                        DOCIT + DOCVIEW                     *
      **************************************************************/
-    .doc-alias, .doc-date, .doc-name {
+    .doc-alias, .doc-date, .doc-title {
         margin: 0 0 4px 0;
         font-size: 15px;
     }
@@ -373,7 +373,7 @@ and (min-device-width : 321px)
         max-width: 135px;
     }
     
-    #docit-name {
+    #docit-title {
         width: calc(70vw - 25px);
     }
 
@@ -388,14 +388,14 @@ and (min-device-width : 321px)
         max-width: 135px;
     }
     
-    #docview-name {
+    #docview-title {
         max-width: calc(70vw + 12px);
     }
     
     /**************************************************************
      *                        DOCIT + DOCVIEW                     *
      **************************************************************/
-    .doc-alias, .doc-date, .doc-name {
+    .doc-alias, .doc-date, .doc-title {
         margin: 0 0 4px 0;
         font-size: 12px;
     }
@@ -511,7 +511,7 @@ and (min-device-width : 768px)
         max-width: 190px;
     }
     
-    #docit-name {
+    #docit-title {
         width: 600px;
     }
 
@@ -526,14 +526,14 @@ and (min-device-width : 768px)
         max-width: 190px;
     }
     
-    #docview-name {
+    #docview-title {
         max-width: 660px;
     }
     
     /**************************************************************
      *                        DOCIT + DOCVIEW                     *
      **************************************************************/
-    .doc-alias, .doc-date, .doc-name {
+    .doc-alias, .doc-date, .doc-title {
         margin: 0 0 5px 0;
         font-size: 16px;
     }
@@ -656,7 +656,7 @@ and (orientation : landscape) {
         max-width: 175px;
     }
     
-    #docit-name {
+    #docit-title {
         width: calc(75vw - 30px);
     }
 
@@ -671,14 +671,14 @@ and (orientation : landscape) {
         max-width: 175px;
     }
     
-    #docview-name {
+    #docview-title {
         max-width: calc(75vw + 25px);
     }
     
     /**************************************************************
      *                        DOCIT + DOCVIEW                     *
      **************************************************************/
-    .doc-alias, .doc-date, .doc-name {
+    .doc-alias, .doc-date, .doc-title {
         margin: 0 0 4px 0;
         font-size: 15px;
     }
@@ -793,7 +793,7 @@ and (orientation : landscape) {
         max-width: 185px;
     }
     
-    #docit-name {
+    #docit-title {
         width: 635px;
     }
 
@@ -808,14 +808,14 @@ and (orientation : landscape) {
        max-width: 185px;
     }
     
-    #docview-name {
+    #docview-title {
         max-width: 690px;
     }
 
     /**************************************************************
      *                        DOCIT + DOCVIEW                     *
      **************************************************************/
-    .doc-alias, .doc-date, .doc-name {
+    .doc-alias, .doc-date, .doc-title {
         margin: 0 0 4px 0;
         font-size: 16px;
     }

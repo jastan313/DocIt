@@ -1,4 +1,6 @@
 angular.module('DocitCtrl', []).controller('DocitControlller', function($scope, Page, User, Doc) {
+    $scope.showAuthorBtns = false;
+    
     $scope.displayDocit = function() {
         // Get the Doc we are looking at
         var doc = Page.getDoc();
@@ -12,12 +14,7 @@ angular.module('DocitCtrl', []).controller('DocitControlller', function($scope, 
             $scope.docBody = doc.body;
             
             // Add Copy and Save buttons if user has not published Doc yet
-            if(!doc.published) {
-                Page.insertBefore("docit-directory-copy-btn",
-                    "<div id=\"docit-directory-save-btn\" class=\"directory-opt\" title=\"Save Doc's current progress.\">|SAVE|</div>");
-                Page.insertBefore("docit-directory-save-btn",
-                    "<div id=\"docit-directory-publish-btn\" class=\"directory-opt\" title=\"Finalize and publish Doc to public Doc Feed.\">|PUBLISH|</div>");
-            }
+            $scope.showAuthorBtns = !doc.published;
         }
         else {
             $scope.changePage("docboard");

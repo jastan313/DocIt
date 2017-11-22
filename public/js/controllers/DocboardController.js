@@ -39,8 +39,7 @@ angular.module('DocboardCtrl', []).controller('DocboardControlller', function ($
                             {_id: docID,
                                 title: docTitle,
                                 date: docDate,
-                                rating: docRating,
-                                published: docs[i].published
+                                rating: docRating
                             }
                     );
                 }
@@ -95,7 +94,7 @@ angular.module('DocboardCtrl', []).controller('DocboardControlller', function ($
                 $scope.changePage('docview');
             }
         }, function (err) {
-            console.log("Docboard: Go Docit Error: " + err);
+            console.log("Docboard: Go Doc Error: " + err);
         });
     }
 });

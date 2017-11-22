@@ -1,20 +1,26 @@
 angular.module('DocboardCtrl', []).controller('DocboardControlller', function ($scope, Page, User, Doc) {
-    $scope.generateDocs = function(num, published) {
+    $scope.generateDocs = function (num, published) {
         var arr = [];
-        for(var i = 0; i < num; i++) {
+        for (var i = 0; i < num; i++) {
             var obj = {};
             obj.title = "Title #" + num;
             obj.alias = "Alias Name " + num;
-            obj.date.getMonth = function() { return  "M: " + num; }
-            obj.date.getDate = function() { return  "D: " + num; }
-            obj.date.getFullYear = function() { return  "Y: " + num; }
+            obj.date.getMonth = function () {
+                return  "M: " + num;
+            }
+            obj.date.getDate = function () {
+                return  "D: " + num;
+            }
+            obj.date.getFullYear = function () {
+                return  "Y: " + num;
+            }
             obj.published = published;
-            obj.rating = Math.random()*100 < 50 ? -Math.floor(Math.random()*10) : Math.floor(Math.random()*10);
+            obj.rating = Math.random() * 100 < 50 ? -Math.floor(Math.random() * 10) : Math.floor(Math.random() * 10);
             arr.push(obj);
         }
         return arr;
     }
-    
+
     $scope.docArchive = generateDocs(10, false);
     $scope.docFeed = generateDocs(10, true);
 
@@ -33,7 +39,9 @@ angular.module('DocboardCtrl', []).controller('DocboardControlller', function ($
                             {_id: docID,
                                 title: docTitle,
                                 date: docDate,
-                                rating: docRating}
+                                rating: docRating,
+                                published: docs[i].published
+                            }
                     );
                 }
             }, function (err) {
@@ -54,13 +62,11 @@ angular.module('DocboardCtrl', []).controller('DocboardControlller', function ($
                         "/" + docs[i].date.getDate() +
                         "/" + docs[i].date.getFullYear();
                 var docRating = docs[i].rating;
-                if(docRating === 0) {
+                if (docRating === 0) {
                     docRating = "0 Rating";
-                }
-                else if(docRating > 0) {
+                } else if (docRating > 0) {
                     docRating = "+" + docRating + " Rating";
-                }
-                else {
+                } else {
                     docRating = "-" + docRating + " Rating";
                 }
                 $scope.docFeed.push(
@@ -76,21 +82,20 @@ angular.module('DocboardCtrl', []).controller('DocboardControlller', function ($
         });
     };
 
-    $scope.goDocit = function (docID, editing) {
-        Doc.get(docID).then(function (doc) {
-            Page.setDoc(doc, editing);
+    $scope.goDoc = function (docID) {
+        if (docID == null) {
+            Page.setDoc(null);
             $scope.changePage('docit');
+        }
+        Doc.get(docID).then(function (doc) {
+            Page.setDoc(doc);
+            if (doc.published) {
+                $scope.changePage('docit');
+            } else {
+                $scope.changePage('docview');
+            }
         }, function (err) {
             console.log("Docboard: Go Docit Error: " + err);
-        });
-    }
-
-    $scope.goDocview = function (docID) {
-        Doc.get(docID).then(function (doc) {
-            Page.setDoc(doc, false);
-            $scope.changePage('docview');
-        }, function (err) {
-            console.log("Docboard: Go Docview Error: " + err);
         });
     }
 });

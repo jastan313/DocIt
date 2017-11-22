@@ -9,8 +9,8 @@
             <div id="docboard-docs-container">
                 <h2>ARCHIVE</h2>
                 <div id="docboard-docs">
-                    <div id="docboard-createdoc" class="docboard-mydoc highlight-disabled" title="Create a new document." ng-click="goDocit('docit', false)">+Create New Doc+</div>
-                    <div class="docboard-mydoc" ng-repeat="doc in docArchive">
+                    <div id="docboard-createdoc" class="docboard-mydoc highlight-disabled" title="Create a new document." ng-click="goDoc(null)">+Create New Doc+</div>
+                    <div class="docboard-mydoc" ng-repeat="doc in docArchive" ng-click="goDoc(doc._id)">
                         <div>
                             <div class="docboard-doc-title">{{ doc.title }}</div>
                             <div class="docboard-doc-date">{{ doc.date }}</div>
@@ -22,7 +22,7 @@
             <div id="docboard-feed-container">
                 <h2>DOC FEED</h2>
                 <div id="docboard-feed">
-                    <div class="docboard-feeddoc" ng-repeat="doc in docFeed">
+                    <div class="docboard-feeddoc" ng-repeat="doc in docFeed" ng-click="goDoc(doc._id)">
                         <div>
                             <div class="docboard-doc-title">{{ doc.title }}</div>
                             <div class="docboard-doc-alias">|{{ doc.alias }}|</div>

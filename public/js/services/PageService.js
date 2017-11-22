@@ -9,13 +9,8 @@ angular.module('PageService', []).factory('Page', ['$rootScope', '$location', fu
             'docboard': '|DOCIT| Docboard'};
         pageObj.user = null;
         pageObj.doc = null;
-        pageObj.isEditing = false;
-
         pageObj.setPage = function (page) {
             if (this.titles[page]) {
-                if (page !== "docit") {
-                    this.isEditing = false;
-                }
                 if (page === 'login' || page === 'signup') {
                     this.user = null;
                     this.doc = null;
@@ -43,23 +38,13 @@ angular.module('PageService', []).factory('Page', ['$rootScope', '$location', fu
             return this.user;
         }
 
-        pageObj.setDoc = function (doc, bool) {
-            this.isEditing = bool;
+        pageObj.setDoc = function (doc) {
             this.doc = doc;
             return doc;
         }
 
         pageObj.getDoc = function () {
             return this.doc;
-        }
-
-        pageObj.setIsEditing = function (bool) {
-            this.isEditing = bool;
-            return bool;
-        }
-
-        pageObj.getIsEditing = function () {
-            return this.isEditing;
         }
 
         pageObj.insertAfter = function (target, element) {

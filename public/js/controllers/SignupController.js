@@ -1,5 +1,5 @@
 angular.module('SignupCtrl', []).controller('SignupControlller', function ($scope, Page, User) {
-    $scope.submit = function () {
+    $scope.signupSubmit = function () {
         var emailRegex = new RegExp('^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
         var aliasRegex = new RegExp('^[A-Za-z0-9]{6,15}$');
         var passwordRegex = new RegExp('^[A-Za-z0-9@!#\$\^%&*()+=\-\[\]\\\';,\.\/\{\}\|\":<>\? ]{6,}$');
@@ -18,7 +18,7 @@ angular.module('SignupCtrl', []).controller('SignupControlller', function ($scop
                             };
                             User.create(userData).then(function (data) {
                                 Page.setUser(data);
-                                $parent.changePage('docboard');
+                                $scope.changePage('docboard');
                             }, function (err) {
                                 console.log("Signup: User Creation Error: " + err);
                             });

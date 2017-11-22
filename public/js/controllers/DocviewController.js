@@ -1,4 +1,7 @@
 angular.module('DocviewCtrl', []).controller('DocviewControlller', function ($scope, Page, User, Doc) {
+    $scope.showAuthorBtns = false;
+    $scope.docRating = false;
+
     $scope.displayDocview = function () {
         // Get the Doc we are looking at
         var doc = Page.getDoc();
@@ -13,41 +16,44 @@ angular.module('DocviewCtrl', []).controller('DocviewControlller', function ($sc
             var user = Page.getUser();
             if (user) {
                 // Add Edit button if user is the author of this Doc
-                if (doc.author._id === user._id) {
-                    Page.addElement("docview-directory",
-                            "<div id=\"docview-directory-edit-btn\" class=\"directory-opt\" title=\"Edit Doc.\">|EDIT|</div>");
-                }
-                var rating = null;
-                for(var i = 0; i < doc.ratings.length; i++) {
-                    if(doc.ratings[i].user_id === user._id) {
-                        rating = doc.ratings[i].rating;
+                $scope.showAuthorBtns = (doc.author._id === user._id);
+
+                // Check if user has rated this Doc
+                for (var i = 0; i < doc.ratings.length; i++) {
+                    if (doc.ratings[i].user_id === user._id) {
+                        docRating = doc.ratings[i].rating;
                         break;
                     }
                 }
-                
-                // Add styling to rating buttons
-                if(rating == null || rating === 0) {
-                    // Don't add any button styling since user has not rated Doc yet
-                }
-                else if(rating > 0) {
-                    var rateUpBtn = angular.element(document.querySelector('#docview-rateup-btn'));
-                    rateUpBtn.addClass('ratedup');
-                }
-                else if(rating < 0) {
-                    var rateDownBtn = angular.element(document.querySelector('#docview-rateup-btn'));
-                    rateUpBtn.addClass('rateddown');
-                }
+                // Add styling to rating buttons if user has rated
+                updateDocRating();
             }
         } else {
             $scope.changePage("docboard");
         }
     }
-    
-    $scope.rateUpDoc = function() {
-        
+
+    $scope.updateDocRating = function () {
+        if (docRating == null || docRating === 0) {
+            // Don't add any button styling since user has not rated Doc yet
+        } else if (docRating > 0) {
+            var rateUpBtn = angular.element(document.querySelector('#docview-rateup-btn'));
+            rateUpBtn.addClass('ratedup');
+        } else if (docRating < 0) {
+            var rateDownBtn = angular.element(document.querySelector('#docview-rateup-btn'));
+            rateUpBtn.addClass('rateddown');
+        }
     }
-    
-    $scope.rateDownDoc = function() {
-        
+
+    $scope.rateUpDoc = function () {
+
+    }
+
+    $scope.rateDownDoc = function () {
+
+    }
+
+    $scope.copyDoc = function () {
+
     }
 });

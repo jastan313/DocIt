@@ -3,14 +3,41 @@
         <button id="docview-directory-btn" class="directory-btn" type="button" title="Directory options.">|DIRECTORY|</button>
         <div id="docview-directory" class="directory highlight-disabled" >
             <div id="docview-directory-rating-container" class="directory-opt">
-                <div id="docview-rateup-btn" title="Upvote Doc.">+1</div><div id="docview-ratedown-btn" title="Downvote Doc.">-1</div>
+                <div id="docview-rateup-btn" 
+                     title="Upvote Doc."
+                     ng-click="rateUpDoc()">+1</div>
+                
+                <div id="docview-ratedown-btn" 
+                     title="Downvote Doc." ng-click="rateDownDown()">-1</div>
             </div>
-            <div id="docview-directory-edit-btn" class="directory-opt" title="Edit Doc.">|EDIT|</div>
-            <div id="docview-directory-copy-btn" class="directory-opt" title="Copy Doc's alias, date, title and body to clipboard.">|COPY|</div>
-            <div id="docview-directory-export-btn" class="directory-opt" title="Export Doc as local .docx file.">|EXPORT|</div>
-            <div id="docview-directory-todocboard-btn" class="directory-opt" title="Go to Docboard.">|DOCBOARD|</div>
-            <div id="docview-directory-logout-btn" class="directory-opt" title="Log out current Alias.">|LOGOUT|</div>
+            
+            <div id="docview-directory-edit-btn" 
+                 class="directory-opt" 
+                 title="Edit Doc." 
+                 ng-show="showAuthorBtns"
+                 ng-click="changePage('docit')">|EDIT|</div>
+            
+            <div id="docview-directory-copy-btn" 
+                 class="directory-opt" 
+                 title="Copy Doc's alias, date, title and body to clipboard."
+                 ng-click="copyDoc()">|COPY|</div>
+            
+            <div id="docview-directory-export-btn" 
+                 class="directory-opt" 
+                 title="Export Doc as local .docx file."
+                 ng-click="exportDoc()">|EXPORT|</div>
+                 
+            <div id="docview-directory-todocboard-btn" 
+                 class="directory-opt" 
+                 title="Go to Docboard."
+                 ng-click="changePage('docboard')">|DOCBOARD|</div>
+                 
+            <div id="docview-directory-logout-btn" 
+                 class="directory-opt" 
+                 title="Log out current Alias."
+                 ng-click="changePage('login')">|LOGOUT|</div>
         </div>
+        
         <div id="docview" class="doc">
             <div id="docview-header" class="doc-header highlight-enabled">
                 <h3 id="docview-alias" class="doc-alias highlight-enabled">ALIAS: {{ docAlias }}</h3>

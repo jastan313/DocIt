@@ -15,6 +15,9 @@ angular.module('PageService', []).factory('Page', ['$rootScope', '$location', fu
                     this.user = null;
                     this.doc = null;
                 }
+                else if(page === 'docboard') {
+                    this.doc = null;
+                }
                 this.page = page;
                 return page;
             }
@@ -45,17 +48,6 @@ angular.module('PageService', []).factory('Page', ['$rootScope', '$location', fu
 
         pageObj.getDoc = function () {
             return this.doc;
-        }
-
-        pageObj.insertAfter = function (target, element) {
-            var ele = angular.element(element);
-            var tar = document.querySelector("#" + target);
-            if (targetElement) {
-                tar.parentNode.insertBefore(ele, tar.nextSibling);
-                return newElement;
-            } else {
-                return null;
-            }
         }
 
         return pageObj;

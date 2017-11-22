@@ -60,10 +60,10 @@ angular.module('DocboardCtrl', []).controller('DocboardControlller', function ($
         });
     };
 
-    $scope.goDocit = function (docID) {
+    $scope.goDocit = function (docID, editing) {
         Doc.get(docID).then(function (doc) {
-            Page.setDoc(doc);
-            Page.changePage('docit');
+            Page.setDoc(doc, editing);
+            $scope.changePage('docit');
         }, function (err) {
             console.log("Docboard: Go Docit Error: " + err);
         });
@@ -71,8 +71,8 @@ angular.module('DocboardCtrl', []).controller('DocboardControlller', function ($
 
     $scope.goDocview = function (docID) {
         Doc.get(docID).then(function (doc) {
-            Page.setDoc(doc);
-            Page.changePage('docview');
+            Page.setDoc(doc, false);
+            $scope.changePage('docview');
         }, function (err) {
             console.log("Docboard: Go Docview Error: " + err);
         });

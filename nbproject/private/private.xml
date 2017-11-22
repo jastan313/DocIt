@@ -5,9 +5,8 @@
         <group>
             <file>file:/C:/Users/Jason%20Tan/Desktop/Projects/DocIt/public/views/index.html</file>
             <file>file:/C:/Users/Jason%20Tan/Desktop/Projects/DocIt/public/js/controllers/DocboardController.js</file>
-            <file>file:/C:/Users/Jason%20Tan/Desktop/Projects/DocIt/public/views/docboard.html</file>
-            <file>file:/C:/Users/Jason%20Tan/Desktop/Projects/DocIt/public/views/signup.html</file>
-            <file>file:/C:/Users/Jason%20Tan/Desktop/Projects/DocIt/public/js/services/DocService.js</file>
+            <file>file:/C:/Users/Jason%20Tan/Desktop/Projects/DocIt/public/js/controllers/DocitController.js</file>
+            <file>file:/C:/Users/Jason%20Tan/Desktop/Projects/DocIt/public/js/controllers/DocviewController.js</file>
         </group>
     </open-files>
 </project-private>

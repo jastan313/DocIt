@@ -1,7 +1,9 @@
 angular.module('DocviewCtrl', []).controller('DocviewControlller', function ($scope, Page, User, Doc) {
     $scope.displayDocview = function () {
+        // Get the Doc we are looking at
         var doc = Page.getDoc();
         if (doc && doc.published) {
+            // Data bind corresponding Doc data
             $scope.docAlias = doc.user.alias;
             $scope.docDate = doc.date.getMonth() +
                     "/" + doc.date.getDate() +
@@ -10,6 +12,7 @@ angular.module('DocviewCtrl', []).controller('DocviewControlller', function ($sc
             $scope.docBody = doc.body;
             var user = Page.getUser();
             if (user) {
+                // Add Edit button if user is the author of this Doc
                 if (doc.author._id === user._id) {
                     Page.addElement("docview-directory",
                             "<div id=\"docview-directory-edit-btn\" class=\"directory-opt\" title=\"Edit Doc.\">|EDIT|</div>");
@@ -21,17 +24,18 @@ angular.module('DocviewCtrl', []).controller('DocviewControlller', function ($sc
                         break;
                     }
                 }
+                
+                // Add styling to rating buttons
                 if(rating == null || rating === 0) {
-                    Page.addElement("docview-directory-rating-container",
-                        "<div id=\"docview-rateup-btn\" title=\"Upvote Doc.\">+1</div><div id=\"docview-ratedown-btn\" title=\"Downvote Doc.\">-1</div>");
+                    // Don't add any button styling since user has not rated Doc yet
                 }
                 else if(rating > 0) {
-                    Page.addElement("docview-directory-rating-container",
-                        "<div id=\"docview-rateup-btn\" class=\"ratedup\" title=\"Upvote Doc.\">+1</div><div id=\"docview-ratedown-btn\" title=\"Downvote Doc.\">-1</div>");
+                    var rateUpBtn = angular.element(document.querySelector('#docview-rateup-btn'));
+                    rateUpBtn.addClass('ratedup');
                 }
                 else if(rating < 0) {
-                    Page.addElement("docview-directory-rating-container",
-                        "<div id=\"docview-rateup-btn\" title=\"Upvote Doc.\">+1</div><div id=\"docview-ratedown-btn\" class=\"rateddown\" title=\"Downvote Doc.\">-1</div>");
+                    var rateDownBtn = angular.element(document.querySelector('#docview-rateup-btn'));
+                    rateUpBtn.addClass('rateddown');
                 }
             }
         } else {

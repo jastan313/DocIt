@@ -9,9 +9,17 @@ angular.module('PageService', []).factory('Page', ['$rootScope', '$location', fu
             'docboard': '|DOCIT| Docboard'};
         pageObj.user = null;
         pageObj.doc = null;
+        pageObj.isEditing = false;
 
         pageObj.setPage = function (page) {
             if (this.titles[page]) {
+                if (page !== "docit") {
+                    this.isEditing = false;
+                }
+                if (page === 'login' || page === 'signup') {
+                    this.user = null;
+                    this.doc = null;
+                }
                 this.page = page;
                 return page;
             }
@@ -35,7 +43,8 @@ angular.module('PageService', []).factory('Page', ['$rootScope', '$location', fu
             return this.user;
         }
 
-        pageObj.setDoc = function (doc) {
+        pageObj.setDoc = function (doc, bool) {
+            this.isEditing = bool;
             this.doc = doc;
             return doc;
         }
@@ -43,15 +52,23 @@ angular.module('PageService', []).factory('Page', ['$rootScope', '$location', fu
         pageObj.getDoc = function () {
             return this.doc;
         }
-        
-        pageObj.addElement = function(target, element) {
-            var newElement = angular.element(element);
-            var targetElement = document.getElementById(target);
-            if(targetElement) {
-                angular.element(target).append(newElement);
+
+        pageObj.setIsEditing = function (bool) {
+            this.isEditing = bool;
+            return bool;
+        }
+
+        pageObj.getIsEditing = function () {
+            return this.isEditing;
+        }
+
+        pageObj.insertAfter = function (target, element) {
+            var ele = angular.element(element);
+            var tar = document.querySelector("#" + target);
+            if (targetElement) {
+                tar.parentNode.insertBefore(ele, tar.nextSibling);
                 return newElement;
-            }
-            else {
+            } else {
                 return null;
             }
         }

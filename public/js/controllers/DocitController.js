@@ -1,5 +1,6 @@
 angular.module('DocitCtrl', []).controller('DocitControlller', function ($scope, Page, User, Doc) {
     $scope.showAuthorBtns = false;
+    $scope.copyText = "";
 
     $scope.displayDocit = function () {
         // Get the Doc we are looking at
@@ -21,7 +22,17 @@ angular.module('DocitCtrl', []).controller('DocitControlller', function ($scope,
     }
 
     $scope.copyDoc = function () {
-
+        $scope.copyText = $scope.docTitle + "\nby " + $scope.docAlias + ", " + $scope.docDate +
+                "\n\n" + $scope.docBody;
+        var toCopy = document.getElementById("docit-copytext");
+        try {
+            document.execCommand('copy');
+        } catch (err) {
+            alert("Docit: Copy Doc Error: " + err);
+        }
+        finally {
+            $scope.copyText = "";
+        }
     }
 
     $scope.saveDoc = function () {

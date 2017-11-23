@@ -294,6 +294,10 @@ button:hover {
     /* See media.css for .doc-body width, height */
 }
 
+.copytext {
+    display: hidden;
+}
+
 /**************************************************************
  *                            DOCBOARD                        *
 **************************************************************/

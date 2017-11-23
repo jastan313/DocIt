@@ -1,6 +1,7 @@
 angular.module('DocviewCtrl', []).controller('DocviewControlller', function ($scope, Page, User, Doc) {
     $scope.showAuthorBtns = false;
     $scope.docRating = false;
+    $scope.copyText = "";
 
     $scope.displayDocview = function () {
         // Get the Doc we are looking at
@@ -37,10 +38,10 @@ angular.module('DocviewCtrl', []).controller('DocviewControlller', function ($sc
         if (docRating == null || docRating === 0) {
             // Don't add any button styling since user has not rated Doc yet
         } else if (docRating > 0) {
-            var rateUpBtn = angular.element(document.querySelector('#docview-rateup-btn'));
+            var rateUpBtn = angular.element('#docview-rateup-btn');
             rateUpBtn.addClass('ratedup');
         } else if (docRating < 0) {
-            var rateDownBtn = angular.element(document.querySelector('#docview-rateup-btn'));
+            var rateDownBtn = angular.element('#docview-rateup-btn');
             rateUpBtn.addClass('rateddown');
         }
     }
@@ -54,6 +55,16 @@ angular.module('DocviewCtrl', []).controller('DocviewControlller', function ($sc
     }
 
     $scope.copyDoc = function () {
-
+        $scope.copyText = $scope.docTitle + "\nby " + $scope.docAlias + ", " + $scope.docDate +
+                "\n\n" + $scope.docBody;
+        var toCopy = document.getElementById("docview-copytext");
+        try {
+            document.execCommand('copy');
+        } catch (err) {
+            alert("Docview: Copy Doc Error: " + err);
+        }
+        finally {
+            $scope.copyText = "";
+        }
     }
 });

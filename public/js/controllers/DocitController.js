@@ -1,6 +1,7 @@
 angular.module('DocitCtrl', []).controller('DocitControlller', function ($scope, Page, User, Doc) {
     $scope.showAuthorBtns = false;
     $scope.copyText = "";
+    $scope.MIN_BODY_LENGTH = 50;
 
     $scope.displayDocit = function () {
         // Get the Doc we are looking at
@@ -14,7 +15,7 @@ angular.module('DocitCtrl', []).controller('DocitControlller', function ($scope,
             $scope.docTitle = doc.title;
             $scope.docBody = doc.body;
 
-            // Add Copy and Save buttons if user has not published Doc yet
+            // Show Copy and Save buttons if user has not published Doc yet
             $scope.showAuthorBtns = !doc.published;
         } else {
             $scope.changePage("docboard");
@@ -42,12 +43,11 @@ angular.module('DocitCtrl', []).controller('DocitControlller', function ($scope,
             var docData = {
                 'title': $scope.docTitle,
                 'body': $scope.docBody
-            }
+            };
             Doc.update(d._id, docData).then(function (doc) {
                 Page.setDoc(doc);
-                $scope.infoModalText = "Doc Updated:\n\n" + Page.getDoc().title + "\nby: " +
-                        Page.getDoc().alias + ", " + Page.getDoc().date;
-                document.getElementById("info-modal").classList.add('open');
+                $scope.displayInfoPopup("Doc Updated:\n\n" + Page.getDoc().title + "\nby: " +
+                        Page.getDoc().alias + ", " + Page.getDoc().date);
             }, function (err) {
                 console.log("Docit: Doc Update Error: " + err);
             });
@@ -61,9 +61,8 @@ angular.module('DocitCtrl', []).controller('DocitControlller', function ($scope,
             };
             Doc.create(docData).then(function (doc) {
                 Page.setDoc(doc);
-                $scope.infoModalText = "Doc Created:\n\n" + Page.getDoc().title + "\nby: " +
-                        Page.getDoc().alias + ", " + Page.getDoc().date;
-                document.getElementById("info-modal").classList.add('open');
+                $scope.displayInfoPopup("Doc Created:\n\n" + Page.getDoc().title + "\nby: " +
+                        Page.getDoc().alias + ", " + Page.getDoc().date);
             }, function (err) {
                 console.log("Docit: Doc Creation Error: " + err);
             });
@@ -71,7 +70,48 @@ angular.module('DocitCtrl', []).controller('DocitControlller', function ($scope,
     }
 
     $scope.publishDoc = function () {
-
+        if ($scope.docBody.length < $scope.MIN_BODY_LENGTH) {
+            $scope.infoModalText = "Doc's body requires a minimum of " + $scope.MIN_BODY_LENGTH + 
+                    "characters. Keep writing! You need at least " + $scope.docBody.length + "more characters.";
+            document.getElementById("info-modal").classList.add('open');
+        } else {
+            var d = Page.getDoc();
+            // If user is updating an existing Doc
+            if (d) {
+                var docData = {
+                    'title': $scope.docTitle,
+                    'body': $scope.docBody,
+                    'published': true
+                };
+                Doc.update(d._id, docData).then(function (doc) {
+                    Page.setDoc(doc);
+                    $scope.displayInfoPopup("Doc Updated And Published:\n\n" +
+                            Page.getDoc().title + "\nby: " +
+                            Page.getDoc().alias + ", " + Page.getDoc().date);
+                    $scope.changePage('docview');
+                }, function (err) {
+                    console.log("Docit: Doc Publish Update Error: " + err);
+                });
+            }
+            // If user is creating a new Doc
+            else {
+                var docData = {
+                    'title': $scope.docTitle,
+                    'author': Page.getUser().alias,
+                    'body': $scope.docBody,
+                    'published': true
+                };
+                Doc.create(docData).then(function (doc) {
+                    Page.setDoc(doc);
+                    $scope.displayInfoPopup("Doc Created And Published:\n\n" +
+                            Page.getDoc().title + "\nby: " +
+                            Page.getDoc().alias + ", " + Page.getDoc().date);
+                    $scope.changePage('docview');
+                }, function (err) {
+                    console.log("Docit: Doc Publish Creation Error: " + err);
+                });
+            }
+        }
     }
 
     $scope.exportDoc = function () {

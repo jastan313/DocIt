@@ -37,6 +37,11 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
             document.getElementById("info-modal").classList.remove('open');
         }
     }
+    
+    $scope.displayInfoPopup = function(info) {
+        $scope.infoModalText = "|INFO| " + info;
+        document.getElementById("info-modal").classList.add('open');
+    }
 
     $scope.changePage('login');
 });

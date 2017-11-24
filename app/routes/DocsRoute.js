@@ -48,10 +48,10 @@ module.exports = function (app) {
         Doc.findbyId(req.params.id)
                 .populate('author')
                 .exec(function (err, result) {
-            if (err)
-                res.send(err);
-            res.json(result); // Return the specific doc
-        });
+                    if (err)
+                        res.send(err);
+                    res.json(result); // Return the specific doc
+                });
     });
 
     // POST: Create a doc
@@ -60,6 +60,9 @@ module.exports = function (app) {
         doc.author = req.body.user_id;
         doc.title = req.body.title;
         doc.body = req.body.body;
+        if (req.body.published) {
+            doc.published = req.body.published;
+        }
         doc.save(function (err, result) {
             if (err)
                 res.send(err);
@@ -72,7 +75,12 @@ module.exports = function (app) {
         Doc.findbyId(req.params.id, function (err, doc) {
             doc.title = req.body.title;
             doc.body = req.body.body;
-            doc.comments = req.body.comments;
+            if (req.body.published) {
+                doc.published = req.body.published;
+            }
+            if (req.body.comments) {
+                doc.comments = req.body.comments;
+            }
             doc.save(function (err, result) {
                 if (err)
                     res.send(err);

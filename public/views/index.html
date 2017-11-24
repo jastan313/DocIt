@@ -1,40 +1,45 @@
 <!doctype html>
 <html lang="en" ng-app="DocItApp" ng-controller="MainController as MainC">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,height=device-height initial-scale=1">
-    <base href="/">
-    <title>{{ pageTitle }}</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,height=device-height initial-scale=1">
+        <base href="/">
+        <title>{{ pageTitle}}</title>
 
-    <!-- CSS-->
-    <link rel="stylesheet" type="text/css" href="css/style.css"> <!-- custom styles -->
-    <link rel="stylesheet" type="text/css" href="css/media.css"> <!-- media styles -->
+        <!-- CSS-->
+        <link rel="stylesheet" type="text/css" href="css/style.css"> <!-- custom styles -->
+        <link rel="stylesheet" type="text/css" href="css/media.css"> <!-- media styles -->
 
-    <!-- LIBRARY JS -->
-    <script src="js/libs/angular.min.js"></script>
-    <script src="js/libs/angular-route.min.js"></script>
+        <!-- LIBRARY JS -->
+        <script src="js/libs/angular.min.js"></script>
+        <script src="js/libs/angular-route.min.js"></script>
 
-    <!-- ANGULAR CONTROLLERS -->
-    <script src="js/controllers/MainController.js"></script>
-    <script src="js/controllers/LoginController.js"></script>
-    <script src="js/controllers/SignupController.js"></script>
-    <script src="js/controllers/DocitController.js"></script>
-    <script src="js/controllers/DocviewController.js"></script>
-    <script src="js/controllers/DocboardController.js"></script>
+        <!-- ANGULAR CONTROLLERS -->
+        <script src="js/controllers/MainController.js"></script>
+        <script src="js/controllers/LoginController.js"></script>
+        <script src="js/controllers/SignupController.js"></script>
+        <script src="js/controllers/DocitController.js"></script>
+        <script src="js/controllers/DocviewController.js"></script>
+        <script src="js/controllers/DocboardController.js"></script>
 
-    <!-- ANGULAR SERVICES -->
-    <script src="js/services/UserService.js"></script>
-    <script src="js/services/DocService.js"></script>
-    <script src="js/services/CommentService.js"></script>
-    <script src="js/services/PageService.js"></script>
+        <!-- ANGULAR SERVICES -->
+        <script src="js/services/UserService.js"></script>
+        <script src="js/services/DocService.js"></script>
+        <script src="js/services/CommentService.js"></script>
+        <script src="js/services/PageService.js"></script>
 
-    <!-- JS -->
-    <script src="js/AppRoutes.js"></script>
-    <script src="js/App.js"></script>
-    
-</head>
-<body ng-view>
-    <!-- ANGULAR DYNAMIC CONTENT -->
-</body>
+        <!-- JS -->
+        <script src="js/AppRoutes.js"></script>
+        <script src="js/App.js"></script>
+
+    </head>
+    <body ng-view ng-click="checkInfoPopup($event)">
+        <div id="info-modal" class="modal">
+            <div class="modal-window">
+                {{ infoModalText}}
+            </div>
+        </div>
+        <!-- ANGULAR DYNAMIC CONTENT -->
+    </body>
 </html>
 

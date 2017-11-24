@@ -29,6 +29,11 @@ angular.module('UserService', []).factory('User', ['$http', function ($http) {
             update: function (id, userData) {
                 return $http.put('/api/users/' + id, userData);
             },
+            
+            // Call to update a user to remove doc reference
+            updateByDoc: function (uid, did) {
+                return $http.put('/api/users/' + uid + 'docs/' + did);
+            },
 
             // Call to delete a user
             delete: function (id) {

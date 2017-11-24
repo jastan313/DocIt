@@ -61,6 +61,11 @@ module.exports = function (app) {
         });
     });
     
+    // PUT: Update a user by removing Doc reference
+    app.put('/api/users/:uid/docs/:did', function (req, res) {
+        User.update({_id: req.params.uid}, {$pull: {documents: req.params.did}});
+    });
+    
     // DELETE: Delete a user
     app.delete('/api/users/:id', function (req, res) {
         User.remove(req.params.id, function (err, result) {

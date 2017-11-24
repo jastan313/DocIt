@@ -36,7 +36,7 @@ angular.module('DocitCtrl', []).controller('DocitControlller', function ($scope,
     }
 
     $scope.saveDoc = function () {
-
+        
     }
 
     $scope.publishDoc = function () {
@@ -48,7 +48,12 @@ angular.module('DocitCtrl', []).controller('DocitControlller', function ($scope,
     }
 
     $scope.deleteDoc = function () {
-
+        Doc.delete(Page.getDoc()._id);
+        User.updateByDoc(Page.getUser()._id, Page.getDoc()._id);
+        $scope.infoModalText = "Doc Deleted:\n\n" + Page.getDoc().title + "\nby: " +
+                Page.getDoc().alias + ", " + Page.getDoc().date;
+        $scope.changePage('docboard');
+        document.getElementById("info-modal").classList.add('open');
     }
 
     $scope.keyDownFunc = function ($event) {

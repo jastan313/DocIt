@@ -127,13 +127,54 @@ button:hover {
     50% { border-color: black; }
 }
 
+/* Modal outside */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    background-color: white;
+    background-color: rgba(255, 255, 255, 0.65);
+    z-index: 9999;
+    display: none;
+}
+.modal:hover {
+    cursor: pointer;
+}
+
+/* Modal popup styling */
+.modal-window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -125%);
+    margin: 0;
+    min-width: 250px;
+    max-width: 500px;
+    padding: 20px 25px 20px 25px;
+    
+    font-size: 12px;
+    font-weight: 500;
+    background-color: #fcfcfc;
+    box-shadow: 2px 9px 15px black;
+}
+.modal-window:hover {
+    cursor: initial;
+}
+
+.open {
+    display: block;
+}
+
 /**************************************************************
  *                          SIGNUP/LOGIN                      *
  **************************************************************/
 #login-container > h1, #signup-container > h1 {
     font-weight: bolder;
     margin: 0 0 5px 0;
-    
+
     /* See media.css for #login-container > h1, #signup-container > h1 font-size */
 }
 
@@ -270,12 +311,12 @@ button:hover {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    
+
     /* See media.css for .doc-header > * margin, font-size */
 }
 .doc-alias, .doc-date {
     font-weight: normal;
-    
+
     /* See media.css for .doc-alias, .doc-date display */
 }
 .doc-title {
@@ -290,7 +331,7 @@ button:hover {
     border: none;
     resize: none;
     overflow-y: scroll;
-    
+
     /* See media.css for .doc-body width, height */
 }
 
@@ -316,13 +357,13 @@ button:hover {
 
 #docboard-header > * {
     margin: 0;
-    
+
     /* See media.css for #docboard-header > * padding */
 }
 
 #docboard-header > h1 {
     margin: 0 12px 0 0;
-    
+
     /* See media.css for #docboard-header > h1 font-size */
 }
 
@@ -331,13 +372,13 @@ button:hover {
     text-overflow: ellipsis;
     overflow: hidden;
     font-weight: normal;
-    
+
     /* See media.css for #docboard-alias font-size, max-width */
 }
 
 #docboard-docs-container > h2, #docboard-feed-container > h2 {
     text-decoration: underline;
-    
+
     /* See media.css for #docboard-docs-container > h2, #docboard-feed-container > h2 font-size, margin */
 }
 
@@ -348,7 +389,7 @@ button:hover {
     overflow-y: scroll;
     border: 3px black solid;
     padding: 3px 0px 0px 0px;
-    
+
     /* See media.css for #docboard-docs height */
 }
 
@@ -368,7 +409,7 @@ button:hover {
     background-color: #fcfcfc;
     border: 2px #aaaaaa solid;
     box-shadow: 4px 7px 7px #555555;
-    
+
     /* See media.css for .docboard-mydoc width, height */
 }
 .docboard-mydoc:hover {
@@ -400,7 +441,7 @@ button:hover {
     overflow-y: scroll;
     border: 3px black solid;
     padding: 3px 0px 0px 0px;
-    
+
     /* See media.css for #docboard-feed height */
 }
 
@@ -415,7 +456,7 @@ button:hover {
     background-color: #fcfcfc;
     border: 2px #aaaaaa solid;
     box-shadow: 4px 7px 7px #555555;
-    
+
     /* See media.css for .docboard-feeddoc width, height */
 }
 .docboard-feeddoc:hover {

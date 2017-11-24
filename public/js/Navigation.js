@@ -2,7 +2,7 @@ window.onload = function () {
     var loginToSignupBtn = document.getElementById('login-tosignup-btn');
     var signupToLoginBtn = document.getElementById('signup-tologin-btn');
     var docContainer = document.getElementById('doc-container');
-    
+
     var docitDirBtn = document.getElementById('docit-directory-btn');
     var docitDirectory = document.getElementById('docit-directory');
     var docitDirSaveBtn = document.getElementById('docit-directory-save-btn');
@@ -37,7 +37,7 @@ window.onload = function () {
             window.location.href = '../views/login_template.html';
         });
     }
-    
+
     if (docitDirBtn) {
         docitDirBtn.addEventListener('click', function (e) {
             docitDirBtn.style.display = "none";
@@ -95,4 +95,21 @@ window.onload = function () {
         });
     }
 }
+
+document.addEventListener('click', function (e) {
+    e = e || window.event;
+    var target = e.target || e.srcElement;
+
+    e.preventDefault();
+
+    if (target.hasAttribute('data-toggle') && target.getAttribute('data-toggle') == 'modal') {
+        document.getElementById("info-modal").classList.add('open');
+    }
+
+    // Close modal window with 'data-dismiss' attribute or when the backdrop is clicked
+    if ((target.hasAttribute('data-dismiss') && target.getAttribute('data-dismiss') == 'modal') || target.classList.contains('modal')) {
+        var modal = document.getElementById("info-modal");
+        modal.classList.remove('open');
+    }
+}, false);
 ;

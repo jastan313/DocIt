@@ -29,14 +29,45 @@ angular.module('DocitCtrl', []).controller('DocitControlller', function ($scope,
             document.execCommand('copy');
         } catch (err) {
             alert("Docit: Copy Doc Error: " + err);
-        }
-        finally {
+        } finally {
             $scope.copyText = "";
         }
     }
 
     $scope.saveDoc = function () {
-        
+        var d = Page.getDoc();
+        $scope.docTitle = $scope.docTitle.length > 0 ? $scope.docTitle : "Untitled";
+        // If user is updating an existing Doc
+        if (d) {
+            var docData = {
+                'title': $scope.docTitle,
+                'body': $scope.docBody
+            }
+            Doc.update(d._id, docData).then(function (doc) {
+                Page.setDoc(doc);
+                $scope.infoModalText = "Doc Updated:\n\n" + Page.getDoc().title + "\nby: " +
+                        Page.getDoc().alias + ", " + Page.getDoc().date;
+                document.getElementById("info-modal").classList.add('open');
+            }, function (err) {
+                console.log("Docit: Doc Update Error: " + err);
+            });
+        }
+        // If user is creating a new Doc
+        else {
+            var docData = {
+                'title': $scope.docTitle,
+                'author': Page.getUser().alias,
+                'body': $scope.docBody
+            };
+            Doc.create(docData).then(function (doc) {
+                Page.setDoc(doc);
+                $scope.infoModalText = "Doc Created:\n\n" + Page.getDoc().title + "\nby: " +
+                        Page.getDoc().alias + ", " + Page.getDoc().date;
+                document.getElementById("info-modal").classList.add('open');
+            }, function (err) {
+                console.log("Docit: Doc Creation Error: " + err);
+            });
+        }
     }
 
     $scope.publishDoc = function () {
@@ -48,23 +79,27 @@ angular.module('DocitCtrl', []).controller('DocitControlller', function ($scope,
     }
 
     $scope.deleteDoc = function () {
-        Doc.delete(Page.getDoc()._id);
-        User.updateByDoc(Page.getUser()._id, Page.getDoc()._id);
-        $scope.infoModalText = "Doc Deleted:\n\n" + Page.getDoc().title + "\nby: " +
-                Page.getDoc().alias + ", " + Page.getDoc().date;
-        $scope.changePage('docboard');
-        document.getElementById("info-modal").classList.add('open');
+        Doc.delete(Page.getDoc()._id).then(function (doc) {
+            User.updateByDoc(Page.getUser()._id, Page.getDoc()._id);
+            $scope.infoModalText = "Doc Deleted:\n\n" + Page.getDoc().title + "\nby: " +
+                    Page.getDoc().alias + ", " + Page.getDoc().date;
+            $scope.changePage('docboard');
+            document.getElementById("info-modal").classList.add('open');
+        }, function (err) {
+            console.log("Docit: Doc Deletion Error: " + err);
+        });
     }
 
+    /* Key binding events for aggregate keydown events */
     $scope.keyDownFunc = function ($event) {
         if ($scope.ctrlDown && ($event.keyCode == $scope.cKey)) {
-            // alert('Ctrl + C pressed');
+            // 'Ctrl + C pressed'
         } else if ($scope.ctrlDown && ($event.keyCode == $scope.vKey)) {
-            // alert('Ctrl + V pressed');
+            // 'Ctrl + V pressed'
         } else if ($scope.ctrlDown && String.fromCharCode($event.which).toLowerCase() == 's') {
+            // 'Ctrl + S pressed'
             $event.preventDefault();
             $scope.saveDoc();
-            // alert('Ctrl + S pressed');
         }
     };
 

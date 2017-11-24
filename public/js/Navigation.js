@@ -101,7 +101,6 @@ document.addEventListener('click', function (e) {
     var target = e.target || e.srcElement;
 
     e.preventDefault();
-    // Use $timeout(func, delay(ms))
     if (target.hasAttribute('data-toggle') && target.getAttribute('data-toggle') == 'modal') {
         document.getElementById("info-modal").classList.add('open');
     }

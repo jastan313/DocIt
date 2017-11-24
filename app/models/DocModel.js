@@ -17,20 +17,22 @@ var docSchema = new Schema({
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 });
 
-docSchema.post('save', function (doc) {
+docSchema.post('save', function (next) {
    var totalRating = 0;
    for(var i = 0; i < ratings.length; i++) {
        totalRating += this.ratings[i].rating;
    }
    this.rating = totalRating;
+   this.date = new Date.now();
 });
 
-docSchema.post('update', function (doc) {
+docSchema.post('update', function (next) {
    var totalRating = 0;
    for(var i = 0; i < ratings.length; i++) {
        totalRating += this.ratings[i].rating;
    }
    this.rating = totalRating;
+   this.date = Date.now();
 });
 
 // Apply the uniqueValidator plugin to docSchema.

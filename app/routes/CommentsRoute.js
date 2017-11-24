@@ -23,10 +23,10 @@ module.exports = function (app) {
         comment.author = req.body.user_id;
         comment.document = req.body.document_id;
         comment.text = req.body.text;
-        comment.save(function (err) {
+        comment.save(function (err, result) {
             if (err)
                 res.send(err);
-            res.json({id: comment._id, message: 'Comment, \"' + req.body.title.substring(0, 10) + "..., created."});
+            res.json(result); // Return created comment
         });
     });
 
@@ -34,10 +34,10 @@ module.exports = function (app) {
     app.put('/api/comments/:id', function (req, res) {
         Comment.findbyId(req.params.id, function (err, result) {
             comment.text = req.body.text;
-            comment.save(function (err) {
+            comment.save(function (err, result) {
                 if (err)
                     res.send(err);
-                res.json({id: comment._id, message: 'Comment, \"' + req.body.title.substring(0, 10) + "..., updated."});
+                res.json(result); // Return updated comment
             });
         });
     });
@@ -47,7 +47,7 @@ module.exports = function (app) {
         Comment.remove(req.params.id, function (err, result) {
             if (err)
                 res.send(err);
-            res.json({message: 'Comment deleted.'});
+            res.json(result); // Return deleted comment
         });
     });
 };

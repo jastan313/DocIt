@@ -60,10 +60,10 @@ module.exports = function (app) {
         doc.author = req.body.user_id;
         doc.title = req.body.title;
         doc.body = req.body.body;
-        doc.save(function (err) {
+        doc.save(function (err, result) {
             if (err)
                 res.send(err);
-            res.json({id: doc._id, message: 'Doc, \"' + req.body.title + "\", created."});
+            res.json(result); // Return created doc
         });
     });
 
@@ -73,10 +73,10 @@ module.exports = function (app) {
             doc.title = req.body.title;
             doc.body = req.body.body;
             doc.comments = req.body.comments;
-            doc.save(function (err) {
+            doc.save(function (err, result) {
                 if (err)
                     res.send(err);
-                res.json({id: doc._id, message: 'Doc, \"' + req.body.title + "\", updated."});
+                res.json(result); // Return updated doc
             });
         });
     });
@@ -86,7 +86,7 @@ module.exports = function (app) {
         Doc.remove(req.params.id, function (err, result) {
             if (err)
                 res.send(err);
-            res.json({message: 'Doc deleted.'});
+            res.json(result); // Return deleted doc
         });
     });
 };

@@ -41,10 +41,10 @@ module.exports = function (app) {
         user.email = req.body.email;
         user.alias = req.body.alias;
         user.password = req.body.password;
-        user.save(function (err) {
+        user.save(function (err, result) {
             if (err)
                 res.send(err);
-            res.json({id: user._id, message: 'User, ' + req.body.alias + ", created."});
+            res.json(result); // Return created user
         });
     });
 
@@ -53,10 +53,10 @@ module.exports = function (app) {
         User.findbyId(req.params.id, function (err, user) {
             user.documents = req.body.docs;
             user.comments = req.body.comments;
-            user.save(function (err) {
+            user.save(function (err, result) {
                 if (err)
                     res.send(err);
-                res.json({id: user._id, message: 'User, ' + req.body.alias + ", updated."});
+                res.json(result); // Return updated user
             });
         });
     });
@@ -71,7 +71,7 @@ module.exports = function (app) {
         User.remove(req.params.id, function (err, result) {
             if (err)
                 res.send(err);
-            res.json({message: 'User deleted.'});
+            res.json(result); // Return deleted user
         });
     });
 };

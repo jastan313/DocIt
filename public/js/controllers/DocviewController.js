@@ -1,6 +1,6 @@
 angular.module('DocviewCtrl', []).controller('DocviewControlller', function ($scope, Page, User, Doc) {
     $scope.showAuthorBtns = false;
-    $scope.docRating = false;
+    $scope.docRating = 0;
     $scope.copyText = "";
 
     $scope.displayDocview = function () {
@@ -22,19 +22,19 @@ angular.module('DocviewCtrl', []).controller('DocviewControlller', function ($sc
                 // Check if user has rated this Doc
                 for (var i = 0; i < doc.ratings.length; i++) {
                     if (doc.ratings[i].user_id === user._id) {
-                        docRating = doc.ratings[i].rating;
+                        $scope.docRating = doc.ratings[i].rating;
                         break;
                     }
                 }
                 // Add styling to rating buttons if user has rated
-                updateDocRating();
+                $scope.updateDocRatingButtons();
             }
         } else {
             $scope.changePage("docboard");
         }
     }
 
-    $scope.updateDocRating = function () {
+    $scope.updateDocRatingButtons = function () {
         if (docRating == null || docRating === 0) {
             // Don't add any button styling since user has not rated Doc yet
         } else if (docRating > 0) {
@@ -47,10 +47,52 @@ angular.module('DocviewCtrl', []).controller('DocviewControlller', function ($sc
     }
 
     $scope.rateUpDoc = function () {
+        var newRatings = Page.getDoc().ratings;
+        if ($scope.docRating === -1) {
+            var userID = Page.getUser()._id;
+            for (var i = 0; i < newRatings.length; i++) {
+                if (newRatings[i].user_id === userID) {
+                    newRatings[i].rating = 1;
+                    break;
+                }
+            }
+        } else {
+            newRatings.push({'user_id': Page.getUser()._id, 'rating': 1});
+        }
+        var docData = {'ratings': newRatings};
+        Doc.update(Page.getDoc()._id, docData).then(function (doc) {
+            Page.setDoc(doc);
+            $scope.docRating = 1;
+            $scope.displayInfoPopup("Doc Rated Up!");
+            $scope.updateDocRatingButtons();
+        }, function (err) {
+            console.log("Docview: Rate Up Error: " + err);
+        });
 
     }
 
     $scope.rateDownDoc = function () {
+        var newRatings = Page.getDoc().ratings;
+        if ($scope.docRating === 1) {
+            var userID = Page.getUser()._id;
+            for (var i = 0; i < newRatings.length; i++) {
+                if (newRatings[i].user_id === userID) {
+                    newRatings[i].rating = -1;
+                    break;
+                }
+            }
+        } else {
+            newRatings.push({'user_id': Page.getUser()._id, 'rating': -1});
+        }
+        var docData = {'ratings': newRatings};
+        Doc.update(Page.getDoc()._id, docData).then(function (doc) {
+            Page.setDoc(doc);
+            $scope.docRating = -1;
+            $scope.displayInfoPopup("Doc Rated Down!");
+            $scope.updateDocRatingButtons();
+        }, function (err) {
+            console.log("Docview: Rate Down Error: " + err);
+        });
 
     }
 
@@ -60,10 +102,10 @@ angular.module('DocviewCtrl', []).controller('DocviewControlller', function ($sc
         var toCopy = document.getElementById("docview-copytext");
         try {
             document.execCommand('copy');
+            $scope.displayInfoPopup("Doc Contents Copied!");
         } catch (err) {
             alert("Docview: Copy Doc Error: " + err);
-        }
-        finally {
+        } finally {
             $scope.copyText = "";
         }
     }

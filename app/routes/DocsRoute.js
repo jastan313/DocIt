@@ -73,10 +73,17 @@ module.exports = function (app) {
     // PUT: Update a doc
     app.put('/api/docs/:id', function (req, res) {
         Doc.findbyId(req.params.id, function (err, doc) {
-            doc.title = req.body.title;
-            doc.body = req.body.body;
+            if (req.body.title) {
+                doc.title = req.body.title;
+            }
+            if (req.body.body) {
+                doc.body = req.body.body;
+            }
             if (req.body.published) {
                 doc.published = req.body.published;
+            }
+            if (req.body.ratings) {
+                doc.ratings = req.body.ratings;
             }
             if (req.body.comments) {
                 doc.comments = req.body.comments;

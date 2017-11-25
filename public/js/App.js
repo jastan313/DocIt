@@ -1,1 +1,1 @@
-angular.module('DocItApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'LoginCtrl', 'SignupCtrl', 'DocitCtrl', 'DocviewCtrl', 'DocboardCtrl', 'UserService', 'DocService', 'CommentService', 'PageService']);
+angular.module('DocItApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'LoginCtrl', 'SignupCtrl', 'DocitCtrl', 'DocviewCtrl', 'DocboardCtrl', 'UserService', 'DocService', 'CommentService', 'PageService', 'EmailService']);

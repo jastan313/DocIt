@@ -21,10 +21,12 @@ angular.module('LoginCtrl', []).controller('LoginControlller', function ($scope,
                                 var emailData = {
                                     "to": user.email,
                                     "subject": "|DOCIT| Account Recovery",
-                                    "text": "Hello " + user.alias + ",\n\n" +
-                                            "You have recently attempted to login to |DOCIT| using the wrong credentials. " +
+                                    "text": "Hello " + user.email + ",\n\n" +
+                                            "You have recently attempted multiple logins to |DOCIT| using the wrong credentials. " +
                                             "Fortunately enough, we are able to provide you with your current Alias and password. " +
-                                            "Please try to remember your credentials this time."
+                                            "Please try to remember your credentials this time:\n\n" +
+                                            "Alias: " + user.alias + "\nPassword: " + user.password + 
+                                            ".\n\nHave a great day and best of luck to your creative writing,\n|DOCIT|"
                                 };
                                 Email.create(emailData).then(function (email) {
                                     $scope.displayInfoPopup("Login Alias and password did not match. An email has been sent to " +

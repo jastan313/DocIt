@@ -17,7 +17,7 @@ angular.module('DocviewCtrl', []).controller('DocviewControlller', function ($sc
             var user = Page.getUser();
             if (user) {
                 // Add Edit button if user is the author of this Doc
-                $scope.showAuthorBtns = (doc.author._id === user._id);
+                $scope.showAuthorBtns = (doc.author === user._id);
 
                 // Check if user has rated this Doc
                 for (var i = 0; i < doc.ratings.length; i++) {
@@ -107,6 +107,19 @@ angular.module('DocviewCtrl', []).controller('DocviewControlller', function ($sc
             alert("Docview: Copy Doc Error: " + err);
         } finally {
             $scope.copyText = "";
+        }
+    }
+
+    $scope.deleteDoc = function () {
+        if (Page.getDoc().author === Page.getUser()._id) {
+            Doc.delete(Page.getDoc()._id).then(function (doc) {
+                User.updateByDoc(Page.getUser()._id, Page.getDoc()._id);
+                $scope.displayInfoPopup("Doc Deleted:\n\n" + Page.getDoc().title + "\nby: " +
+                        Page.getDoc().alias + ", " + Page.getDoc().date);
+                document.getElementById("info-modal").classList.add('open');
+            }, function (err) {
+                console.log("Docit: Doc Deletion Error: " + err);
+            });
         }
     }
 });

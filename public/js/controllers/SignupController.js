@@ -9,6 +9,13 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
         var passwordMatchFlag = $scope.formPassword === $scope.formPasswordConfirm;
         if (emailFlag && aliasFlag && passwordFlag && passwordMatchFlag) {
             User.getByEmail($scope.formEmail).then(function (user) {
+
+                for (var key in user) {
+                    if (user.hasOwnProperty(key)) {
+                        console.log(key + " -> " + user[key]);
+                    }
+                }
+
                 if (user == null) {
                     User.getByAlias($scope.formAlias).then(function (user) {
                         if (user == null) {
@@ -24,9 +31,9 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
                                 console.log("Signup: User Creation Error: " + err);
                             });
                         } else {
-                    $scope.mainObj.toFocus = "signup-alias";
-                    $scope.displayInfoPopup("Alias Taken Error:",
-                            "Unforunately, there is an existing account with the Alias |" + $scope.formAlias + "|.\
+                            $scope.mainObj.toFocus = "signup-alias";
+                            $scope.displayInfoPopup("Alias Taken Error:",
+                                    "Unforunately, there is an existing account with the Alias |" + $scope.formAlias + "|.\
                                     Please signup using a different Alias or login to your existing account if this is your Alias.");
                         }
                     }, function (err) {

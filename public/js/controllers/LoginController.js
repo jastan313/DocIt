@@ -1,8 +1,10 @@
 angular.module('LoginCtrl', []).controller('LoginController', function ($scope, Page, User, Email) {
     $scope.loginSubmit = function () {
-        var aliasRegex = new RegExp('^[A-Za-z0-9]{6,15}$');
-        var passwordRegex = new RegExp('^[A-Za-z0-9@!#\$\^%&*()+=\-\[\]\\\';,\.\/\{\}\|\":<>\? ]{6,}$');
-        if ($scope.formAlias.match(aliasRegex) && $scope.formPassword.match(passwordRegex)) {
+        var aliasRegex = /^[A-Za-z0-9]{6,15}$/;
+        var passwordRegex = /^[A-Za-z0-9$-/:-?{-~!"^_`\[\] ]{6,}$/;
+        var aliasFlag = aliasRegex.test($scope.formAlias);
+        var passwordFlag = passwordRegex.test($scope.formPassword);
+        if (aliasFlag && passwordFlag) {
             User.getByAlias($scope.formAlias).then(function (user) {
                 if (user != null) {
                     if ($scope.formPassword === user.password) {
@@ -26,7 +28,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function ($scope, 
                                             "You have recently attempted multiple logins to |DOCIT| using the wrong credentials. " +
                                             "Fortunately enough, we are able to provide you with your current Alias and password. " +
                                             "Please try to remember your credentials this time:\n\n" +
-                                            "Alias: " + user.alias + "\nPassword: " + user.password + 
+                                            "Alias: " + user.alias + "\nPassword: " + user.password +
                                             ".\n\nHave a great day and best of luck to your creative writing,\n|DOCIT|"
                                 };
                                 Email.create(emailData).then(function (email) {
@@ -52,7 +54,26 @@ angular.module('LoginCtrl', []).controller('LoginController', function ($scope, 
                 console.log("Login: User Get Error:" + err);
             });
         } else {
-            $scope.displayInfoPopup("Login credentials not valid. Please try again.");
+            if (!aliasFlag) {
+                $scope.mainObj.toFocus = "login-alias";
+                $scope.displayInfoPopup("Alias Validation Error",
+                        "The Alias you have entered is not valid. Please enter your Alias which \
+                    follows this criteria:\n\
+                    + Alphanumeric characters [A-Z, a-z, 0-9].\n\
+                    + Minimum character length: Six (6).\n\
+                    + Maximum character length: Fifteen (15).");
+            } else if (!passwordFlag) {
+                $scope.mainObj.toFocus = "login-password";
+                $scope.displayInfoPopup("Password Validation Error",
+                        "The password you have entered is not valid. Please enter your password \
+                    follows this criteria:\n\
+                    + Alphanumeric characters [A-Z, a-z, 0-9] allowed.\n\
+                    + Special characters [~!@#$%^&*()_+[]{}|=-:;\"\'/?><., ] allowed.\n\
+                    + Minimum character length: Six (6).");
+            } else {
+                $scope.displayInfoPopup("Form Validation Error",
+                        "Oops, |DOCIT| couldn't figure out why the form did not pass validation.");
+            }
         }
     }
 });

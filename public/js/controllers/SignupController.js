@@ -8,7 +8,6 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
         var passwordFlag = passwordRegex.test($scope.formPassword);
         var passwordMatchFlag = $scope.formPassword === $scope.formPasswordConfirm;
         if (emailFlag && aliasFlag && passwordFlag && passwordMatchFlag) {
-            return;
             User.getByAlias($scope.formAlias).then(function (user) {
                 if (user == null) {
                     User.getByAlias($scope.formEmail).then(function (user) {
@@ -31,7 +30,7 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
                         console.log("Signup: Email Submit Error:" + err);
                     });
                 } else {
-                    console.log("Signup: Alias Taken Error.");
+                    console.log("Signup: Alias Taken Error." + user);
                 }
 
             }, function (err) {
@@ -40,12 +39,12 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
         } else {
             if(!emailFlag) {
                 $scope.mainObj.toFocus = "signup-email";
-                $scope.displayInfoPopup("Validation Error",
+                $scope.displayInfoPopup("Email Validation Error",
                     "The email you have entered is not valid. Please enter a valid email.");
             }
             else if(!aliasFlag) {
                 $scope.mainObj.toFocus = "signup-alias";
-                $scope.displayInfoPopup("Validation Error",
+                $scope.displayInfoPopup("Alias Validation Error",
                     "The Alias you have entered is not valid. Please enter an Alias with \
                     the following criteria:\n\
                     + Alphanumeric characters [A-Z, a-z, 0-9] allowed.\n\
@@ -54,7 +53,7 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
             }
             else if(!passwordFlag) {
                 $scope.mainObj.toFocus = "signup-password";
-                $scope.displayInfoPopup("Validation Error",
+                $scope.displayInfoPopup("Password Validation Error",
                     "The password you have entered is not valid. Please enter a password with \
                     the following criteria:\n\
                     + Alphanumeric characters [A-Z, a-z, 0-9] allowed.\n\
@@ -63,13 +62,13 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
             }
             else if(!passwordMatchFlag) {
                 $scope.mainObj.toFocus = "signup-password-confirm";
-                $scope.displayInfoPopup("Validation Error:",
+                $scope.displayInfoPopup("Password Validation Error:",
                     "The passwords you have entered do not match. Please confirm and verify the two passwords.");
             }
             else {
                 $scope.mainObj.toFocus = "signup-email";
-                $scope.displayInfoPopup("Validation Error:",
-                "Oops, |DOCIT| couldn't figure out why the form fields pass validation.");
+                $scope.displayInfoPopup("Form Validation Error:",
+                "Oops, |DOCIT| couldn't figure out why the form did not pass validation.");
             }
         }
     }

@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,height=device-height initial-scale=1">
         <base href="/">
-        <title>{{ pageTitle}}</title>
+        <title>{{ MainC.pageTitle }}</title>
 
         <!-- CSS-->
         <link rel="stylesheet" type="text/css" href="css/style.css"> <!-- custom styles -->
@@ -27,19 +27,21 @@
         <script src="js/services/DocService.js"></script>
         <script src="js/services/CommentService.js"></script>
         <script src="js/services/PageService.js"></script>
+        <script src="js/services/EmailService.js"></script>
 
         <!-- JS -->
         <script src="js/AppRoutes.js"></script>
         <script src="js/App.js"></script>
 
     </head>
-    <body ng-view ng-click="checkInfoPopup($event)">
+    <body ng-click="MainC.checkInfoPopup($event)">
         <div id="info-modal" class="modal">
             <div class="modal-window">
-                {{ infoModalText}}
+                {{ MainC.infoModalText }}
             </div>
         </div>
         <!-- ANGULAR DYNAMIC CONTENT -->
+        <div ng-view></div>
     </body>
 </html>
 

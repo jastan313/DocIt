@@ -1,4 +1,4 @@
-angular.module('DocitCtrl', []).controller('DocitControlller', function ($scope, Page, User, Doc) {
+angular.module('DocitCtrl', []).controller('DocitController', function ($scope, Page, User, Doc) {
     $scope.showAuthorBtns = false;
     $scope.copyText = "";
     $scope.MIN_BODY_LENGTH = 50;
@@ -133,6 +133,7 @@ angular.module('DocitCtrl', []).controller('DocitControlller', function ($scope,
             $scope.displayInfoPopup("Doc Deleted:\n\n" + Page.getDoc().title + "\nby: " +
                     Page.getDoc().alias + ", " + Page.getDoc().date);
             document.getElementById("info-modal").classList.add('open');
+            $scope.changePage('docboard');
         }, function (err) {
             console.log("Docit: Doc Deletion Error: " + err);
         });

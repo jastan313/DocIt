@@ -1,4 +1,4 @@
-angular.module('DocviewCtrl', []).controller('DocviewControlller', function ($scope, Page, User, Doc) {
+angular.module('DocviewCtrl', []).controller('DocviewController', function ($scope, Page, User, Doc) {
     $scope.showAuthorBtns = false;
     $scope.docRating = 0;
     $scope.copyText = "";
@@ -116,6 +116,7 @@ angular.module('DocviewCtrl', []).controller('DocviewControlller', function ($sc
                 User.updateByDoc(Page.getUser()._id, Page.getDoc()._id);
                 $scope.displayInfoPopup("Doc Deleted:\n\n" + Page.getDoc().title + "\nby: " +
                         Page.getDoc().alias + ", " + Page.getDoc().date);
+                $scope.changePage('docboard');
                 document.getElementById("info-modal").classList.add('open');
             }, function (err) {
                 console.log("Docit: Doc Deletion Error: " + err);

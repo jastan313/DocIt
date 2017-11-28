@@ -8,7 +8,7 @@ module.exports = function (app, smtpTransport) {
     // SEND: Call to send email
     app.post('/email', function (req, res) {
         var mailOptions = {
-            from: "|DOCIT| <donotreply@docit.com>",
+            from: req.query.from,
             to: req.query.to,
             subject: req.query.subject,
             text: req.query.text

@@ -1,4 +1,6 @@
-angular.module('DocboardCtrl', []).controller('DocboardControlller', function ($scope, Page, User, Doc) {
+angular.module('DocboardCtrl', []).controller('DocboardController', function ($scope, Page, User, Doc) {
+    $scope.alias = "";
+    
     $scope.generateDocs = function (num, published) {
         var arr = [];
         for (var i = 0; i < num; i++) {
@@ -27,6 +29,7 @@ angular.module('DocboardCtrl', []).controller('DocboardControlller', function ($
     $scope.getDocs = function () {
         var user = Page.getUser();
         if (user) {
+            $scope.alias = "ALIAS: " + user.alias;
             Doc.getByUserID(user._id).then(function (docs) {
                 for (var i = 0; i < docs.length; i++) {
                     var docID = docs[i]._id;

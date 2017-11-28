@@ -1,4 +1,4 @@
-angular.module('SignupCtrl', []).controller('SignupControlller', function ($scope, Page, User) {
+angular.module('SignupCtrl', []).controller('SignupController', function ($scope, Page, User) {
     $scope.signupSubmit = function () {
         var emailRegex = new RegExp('^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
         var aliasRegex = new RegExp('^[A-Za-z0-9]{6,15}$');

@@ -1,5 +1,6 @@
-angular.module('MainCtrl', []).controller('MainController', function ($scope, $location, Page) {
+angular.module('MainCtrl', []).controller('MainController', function ($scope, $location, $window, Page) {
     $scope.infoModalText = "";
+    $scope.pageTitle = "";
     
     // Utility function to change pages
     $scope.changePage = function (page) {

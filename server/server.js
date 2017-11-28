@@ -69,4 +69,4 @@ app.listen(port);
 console.log('DocIt Start On Port: ' + port);
 
 // expose app           
-exports = module.exports = app;     
+exports = module.exports = app ();     

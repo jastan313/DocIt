@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en" ng-app="DocItApp" ng-controller="MainController as MainC">
+<html lang="en" ng-app="DocItApp" ng-controller="MainController">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,height=device-height initial-scale=1">
         <base href="/">
-        <title>{{ MainC.pageTitle }}</title>
+        <title>{{ pageTitle }}</title>
 
         <!-- CSS-->
         <link rel="stylesheet" type="text/css" href="css/style.css"> <!-- custom styles -->
@@ -34,10 +34,11 @@
         <script src="js/App.js"></script>
 
     </head>
-    <body ng-click="MainC.checkInfoPopup($event)">
-        <div id="info-modal" class="modal">
+    <body >
+        <div id="info-modal" class="modal" ng-click="checkInfoPopup($event)">
             <div class="modal-window">
-                {{ MainC.infoModalText }}
+                <div class='modal-header'>{{ infoModalHeader }}</div>
+                <div class='modal-body'>{{ infoModalBody }}</div>
             </div>
         </div>
         <!-- ANGULAR DYNAMIC CONTENT -->

@@ -1,14 +1,9 @@
 angular.module('MainCtrl', []).controller('MainController', function ($scope, $location, $window, Page) {
-    $scope.infoModalText = "";
+    $scope.mainObj = {};
+    $scope.mainObj.toFocus = null;
+    $scope.infoModalHeader = "";
+    $scope.infoModalBody = "";
     $scope.pageTitle = "";
-    
-    // Utility function to change pages
-    $scope.changePage = function (page) {
-        if (Page.setPage(page)) {
-            $scope.pageTitle = Page.getTitle();
-            $location.path(Page.getPage());
-        }
-    }
 
     // Utility bindings to track Ctrl + (Keyboard key) pressed.
     $scope.ctrlDown = false;
@@ -28,21 +23,32 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
     $scope.checkInfoPopup = function ($event) {
         var target = $event.currentTarget || $event.srcElement;
 
-        /* if (target.hasAttribute('data-toggle') && target.getAttribute('data-toggle') == 'modal') {
-            document.getElementById("info-modal").classList.add('open');
-        } */
-
         // Close modal window when the backdrop is clicked
         if (target.classList.contains('modal')) {
-            $scope.infoModalText = "";
+            $scope.infoModalHeader = "";
+            $scope.infoModalBody = "";
             document.getElementById("info-modal").classList.remove('open');
+            if ($scope.mainObj.toFocus) {
+                document.getElementById($scope.mainObj.toFocus).focus();
+                $scope.mainObj.toFocus = null;
+            }
         }
     }
-    
-    $scope.displayInfoPopup = function(info) {
-        $scope.infoModalText = "|INFO| " + info;
+
+    // Utility function to change pages
+    $scope.changePage = function (page) {
+        if (Page.setPage(page)) {
+            $scope.pageTitle = Page.getTitle();
+            $location.path(Page.getPage());
+        }
+    }
+
+    // Displays the INFO popup with a given info string
+    $scope.displayInfoPopup = function (header, body) {
+        $scope.infoModalHeader = "|INFO| " + header + ":";
+        $scope.infoModalBody = body;
         document.getElementById("info-modal").classList.add('open');
     }
 
-    $scope.changePage('login');
+    $scope.changePage('signup');
 });

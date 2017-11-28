@@ -1,32 +1,32 @@
-<div id="doc-container" controller="DocviewController as DocviewC">
+<div id="doc-container" controller="DocviewController">
     <div id="doc-content">
         <button id="docview-directory-btn" class="directory-btn" type="button" title="Directory options.">|DIRECTORY|</button>
         <div id="docview-directory" class="directory highlight-disabled" >
             <div id="docview-directory-rating-container" class="directory-opt">
                 <div id="docview-rateup-btn" 
                      title="Upvote Doc."
-                     ng-click="DocviewC.rateUpDoc()">+1</div>
+                     ng-click="rateUpDoc()">+1</div>
                 
                 <div id="docview-ratedown-btn" 
-                     title="Downvote Doc." ng-click="DocviewC.rateDownDown()">-1</div>
+                     title="Downvote Doc." ng-click="rateDownDown()">-1</div>
             </div>
             
             <div id="docview-directory-copy-btn" 
                  class="directory-opt" 
                  title="Copy Doc's alias, date, title and body to clipboard."
-                 ng-click="DocviewC.copyDoc()">|COPY|</div>
-            <div id="docview-copytext" class="copytext"> {{ DocviewC.copyText }}</div>
+                 ng-click="copyDoc()">|COPY|</div>
+            <div id="docview-copytext" class="copytext"> {{ copyText }}</div>
             
             <div id="docview-directory-export-btn" 
                  class="directory-opt" 
                  title="Export Doc as local .docx file."
-                 ng-click="DocviewC.exportDoc()">|EXPORT|</div>
+                 ng-click="exportDoc()">|EXPORT|</div>
             
             <div id="docview-directory-edit-btn" 
                  class="directory-opt" 
                  title="Delete Doc." 
-                 ng-show="DocviewC.showAuthorBtns"
-                 ng-click="DocviewC.deleteDoc()">|DELETE|</div>
+                 ng-show="showAuthorBtns"
+                 ng-click="deleteDoc()">|DELETE|</div>
                  
             <div id="docview-directory-todocboard-btn" 
                  class="directory-opt" 
@@ -41,12 +41,12 @@
         
         <div id="docview" class="doc">
             <div id="docview-header" class="doc-header highlight-enabled">
-                <h3 id="docview-alias" class="doc-alias highlight-enabled">ALIAS: {{ DocviewC.docAlias }}</h3>
-                <h3 id="docview-date" class="doc-date">DATE: {{ DocviewC.docDate }}</h3>
-                <h1 id="docview-title" class="doc-title">DOC: {{ DocviewC.docTitle }}</h1>
+                <h3 id="docview-alias" class="doc-alias highlight-enabled">ALIAS: {{ docAlias }}</h3>
+                <h3 id="docview-date" class="doc-date">DATE: {{ docDate }}</h3>
+                <h1 id="docview-title" class="doc-title">DOC: {{ docTitle }}</h1>
             </div>
             <textarea id="docview-body" class="doc-body" rows="20" cols="20" placeholder="It appears someone is coping with writer's block..." readonly>
-{{ DocviewC.docBody }}
+{{ docBody }}
 Disgusting blaze deep within the crevices of his skin,
 Rawness, troubled underside turning outside,
 Amidst the memories of mistakes and a bruised chin,

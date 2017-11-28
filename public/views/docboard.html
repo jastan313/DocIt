@@ -1,21 +1,21 @@
-<div id="doc-container" controller="DocboardController as DocboardC">
+<div id="doc-container" controller="DocboardController">
     <div id="doc-content">
         <button id="docboard-logout-btn" class="directory-btn" 
                 type="button" title="Log out current alias." 
-                ng-click="DocboardC.help()">|HELP|</button>
+                ng-click="help()">|HELP|</button>
         <button id="docboard-logout-btn" class="directory-btn" 
                 type="button" title="Log out current alias." 
                 ng-click="changePage('login')">|LOGOUT|</button>
         <div id="docboard">
             <div id="docboard-header">
                 <h1>|DOCBOARD|</h1>
-                <h3 id="docboard-alias">{{ DocboardC.alias }}</h3>
+                <h3 id="docboard-alias">{{ alias }}</h3>
             </div>
             <div id="docboard-docs-container">
                 <h2>ARCHIVE</h2>
                 <div id="docboard-docs">
-                    <div id="docboard-createdoc" class="docboard-mydoc highlight-disabled" title="Create a new document." ng-click="DocboardC.goDoc(null)">+Create New Doc+</div>
-                    <div class="docboard-mydoc" ng-repeat="doc in docArchive" ng-click="DocboardC.goDoc(doc._id)">
+                    <div id="docboard-createdoc" class="docboard-mydoc highlight-disabled" title="Create a new document." ng-click="goDoc(null)">+Create New Doc+</div>
+                    <div class="docboard-mydoc" ng-repeat="doc in docArchive" ng-click="goDoc(doc._id)">
                         <div>
                             <div class="docboard-doc-title">{{ doc.title }}</div>
                             <div class="docboard-doc-date">{{ doc.date }}</div>
@@ -27,7 +27,7 @@
             <div id="docboard-feed-container">
                 <h2>DOC FEED</h2>
                 <div id="docboard-feed">
-                    <div class="docboard-feeddoc" ng-repeat="doc in docFeed" ng-click="DocboardC.goDoc(doc._id)">
+                    <div class="docboard-feeddoc" ng-repeat="doc in docFeed" ng-click="goDoc(doc._id)">
                         <div>
                             <div class="docboard-doc-title">{{ doc.title }}</div>
                             <div class="docboard-doc-alias">|{{ doc.alias }}|</div>

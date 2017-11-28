@@ -154,14 +154,21 @@ button:hover {
     min-width: 250px;
     max-width: 500px;
     padding: 20px 25px 20px 25px;
-    
-    font-size: 12px;
-    font-weight: 500;
+
+    white-space: pre-line;
     background-color: #fcfcfc;
     box-shadow: 2px 9px 15px black;
 }
-.modal-window:hover {
-    cursor: initial;
+
+.modal-header {
+    font-size: 13px;
+    font-weight: 600;
+
+}
+
+.modal-body {
+    font-size: 12px;
+    font-weight: 500;
 }
 
 .open {

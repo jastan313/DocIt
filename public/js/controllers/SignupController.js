@@ -8,9 +8,9 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
         var passwordFlag = passwordRegex.test($scope.formPassword);
         var passwordMatchFlag = $scope.formPassword === $scope.formPasswordConfirm;
         if (emailFlag && aliasFlag && passwordFlag && passwordMatchFlag) {
-            User.getByAlias($scope.formAlias).then(function (user) {
+            User.getByEmail($scope.formEmail).then(function (user) {
                 if (user == null) {
-                    User.getByAlias($scope.formEmail).then(function (user) {
+                    User.getByAlias($scope.formAlias).then(function (user) {
                         if (user == null) {
                             var userData = {
                                 'alias': $scope.formAlias,
@@ -24,51 +24,53 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
                                 console.log("Signup: User Creation Error: " + err);
                             });
                         } else {
-                            console.log("Signup: Email Taken Error.");
+                    $scope.mainObj.toFocus = "signup-alias";
+                    $scope.displayInfoPopup("Alias Taken Error:",
+                            "Unforunately, there is an existing account with the Alias |" + $scope.formAlias + "|.\
+                                    Please signup using a different Alias or login to your existing account if this is your Alias.");
                         }
                     }, function (err) {
                         console.log("Signup: Email Submit Error:" + err);
                     });
                 } else {
-                    console.log("Signup: Alias Taken Error." + user);
+                    $scope.mainObj.toFocus = "signup-email";
+                    $scope.displayInfoPopup("Email Address Taken Error:",
+                            "Unforunately, there is an existing account with the email address |" + $scope.formEmail + "|.\
+                                    Please signup using a different email or login to your existing account if this is your email.");
                 }
 
             }, function (err) {
                 console.log("Signup: Alias Submit Error:" + err);
             });
         } else {
-            if(!emailFlag) {
+            if (!emailFlag) {
                 $scope.mainObj.toFocus = "signup-email";
                 $scope.displayInfoPopup("Email Validation Error",
-                    "The email you have entered is not valid. Please enter a valid email.");
-            }
-            else if(!aliasFlag) {
+                        "The email you have entered is not valid. Please enter a valid email.");
+            } else if (!aliasFlag) {
                 $scope.mainObj.toFocus = "signup-alias";
                 $scope.displayInfoPopup("Alias Validation Error",
-                    "The Alias you have entered is not valid. Please enter an Alias with \
+                        "The Alias you have entered is not valid. Please enter an Alias with \
                     the following criteria:\n\
                     + Alphanumeric characters [A-Z, a-z, 0-9] allowed.\n\
                     + Minimum character length: Six (6).\n\
                     + Maximum character length: Fifteen (15).");
-            }
-            else if(!passwordFlag) {
+            } else if (!passwordFlag) {
                 $scope.mainObj.toFocus = "signup-password";
                 $scope.displayInfoPopup("Password Validation Error",
-                    "The password you have entered is not valid. Please enter a password with \
+                        "The password you have entered is not valid. Please enter a password with \
                     the following criteria:\n\
                     + Alphanumeric characters [A-Z, a-z, 0-9] allowed.\n\
                     + Special characters [~!@#$%^&*()_+[]{}|=-:;\"\'/?><., ] allowed.\n\
                     + Minimum character length: Six (6).");
-            }
-            else if(!passwordMatchFlag) {
+            } else if (!passwordMatchFlag) {
                 $scope.mainObj.toFocus = "signup-password-confirm";
                 $scope.displayInfoPopup("Password Validation Error:",
-                    "The passwords you have entered do not match. Please confirm and verify the two passwords.");
-            }
-            else {
+                        "The passwords you have entered do not match. Please confirm and verify the two passwords.");
+            } else {
                 $scope.mainObj.toFocus = "signup-email";
                 $scope.displayInfoPopup("Form Validation Error:",
-                "Oops, |DOCIT| couldn't figure out why the form did not pass validation.");
+                        "Oops, |DOCIT| couldn't figure out why the form did not pass validation.");
             }
         }
     }

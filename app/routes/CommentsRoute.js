@@ -10,7 +10,7 @@ module.exports = function (app, Comment) {
 
     // GET: Get a specific comment
     app.get('/api/comments/:id', function (req, res) {
-        Comment.findbyId(req.params.id, function (err, result) {
+        Comment.findById(req.params.id, function (err, result) {
             if (err)
                 res.send(err);
             res.json(result); // Return the specific comment
@@ -32,7 +32,7 @@ module.exports = function (app, Comment) {
 
     // PUT: Update a comment
     app.put('/api/comments/:id', function (req, res) {
-        Comment.findbyId(req.params.id, function (err, result) {
+        Comment.findById(req.params.id, function (err, result) {
             comment.text = req.body.text;
             comment.save(function (err, result) {
                 if (err)

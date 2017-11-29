@@ -1,24 +1,34 @@
 angular.module('LoginCtrl', []).controller('LoginController', function ($scope, Page, User, Email) {
+    $scope.formAlias = 'testtest1';
+    $scope.formPassword = 'asdasd';
+
     $scope.loginSubmit = function () {
         var aliasRegex = /^[A-Za-z0-9]{6,15}$/;
         var passwordRegex = /^[A-Za-z0-9$-/:-?{-~!"^_`\[\] ]{6,}$/;
         var aliasFlag = aliasRegex.test($scope.formAlias);
         var passwordFlag = passwordRegex.test($scope.formPassword);
         if (aliasFlag && passwordFlag) {
-            User.getByAlias($scope.formAlias).then(function (user) {
-                if (user != null) {
+            User.getByAlias($scope.formAlias).then(function (response) {
+                var data = response.data.length === 0 ? null : response.data;
+                if (data) {
+                    var user = data['0'];
+                    $scope.objToString(user, 0);
                     if ($scope.formPassword === user.password) {
+                        console.log('passwords matched');
                         var userData = {"login_attempts": 0};
-                        User.update(user._id, userData).then(function (user) {
+                        User.update(user._id, userData).then(function (response) {
+                            var user = response.data;
+                            $scope.objToString(user, 0);
                             Page.setUser(user);
-                            $scope.changePage('docboard');
-                        }, function (err) {
-                            console.log("Login: User Update Error:" + err);
+                            //$scope.changePage('docboard');
                         });
                     } else {
+                        console.log('passwords not matched');
                         var loginAttempts = (user.login_attempts + 1) % 5;
                         var userData = {"login_attempts": loginAttempts};
-                        User.update(user._id, userData).then(function (user) {
+                        User.update(user._id, userData).then(function (response) {
+                            var user = response.data;
+                            $scope.objToString(user, 0);
                             if (loginAttempts === 0) {
                                 var emailData = {
                                     "from": "|DOCIT| <donotreply@docit.com>",
@@ -34,29 +44,23 @@ angular.module('LoginCtrl', []).controller('LoginController', function ($scope, 
                                 Email.create(emailData).then(function (email) {
                                     $scope.displayInfoPopup("Login Alias and password did not match. An email has been sent to " +
                                             user.alias + "\'s email address |" + "| to recover the account.");
-                                }, function (err) {
-                                    console.log("Login: Recovery Email Error: " + err);
                                 });
-
                             } else {
-                                $scope.displayInfoPopup("Login Alias and password did not match.\nNumber of attempts: " +
-                                        loginAttempts + ".\n\nNote: Upon reaching five unsuccessful attempts, a recovery email will be sent.");
+                                $scope.displayInfoPopup("Account Credentials Do Not Match",
+                                    "The provided Alias and password do not match. Please verify and enter your credentials again.\nNumber of attempts: (" 
+                                    + loginAttempts + "/5).\n\nNote: Upon reaching five (5) unsuccessful attempts, an account recovery email will be sent.");
                             }
-
-                        }, function (err) {
-                            console.log("Login: User Update Error:" + err);
                         });
                     }
                 } else {
-                    $scope.displayInfoPopup("Login Alias does not exist. Please signup by clicking the \"Create\" button.");
+                    $scope.displayInfoPopup("Alias Does Not Exist",
+                            "The provided Alias is not associated with any existing account. Please signup by clicking the \"Create\" button.");
                 }
-            }, function (err) {
-                console.log("Login: User Get Error:" + err);
             });
         } else {
             if (!aliasFlag) {
                 $scope.mainObj.toFocus = "login-alias";
-                $scope.displayInfoPopup("Alias Validation Error",
+                $scope.displayInfoPopup("Alias Validation",
                         "The Alias you have entered is not valid. Please enter your Alias which \
                     follows this criteria:\n\
                     + Alphanumeric characters [A-Z, a-z, 0-9].\n\
@@ -64,14 +68,14 @@ angular.module('LoginCtrl', []).controller('LoginController', function ($scope, 
                     + Maximum character length: Fifteen (15).");
             } else if (!passwordFlag) {
                 $scope.mainObj.toFocus = "login-password";
-                $scope.displayInfoPopup("Password Validation Error",
+                $scope.displayInfoPopup("Password Validation",
                         "The password you have entered is not valid. Please enter your password \
                     follows this criteria:\n\
                     + Alphanumeric characters [A-Z, a-z, 0-9] allowed.\n\
                     + Special characters [~!@#$%^&*()_+[]{}|=-:;\"\'/?><., ] allowed.\n\
                     + Minimum character length: Six (6).");
             } else {
-                $scope.displayInfoPopup("Form Validation Error",
+                $scope.displayInfoPopup("Form Validation",
                         "Oops, |DOCIT| couldn't figure out why the form did not pass validation.");
             }
         }

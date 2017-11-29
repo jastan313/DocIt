@@ -45,7 +45,7 @@ module.exports = function (app, Doc) {
 
     // GET: Get a specific doc
     app.get('/api/docs/:id', function (req, res) {
-        Doc.findbyId(req.params.id)
+        Doc.findById(req.params.id)
                 .populate('author')
                 .exec(function (err, result) {
                     if (err)
@@ -72,7 +72,7 @@ module.exports = function (app, Doc) {
 
     // PUT: Update a doc
     app.put('/api/docs/:id', function (req, res) {
-        Doc.findbyId(req.params.id, function (err, doc) {
+        Doc.findById(req.params.id, function (err, doc) {
             if (req.body.title) {
                 doc.title = req.body.title;
             }

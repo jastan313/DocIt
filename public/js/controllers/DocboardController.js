@@ -1,5 +1,5 @@
 angular.module('DocboardCtrl', []).controller('DocboardController', function ($scope, Page, User, Doc) {
-    $scope.alias = "";
+    $scope.alias = Page.getUser() ? Page.getUser().alias : "";
     
     $scope.generateDocs = function (num, published) {
         var arr = [];
@@ -15,13 +15,12 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
         return arr;
     }
 
-    $scope.docArchive = $scope.generateDocs(10, false);
-    $scope.docFeed = $scope.generateDocs(10, true);
+    //$scope.docArchive = $scope.generateDocs(10, false);
+    //$scope.docFeed = $scope.generateDocs(10, true);
 
     $scope.getDocs = function () {
         var user = Page.getUser();
         if (user) {
-            $scope.alias = "ALIAS: " + user.alias;
             Doc.getByUserID(user._id).then(function (docs) {
                 for (var i = 0; i < docs.length; i++) {
                     var docID = docs[i]._id;

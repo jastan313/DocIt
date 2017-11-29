@@ -10,7 +10,7 @@ module.exports = function (app, User) {
 
     // GET: Get a specific user by id
     app.get('/api/users/:id', function (req, res) {
-        User.findbyId(req.params.id, function (err, result) {
+        User.findById(req.params.id, function (err, result) {
             if (err)
                 res.send(err);
             res.json(result); // Return the specific user
@@ -50,7 +50,7 @@ module.exports = function (app, User) {
 
     // PUT: Update a user
     app.put('/api/users/:id', function (req, res) {
-        User.findbyId(req.params.id, function (err, user) {
+        User.findById(req.params.id, function (err, user) {
             if (req.body.login_attempts) {
                 user.login_attempts = req.body.login_attempts;
             }

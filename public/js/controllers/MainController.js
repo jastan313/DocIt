@@ -61,5 +61,5 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
         document.getElementById("info-modal").classList.add('open');
     }
 
-    $scope.changePage('signup');
+    $scope.changePage('login');
 });

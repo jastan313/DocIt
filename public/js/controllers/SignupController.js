@@ -1,8 +1,8 @@
 angular.module('SignupCtrl', []).controller('SignupController', function ($scope, Page, User) {
-    $scope.formEmail = 'test1@test.com';
-    $scope.formAlias = 'testtest1';
-    $scope.formPassword = 'testtest1';
-    $scope.formPasswordConfirm = 'testtest1';
+    $scope.formEmail = '';
+    $scope.formAlias = '';
+    $scope.formPassword = '';
+    $scope.formPasswordConfirm = '';
 
     $scope.signupSubmit = function () {
         var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -20,8 +20,6 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
             };
             User.create(userData).then(function (response) {
                 var data = Array.isArray(response.data) ? null : response.data;
-                console.log(data);
-                $scope.objToString(data, 0);
                 if (data.hasOwnProperty('errors')) {
                     var header = "";
                     var body = "";
@@ -62,11 +60,11 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
             if (!emailFlag) {
                 $scope.mainObj.toFocus = "signup-email";
                 $scope.displayInfoPopup("Email Validation:",
-                        "The email you have entered is not valid. Please enter a valid email.");
+                        "The provided email is not valid. Please enter a valid email.");
             } else if (!aliasFlag) {
                 $scope.mainObj.toFocus = "signup-alias";
                 $scope.displayInfoPopup("Alias Validation:",
-                        "The Alias you have entered is not valid. Please enter an Alias with \
+                        "The provided Alias is not valid. Please enter an Alias with \
                     the following criteria:\n\
                     + Alphanumeric characters [A-Z, a-z, 0-9] allowed.\n\
                     + Minimum character length: Six (6).\n\
@@ -74,7 +72,7 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
             } else if (!passwordFlag) {
                 $scope.mainObj.toFocus = "signup-password";
                 $scope.displayInfoPopup("Password Validation:",
-                        "The password you have entered is not valid. Please enter a password with \
+                        "The provided password is not valid. Please enter a password with \
                     the following criteria:\n\
                     + Alphanumeric characters [A-Z, a-z, 0-9] allowed.\n\
                     + Special characters [~!@#$%^&*()_+[]{}|=-:;\"\'/?><., ] allowed.\n\
@@ -82,7 +80,7 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
             } else if (!passwordMatchFlag) {
                 $scope.mainObj.toFocus = "signup-password-confirm";
                 $scope.displayInfoPopup("Password Validation:",
-                        "The passwords you have entered do not match. Please confirm and verify the two passwords.");
+                        "The provided passwords do not match. Please confirm and verify the two passwords.");
             } else {
                 $scope.mainObj.toFocus = "signup-email";
                 $scope.displayInfoPopup("Form Validation:",

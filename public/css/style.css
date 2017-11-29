@@ -45,7 +45,7 @@ input {
     background-color: transparent;
 }
 input:hover {
-    background-color: #ffff99;
+    background-color: #ffffcf;
     cursor: url('../resources/pencil_cursor.cur'), auto;
 }
 input:focus {
@@ -97,10 +97,12 @@ button:hover {
     display: none;  /* Hide right-side scrollbar in Safari and Chrome */
 }
 #doc-content *::selection {
-    background-color: #ffffaa;  /* Yellow when highlighting text */
+    color: #444444;
+    background-color: #fafa99;  /* Yellow when highlighting text */
 }
 #doc-content *::-moz-selection {
-    background-color: #ffffaa;  /* Yellow when highlighting text */
+    color: #444444;
+    background-color: #fafa99;  /* Yellow when highlighting text */
 }
 
 /* Type-writer animation */

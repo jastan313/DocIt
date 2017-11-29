@@ -13,8 +13,8 @@ var smtpTransport = nodemailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
     auth: {
-        user: "",
-        pass: ""
+        user: "donotreply@docit.com",
+        pass: "docit"
     }
 });
 
@@ -57,7 +57,8 @@ app.use(express.static('public'));
 app.use(methodOverride('X-HTTP-Method-Override'));
 
 // routes ==================================================
-require('../app/routes/IndexRoute')(app, smtpTransport);
+require('../app/routes/IndexRoute')(app);
+require('../app/routes/EmailRoute')(app, smtpTransport);
 require('../app/routes/UsersRoute')(app, User);
 require('../app/routes/DocsRoute')(app, Doc);
 require('../app/routes/CommentsRoute')(app, Comment);   // configure our routes

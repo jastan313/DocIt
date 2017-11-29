@@ -1,5 +1,5 @@
 angular.module('LoginCtrl', []).controller('LoginController', function ($scope, Page, User, Email) {
-    $scope.formAlias = 'testtest1';
+    $scope.formAlias = 'jastan313';
     $scope.formPassword = 'asdasd';
 
     $scope.loginSubmit = function () {
@@ -12,38 +12,38 @@ angular.module('LoginCtrl', []).controller('LoginController', function ($scope, 
                 var data = response.data.length === 0 ? null : response.data;
                 if (data) {
                     var user = data['0'];
-                    $scope.objToString(user, 0);
                     if ($scope.formPassword === user.password) {
-                        console.log('passwords matched');
-                        var userData = {"login_attempts": 0};
+                        console.log('password match');
+                        var userData = {"login_attempts": '0'};
                         User.update(user._id, userData).then(function (response) {
-                            var user = response.data;
-                            $scope.objToString(user, 0);
-                            Page.setUser(user);
+                            $scope.objToString(response.data);
+                            Page.setUser(response.data);
                             //$scope.changePage('docboard');
                         });
                     } else {
-                        console.log('passwords not matched');
-                        var loginAttempts = (user.login_attempts + 1) % 5;
+                        var loginAttempts = (user.login_attempts + 1) === 5 ? '0' : user.login_attempts + 1;
                         var userData = {"login_attempts": loginAttempts};
+                        console.log('password not match');
                         User.update(user._id, userData).then(function (response) {
-                            var user = response.data;
-                            $scope.objToString(user, 0);
-                            if (loginAttempts === 0) {
+                            var u = response.data;
+                            $scope.objToString(u, 0);
+                            if (u.login_attempts === 0) {
                                 var emailData = {
                                     "from": "|DOCIT| <donotreply@docit.com>",
-                                    "to": user.email,
+                                    "to": u.email,
                                     "subject": "|DOCIT| Account Recovery",
-                                    "text": "Hello " + user.email + ",\n\n" +
+                                    "text": "Hello " + u.email + ",\n\n" +
                                             "You have recently attempted multiple logins to |DOCIT| using the wrong credentials. " +
                                             "Fortunately enough, we are able to provide you with your current Alias and password. " +
                                             "Please try to remember your credentials this time:\n\n" +
-                                            "Alias: " + user.alias + "\nPassword: " + user.password +
+                                            "Alias: " + u.alias + "\nPassword: " + u.password +
                                             ".\n\nHave a great day and best of luck to your creative writing,\n|DOCIT|"
                                 };
-                                Email.create(emailData).then(function (email) {
-                                    $scope.displayInfoPopup("Login Alias and password did not match. An email has been sent to " +
-                                            user.alias + "\'s email address |" + "| to recover the account.");
+                                Email.create(emailData).then(function (response) {
+                                    console.log("email sent?");
+                                    $scope.displayInfoPopup("Account Recovery",
+                                        "The provided Alias and password do not match. Due to  too many unsuccessful login attempts, an email has been sent to |"
+                                        + u.alias + "|\'s email address to recover the account. Please check your email for further help.");
                                 });
                             } else {
                                 $scope.displayInfoPopup("Account Credentials Do Not Match",

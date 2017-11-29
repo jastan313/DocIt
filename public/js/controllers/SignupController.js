@@ -13,55 +13,59 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
         var passwordFlag = passwordRegex.test($scope.formPassword);
         var passwordMatchFlag = $scope.formPassword === $scope.formPasswordConfirm;
         if (emailFlag && aliasFlag && passwordFlag && passwordMatchFlag) {
-            User.getByEmail($scope.formEmail).then(function (response) {
-                var emailTaken = Array.isArray(response.data) ? null : response.data;
-                if (!emailTaken) {
-                    User.getByAlias($scope.formAlias).then(function (response) {
-                        var aliasTaken = Array.isArray(response.data) ? null : response.data;
-                        if (!aliasTaken) {
-                            var userData = {
-                                'alias': $scope.formAlias,
-                                'email': $scope.formEmail,
-                                'password': $scope.formPassword
-                            };
-                            User.create(userData).then(function (response) {
-                                var user = Array.isArray(response.data) ? null : response.data;
-                                console.log(user);
-                                $scope.objToString(user, 0);
-                                if (user) {
-                                    Page.setUser(user);
-                                    $scope.changePage('docboard');
-                                }
-                            }, function (err) {
-                                console.log("Signup: User Creation Error: " + err);
-                            });
-                        } else {
-                            $scope.mainObj.toFocus = "signup-alias";
-                            $scope.displayInfoPopup("Alias Taken Error",
-                                    "Unforunately, there is an existing account with the Alias |" + $scope.formAlias + "|.\
-                                    Please signup using a different Alias or login to your existing account if this is your Alias.");
-                        }
-                    }, function (err) {
-                        console.log("Signup: Email Submit Error:" + err);
-                    });
+            var userData = {
+                'alias': $scope.formAlias,
+                'email': $scope.formEmail,
+                'password': $scope.formPassword
+            };
+            User.create(userData).then(function (response) {
+                var data = Array.isArray(response.data) ? null : response.data;
+                console.log(data);
+                $scope.objToString(data, 0);
+                if (data.hasOwnProperty('errors')) {
+                    var header = "";
+                    var body = "";
+                    if (data.errors.email) {
+                        header += "Email";
+                        body += "Unforunately, there is an existing account with the email address |" + $scope.formEmail + "|.\
+                            Please signup using a different email or login to your existing account if this is your email.";
+                        $scope.mainObj.toFocus = "signup-email";
+                    }
+                    if (data.errors.alias) {
+                        var aliasBody = "Unforunately, there is an existing account with the Alias |" + $scope.formAlias + "|.\
+                            Please signup using a different Alias or login to your existing account if this is your Alias.";
+                        header += header.length !== 0 ? "/Alias" : "Alias";
+                        body += body.length !== 0 ? "\n\n" + aliasBody : aliasBody;
+                        $scope.mainObj.toFocus = "signup-alias";
+                    }
+                    header += " Taken";
+                    $scope.displayInfoPopup(header, body);
                 } else {
-                    $scope.mainObj.toFocus = "signup-email";
-                    $scope.displayInfoPopup("Email Address Taken Error",
-                            "Unforunately, there is an existing account with the email address |" + $scope.formEmail + "|.\
-                                    Please signup using a different email or login to your existing account if this is your email.");
+                    Page.setUser(data);
+                    $scope.displayInfoPopup("Account Signup and Welcome", "Your account has been successfully created.\n\n\
+                        Hi, " + Page.getUser().alias + "! Welcome to |DOCIT|, a document-based web \
+                        application where writers are encouraged to brainstorm, write, and publish any type \
+                        of creative, text-based work anonymously. You may create new Docs, edit drafts until \n\
+                        you are satisfied, and publish their finalized form for public viewing and rating.\n\n\
+                        |DOCBOARD|: Here is your main hub where you will find two sections, the Doc Archive \
+                        and the Doc Feed.\nThe Doc Archive is a list of all your saved Docs as well as the option \
+                        to start a new Doc draft. Creating a new Doc or selecting an existing Doc that has yet to \
+                        be published will direct you to |DOCIT|. Selecting a published Doc will direct you to \
+                        |DOCVIEW|.\nThe Doc Feed will show you recently published Docs by you and fellow writers, \
+                        sorted by highest rating. Selecting any Doc in the Doc Feed will direct you to |DOCVIEW|.\n\n\
+                        |DOCIT|: Using Docit, you will have the option to view, edit, save, export, and publish your \
+                        Docs.\n\n|DOCVIEW|: Using Docview, you will be able to view and rate published-only Docs.");
+                    $scope.changePage('docboard');
                 }
-
-            }, function (err) {
-                console.log("Signup: Alias Submit Error:" + err);
             });
         } else {
             if (!emailFlag) {
                 $scope.mainObj.toFocus = "signup-email";
-                $scope.displayInfoPopup("Email Validation Error",
+                $scope.displayInfoPopup("Email Validation:",
                         "The email you have entered is not valid. Please enter a valid email.");
             } else if (!aliasFlag) {
                 $scope.mainObj.toFocus = "signup-alias";
-                $scope.displayInfoPopup("Alias Validation Error",
+                $scope.displayInfoPopup("Alias Validation:",
                         "The Alias you have entered is not valid. Please enter an Alias with \
                     the following criteria:\n\
                     + Alphanumeric characters [A-Z, a-z, 0-9] allowed.\n\
@@ -69,7 +73,7 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
                     + Maximum character length: Fifteen (15).");
             } else if (!passwordFlag) {
                 $scope.mainObj.toFocus = "signup-password";
-                $scope.displayInfoPopup("Password Validation Error",
+                $scope.displayInfoPopup("Password Validation:",
                         "The password you have entered is not valid. Please enter a password with \
                     the following criteria:\n\
                     + Alphanumeric characters [A-Z, a-z, 0-9] allowed.\n\
@@ -77,11 +81,11 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
                     + Minimum character length: Six (6).");
             } else if (!passwordMatchFlag) {
                 $scope.mainObj.toFocus = "signup-password-confirm";
-                $scope.displayInfoPopup("Password Validation Error",
+                $scope.displayInfoPopup("Password Validation:",
                         "The passwords you have entered do not match. Please confirm and verify the two passwords.");
             } else {
                 $scope.mainObj.toFocus = "signup-email";
-                $scope.displayInfoPopup("Form Validation Error",
+                $scope.displayInfoPopup("Form Validation:",
                         "Oops, |DOCIT| couldn't figure out why the form did not pass validation.");
             }
         }

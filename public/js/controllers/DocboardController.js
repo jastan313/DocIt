@@ -96,7 +96,7 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
     $scope.help = function() {
         displayInfoPopup("Hi, " + user.alias + "! Welcome to |DOCIT|, a document-based web \
         application where writers are encouraged to brainstorm, write, and publish any type \
-        of creative, text-based work anonymously. You may create new Docs, edit drafts until \\n\
+        of creative, text-based work anonymously. You may create new Docs, edit drafts until \n\
         you are satisfied, and publish their finalized form for public viewing and rating.\n\n\
         |DOCBOARD|: Here is your main hub where you will find two sections, the Doc Archive \
         and the Doc Feed.\nThe Doc Archive is a list of all your saved Docs as well as the option \

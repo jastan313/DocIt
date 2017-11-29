@@ -37,7 +37,7 @@ angular.module('PageService', []).factory('Page', ['$rootScope', '$location', fu
             return user;
         }
 
-        pageObj.getUserID = function () {
+        pageObj.getUser = function () {
             return this.user;
         }
 

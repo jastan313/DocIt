@@ -1,7 +1,7 @@
 angular.module('MainCtrl', []).controller('MainController', function ($scope, $location, $window, Page) {
     $scope.mainObj = {};
     $scope.mainObj.toFocus = null;
-    $scope.mainObj.objToString = function (obj, level) {
+    $scope.objToString = function (obj, level) {
         for (var key in obj) {
             if (typeof obj[key] === "object") {
                 console.log("\t".repeat(level) + key);
@@ -11,8 +11,7 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
             }
         }
     }
-
-
+    
     $scope.infoModalHeader = "";
     $scope.infoModalBody = "";
     $scope.pageTitle = "";

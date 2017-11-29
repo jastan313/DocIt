@@ -22,11 +22,16 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
                             var userData = {
                                 'alias': $scope.formAlias,
                                 'email': $scope.formEmail,
-                                'password': $scope.password
+                                'password': $scope.formPassword
                             };
-                            User.create(userData).then(function (data) {
-                                Page.setUser(data);
-                                $scope.changePage('docboard');
+                            User.create(userData).then(function (response) {
+                                var user = Array.isArray(response.data) ? null : response.data;
+                                console.log(user);
+                                $scope.objToString(user, 0);
+                                if (user) {
+                                    Page.setUser(user);
+                                    $scope.changePage('docboard');
+                                }
                             }, function (err) {
                                 console.log("Signup: User Creation Error: " + err);
                             });

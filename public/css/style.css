@@ -152,7 +152,7 @@ button:hover {
     transform: translate(-50%, -125%);
     margin: 0;
     min-width: 250px;
-    max-width: 500px;
+    max-width: 80vw;
     padding: 20px 25px 20px 25px;
 
     white-space: pre-line;

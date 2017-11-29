@@ -1,4 +1,4 @@
-module.exports = function (app) {
+module.exports = function (app, Comment) {
     // GET: Get all comments
     app.get('/api/comments', function (req, res) {
         Comment.find(function (err, result) {

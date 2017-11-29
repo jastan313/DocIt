@@ -1,4 +1,4 @@
-module.exports = function (app) {
+module.exports = function (app, Doc) {
     // GET: Get all docs
     app.get('/api/docs', function (req, res) {
         Doc.find(function (err, result) {

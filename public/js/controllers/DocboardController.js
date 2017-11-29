@@ -5,17 +5,9 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
         var arr = [];
         for (var i = 0; i < num; i++) {
             var obj = {};
-            obj.title = "Title #" + num;
-            obj.alias = "Alias Name " + num;
-            obj.date.getMonth = function () {
-                return  "M: " + num;
-            }
-            obj.date.getDate = function () {
-                return  "D: " + num;
-            }
-            obj.date.getFullYear = function () {
-                return  "Y: " + num;
-            }
+            obj.title = "Title " + i;
+            obj.alias = "Alias " + i;
+            obj.date = i+"/"+i+"/"+i
             obj.published = published;
             obj.rating = Math.random() * 100 < 50 ? -Math.floor(Math.random() * 10) : Math.floor(Math.random() * 10);
             arr.push(obj);
@@ -23,8 +15,8 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
         return arr;
     }
 
-    $scope.docArchive = generateDocs(10, false);
-    $scope.docFeed = generateDocs(10, true);
+    $scope.docArchive = $scope.generateDocs(10, false);
+    $scope.docFeed = $scope.generateDocs(10, true);
 
     $scope.getDocs = function () {
         var user = Page.getUser();

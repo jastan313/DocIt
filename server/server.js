@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var nodemailer = require('nodemailer');
@@ -57,9 +58,9 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 
 // routes ==================================================
 require('../app/routes/IndexRoute')(app, smtpTransport);
-require('../app/routes/UsersRoute')(app);
-require('../app/routes/DocsRoute')(app);
-require('../app/routes/CommentsRoute')(app);   // configure our routes
+require('../app/routes/UsersRoute')(app, User);
+require('../app/routes/DocsRoute')(app, Doc);
+require('../app/routes/CommentsRoute')(app, Comment);   // configure our routes
 
 
 // start app ===============================================

@@ -1,4 +1,4 @@
-module.exports = function (app) {
+module.exports = function (app, User) {
     // GET: Get all users
     app.get('/api/users', function (req, res) {
         User.find(function (err, result) {

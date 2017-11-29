@@ -34,6 +34,8 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
                 .when('/docboard', {
                     templateUrl: 'views/docboard.html',
                     controller: 'DocboardController'
-                });
+                })
+                
+                .otherwise({redirect: '/'});
         $locationProvider.html5Mode(true);
     }]);

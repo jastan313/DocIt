@@ -1,10 +1,5 @@
 var path = require('path');
 module.exports = function (app, smtpTransport) {
-    // Default GET to index.html
-    app.get('*', function (req, res) {
-        res.sendFile(path.resolve('./public/views/index.html'));
-    });
-
     // SEND: Call to send email
     app.post('/email', function (req, res) {
         var mailOptions = {
@@ -20,5 +15,9 @@ module.exports = function (app, smtpTransport) {
         });
     });
 
+    // Default GET to index.html
+    app.get('/', function (req, res) {
+        res.sendFile(path.resolve('./public/views/index.html'));
+    });
 };
 

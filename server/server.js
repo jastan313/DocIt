@@ -59,7 +59,7 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 require('../app/routes/IndexRoute')(app, smtpTransport);
 require('../app/routes/UsersRoute')(app);
 require('../app/routes/DocsRoute')(app);
-require('../app/routes/CommentsRoute')(app); // configure our routes
+require('../app/routes/CommentsRoute')(app);   // configure our routes
 
 
 // start app ===============================================
@@ -68,5 +68,5 @@ app.listen(port);
 
 console.log('DocIt Start On Port: ' + port);
 
-// expose app           
-exports = module.exports = app ();     
+// expose app
+exports = module.exports = app;     

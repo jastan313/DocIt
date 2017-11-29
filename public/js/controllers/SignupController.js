@@ -1,4 +1,19 @@
 angular.module('SignupCtrl', []).controller('SignupController', function ($scope, Page, User) {
+    $scope.formEmail = 'test1@test.com';
+    $scope.formAlias = 'testtest1';
+    $scope.formPassword = 'testtest1';
+    $scope.formPasswordConfirm = 'testtest1';
+    
+    $scope.objToString = function (obj, level) {
+        for (var key in obj) {
+            if (typeof obj[key] === "object") {
+                $scope.objToString(obj[key], level + 1);
+            } else {
+                console.log("\t".repeat(level) + key + " --> "+ obj[key]);
+            }
+        }
+    }
+
     $scope.signupSubmit = function () {
         var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         var aliasRegex = /^[A-Za-z0-9]{6,15}$/;
@@ -9,12 +24,7 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
         var passwordMatchFlag = $scope.formPassword === $scope.formPasswordConfirm;
         if (emailFlag && aliasFlag && passwordFlag && passwordMatchFlag) {
             User.getByEmail($scope.formEmail).then(function (user) {
-
-                for (var key in user) {
-                    if (user.hasOwnProperty(key)) {
-                        console.log(key + " -> " + user[key]);
-                    }
-                }
+                $scope.objToString(user, 0);
 
                 if (user == null) {
                     User.getByAlias($scope.formAlias).then(function (user) {

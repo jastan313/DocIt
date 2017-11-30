@@ -19,14 +19,13 @@ angular.module('LoginCtrl', []).controller('LoginController', function ($scope, 
                             $scope.objToString(response.data);
                             Page.setUser(response.data);
                             $scope.isSubmitting = false;
-                            //$scope.changePage('docboard');
+                            $scope.changePage('docboard');
                         });
                     } else {
                         var loginAttempts = (user.login_attempts + 1) === 5 ? '0' : user.login_attempts + 1;
                         var userData = {"login_attempts": loginAttempts};
                         User.update(user._id, userData).then(function (response) {
                             var u = response.data;
-                            $scope.objToString(u, 0);
                             if (u.login_attempts === 0) {
                                 var emailData = {
                                     "from": "|DOCIT| <donotreply@docit.com>",

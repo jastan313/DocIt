@@ -62,6 +62,6 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
     }
 
     $scope.init = function () {
-        $scope.changePage('signup');
+        $scope.changePage('login');
     }
 });

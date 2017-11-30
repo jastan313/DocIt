@@ -21,7 +21,8 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
     $scope.getDocs = function () {
         var user = Page.getUser();
         if (user) {
-            Doc.getByUserID(user._id).then(function (docs) {
+            Doc.getByUserID(user._id).then(function (response) {
+                var docs = response.data;
                 for (var i = 0; i < docs.length; i++) {
                     var docID = docs[i]._id;
                     var docTitle = docs[i].title;
@@ -37,8 +38,6 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
                             }
                     );
                 }
-            }, function (err) {
-                console.log("Docboard: Doc Archive Get Error: " + err);
             });
         } else {
             Page.changePage("login");
@@ -70,8 +69,6 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
                             rating: docRating}
                 );
             }
-        }, function (err) {
-            console.log("Docboard: Doc Feed Get Error: " + err);
         });
     };
 
@@ -79,17 +76,16 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
         if (docID == null) {
             Page.setDoc(null);
             $scope.changePage('docit');
+        } else {
+            Doc.get(docID).then(function (response) {
+                Page.setDoc(response.data);
+                if (response.data.published) {
+                    $scope.changePage('docit');
+                } else {
+                    $scope.changePage('docview');
+                }
+            });
         }
-        Doc.get(docID).then(function (doc) {
-            Page.setDoc(doc);
-            if (doc.published) {
-                $scope.changePage('docit');
-            } else {
-                $scope.changePage('docview');
-            }
-        }, function (err) {
-            console.log("Docboard: Go Doc Error: " + err);
-        });
     }
 
     $scope.help = function () {

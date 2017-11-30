@@ -239,8 +239,7 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
             define("FileSaver.js", function () {
                 return saveAs
             })
-        }
-        ;
+        };
         var filename = $scope.docTitle.replace(/[\s+\t\n\\/:\"*?<>|]/g, '') + ".txt";
         var data = $scope.docTitle + "\nby: " + $scope.docAlias
                 + ", " + $scope.docDate + "\n\n" + $scope.docBody;

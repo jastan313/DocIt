@@ -19,17 +19,17 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
                 'password': $scope.formPassword
             };
             User.create(userData).then(function (response) {
-                var data = Array.isArray(response.data) ? null : response.data;
-                if (data.hasOwnProperty('errors')) {
+                var user = response.data;
+                if (user.errors) {
                     var header = "";
                     var body = "";
-                    if (data.errors.email) {
+                    if (user.email_error) {
                         header += "Email";
                         body += "Unforunately, there is an existing account with the email address |" + $scope.formEmail + "|.\
                             Please signup using a different email or login to your existing account if this is your email.";
                         $scope.mainObj.toFocus = "signup-email";
                     }
-                    if (data.errors.alias) {
+                    if (user.alias_error) {
                         var aliasBody = "Unforunately, there is an existing account with the Alias |" + $scope.formAlias + "|.\
                             Please signup using a different Alias or login to your existing account if this is your Alias.";
                         header += header.length !== 0 ? "/Alias" : "Alias";
@@ -39,7 +39,7 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
                     header += " Taken";
                     $scope.displayInfoPopup(header, body);
                 } else {
-                    Page.setUser(data);
+                    Page.setUser(user);
                     $scope.displayInfoPopup("Account Signup and Welcome", "Your account has been successfully created.\n\n\
                         Hi, " + Page.getUser().alias + "! Welcome to |DOCIT|, a document-based web \
                         application where writers are encouraged to brainstorm, write, and publish any type \

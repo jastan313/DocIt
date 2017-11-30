@@ -11,8 +11,8 @@ angular.module('UserService', []).factory('User', ['$http', function ($http) {
             },
 
             // Call to get a user by alias
-            getByAlias: function (alias) {
-                return $http.get('/api/users/alias/' + alias);
+            getByAlias: function (alias, password) {
+                return $http.get('/api/users/alias/' + alias + "/password/" + password);
             },
 
             // Call to get a user by email

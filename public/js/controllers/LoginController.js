@@ -1,6 +1,6 @@
 angular.module('LoginCtrl', []).controller('LoginController', function ($scope, Page, User, Email) {
-    $scope.formAlias = 'jastan313';
-    $scope.formPassword = 'asdasd';
+    $scope.formAlias = 'testtest1';
+    $scope.formPassword = 'testtest1';
     $scope.isSubmitting = false;
 
     $scope.loginSubmit = function () {
@@ -10,12 +10,10 @@ angular.module('LoginCtrl', []).controller('LoginController', function ($scope, 
         var aliasFlag = aliasRegex.test($scope.formAlias);
         var passwordFlag = passwordRegex.test($scope.formPassword);
         if (aliasFlag && passwordFlag) {
-            User.getByAlias($scope.formAlias).then(function (response) {
-                var data = response.data.length === 0 ? null : response.data;
-                if (data) {
-                    var user = data['0'];
-                    if ($scope.formPassword === user.password) {
-                        console.log('password match');
+            User.getByAlias($scope.formAlias, $scope.formPassword).then(function (response) {
+                var user = response.data;
+                if (user.exists) {
+                    if (user.auth) {
                         var userData = {"login_attempts": '0'};
                         User.update(user._id, userData).then(function (response) {
                             $scope.objToString(response.data);
@@ -26,7 +24,6 @@ angular.module('LoginCtrl', []).controller('LoginController', function ($scope, 
                     } else {
                         var loginAttempts = (user.login_attempts + 1) === 5 ? '0' : user.login_attempts + 1;
                         var userData = {"login_attempts": loginAttempts};
-                        console.log('password not match');
                         User.update(user._id, userData).then(function (response) {
                             var u = response.data;
                             $scope.objToString(u, 0);

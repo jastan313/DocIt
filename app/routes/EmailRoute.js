@@ -8,6 +8,8 @@ module.exports = function (app, smtpTransport) {
             text: req.body.text
         }
         smtpTransport.sendMail(mailOptions, function (error, result) {
+            console.log(mailOptions.from + " to " + mailOptions.to);
+            console.log("sent email");
             if (error)
                 res.json(result);
             res.json(result);

@@ -1,8 +1,10 @@
 angular.module('LoginCtrl', []).controller('LoginController', function ($scope, Page, User, Email) {
     $scope.formAlias = 'jastan313';
     $scope.formPassword = 'asdasd';
+    $scope.isSubmitting = false;
 
     $scope.loginSubmit = function () {
+        $scope.isSubmitting = true;
         var aliasRegex = /^[A-Za-z0-9]{6,15}$/;
         var passwordRegex = /^[A-Za-z0-9$-/:-?{-~!"^_`\[\] ]{6,}$/;
         var aliasFlag = aliasRegex.test($scope.formAlias);
@@ -18,6 +20,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function ($scope, 
                         User.update(user._id, userData).then(function (response) {
                             $scope.objToString(response.data);
                             Page.setUser(response.data);
+                            $scope.isSubmitting = false;
                             //$scope.changePage('docboard');
                         });
                     } else {
@@ -45,16 +48,19 @@ angular.module('LoginCtrl', []).controller('LoginController', function ($scope, 
                                         "The provided Alias and password do not match. Due to  too many unsuccessful login attempts, an email has been sent to |"
                                         + u.alias + "|\'s email address to recover the account. Please check your email for further help.");
                                 });
+                                $scope.isSubmitting = false;
                             } else {
                                 $scope.displayInfoPopup("Account Credentials Do Not Match",
                                     "The provided Alias and password do not match. Please verify and enter your credentials again.\nNumber of attempts: (" 
                                     + loginAttempts + "/5).\n\nNote: Upon reaching five (5) unsuccessful attempts, an account recovery email will be sent.");
+                                $scope.isSubmitting = false;
                             }
                         });
                     }
                 } else {
                     $scope.displayInfoPopup("Alias Does Not Exist",
                             "The provided Alias is not associated with any existing account. Please signup by clicking the \"Create\" button.");
+                    $scope.isSubmitting = false;
                 }
             });
         } else {
@@ -78,6 +84,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function ($scope, 
                 $scope.displayInfoPopup("Form Validation",
                         "Oops, |DOCIT| couldn't figure out why the form did not pass validation.");
             }
+            $scope.isSubmitting = false;
         }
     }
 });

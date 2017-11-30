@@ -1,13 +1,13 @@
 angular.module('DocboardCtrl', []).controller('DocboardController', function ($scope, Page, User, Doc) {
     $scope.alias = Page.getUser() ? Page.getUser().alias : "";
-    
+
     $scope.generateDocs = function (num, published) {
         var arr = [];
         for (var i = 0; i < num; i++) {
             var obj = {};
             obj.title = "Title " + i;
             obj.alias = "Alias " + i;
-            obj.date = i+"/"+i+"/"+i
+            obj.date = i + "/" + i + "/" + i
             obj.published = published;
             obj.rating = Math.random() * 100 < 50 ? -Math.floor(Math.random() * 10) : Math.floor(Math.random() * 10);
             arr.push(obj);
@@ -91,8 +91,8 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
             console.log("Docboard: Go Doc Error: " + err);
         });
     }
-    
-    $scope.help = function() {
+
+    $scope.help = function () {
         displayInfoPopup("Hi, " + user.alias + "! Welcome to |DOCIT|, a document-based web \
         application where writers are encouraged to brainstorm, write, and publish any type \
         of creative, text-based work anonymously. You may create new Docs, edit drafts until \n\
@@ -105,5 +105,10 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
         sorted by highest rating. Selecting any Doc in the Doc Feed will direct you to |DOCVIEW|.\n\n\
         |DOCIT|: Using Docit, you will have the option to view, edit, save, export, and publish your \
         Docs.\n\n|DOCVIEW|: Using Docview, you will be able to view and rate published-only Docs.");
+    }
+
+    $scope.init = function () {
+        $scope.getDocs();
+        $scope.getDocFeed(10, 7);
     }
 });

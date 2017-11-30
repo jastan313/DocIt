@@ -11,7 +11,7 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
             }
         }
     }
-    
+
     $scope.infoModalHeader = "";
     $scope.infoModalBody = "";
     $scope.pageTitle = "";
@@ -61,5 +61,7 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
         document.getElementById("info-modal").classList.add('open');
     }
 
-    $scope.changePage('login');
+    $scope.init = function () {
+        $scope.changePage('login');
+    }
 });

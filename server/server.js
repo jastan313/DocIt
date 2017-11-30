@@ -10,11 +10,10 @@ var nodemailer = require('nodemailer');
 
 // email transport ==========================================
 var smtpTransport = nodemailer.createTransport({
-    service: "gmail",
-    host: "smtp.gmail.com",
+    service: "Gmail",
     auth: {
-        user: "donotreply@docit.com",
-        pass: "docit"
+        user: "docit@gmail.com",
+        pass: "docitsmtptransport"
     }
 });
 

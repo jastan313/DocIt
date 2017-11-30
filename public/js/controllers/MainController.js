@@ -16,20 +16,6 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
     $scope.infoModalBody = "";
     $scope.pageTitle = "";
 
-    // Utility bindings to track Ctrl + (Keyboard key) pressed.
-    $scope.ctrlDown = false;
-    $scope.ctrlKey = 17, $scope.vKey = 86, $scope.cKey = 67;
-    angular.element($window).bind("keyup", function ($event) {
-        if ($event.keyCode == $scope.ctrlKey)
-            $scope.ctrlDown = false;
-        $scope.$apply();
-    });
-    angular.element($window).bind("keydown", function ($event) {
-        if ($event.keyCode == $scope.ctrlKey)
-            $scope.ctrlDown = true;
-        $scope.$apply();
-    });
-
     // Event handler for info modal popup
     $scope.checkInfoPopup = function ($event) {
         var target = $event.currentTarget || $event.srcElement;

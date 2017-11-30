@@ -1,6 +1,7 @@
 angular.module('DocitCtrl', []).controller('DocitController', function ($scope, Page, User, Doc) {
-    $scope.showAuthorBtns = false;
+    $scope.showAuthorBtns = true;
     $scope.directoryShow = false;
+    $scope.isProcessing = false;
 
     $scope.copyText = "";
     $scope.MIN_BODY_LENGTH = 50;
@@ -48,34 +49,39 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
     }
 
     $scope.saveDoc = function () {
-        var d = Page.getDoc();
-        $scope.docTitle = $scope.docTitle.length > 0 ? $scope.docTitle : "Untitled";
-        // If user is updating an existing Doc
-        if (d) {
-            var docData = {
-                'title': $scope.docTitle,
-                'body': $scope.docBody
-            };
-            Doc.update(d._id, docData).then(function (doc) {
-                Page.setDoc(doc);
-                $scope.displayInfoPopup("Doc Updated:\n\n" + Page.getDoc().title + "\nby: " +
-                        Page.getDoc().alias + ", " + Page.getDoc().date);
-                $scope.displayDocit();
-            });
-        }
-        // If user is creating a new Doc
-        else {
-            var docData = {
-                'title': $scope.docTitle,
-                'author': Page.getUser().alias,
-                'body': $scope.docBody
-            };
-            Doc.create(docData).then(function (doc) {
-                Page.setDoc(doc);
-                $scope.displayInfoPopup("Doc Created:\n\n" + Page.getDoc().title + "\nby: " +
-                        Page.getDoc().alias + ", " + Page.getDoc().date);
-                $scope.displayDocit();
-            });
+        if (!$scope.isProcessing) {
+            $scope.isProcessing = true;
+            var d = Page.getDoc();
+            $scope.docTitle = $scope.docTitle.length > 0 ? $scope.docTitle : "Untitled";
+            // If user is updating an existing Doc
+            if (d) {
+                var docData = {
+                    'title': $scope.docTitle,
+                    'body': $scope.docBody
+                };
+                Doc.update(d._id, docData).then(function (doc) {
+                    Page.setDoc(doc);
+                    $scope.displayInfoPopup("Doc Updated:\n\n" + Page.getDoc().title + "\nby: " +
+                            Page.getDoc().alias + ", " + Page.getDoc().date);
+                    $scope.displayDocit();
+                    $scope.isProcessing = false;
+                });
+            }
+            // If user is creating a new Doc
+            else {
+                var docData = {
+                    'title': $scope.docTitle,
+                    'author': Page.getUser().alias,
+                    'body': $scope.docBody
+                };
+                Doc.create(docData).then(function (response) {
+                    Page.setDoc(response.data);
+                    $scope.displayInfoPopup("Doc Created:\n\n" + Page.getDoc().title + "\nby: " +
+                            Page.getDoc().alias + ", " + Page.getDoc().date);
+                    $scope.displayDocit();
+                    $scope.isProcessing = false;
+                });
+            }
         }
         $scope.toggleDirectory();
     }
@@ -254,25 +260,26 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
     }
 
     $scope.deleteDoc = function () {
-        Doc.delete(Page.getDoc()._id).then(function (doc) {
-            User.updateByDoc(Page.getUser()._id, Page.getDoc()._id);
-            $scope.displayInfoPopup("Doc Deleted:\n\n" + Page.getDoc().title + "\nby: " +
+        if (Page.getDoc()) {
+            Doc.delete(Page.getDoc()._id).then(function (doc) {
+                User.updateByDoc(Page.getUser()._id, Page.getDoc()._id);
+                $scope.displayInfoPopup("Doc Deleted", "\"" + Page.getDoc().title + "\" by: " +
+                        Page.getDoc().alias + ", " + Page.getDoc().date);
+                $scope.changePage('docboard');
+            });
+        } else {
+            $scope.displayInfoPopup("Doc Draft Discarded", "\"" + Page.getDoc().title + "\" by: " +
                     Page.getDoc().alias + ", " + Page.getDoc().date);
-            document.getElementById("info-modal").classList.add('open');
             $scope.changePage('docboard');
-        });
+        }
     }
 
-    /* Key binding events for aggregate keydown events */
-    $scope.keyDownFunc = function ($event) {
-        if ($scope.ctrlDown && ($event.keyCode == $scope.cKey)) {
-            // 'Ctrl + C pressed'
-        } else if ($scope.ctrlDown && ($event.keyCode == $scope.vKey)) {
-            // 'Ctrl + V pressed'
-        } else if ($scope.ctrlDown && String.fromCharCode($event.which).toLowerCase() == 's') {
-            // 'Ctrl + S pressed'
+    // Utility key binding to track Ctrl + S pressed mapped to saveDoc().
+    document.addEventListener("keydown", function (e) {
+        if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+            e.preventDefault();
             $scope.saveDoc();
-            $event.preventDefault();
+            $scope.directoryShow = false;
         }
-    };
+    }, false);
 });

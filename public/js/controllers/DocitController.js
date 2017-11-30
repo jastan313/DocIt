@@ -1,7 +1,10 @@
 angular.module('DocitCtrl', []).controller('DocitController', function ($scope, Page, User, Doc) {
     $scope.showAuthorBtns = false;
+    $scope.directoryShow = false;
+
     $scope.copyText = "";
     $scope.MIN_BODY_LENGTH = 50;
+
     $scope.docAlias = Page.getUser().alias;
     var tempDate = new Date();
     $scope.docDate = tempDate.getMonth() +
@@ -9,6 +12,10 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
             "/" + tempDate.getFullYear();
     $scope.docTitle = "Untitled";
     $scope.docBody = "";
+
+    $scope.toggleDirectory = function () {
+        $scope.directoryShow = !$scope.directoryShow;
+    }
 
     $scope.displayDocit = function () {
         // Get the Doc we are looking at
@@ -30,13 +37,14 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
         $scope.copyText = $scope.docTitle + "\nby " + $scope.docAlias + ", " + $scope.docDate +
                 "\n\n" + $scope.docBody;
         var toCopy = document.getElementById("docit-copytext");
-        try {
-            document.execCommand('copy');
-        } catch (err) {
-            alert("Docit: Copy Doc Error: " + err);
-        } finally {
-            $scope.copyText = "";
-        }
+        console.log(toCopy);
+        toCopy.select();
+        document.execCommand('copy');
+        console.log("attempted to copy: " + $scope.copyText);
+        toCopy.textContent = "";
+        $scope.copyText = "";
+        $scope.toggleDirectory();
+
     }
 
     $scope.saveDoc = function () {
@@ -53,8 +61,6 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                 $scope.displayInfoPopup("Doc Updated:\n\n" + Page.getDoc().title + "\nby: " +
                         Page.getDoc().alias + ", " + Page.getDoc().date);
                 $scope.displayDocit();
-            }, function (err) {
-                console.log("Docit: Doc Update Error: " + err);
             });
         }
         // If user is creating a new Doc
@@ -69,10 +75,9 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                 $scope.displayInfoPopup("Doc Created:\n\n" + Page.getDoc().title + "\nby: " +
                         Page.getDoc().alias + ", " + Page.getDoc().date);
                 $scope.displayDocit();
-            }, function (err) {
-                console.log("Docit: Doc Creation Error: " + err);
             });
         }
+        $scope.toggleDirectory();
     }
 
     $scope.publishDoc = function () {
@@ -95,8 +100,6 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                             Page.getDoc().title + "\nby: " +
                             Page.getDoc().alias + ", " + Page.getDoc().date);
                     $scope.changePage('docview');
-                }, function (err) {
-                    console.log("Docit: Doc Publish Update Error: " + err);
                 });
             }
             // If user is creating a new Doc
@@ -113,11 +116,10 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                             Page.getDoc().title + "\nby: " +
                             Page.getDoc().alias + ", " + Page.getDoc().date);
                     $scope.changePage('docview');
-                }, function (err) {
-                    console.log("Docit: Doc Publish Creation Error: " + err);
                 });
             }
         }
+        $scope.toggleDirectory();
     }
 
     $scope.exportDoc = function () {
@@ -239,13 +241,15 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
             define("FileSaver.js", function () {
                 return saveAs
             })
-        };
+        }
+        ;
         var filename = $scope.docTitle.replace(/[\s+\t\n\\/:\"*?<>|]/g, '') + ".txt";
         var data = $scope.docTitle + "\nby: " + $scope.docAlias
                 + ", " + $scope.docDate + "\n\n" + $scope.docBody;
         var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
         saveAs(blob, filename);
         $scope.displayInfoPopup("Doc Exported: " + filename + "Note: Exporting does not save the Doc.");
+        $scope.toggleDirectory();
     }
 
     $scope.deleteDoc = function () {
@@ -255,8 +259,6 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                     Page.getDoc().alias + ", " + Page.getDoc().date);
             document.getElementById("info-modal").classList.add('open');
             $scope.changePage('docboard');
-        }, function (err) {
-            console.log("Docit: Doc Deletion Error: " + err);
         });
     }
 
@@ -272,5 +274,4 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
             $event.preventDefault();
         }
     };
-
 });

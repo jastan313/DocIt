@@ -37,8 +37,6 @@ module.exports = function (app, Doc) {
                 .limit(parseInt(req.params.num))
                 .populate('author')
                 .exec(function (err, result) {
-                    console.log(err);
-                    console.log(result);
                     if (err)
                         res.send(err);
                     res.json(result); // Return docs
@@ -50,8 +48,6 @@ module.exports = function (app, Doc) {
         Doc.findById(req.params.id)
                 .populate('author')
                 .exec(function (err, result) {
-                    console.log(err);
-                    console.log(result);
                     if (err)
                         res.send(err);
                     res.json(result); // Return the specific doc

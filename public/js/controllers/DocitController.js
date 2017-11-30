@@ -34,7 +34,7 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
     }
 
     $scope.copyDoc = function () {
-        var copyText = $scope.docTitle + "\nby " + $scope.docAlias + ", " + $scope.docDate +
+        var copyText = "\"" + $scope.docTitle + "\" by " + $scope.docAlias + ", " + $scope.docDate +
                 "\n\n" + $scope.docBody;
         var toCopy = document.getElementById("docit-copytext");
         toCopy.textContent = copyText;
@@ -43,9 +43,10 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
         document.execCommand('copy');
         toCopy.textContent = "";
         $scope.toggleDirectory();
-        $scope.displayInfoPopup("Doc Copied", $scope.docTitle + " by " + $scope.docAlias + ", " + $scope.docDate);
+        $scope.displayInfoPopup("Doc Copied",
+                "\"" + $scope.docTitle + "\" by " + $scope.docAlias + ", " + $scope.docDate);
     }
-    
+
     $scope.saveDoc = function () {
         var d = Page.getDoc();
         $scope.docTitle = $scope.docTitle.length > 0 ? $scope.docTitle : "Untitled";
@@ -243,11 +244,12 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
         }
         ;
         var filename = $scope.docTitle.replace(/[\s+\t\n\\/:\"*?<>|]/g, '') + ".txt";
-        var data = $scope.docTitle + "\nby: " + $scope.docAlias
-                + ", " + $scope.docDate + "\n\n" + $scope.docBody;
-        var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
+        var data = "\"" + $scope.docTitle + "\" by " + $scope.docAlias
+                + ", " + $scope.docDate + "\n" + $scope.docBody;
+        var blob = new Blob([data.replace(/([^\r])\n/g, "$1\r\n")], {type: "text/plain;charset=utf-8"});
         saveAs(blob, filename);
-        $scope.displayInfoPopup("Doc Exported: " + filename + "Note: Exporting does not save the Doc.");
+        $scope.displayInfoPopup("Doc Exported",
+                "File: " + filename + "\n\nNote: Exporting does not save the Doc.");
         $scope.toggleDirectory();
     }
 

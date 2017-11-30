@@ -1,8 +1,8 @@
 angular.module('SignupCtrl', []).controller('SignupController', function ($scope, Page, User) {
-    $scope.formEmail = '';
-    $scope.formAlias = '';
-    $scope.formPassword = '';
-    $scope.formPasswordConfirm = '';
+    $scope.formEmail = 'test4@test.com';
+    $scope.formAlias = 'testtest4';
+    $scope.formPassword = 'testtest4';
+    $scope.formPasswordConfirm = 'testtest4';
 
     $scope.signupSubmit = function () {
         var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

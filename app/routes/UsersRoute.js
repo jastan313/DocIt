@@ -67,32 +67,32 @@ module.exports = function (app, User) {
         user.alias = req.body.alias;
         user.password = req.body.password;
         user.save(function (err, result) {
-            if (err)
-                res.send(err);
             var data = Array.isArray(result) ? null : result;
             var userData = {};
-            if (data.hasOwnProperty('errors')) {
+            if (err) {
                 userData.errors = true;
-                if (data.errors.email) {
-                    data.email_error = true;
+                if (err.errors.email) {
+                    userData.email_error = true;
                 } else {
-                    data.email_error = false;
+                    userData.email_error = false;
                 }
-                if (data.errors.alias) {
-                    data.alias_error = true;
+                if (err.errors.alias) {
+                    userData.alias_error = true;
                 } else {
-                    data.alias_error = false;
+                    userData.alias_error = false;
                 }
+                res.send(userData);
             } else {
+                var userData = {};
                 userData.errors = false;
                 userData._id = result._id;
                 userData.alias = result.alias;
                 userData.email = result.email;
                 userData.documents = result.documents;
                 userData.comments = result.comments;
-                userData.login_attempts = result.login_attempts;
+                res.json(userData); // Return created user
             }
-            res.json(userData); // Return created user
+
         });
     });
 

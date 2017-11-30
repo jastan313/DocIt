@@ -1,7 +1,12 @@
 <div id="doc-container" ng-controller="DocviewController" ng-init="displayDocit()">
     <div id="doc-content">
-        <button id="docview-directory-btn" class="directory-btn" type="button" title="Directory options.">|DIRECTORY|</button>
-        <div id="docview-directory" class="directory highlight-disabled" >
+        <button id="docview-directory-btn" class="directory-btn"
+                type="button"
+                title="Directory options."
+                ng-show="!directoryShow"
+                ng-click="toggleDirectory()"
+                >|DIRECTORY|</button>
+        <div id="docview-directory" class="directory highlight-disabled" ng-show="directoryShow">
             <div id="docview-directory-rating-container" class="directory-opt">
                 <div id="docview-rateup-btn" 
                      title="Upvote Doc."
@@ -15,7 +20,7 @@
                  class="directory-opt" 
                  title="Copy Doc's alias, date, title and body to clipboard."
                  ng-click="copyDoc()">|COPY|</div>
-            <div id="docview-copytext" class="copytext"> {{ copyText }}</div>
+            <textarea id="docview-copytext" class="copytext"></textarea>
             
             <div id="docview-directory-export-btn" 
                  class="directory-opt" 

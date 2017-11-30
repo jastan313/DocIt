@@ -34,19 +34,18 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
     }
 
     $scope.copyDoc = function () {
-        $scope.copyText = $scope.docTitle + "\nby " + $scope.docAlias + ", " + $scope.docDate +
+        var copyText = $scope.docTitle + "\nby " + $scope.docAlias + ", " + $scope.docDate +
                 "\n\n" + $scope.docBody;
         var toCopy = document.getElementById("docit-copytext");
-        console.log(toCopy);
-        toCopy.select();
+        toCopy.textContent = copyText;
+        toCopy.focus();
+        toCopy.setSelectionRange(0, toCopy.value.length);
         document.execCommand('copy');
-        console.log("attempted to copy: " + $scope.copyText);
         toCopy.textContent = "";
-        $scope.copyText = "";
         $scope.toggleDirectory();
-
+        $scope.displayInfoPopup("Doc Copied", $scope.docTitle + " by " + $scope.docAlias + ", " + $scope.docDate);
     }
-
+    
     $scope.saveDoc = function () {
         var d = Page.getDoc();
         $scope.docTitle = $scope.docTitle.length > 0 ? $scope.docTitle : "Untitled";

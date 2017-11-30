@@ -1,7 +1,13 @@
 angular.module('DocviewCtrl', []).controller('DocviewController', function ($scope, Page, User, Doc) {
     $scope.showAuthorBtns = false;
+    $scope.directoryShow = false;
+
     $scope.docRating = 0;
     $scope.copyText = "";
+
+    $scope.toggleDirectory = function () {
+        $scope.directoryShow = !$scope.directoryShow;
+    }
 
     $scope.displayDocview = function () {
         // Get the Doc we are looking at
@@ -97,17 +103,16 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
     }
 
     $scope.copyDoc = function () {
-        $scope.copyText = $scope.docTitle + "\nby " + $scope.docAlias + ", " + $scope.docDate +
+        var copyText = $scope.docTitle + "\nby " + $scope.docAlias + ", " + $scope.docDate +
                 "\n\n" + $scope.docBody;
         var toCopy = document.getElementById("docview-copytext");
-        try {
-            document.execCommand('copy');
-            $scope.displayInfoPopup("Doc Contents Copied!");
-        } catch (err) {
-            alert("Docview: Copy Doc Error: " + err);
-        } finally {
-            $scope.copyText = "";
-        }
+        toCopy.textContent = copyText;
+        toCopy.focus();
+        toCopy.setSelectionRange(0, toCopy.value.length);
+        document.execCommand('copy');
+        toCopy.textContent = "";
+        $scope.toggleDirectory();
+        $scope.displayInfoPopup("Doc Copied", $scope.docTitle + " by " + $scope.docAlias + ", " + $scope.docDate);
     }
 
     $scope.deleteDoc = function () {

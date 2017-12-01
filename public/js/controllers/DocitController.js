@@ -100,7 +100,7 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                             "\"" + Page.getDoc().title + "\" by " +
                             Page.getDoc().author + ", " + Page.getDoc().date);
                     $scope.objToString(response.data, 0);
-                    //$scope.changePage('docview');
+                    $scope.changePage('docview');
                 });
             }
             // If user is creating a new Doc
@@ -117,7 +117,7 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                             "\"" + Page.getDoc().title + "\" by " +
                             Page.getDoc().author + ", " + Page.getDoc().date);
                     $scope.objToString(response.data, 0);
-                    //$scope.changePage('docview');
+                    $scope.changePage('docview');
                 });
             }
         }

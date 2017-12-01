@@ -28,20 +28,21 @@ module.exports = function (app, Doc) {
                 .exec(function (err, result) {
                     if (err)
                         res.send(err);
-                    res.json(result); // Return docs
+                    res.json(result); // Return selected docs
                 });
     });
 
     // GET: Get docs based on ratings within the past d days, limited to top num items
     app.get('/api/docs/items/:num/days/:d', function (req, res) {
-        Doc.find({published: true, timestamp: {$gte: new Date(new Date() - req.params.d * 60 * 60 * 24 * 1000)}})
+        var pastDate = new Date(new Date().getTime() - req.params.d * 60 * 60 * 24 * 1000);
+        Doc.find({published: true, date: {$gte: pastDate}})
                 .sort({'rating': -1})
                 .limit(parseInt(req.params.num))
                 .populate('author')
                 .exec(function (err, result) {
                     if (err)
                         res.send(err);
-                    res.json(result); // Return docs
+                    res.json(result); // Return selected docs
                 });
     });
 

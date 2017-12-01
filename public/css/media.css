@@ -142,7 +142,7 @@ and (min-device-width : 320px)
     }
     
     .docboard-mydoc, .docboard-feeddoc {
-        width: 281px;
+        width: 280px;
         height: 203px;
     }
 
@@ -295,7 +295,7 @@ and (min-device-width : 321px)
     }
     
     .docboard-mydoc, .docboard-feeddoc {
-        width: 39vw;
+        width: 38.5vw;
         height: 39vw;
     }
 
@@ -440,7 +440,7 @@ and (min-device-width : 321px)
     }
     
     .docboard-mydoc, .docboard-feeddoc {
-        width: 281px;
+        width: 280px;
         height: 172px;
     }
 
@@ -578,7 +578,7 @@ and (min-device-width : 768px)
     }
     
     .docboard-mydoc, .docboard-feeddoc {
-        width: 170px;
+        width: 169px;
         height: 170px;
     }
 
@@ -722,7 +722,7 @@ and (orientation : landscape) {
     }
     
     .docboard-mydoc, .docboard-feeddoc {
-        width: calc(22vw - 18px);
+        width: calc(22vw - 19px);
         height: 169px;
     }
 
@@ -859,13 +859,8 @@ and (orientation : landscape) {
         height: calc(93vh - 530px);
     }
     
-    .docboard-mydoc {
-        width: 178px;
-        height: 168px;
-    }
-    
-    .docboard-feeddoc {
-        width: 178px;
+    .docboard-mydoc, .docboard-feeddoc {
+        width: 177px;
         height: 168px;
     }
     

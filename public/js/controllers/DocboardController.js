@@ -1,7 +1,9 @@
 angular.module('DocboardCtrl', []).controller('DocboardController', function ($scope, Page, User, Doc) {
     $scope.alias = Page.getUser() ? Page.getUser().alias : "";
     $scope.directoryShow = false;
-    
+    $scope.docArchive = [];
+    $scope.docFeed = [];
+
     $scope.toggleDirectory = function () {
         $scope.directoryShow = !$scope.directoryShow;
     }
@@ -12,12 +14,21 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
             Doc.getByUserID(user._id).then(function (response) {
                 var docs = response.data;
                 for (var i = 0; i < docs.length; i++) {
-                    var docID = docs[i]._id;
-                    var docTitle = docs[i].title;
-                    var docDate = docs[i].date.getMonth() +
-                            "/" + docs[i].date.getDate() +
-                            "/" + docs[i].date.getFullYear();
-                    var docRating = docs[i].published ? docs[i].rating : "Not Published";
+                    var doc = Doc.formatDoc(docs[i]);
+                    var docID = doc._id;
+                    var docTitle = doc.title;
+                    var docAlias = doc.author.alias;
+                    var docDate = doc.date;
+                    var docRating = "Not Published";
+                    if (doc.published) {
+                        if (doc.rating === 0) {
+                            docRating = "0 Rating";
+                        } else if (doc.rating > 0) {
+                            docRating = "+" + doc.rating + " Rating";
+                        } else {
+                            docRating = "-" + doc.rating + " Rating";
+                        }
+                    }
                     $scope.docArchive.push(
                             {_id: docID,
                                 title: docTitle,
@@ -26,6 +37,7 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
                             }
                     );
                 }
+                $scope.objToString($scope.docArchive);
             });
         } else {
             Page.changePage("login");
@@ -36,12 +48,11 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
         Doc.getByRatingAndTime(num, d).then(function (response) {
             var docs = response.data;
             for (var i = 0; i < docs.length; i++) {
-                var docID = docs[i]._id;
-                var docTitle = docs[i].title;
-                var docAlias = docs[i].author.alias;
-                var docDate = docs[i].date.getMonth() +
-                        "/" + docs[i].date.getDate() +
-                        "/" + docs[i].date.getFullYear();
+                var doc = Doc.formatDoc(docs[i]);
+                var docID = doc._id;
+                var docTitle = doc.title;
+                var docAlias = doc.author.alias;
+                var docDate = doc.date;
                 var docRating = docs[i].rating;
                 if (docRating === 0) {
                     docRating = "0 Rating";
@@ -58,6 +69,7 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
                             rating: docRating}
                 );
             }
+            $scope.objToString($scope.docFeed);
         });
     };
 
@@ -93,7 +105,9 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
     }
 
     $scope.init = function () {
+        console.log('init');
         $scope.getDocs();
         $scope.getDocFeed(10, 7);
+        console.log('init done');
     }
 });

@@ -10,11 +10,13 @@ module.exports = function (app, Doc) {
 
     // GET: Get docs based on user id
     app.get('/api/docs/user/:id', function (req, res) {
-        Doc.find({author: req.params.id}).exec(function (err, result) {
-            if (err)
-                res.send(err);
-            res.json(result); // Return docs
-        });
+        Doc.find({author: req.params.id})
+                .sort({'date': -1})
+                .exec(function (err, result) {
+                    if (err)
+                        res.send(err);
+                    res.json(result); // Return docs
+                });
     });
 
     // GET: Get docs based on ratings, limited to top num items
@@ -57,8 +59,8 @@ module.exports = function (app, Doc) {
     // POST: Create a doc
     app.post('/api/docs', function (req, res) {
         var doc = new Doc();
-        doc.author = req.body.user_id;
         doc.title = req.body.title;
+        doc.author = req.body.author;
         doc.body = req.body.body;
         if (req.body.published) {
             doc.published = req.body.published;

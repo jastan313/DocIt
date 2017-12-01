@@ -39,10 +39,12 @@ angular.module('DocService', []).factory('Doc', ['$http', function ($http) {
             delete: function (id) {
                 return $http.delete('/api/docs/' + id);
             },
-            
-            formatDate: function(doc) {
-                var date = new Date(doc.date);
-                doc.date = date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear();
+
+            formatDoc: function (doc) {
+                if (doc) {
+                    var date = new Date(doc.date);
+                    doc.date = date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear();
+                }
                 return doc;
             }
         }

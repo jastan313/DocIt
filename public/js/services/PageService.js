@@ -14,8 +14,7 @@ angular.module('PageService', []).factory('Page', ['$rootScope', '$location', fu
                 if (page === 'login' || page === 'signup') {
                     this.user = null;
                     this.doc = null;
-                }
-                else if(page === 'docboard') {
+                } else if (page === 'docboard') {
                     this.doc = null;
                 }
                 this.page = page;
@@ -42,6 +41,10 @@ angular.module('PageService', []).factory('Page', ['$rootScope', '$location', fu
         }
 
         pageObj.setDoc = function (doc) {
+            if (doc) {
+                var date = new Date(doc.date);
+                doc.date = date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear();
+            }
             this.doc = doc;
             return doc;
         }

@@ -21,7 +21,6 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
         // Get the Doc we are looking at
         var doc = Page.getDoc();
         if (doc) {
-            doc = Page.setDoc(Doc.formatDate(doc));
             // Data bind corresponding Doc data
             $scope.docDate = doc.date;
             $scope.docTitle = doc.title;
@@ -29,8 +28,6 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
 
             // Show Copy and Save buttons if user has not published Doc yet
             $scope.showAuthorBtns = !doc.published;
-
-            $scope.objToString(doc, 0);
         }
     }
 
@@ -58,10 +55,10 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                 'body': $scope.docBody
             };
             Doc.update(d._id, docData).then(function (response) {
-                Page.setDoc(doc);
+                Page.setDoc(response.data);
                 $scope.displayInfoPopup("Doc Updated",
                         "\"" + Page.getDoc().title + "\" by " +
-                        Page.getUser().alias + ", " + Page.getDoc().date);
+                        Page.getDoc().author + ", " + Page.getDoc().date);
                 $scope.displayDocit();
             });
         }
@@ -69,14 +66,14 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
         else {
             var docData = {
                 'title': $scope.docTitle,
-                'author': Page.getUser().alias,
+                'author': Page.getUser()._id,
                 'body': $scope.docBody
             };
             Doc.create(docData).then(function (response) {
-                Page.setDoc(doc);
+                Page.setDoc(response.data);
                 $scope.displayInfoPopup("Doc Created",
                         "\"" + Page.getDoc().title + "\" by " +
-                        Page.getUser().alias + ", " + Page.getDoc().date);
+                        Page.getDoc().author + ", " + Page.getDoc().date);
                 $scope.displayDocit();
             });
         }
@@ -98,27 +95,29 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                     'published': true
                 };
                 Doc.update(d._id, docData).then(function (response) {
-                    Page.setDoc(doc);
-                    $scope.displayInfoPopup("Doc Updated And Published" +
+                    Page.setDoc(response.data);
+                    $scope.displayInfoPopup("Doc Updated And Published",
                             "\"" + Page.getDoc().title + "\" by " +
-                            Page.getDoc().alias + ", " + Page.getDoc().date);
-                    $scope.changePage('docview');
+                            Page.getDoc().author + ", " + Page.getDoc().date);
+                    $scope.objToString(response.data, 0);
+                    //$scope.changePage('docview');
                 });
             }
             // If user is creating a new Doc
             else {
                 var docData = {
                     'title': $scope.docTitle,
-                    'author': Page.getUser().alias,
+                    'author': Page.getUser()._id,
                     'body': $scope.docBody,
                     'published': true
                 };
                 Doc.create(docData).then(function (response) {
-                    Page.setDoc(doc);
-                    $scope.displayInfoPopup("Doc Created And Published" +
+                    Page.setDoc(response.data);
+                    $scope.displayInfoPopup("Doc Created And Published",
                             "\"" + Page.getDoc().title + "\" by " +
-                            Page.getDoc().alias + ", " + Page.getDoc().date);
-                    $scope.changePage('docview');
+                            Page.getDoc().author + ", " + Page.getDoc().date);
+                    $scope.objToString(response.data, 0);
+                    //$scope.changePage('docview');
                 });
             }
         }

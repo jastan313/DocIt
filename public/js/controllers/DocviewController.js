@@ -27,8 +27,6 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
         // Get the Doc we are looking at
         var doc = Page.getDoc();
         if (doc && doc.published) {
-            doc = Page.setDoc(Doc.formatDate(doc));
-            
             // Data bind corresponding Doc data
             $scope.docAlias = doc.user.alias;
             $scope.docDate = doc.date;

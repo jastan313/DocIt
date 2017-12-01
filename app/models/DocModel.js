@@ -7,14 +7,14 @@ var objectId = Schema.ObjectId;
 // define document schema
 var docSchema = new Schema({
     _id: {type: objectId, auto: true},
-    author: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    author: {type: objectId, ref: 'User'},
     date: {type: Date, default: new Date()},
     title: {type: String, default: 'Untitled'},
     body: {type: String, default: ''},
     published: {type: Boolean, default: false},
     rating: {type: Number, default: 0},
-    ratings: [{user_id: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}, rating: {type: Number, default: 0}}],
-    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
+    ratings: [{user_id: {type: objectId, ref: 'User'}, rating: {type: Number, default: 0}}],
+    comments: [{type: objectId, ref: 'Comment'}]
 });
 
 docSchema.post('save', function (next) {

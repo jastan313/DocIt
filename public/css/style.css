@@ -415,6 +415,7 @@ button:hover {
     display: flex;  /* Create flex display for inner data */
     text-align: center;
     align-items: center;
+    justify-content: center;
 
     /* Paper-esque styling */
     background-image: url('../imgs/white_paper25.jpg');
@@ -462,6 +463,7 @@ button:hover {
     text-align: center;  /* Create flex display for inner data */
     display: flex;
     align-items: center;
+    justify-content: center;
 
     /* Paper-esque styling */
     background-image: url('../imgs/white_paper25.jpg');

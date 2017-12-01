@@ -151,7 +151,7 @@ button:hover {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -125%);
+    transform: translate(-50%, -75%);
     margin: 0;
     min-width: 250px;
     max-width: 80vw;

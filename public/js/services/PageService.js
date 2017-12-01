@@ -43,7 +43,7 @@ angular.module('PageService', []).factory('Page', ['$rootScope', '$location', fu
         pageObj.setDoc = function (doc) {
             if (doc) {
                 var date = new Date(doc.date);
-                doc.date = date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear();
+                doc.date = date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear();
             }
             this.doc = doc;
             return doc;

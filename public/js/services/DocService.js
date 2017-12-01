@@ -43,7 +43,7 @@ angular.module('DocService', []).factory('Doc', ['$http', function ($http) {
             formatDoc: function (doc) {
                 if (doc) {
                     var date = new Date(doc.date);
-                    doc.date = date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear();
+                    doc.date = date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear();
                 }
                 return doc;
             }

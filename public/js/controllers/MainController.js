@@ -1,8 +1,5 @@
 angular.module('MainCtrl', []).controller('MainController', function ($scope, $location, Page) {
-    $scope.mainObj = {};
-    $scope.mainObj.toFocus = null;
-    $scope.mainObj.isProccessing = false;
-    $scope.mainObj.directoryShow = false;
+
     $scope.objToString = function (obj, level) {
         for (var key in obj) {
             if (typeof obj[key] === "object") {
@@ -14,15 +11,20 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
         }
     }
 
-    $scope.infoModalHeader = "";
-    $scope.infoModalBody = "";
-    $scope.pageTitle = "";
-
     $scope.init = function () {
+        $scope.mainCtrl = {};
+        $scope.mainCtrl.toFocus = null;
+        $scope.mainCtrl.isProcessing = false;
+        $scope.mainCtrl.directoryShow = false;
+
+        $scope.infoModalHeader = "";
+        $scope.infoModalBody = "";
+        $scope.pageTitle = "";
+
         document.addEventListener('click', function (e) {
             var target = e.target;
             if (!target.classList.contains('directory-btn')) {
-                if ($scope.mainObj.directoryShow) {
+                if ($scope.mainCtrl.directoryShow) {
                     $scope.toggleDirectory();
                     $scope.$apply();
                 }
@@ -36,8 +38,8 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
         if (Page.setPage(page)) {
             $scope.pageTitle = Page.getTitle();
             $location.path(Page.getPage());
-            $scope.mainObj.toFocus = null;
-            $scope.mainObj.isProcessing = false;
+            $scope.mainCtrl.toFocus = null;
+            $scope.mainCtrl.isProcessing = false;
         }
     }
 
@@ -57,17 +59,17 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
             $scope.infoModalHeader = "";
             $scope.infoModalBody = "";
             document.getElementById("info-modal").classList.remove('open');
-            if ($scope.mainObj.toFocus) {
-                document.getElementById($scope.mainObj.toFocus).focus();
-                $scope.mainObj.toFocus = null;
+            if ($scope.mainCtrl.toFocus) {
+                document.getElementById($scope.mainCtrl.toFocus).focus();
+                $scope.mainCtrl.toFocus = null;
 
             }
-            $scope.mainObj.isProcessing = false;
+            $scope.mainCtrl.isProcessing = false;
         }
     }
 
     // Toggles directory options shown or not
     $scope.toggleDirectory = function () {
-        $scope.mainObj.directoryShow = !$scope.mainObj.directoryShow;
+        $scope.mainCtrl.directoryShow = !$scope.mainCtrl.directoryShow;
     }
 });

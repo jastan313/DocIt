@@ -24,7 +24,7 @@ module.exports = function (app, Doc) {
         Doc.find({published: true})
                 .sort({'rating': -1})
                 .limit(parseInt(req.params.num))
-                .populate('author')
+                .populate('author', 'alias')
                 .exec(function (err, result) {
                     if (err)
                         res.send(err);
@@ -38,7 +38,7 @@ module.exports = function (app, Doc) {
         Doc.find({published: true, date: {$gte: pastDate}})
                 .sort({'rating': -1})
                 .limit(parseInt(req.params.num))
-                .populate('author')
+                .populate('author', 'alias')
                 .exec(function (err, result) {
                     if (err)
                         res.send(err);
@@ -49,7 +49,7 @@ module.exports = function (app, Doc) {
     // GET: Get a specific doc
     app.get('/api/docs/:id', function (req, res) {
         Doc.findById(req.params.id)
-                .populate('author')
+                .populate('author', 'alias')
                 .exec(function (err, result) {
                     if (err)
                         res.send(err);
@@ -87,9 +87,6 @@ module.exports = function (app, Doc) {
             }
             if (req.body.ratings) {
                 doc.ratings = req.body.ratings;
-            }
-            if (req.body.comments) {
-                doc.comments = req.body.comments;
             }
             doc.save(function (err, result) {
                 if (err)

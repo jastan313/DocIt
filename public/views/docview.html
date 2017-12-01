@@ -3,17 +3,14 @@
         <button class="directory-btn"
                 type="button"
                 title="Directory options."
-                ng-show="!mainObj.directoryShow"
+                ng-show="!mainCtrl.directoryShow"
                 ng-click="toggleDirectory()"
                 >|DIRECTORY|</button>
-        <div class="directory highlight-disabled" ng-show="mainObj.directoryShow">
+        <div class="directory highlight-disabled" ng-show="mainCtrl.directoryShow">
             <div id="docview-directory-rating-container" class="directory-opt">
-                <div id="docview-rateup-btn" 
-                     title="Upvote Doc."
-                     ng-click="rateUpDoc()">+1</div>
-
-                <div id="docview-ratedown-btn" 
-                     title="Downvote Doc." ng-click="rateDownDown()">-1</div>
+                <div id="docview-rateup-btn" title="Upvote Doc."
+                     ng-click="rateUpDoc()">+1</div><div id="docview-ratedown-btn" 
+                     title="Downvote Doc." ng-click="rateDownDoc()">-1</div>
             </div>
 
             <div class="directory-opt" 

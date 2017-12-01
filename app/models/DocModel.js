@@ -13,17 +13,18 @@ var docSchema = new Schema({
     body: {type: String, default: ''},
     published: {type: Boolean, default: false},
     rating: {type: Number, default: 0},
-    ratings: [{user_id: {type: objectId, ref: 'User'}, rating: {type: Number, default: 0}}],
-    comments: [{type: objectId, ref: 'Comment'}]
+    ratings: [{user_id: {type: objectId, ref: 'User'}, rating: {type: Number, default: 0}}]
 });
 
 docSchema.post('save', function (next) {
-   var totalRating = 0;
-   for(var i = 0; i < this.ratings.length; i++) {
-       totalRating += this.ratings[i].rating;
-   }
-   this.rating = totalRating;
-   this.date = Date.now();
+    var totalRating = 0;
+    for (var i = 0; i < this.ratings.length; i++) {
+        totalRating += this.ratings[i].rating;
+    }
+    this.rating = totalRating;
+    if (!this.published) {
+        this.date = Date.now();
+    }
 });
 
 // Apply the uniqueValidator plugin to docSchema.

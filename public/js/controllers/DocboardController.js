@@ -1,4 +1,14 @@
 angular.module('DocboardCtrl', []).controller('DocboardController', function ($scope, Page, User, Doc) {
+    // Initialize Doc Archive and Doc Feed by GET requests
+    $scope.init = function () {
+        $scope.alias = Page.getUser() ? Page.getUser().alias : "";
+        $scope.docArchive = [];
+        $scope.docFeed = [];
+
+        $scope.getDocArchive();
+        $scope.getDocFeed(10, 7);
+    }
+
     // Displays overview help information
     $scope.help = function () {
         $scope.displayInfoPopup("Help",
@@ -14,16 +24,6 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
         sorted by highest rating. Selecting any Doc in the Doc Feed will direct you to |DOCVIEW|.\n\n\
         |DOCIT|: Using Docit, you will have the option to view, edit, save, export, and publish your \
         Docs.\n\n|DOCVIEW|: Using Docview, you will be able to view and rate published-only Docs.");
-    }
-
-    // Initialize Doc Archive and Doc Feed by GET requests
-    $scope.init = function () {
-        $scope.alias = Page.getUser() ? Page.getUser().alias : "";
-        $scope.docArchive = [];
-        $scope.docFeed = [];
-        
-        $scope.getDocArchive();
-        $scope.getDocFeed(10, 7);
     }
 
     // Populate Doc Archive with user's Docs

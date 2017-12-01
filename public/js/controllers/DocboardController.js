@@ -1,13 +1,32 @@
 angular.module('DocboardCtrl', []).controller('DocboardController', function ($scope, Page, User, Doc) {
-    $scope.alias = Page.getUser() ? Page.getUser().alias : "";
-    $scope.directoryShow = false;
-    $scope.docArchive = [];
-    $scope.docFeed = [];
-
-    $scope.toggleDirectory = function () {
-        $scope.directoryShow = !$scope.directoryShow;
+    // Displays overview help information
+    $scope.help = function () {
+        $scope.displayInfoPopup("Help",
+                "Hi, " + Page.getUser().alias + "! Welcome to |DOCIT|, a document-based web \
+        application where writers are encouraged to brainstorm, write, and publish any type \
+        of creative, text-based work anonymously. You may create new Docs, edit drafts until \n\
+        you are satisfied, and publish their finalized form for public viewing and rating.\n\n\
+        |DOCBOARD|: Here is your main hub where you will find two sections, the Doc Archive \
+        and the Doc Feed.\n\nThe Doc Archive is a list of all your saved Docs as well as the option \
+        to start a new Doc draft. Creating a new Doc or selecting an existing Doc that has yet to \
+        be published will direct you to |DOCIT|. Selecting a published Doc will direct you to \
+        |DOCVIEW|.\n\nThe Doc Feed will show you recently published Docs by you and fellow writers, \
+        sorted by highest rating. Selecting any Doc in the Doc Feed will direct you to |DOCVIEW|.\n\n\
+        |DOCIT|: Using Docit, you will have the option to view, edit, save, export, and publish your \
+        Docs.\n\n|DOCVIEW|: Using Docview, you will be able to view and rate published-only Docs.");
     }
 
+    // Initialize Doc Archive and Doc Feed by GET requests
+    $scope.init = function () {
+        $scope.alias = Page.getUser() ? Page.getUser().alias : "";
+        $scope.docArchive = [];
+        $scope.docFeed = [];
+        
+        $scope.getDocArchive();
+        $scope.getDocFeed(10, 7);
+    }
+
+    // Populate Doc Archive with user's Docs
     $scope.getDocArchive = function () {
         var user = Page.getUser();
         if (user) {
@@ -40,6 +59,8 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
         }
     };
 
+    // Populate Doc Feed with published Docs 
+    // (limited to num Docs within the past d days)
     $scope.getDocFeed = function (num, d) {
         Doc.getByRatingAndTime(num, d).then(function (response) {
             var docs = response.data;
@@ -66,6 +87,7 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
         });
     };
 
+    // Go view the Doc in either Docit or Docview depending on published flag
     $scope.goDoc = function (docID) {
         if (docID == null) {
             Page.setDoc(null);
@@ -80,26 +102,5 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
                 }
             });
         }
-    }
-
-    $scope.help = function () {
-        $scope.displayInfoPopup("Help",
-        "Hi, " + Page.getUser().alias + "! Welcome to |DOCIT|, a document-based web \
-        application where writers are encouraged to brainstorm, write, and publish any type \
-        of creative, text-based work anonymously. You may create new Docs, edit drafts until \n\
-        you are satisfied, and publish their finalized form for public viewing and rating.\n\n\
-        |DOCBOARD|: Here is your main hub where you will find two sections, the Doc Archive \
-        and the Doc Feed.\n\nThe Doc Archive is a list of all your saved Docs as well as the option \
-        to start a new Doc draft. Creating a new Doc or selecting an existing Doc that has yet to \
-        be published will direct you to |DOCIT|. Selecting a published Doc will direct you to \
-        |DOCVIEW|.\n\nThe Doc Feed will show you recently published Docs by you and fellow writers, \
-        sorted by highest rating. Selecting any Doc in the Doc Feed will direct you to |DOCVIEW|.\n\n\
-        |DOCIT|: Using Docit, you will have the option to view, edit, save, export, and publish your \
-        Docs.\n\n|DOCVIEW|: Using Docview, you will be able to view and rate published-only Docs.");
-    }
-
-    $scope.init = function () {
-        $scope.getDocArchive();
-        $scope.getDocFeed(10, 7);
     }
 });

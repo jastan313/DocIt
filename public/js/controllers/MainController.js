@@ -1,7 +1,8 @@
-angular.module('MainCtrl', []).controller('MainController', function ($scope, $location, $window, Page) {
+angular.module('MainCtrl', []).controller('MainController', function ($scope, $location, Page) {
     $scope.mainObj = {};
     $scope.mainObj.toFocus = null;
     $scope.mainObj.isProccessing = false;
+    $scope.mainObj.directoryShow = false;
     $scope.objToString = function (obj, level) {
         for (var key in obj) {
             if (typeof obj[key] === "object") {
@@ -17,22 +18,17 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
     $scope.infoModalBody = "";
     $scope.pageTitle = "";
 
-    // Event handler for info modal popup
-    $scope.checkInfoPopup = function ($event) {
-        var target = $event.currentTarget || $event.srcElement;
-
-        // Close modal window when the backdrop is clicked
-        if (target.classList.contains('modal')) {
-            $scope.infoModalHeader = "";
-            $scope.infoModalBody = "";
-            document.getElementById("info-modal").classList.remove('open');
-            if ($scope.mainObj.toFocus) {
-                document.getElementById($scope.mainObj.toFocus).focus();
-                $scope.mainObj.toFocus = null;
-
+    $scope.init = function () {
+        document.addEventListener('click', function (e) {
+            var target = e.target;
+            if (!target.classList.contains('directory-btn')) {
+                if ($scope.mainObj.directoryShow) {
+                    $scope.toggleDirectory();
+                    $scope.$apply();
+                }
             }
-            $scope.mainObj.isProcessing = false;
-        }
+        });
+        $scope.changePage('login');
     }
 
     // Utility function to change pages
@@ -52,7 +48,26 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
         document.getElementById("info-modal").classList.add('open');
     }
 
-    $scope.init = function () {
-        $scope.changePage('login');
+    // Event handler for info modal popup
+    $scope.checkInfoPopup = function ($event) {
+        var target = $event.currentTarget || $event.srcElement;
+
+        // Close modal window when the backdrop is clicked
+        if (target.classList.contains('modal')) {
+            $scope.infoModalHeader = "";
+            $scope.infoModalBody = "";
+            document.getElementById("info-modal").classList.remove('open');
+            if ($scope.mainObj.toFocus) {
+                document.getElementById($scope.mainObj.toFocus).focus();
+                $scope.mainObj.toFocus = null;
+
+            }
+            $scope.mainObj.isProcessing = false;
+        }
+    }
+
+    // Toggles directory options shown or not
+    $scope.toggleDirectory = function () {
+        $scope.mainObj.directoryShow = !$scope.mainObj.directoryShow;
     }
 });

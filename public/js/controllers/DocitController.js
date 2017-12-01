@@ -1,20 +1,20 @@
 angular.module('DocitCtrl', []).controller('DocitController', function ($scope, Page, User, Doc) {
-    $scope.showAuthorBtns = true;
-    $scope.directoryShow = false;
-
-    $scope.copyText = "";
     $scope.MIN_BODY_LENGTH = 50;
 
-    $scope.docAlias = Page.getUser().alias;
-    var tempDate = new Date();
-    $scope.docDate = tempDate.getMonth() +
-            "/" + tempDate.getDate() +
-            "/" + tempDate.getFullYear();
-    $scope.docTitle = "Untitled";
-    $scope.docBody = "";
+    $scope.init = function () {
+        $scope.mainObj.directoryShow = false;
+        $scope.showAuthorBtns = true;
+        $scope.copyText = "";
 
-    $scope.toggleDirectory = function () {
-        $scope.directoryShow = !$scope.directoryShow;
+        $scope.docAlias = Page.getUser().alias;
+        var tempDate = new Date();
+        $scope.docDate = tempDate.getMonth() +
+                "/" + tempDate.getDate() +
+                "/" + tempDate.getFullYear();
+        $scope.docTitle = "Untitled";
+        $scope.docBody = "";
+        
+        $scope.displayDocit();
     }
 
     $scope.displayDocit = function () {

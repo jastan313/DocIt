@@ -1,12 +1,12 @@
-<div id="doc-container" ng-controller="DocitController" ng-init="displayDocit()">
+<div id="doc-container" ng-controller="DocitController" ng-init="init()">
     <div id="doc-content">
         <button class="directory-btn"
                 type="button"
                 title="Directory options."
-                ng-show="!directoryShow"
+                ng-show="!mainObj.directoryShow"
                 ng-click="toggleDirectory()">|DIRECTORY|</button>
         
-        <div class="directory highlight-disabled" ng-show="directoryShow">
+        <div class="directory highlight-disabled" ng-show="mainObj.directoryShow">
             
             <div class="directory-opt" 
                  title="Copy Doc's alias, date, title and body to clipboard."

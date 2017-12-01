@@ -1,12 +1,12 @@
-<div id="doc-container" ng-controller="DocviewController" ng-init="displayDocit()">
+<div id="doc-container" ng-controller="DocviewController" ng-init="init()">
     <div id="doc-content">
         <button class="directory-btn"
                 type="button"
                 title="Directory options."
-                ng-show="!directoryShow"
+                ng-show="!mainObj.directoryShow"
                 ng-click="toggleDirectory()"
                 >|DIRECTORY|</button>
-        <div class="directory highlight-disabled" ng-show="directoryShow">
+        <div class="directory highlight-disabled" ng-show="mainObj.directoryShow">
             <div id="docview-directory-rating-container" class="directory-opt">
                 <div id="docview-rateup-btn" 
                      title="Upvote Doc."

@@ -1,26 +1,13 @@
 angular.module('DocviewCtrl', []).controller('DocviewController', function ($scope, Page, User, Doc) {
-    $scope.showAuthorBtns = false;
-    $scope.directoryShow = false;
-    $scope.docBody = "Disgusting blaze deep within the crevices of his skin,\n\
-            Rawness, troubled underside turning outside,\n\
-            Amidst the memories of mistakes and a bruised chin,\n\
-            Gaze of a familiar countenance, once, summertime butterfly.\n\n\
-            Up and down, grave history to be shoveled and shoved,\n\
-            Hands on a glass figurine, mouth on fire itself,\n\
-            Portraits pouring in stench - how beloved,\n\
-            Yet in a quick crimson, no hesitation, past dispelled.\n\n\
-            Dancing feet s on the hilltop, tumbleweeds in the gust,\n\
-            Shortage of reach, of life, image of weeping dust,\n\
-            Free in the wind, lost in the atmosphere,\n\
-            Thick blankets fall, suppression of his anger and tears.\n\n\
-            Through the wild of no doubts, blood races into oblivion.\n\
-            Fused whole, the dust disappears in what he believes in."
 
-    $scope.docRating = 0;
-    $scope.copyText = "";
 
-    $scope.toggleDirectory = function () {
-        $scope.directoryShow = !$scope.directoryShow;
+    $scope.init = function () {
+        $scope.showAuthorBtns = false;
+        $scope.copyText = "";
+        
+        $scope.docRating = 0;
+        
+        $scope.displayDocview();
     }
 
     $scope.displayDocview = function () {
@@ -122,7 +109,7 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
         $scope.toggleDirectory();
         $scope.displayInfoPopup("Doc Copied", $scope.docTitle + " by " + $scope.docAlias + ", " + $scope.docDate);
     }
-    
+
     $scope.exportDoc = function () {
         // Client-side file saver with custom filenames
         var saveAs = saveAs || function (e) {
@@ -258,7 +245,7 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
         if (Page.getDoc().author === Page.getUser()._id) {
             Doc.delete(Page.getDoc()._id).then(function (response) {
                 $scope.displayInfoPopup("Doc Deleted",
-                "\""+ Page.getDoc().title + "\" by " +
+                        "\"" + Page.getDoc().title + "\" by " +
                         Page.getDoc().alias + ", " + Page.getDoc().date);
                 $scope.changePage('docboard');
             });

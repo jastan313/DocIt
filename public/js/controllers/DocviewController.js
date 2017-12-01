@@ -27,11 +27,11 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
         // Get the Doc we are looking at
         var doc = Page.getDoc();
         if (doc && doc.published) {
+            doc = Page.setDoc(Doc.formatDate(doc));
+            
             // Data bind corresponding Doc data
             $scope.docAlias = doc.user.alias;
-            $scope.docDate = doc.date.getMonth() +
-                    "/" + doc.date.getDate() +
-                    "/" + doc.date.getFullYear();
+            $scope.docDate = doc.date;
             $scope.docTitle = doc.title;
             $scope.docBody = doc.body;
             var user = Page.getUser();
@@ -80,13 +80,11 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
             newRatings.push({'user_id': Page.getUser()._id, 'rating': 1});
         }
         var docData = {'ratings': newRatings};
-        Doc.update(Page.getDoc()._id, docData).then(function (doc) {
-            Page.setDoc(doc);
+        Doc.update(Page.getDoc()._id, docData).then(function (response) {
+            Page.setDoc(response.data);
             $scope.docRating = 1;
             $scope.displayInfoPopup("Doc Rated Up!");
             $scope.updateDocRatingButtons();
-        }, function (err) {
-            console.log("Docview: Rate Up Error: " + err);
         });
 
     }
@@ -105,13 +103,11 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
             newRatings.push({'user_id': Page.getUser()._id, 'rating': -1});
         }
         var docData = {'ratings': newRatings};
-        Doc.update(Page.getDoc()._id, docData).then(function (doc) {
-            Page.setDoc(doc);
+        Doc.update(Page.getDoc()._id, docData).then(function (response) {
+            Page.setDoc(response.data);
             $scope.docRating = -1;
             $scope.displayInfoPopup("Doc Rated Down!");
             $scope.updateDocRatingButtons();
-        }, function (err) {
-            console.log("Docview: Rate Down Error: " + err);
         });
 
     }
@@ -262,13 +258,11 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
 
     $scope.deleteDoc = function () {
         if (Page.getDoc().author === Page.getUser()._id) {
-            Doc.delete(Page.getDoc()._id).then(function (doc) {
-                $scope.displayInfoPopup("Doc Deleted:\n\n" + Page.getDoc().title + "\nby: " +
+            Doc.delete(Page.getDoc()._id).then(function (response) {
+                $scope.displayInfoPopup("Doc Deleted",
+                "\""+ Page.getDoc().title + "\" by " +
                         Page.getDoc().alias + ", " + Page.getDoc().date);
                 $scope.changePage('docboard');
-                document.getElementById("info-modal").classList.add('open');
-            }, function (err) {
-                console.log("Docit: Doc Deletion Error: " + err);
             });
         }
     }

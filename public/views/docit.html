@@ -1,47 +1,43 @@
 <div id="doc-container" ng-controller="DocitController" ng-init="displayDocit()">
     <div id="doc-content">
-        <button id="docit-directory-btn" class="directory-btn"
+        <button class="directory-btn"
                 type="button"
                 title="Directory options."
                 ng-show="!directoryShow"
                 ng-click="toggleDirectory()">|DIRECTORY|</button>
-        <div id="docit-directory" class="directory highlight-disabled" ng-show="directoryShow">
-            <div id="docit-directory-copy-btn" 
-                 class="directory-opt" 
+        
+        <div class="directory highlight-disabled" ng-show="directoryShow">
+            
+            <div class="directory-opt" 
                  title="Copy Doc's alias, date, title and body to clipboard."
                  ng-click="copyDoc()">|COPY|</div>
             <textarea id="docit-copytext" class="copytext"></textarea>
             
-            <div id="docit-directory-save-btn" 
-                 class="directory-opt" title="Save Doc's current progress."
+            <div class="directory-opt" title="Save Doc's current progress."
                  ng-show="showAuthorBtns"
                  ng-click="saveDoc()">|SAVE|</div>
             
-            <div id="docit-directory-publish-btn" 
-                 class="directory-opt" 
+            <div class="directory-opt" 
                  title="Finalize and publish Doc to public Doc Feed."
                  ng-show="showAuthorBtns"
                  ng-click="publishDoc()">|PUBLISH|</div>
             
-            <div id="docit-directory-export-btn" 
-                 class="directory-opt" 
+            <div class="directory-opt" 
                  title="Export Doc as local .txt file."
                  ng-click="exportDoc()">|EXPORT|</div>
             
-            <div id="docit-directory-delete-btn" 
-                 class="directory-opt" 
+            <div class="directory-opt" 
                  title="Delete Doc."
                  ng-click="deleteDoc()">|DELETE|</div>
             
-            <div id="docit-directory-todocboard-btn" 
-                 class="directory-opt" 
+            <div class="directory-opt" 
                  title="Go to Docboard."
                  ng-click="changePage('docboard')">|DOCBOARD|</div>
             
-            <div id="docit-directory-logout-btn" 
-                 class="directory-opt" 
+            <div class="directory-opt" 
                  title="Log out current Alias."
                  ng-click="changePage('login')">|LOGOUT|</div>
+            
         </div>
         
         <div id="docit" class="doc">
@@ -59,5 +55,6 @@
                       placeholder="Get those knuckles cracking and start typing..." 
                       autofocus ng-model="docBody"></textarea>
         </div>
+        
     </div>
 </div>

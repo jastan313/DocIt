@@ -1,22 +1,10 @@
 angular.module('DocboardCtrl', []).controller('DocboardController', function ($scope, Page, User, Doc) {
     $scope.alias = Page.getUser() ? Page.getUser().alias : "";
-
-    $scope.generateDocs = function (num, published) {
-        var arr = [];
-        for (var i = 0; i < num; i++) {
-            var obj = {};
-            obj.title = "Title " + i;
-            obj.alias = "Alias " + i;
-            obj.date = i + "/" + i + "/" + i
-            obj.published = published;
-            obj.rating = Math.random() * 100 < 50 ? -Math.floor(Math.random() * 10) : Math.floor(Math.random() * 10);
-            arr.push(obj);
-        }
-        return arr;
+    $scope.directoryShow = false;
+    
+    $scope.toggleDirectory = function () {
+        $scope.directoryShow = !$scope.directoryShow;
     }
-
-    //$scope.docArchive = $scope.generateDocs(10, false);
-    //$scope.docFeed = $scope.generateDocs(10, true);
 
     $scope.getDocs = function () {
         var user = Page.getUser();
@@ -45,7 +33,8 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
     };
 
     $scope.getDocFeed = function (num, d) {
-        Doc.getByRatingAndTime(num, d).then(function (docs) {
+        Doc.getByRatingAndTime(num, d).then(function (response) {
+            var docs = response.data;
             for (var i = 0; i < docs.length; i++) {
                 var docID = docs[i]._id;
                 var docTitle = docs[i].title;

@@ -21,6 +21,7 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
         // Get the Doc we are looking at
         var doc = Page.getDoc();
         if (doc) {
+            doc = Page.setDoc(Doc.formatDate(doc));
             // Data bind corresponding Doc data
             $scope.docDate = doc.date;
             $scope.docTitle = doc.title;
@@ -57,7 +58,6 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                 'body': $scope.docBody
             };
             Doc.update(d._id, docData).then(function (response) {
-                var doc = Doc.formatDate(response.data);
                 Page.setDoc(doc);
                 $scope.displayInfoPopup("Doc Updated",
                         "\"" + Page.getDoc().title + "\" by " +
@@ -73,7 +73,6 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                 'body': $scope.docBody
             };
             Doc.create(docData).then(function (response) {
-                var doc = Doc.formatDate(response.data);
                 Page.setDoc(doc);
                 $scope.displayInfoPopup("Doc Created",
                         "\"" + Page.getDoc().title + "\" by " +
@@ -99,7 +98,6 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                     'published': true
                 };
                 Doc.update(d._id, docData).then(function (response) {
-                    var doc = Doc.formatDate(response.data);
                     Page.setDoc(doc);
                     $scope.displayInfoPopup("Doc Updated And Published" +
                             "\"" + Page.getDoc().title + "\" by " +
@@ -116,7 +114,6 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                     'published': true
                 };
                 Doc.create(docData).then(function (response) {
-                    var doc = Doc.formatDate(response.data);
                     Page.setDoc(doc);
                     $scope.displayInfoPopup("Doc Created And Published" +
                             "\"" + Page.getDoc().title + "\" by " +

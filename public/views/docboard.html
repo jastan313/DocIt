@@ -1,42 +1,58 @@
 <div id="doc-container" controller="DocboardController" ng-init="init()">
     <div id="doc-content">
-        <button id="docboard-logout-btn" class="directory-btn" 
-                type="button" title="Log out current alias." 
-                ng-click="help()">|HELP|</button>
-        <button id="docboard-logout-btn" class="directory-btn" 
-                type="button" title="Log out current alias." 
-                ng-click="changePage('login')">|LOGOUT|</button>
+        <button class="directory-btn"
+                type="button"
+                title="Directory options."
+                ng-show="!directoryShow"
+                ng-click="toggleDirectory()">|DIRECTORY|</button>
+        
+        <div class="directory highlight-disabled" ng-show="directoryShow">
+            
+            <div class="directory-btn" 
+                 title="Log out current alias." 
+                 ng-click="help()">|HELP|</div>
+            
+            <div class="directory-btn" 
+                 title="Log out current alias." 
+                 ng-click="changePage('login')">|LOGOUT|</div>
+            
+        </div>
+        
         <div id="docboard">
+            
             <div id="docboard-header">
                 <h1>|DOCBOARD|</h1>
-                <h3 id="docboard-alias">{{ alias }}</h3>
+                <h3 id="docboard-alias">>> {{ alias}}</h3>
             </div>
+            
             <div id="docboard-docs-container">
                 <h2>ARCHIVE</h2>
                 <div id="docboard-docs">
                     <div id="docboard-createdoc" class="docboard-mydoc highlight-disabled" title="Create a new document." ng-click="goDoc(null)">+Create New Doc+</div>
                     <div class="docboard-mydoc" ng-repeat="doc in docArchive" ng-click="goDoc(doc._id)">
                         <div>
-                            <div class="docboard-doc-title">{{ doc.title }}</div>
-                            <div class="docboard-doc-date">{{ doc.date }}</div>
-                            <div class="docboard-doc-rating">{{ doc.rating }}</div>
+                            <div class="docboard-doc-title">{{ doc.title}}</div>
+                            <div class="docboard-doc-date">{{ doc.date}}</div>
+                            <div class="docboard-doc-rating">{{ doc.rating}}</div>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <div id="docboard-feed-container">
                 <h2>DOC FEED</h2>
                 <div id="docboard-feed">
                     <div class="docboard-feeddoc" ng-repeat="doc in docFeed" ng-click="goDoc(doc._id)">
                         <div>
-                            <div class="docboard-doc-title">{{ doc.title }}</div>
-                            <div class="docboard-doc-alias">|{{ doc.alias }}|</div>
-                            <div class="docboard-doc-date">{{ doc.date }}</div>
-                            <div class="docboard-doc-rating">{{ doc.rating }}</div>
+                            <div class="docboard-doc-title">{{ doc.title}}</div>
+                            <div class="docboard-doc-alias">|{{ doc.alias}}|</div>
+                            <div class="docboard-doc-date">{{ doc.date}}</div>
+                            <div class="docboard-doc-rating">{{ doc.rating}}</div>
                         </div>
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </div>

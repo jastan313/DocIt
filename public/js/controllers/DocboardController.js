@@ -52,7 +52,6 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
                             }
                     );
                 }
-                $scope.objToString($scope.docArchive);
             });
         } else {
             Page.changePage("login");
@@ -83,7 +82,6 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
                         }
                 );
             }
-            $scope.objToString($scope.docFeed);
         });
     };
 

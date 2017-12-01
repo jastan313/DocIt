@@ -1,12 +1,10 @@
 angular.module('DocviewCtrl', []).controller('DocviewController', function ($scope, Page, User, Doc) {
-
-
     $scope.init = function () {
         $scope.showAuthorBtns = false;
         $scope.copyText = "";
-        
+
         $scope.docRating = 0;
-        
+
         $scope.displayDocview();
     }
 
@@ -15,14 +13,14 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
         var doc = Page.getDoc();
         if (doc && doc.published) {
             // Data bind corresponding Doc data
-            $scope.docAlias = doc.user.alias;
+            $scope.docAlias = doc.author.alias;
             $scope.docDate = doc.date;
             $scope.docTitle = doc.title;
             $scope.docBody = doc.body;
             var user = Page.getUser();
             if (user) {
                 // Add Edit button if user is the author of this Doc
-                $scope.showAuthorBtns = (doc.author === user._id);
+                $scope.showAuthorBtns = (doc.author._id === user._id);
 
                 // Check if user has rated this Doc
                 for (var i = 0; i < doc.ratings.length; i++) {
@@ -40,12 +38,12 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
     }
 
     $scope.updateDocRatingButtons = function () {
-        if (docRating == null || docRating === 0) {
+        if ($scope.docRating == null || $scope.docRating === 0) {
             // Don't add any button styling since user has not rated Doc yet
-        } else if (docRating > 0) {
+        } else if ($scope.docRating > 0) {
             var rateUpBtn = angular.element('#docview-rateup-btn');
             rateUpBtn.addClass('ratedup');
-        } else if (docRating < 0) {
+        } else if ($scope.docRating < 0) {
             var rateDownBtn = angular.element('#docview-rateup-btn');
             rateUpBtn.addClass('rateddown');
         }
@@ -236,8 +234,7 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
                 + ", " + $scope.docDate + "\n" + $scope.docBody;
         var blob = new Blob([data.replace(/([^\r])\n/g, "$1\r\n")], {type: "text/plain;charset=utf-8"});
         saveAs(blob, filename);
-        $scope.displayInfoPopup("Doc Exported",
-                "File: " + filename + "\n\nNote: Exporting does not save the Doc.");
+        $scope.displayInfoPopup("Doc Exported", "File: " + filename);
         $scope.toggleDirectory();
     }
 

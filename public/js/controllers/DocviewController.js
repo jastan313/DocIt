@@ -263,7 +263,6 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
     $scope.deleteDoc = function () {
         if (Page.getDoc().author === Page.getUser()._id) {
             Doc.delete(Page.getDoc()._id).then(function (doc) {
-                User.updateByDoc(Page.getUser()._id, Page.getDoc()._id);
                 $scope.displayInfoPopup("Doc Deleted:\n\n" + Page.getDoc().title + "\nby: " +
                         Page.getDoc().alias + ", " + Page.getDoc().date);
                 $scope.changePage('docboard');

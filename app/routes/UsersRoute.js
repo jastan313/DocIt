@@ -52,8 +52,6 @@ module.exports = function (app, User) {
                 "_id": result._id,
                 "alias": result.alias,
                 "email": result.email,
-                "documents": result.documents,
-                "comments": result.comments,
                 "login_attempts": result.login_attempts
             }
             res.json(user); // Return specific user
@@ -88,8 +86,6 @@ module.exports = function (app, User) {
                 userData._id = result._id;
                 userData.alias = result.alias;
                 userData.email = result.email;
-                userData.documents = result.documents;
-                userData.comments = result.comments;
                 res.json(userData); // Return created user
             }
 
@@ -102,12 +98,6 @@ module.exports = function (app, User) {
             if (req.body.login_attempts) {
                 user.login_attempts = req.body.login_attempts;
             }
-            if (req.body.docs) {
-                user.documents = req.body.docs;
-            }
-            if (req.body.comments) {
-                user.comments = req.body.comments;
-            }
             user.save(function (err, result) {
                 if (err)
                     res.send(err);
@@ -115,18 +105,11 @@ module.exports = function (app, User) {
                     "_id": result._id,
                     "alias": result.alias,
                     "email": result.email,
-                    "documents": result.documents,
-                    "comments": result.comments,
                     "login_attempts": result.login_attempts
                 }
                 res.json(user); // Return updated user
             });
         });
-    });
-
-    // PUT: Update a user by removing Doc reference
-    app.put('/api/users/:uid/docs/:did', function (req, res) {
-        User.update({_id: req.params.uid}, {$pull: {documents: req.params.did}});
     });
 
     // DELETE: Delete a user
@@ -138,8 +121,6 @@ module.exports = function (app, User) {
                 "_id": result._id,
                 "alias": result.alias,
                 "email": result.email,
-                "documents": result.documents,
-                "comments": result.comments,
                 "login_attempts": result.login_attempts
             }
             res.json(user); // Return deleted user

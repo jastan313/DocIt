@@ -1,6 +1,7 @@
 angular.module('MainCtrl', []).controller('MainController', function ($scope, $location, $window, Page) {
     $scope.mainObj = {};
     $scope.mainObj.toFocus = null;
+    $scope.mainObj.isProccessing = false;
     $scope.objToString = function (obj, level) {
         for (var key in obj) {
             if (typeof obj[key] === "object") {
@@ -28,7 +29,9 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
             if ($scope.mainObj.toFocus) {
                 document.getElementById($scope.mainObj.toFocus).focus();
                 $scope.mainObj.toFocus = null;
+
             }
+            $scope.mainObj.isProcessing = false;
         }
     }
 
@@ -37,6 +40,8 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
         if (Page.setPage(page)) {
             $scope.pageTitle = Page.getTitle();
             $location.path(Page.getPage());
+            $scope.mainObj.toFocus = null;
+            $scope.mainObj.isProcessing = false;
         }
     }
 

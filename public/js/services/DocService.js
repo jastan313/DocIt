@@ -38,6 +38,12 @@ angular.module('DocService', []).factory('Doc', ['$http', function ($http) {
             // Call to delete a doc
             delete: function (id) {
                 return $http.delete('/api/docs/' + id);
+            },
+            
+            formatDate: function(doc) {
+                var date = new Date(doc.date);
+                doc.date = date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear();
+                return doc;
             }
         }
     }]);

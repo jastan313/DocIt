@@ -11,8 +11,6 @@ var userSchema = new Schema({
     email: {type: String, required: true, unique: true},
     password: {type: String, required: true},
     login_attempts: {type: Number, default: 0, min: 0, max: 5},
-    documents: [{type: mongoose.Schema.Types.ObjectId, ref: 'Doc'}],
-    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 });
 // Apply the uniqueValidator plugin to userSchema.
 userSchema.plugin(uniqueValidator);

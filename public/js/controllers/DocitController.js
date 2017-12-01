@@ -1,7 +1,6 @@
 angular.module('DocitCtrl', []).controller('DocitController', function ($scope, Page, User, Doc) {
     $scope.showAuthorBtns = true;
     $scope.directoryShow = false;
-    $scope.isProcessing = false;
 
     $scope.copyText = "";
     $scope.MIN_BODY_LENGTH = 50;
@@ -23,14 +22,14 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
         var doc = Page.getDoc();
         if (doc) {
             // Data bind corresponding Doc data
-            $scope.docDate = doc.date.getMonth() +
-                    "/" + doc.date.getDate() +
-                    "/" + doc.date.getFullYear();
+            $scope.docDate = doc.date;
             $scope.docTitle = doc.title;
             $scope.docBody = doc.body;
 
             // Show Copy and Save buttons if user has not published Doc yet
             $scope.showAuthorBtns = !doc.published;
+
+            $scope.objToString(doc, 0);
         }
     }
 
@@ -49,48 +48,47 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
     }
 
     $scope.saveDoc = function () {
-        if (!$scope.isProcessing) {
-            $scope.isProcessing = true;
-            var d = Page.getDoc();
-            $scope.docTitle = $scope.docTitle.length > 0 ? $scope.docTitle : "Untitled";
-            // If user is updating an existing Doc
-            if (d) {
-                var docData = {
-                    'title': $scope.docTitle,
-                    'body': $scope.docBody
-                };
-                Doc.update(d._id, docData).then(function (doc) {
-                    Page.setDoc(doc);
-                    $scope.displayInfoPopup("Doc Updated:\n\n" + Page.getDoc().title + "\nby: " +
-                            Page.getDoc().alias + ", " + Page.getDoc().date);
-                    $scope.displayDocit();
-                    $scope.isProcessing = false;
-                });
-            }
-            // If user is creating a new Doc
-            else {
-                var docData = {
-                    'title': $scope.docTitle,
-                    'author': Page.getUser().alias,
-                    'body': $scope.docBody
-                };
-                Doc.create(docData).then(function (response) {
-                    Page.setDoc(response.data);
-                    $scope.displayInfoPopup("Doc Created:\n\n" + Page.getDoc().title + "\nby: " +
-                            Page.getDoc().alias + ", " + Page.getDoc().date);
-                    $scope.displayDocit();
-                    $scope.isProcessing = false;
-                });
-            }
+        var d = Page.getDoc();
+        $scope.docTitle = $scope.docTitle.length > 0 ? $scope.docTitle : "Untitled";
+        // If user is updating an existing Doc
+        if (d) {
+            var docData = {
+                'title': $scope.docTitle,
+                'body': $scope.docBody
+            };
+            Doc.update(d._id, docData).then(function (response) {
+                var doc = Doc.formatDate(response.data);
+                Page.setDoc(doc);
+                $scope.displayInfoPopup("Doc Updated",
+                        "\"" + Page.getDoc().title + "\" by " +
+                        Page.getUser().alias + ", " + Page.getDoc().date);
+                $scope.displayDocit();
+            });
+        }
+        // If user is creating a new Doc
+        else {
+            var docData = {
+                'title': $scope.docTitle,
+                'author': Page.getUser().alias,
+                'body': $scope.docBody
+            };
+            Doc.create(docData).then(function (response) {
+                var doc = Doc.formatDate(response.data);
+                Page.setDoc(doc);
+                $scope.displayInfoPopup("Doc Created",
+                        "\"" + Page.getDoc().title + "\" by " +
+                        Page.getUser().alias + ", " + Page.getDoc().date);
+                $scope.displayDocit();
+            });
         }
         $scope.toggleDirectory();
     }
 
     $scope.publishDoc = function () {
         if ($scope.docBody.length < $scope.MIN_BODY_LENGTH) {
-            $scope.infoModalText = "Doc's body requires a minimum of " + $scope.MIN_BODY_LENGTH +
-                    "characters. Keep writing! You need at least " + $scope.docBody.length + "more characters.";
-            document.getElementById("info-modal").classList.add('open');
+            $scope.displayInfoPopup("Doc Minimum Character Length",
+                    "Doc's body requires a minimum of " + $scope.MIN_BODY_LENGTH +
+                    "characters. Keep writing! You need at least " + $scope.docBody.length + "more characters.");
         } else {
             var d = Page.getDoc();
             // If user is updating an existing Doc
@@ -100,10 +98,11 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                     'body': $scope.docBody,
                     'published': true
                 };
-                Doc.update(d._id, docData).then(function (doc) {
+                Doc.update(d._id, docData).then(function (response) {
+                    var doc = Doc.formatDate(response.data);
                     Page.setDoc(doc);
-                    $scope.displayInfoPopup("Doc Updated And Published:\n\n" +
-                            Page.getDoc().title + "\nby: " +
+                    $scope.displayInfoPopup("Doc Updated And Published" +
+                            "\"" + Page.getDoc().title + "\" by " +
                             Page.getDoc().alias + ", " + Page.getDoc().date);
                     $scope.changePage('docview');
                 });
@@ -116,10 +115,11 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                     'body': $scope.docBody,
                     'published': true
                 };
-                Doc.create(docData).then(function (doc) {
+                Doc.create(docData).then(function (response) {
+                    var doc = Doc.formatDate(response.data);
                     Page.setDoc(doc);
-                    $scope.displayInfoPopup("Doc Created And Published:\n\n" +
-                            Page.getDoc().title + "\nby: " +
+                    $scope.displayInfoPopup("Doc Created And Published" +
+                            "\"" + Page.getDoc().title + "\" by " +
                             Page.getDoc().alias + ", " + Page.getDoc().date);
                     $scope.changePage('docview');
                 });
@@ -273,13 +273,4 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
             $scope.changePage('docboard');
         }
     }
-
-    // Utility key binding to track Ctrl + S pressed mapped to saveDoc().
-    document.addEventListener("keydown", function (e) {
-        if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
-            e.preventDefault();
-            $scope.saveDoc();
-            $scope.directoryShow = false;
-        }
-    }, false);
 });

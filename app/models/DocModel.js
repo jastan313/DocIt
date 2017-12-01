@@ -8,7 +8,7 @@ var objectId = Schema.ObjectId;
 var docSchema = new Schema({
     _id: {type: objectId, auto: true},
     author: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-    date: {type: Date, default: Date.now},
+    date: {type: Date, default: new Date()},
     title: {type: String, default: 'Untitled'},
     body: {type: String, default: ''},
     published: {type: Boolean, default: false},
@@ -19,16 +19,7 @@ var docSchema = new Schema({
 
 docSchema.post('save', function (next) {
    var totalRating = 0;
-   for(var i = 0; i < ratings.length; i++) {
-       totalRating += this.ratings[i].rating;
-   }
-   this.rating = totalRating;
-   this.date = new Date.now();
-});
-
-docSchema.post('update', function (next) {
-   var totalRating = 0;
-   for(var i = 0; i < ratings.length; i++) {
+   for(var i = 0; i < this.ratings.length; i++) {
        totalRating += this.ratings[i].rating;
    }
    this.rating = totalRating;

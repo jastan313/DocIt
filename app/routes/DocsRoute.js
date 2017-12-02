@@ -72,7 +72,12 @@ module.exports = function (app, Doc) {
         doc.save(function (err, result) {
             if (err)
                 res.send(err);
-            res.json(result); // Return created doc
+            Doc.populate(result, {path: "author", select: 'alias'}, function (err, result) {
+                if (err)
+                    res.send(err);
+                console.log(result);
+                res.json(result); // Return the created doc
+            })
         });
     });
 
@@ -94,7 +99,11 @@ module.exports = function (app, Doc) {
             doc.save(function (err, result) {
                 if (err)
                     res.send(err);
-                res.json(result); // Return updated doc
+                Doc.populate(result, {path: "author", select: 'alias'}, function (err, result) {
+                    if (err)
+                        res.send(err);
+                    res.json(result); // Return the updated doc
+                })
             });
         });
     });

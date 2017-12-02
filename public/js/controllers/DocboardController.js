@@ -33,7 +33,7 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
             Doc.getByUserID(user._id).then(function (response) {
                 var docs = response.data;
                 for (var i = 0; i < docs.length; i++) {
-                    var doc = Doc.formatDoc(docs[i]);
+                    var doc = docs[i];
                     var docRating = "Not Published";
                     if (doc.published) {
                         if (doc.rating === 0) {
@@ -46,9 +46,8 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
                     }
                     $scope.docArchive.push(
                             {_id: doc._id,
-                                title: doc.title.length > 25 ?
-                                        doc.title.substring(0, 25) + "..." : doc.title,
-                                date: doc.date,
+                                title: Doc.formatTitle(doc.title),
+                                date: Doc.formatDate(doc.date),
                                 rating: docRating
                             }
                     );
@@ -65,7 +64,7 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
         Doc.getByRatingAndTime(num, d).then(function (response) {
             var docs = response.data;
             for (var i = 0; i < docs.length; i++) {
-                var doc = Doc.formatDoc(docs[i]);
+                var doc = docs[i];
                 var docRating = docs[i].rating;
                 if (docRating === 0) {
                     docRating = "0 Rating";
@@ -76,10 +75,9 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
                 }
                 $scope.docFeed.push(
                         {_id: doc._id,
-                            title: doc.title.length > 25 ?
-                                    doc.title.substring(0, 25) + "..." : doc.title,
+                            title: Doc.formatTitle(doc.title),
                             alias: doc.author.alias,
-                            date: doc.date,
+                            date: Doc.formatDate(doc.date),
                             rating: docRating
                         }
                 );

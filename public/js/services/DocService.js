@@ -1,5 +1,6 @@
 angular.module('DocService', []).factory('Doc', ['$http', function ($http) {
         return {
+
             // Call to get all docs
             get: function () {
                 return $http.get('/api/docs');
@@ -40,12 +41,23 @@ angular.module('DocService', []).factory('Doc', ['$http', function ($http) {
                 return $http.delete('/api/docs/' + id);
             },
 
-            formatDoc: function (doc) {
-                if (doc) {
-                    var date = new Date(doc.date);
-                    doc.date = date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear();
+            formatTitle: function (title) {
+                var TITLE_MAX_SHOW_LEN = 100;
+                if (title.length > 0) {
+                    return title.length > TITLE_MAX_SHOW_LEN ?
+                            title.substring(0, TITLE_MAX_SHOW_LEN) + "..." : title;
+                } else {
+                    return 'Untitled';
                 }
-                return doc;
+            },
+
+            formatDate: function (d) {
+                var date = new Date(d);
+                return date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
+            },
+
+            createHeading(title, alias, date) {
+                return "\"" + title + "\" by " + alias + ", " + date;
             }
         }
     }]);

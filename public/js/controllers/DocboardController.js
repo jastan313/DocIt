@@ -41,12 +41,13 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
                         } else if (doc.rating > 0) {
                             docRating = "+" + doc.rating + " Rating";
                         } else {
-                            docRating = "-" + doc.rating + " Rating";
+                            docRating = doc.rating + " Rating";
                         }
                     }
                     $scope.docArchive.push(
                             {_id: doc._id,
-                                title: doc.title,
+                                title: doc.title.length > 25 ?
+                                        doc.title.substring(0, 25) + "..." : doc.title,
                                 date: doc.date,
                                 rating: docRating
                             }
@@ -71,11 +72,12 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
                 } else if (docRating > 0) {
                     docRating = "+" + docRating + " Rating";
                 } else {
-                    docRating = "-" + docRating + " Rating";
+                    docRating = docRating + " Rating";
                 }
                 $scope.docFeed.push(
                         {_id: doc._id,
-                            title: doc.title,
+                            title: doc.title.length > 25 ?
+                                    doc.title.substring(0, 25) + "..." : doc.title,
                             alias: doc.author.alias,
                             date: doc.date,
                             rating: docRating

@@ -50,18 +50,13 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
         } else if ($scope.docRating < 0) {
             rateDownBtn.classList.add('rateddown');
         }
-        console.log('---------------');
-        console.log("rating: " + $scope.docRating);
-        $scope.objToString(Page.getDoc(), 0);
     }
 
     $scope.rateUpDoc = function () {
         if ($scope.docRating !== 1 && !$scope.mainCtrl.isProcessing) {
-            console.log('rated up');
             $scope.mainCtrl.isProcessing = true;
             var newRatings = Page.getDoc().ratings;
             if ($scope.docRating === -1) {
-                console.log('changing rating from -1 to 1');
                 var userID = Page.getUser()._id;
                 for (var i = 0; i < newRatings.length; i++) {
                     if (newRatings[i].user_id === userID) {
@@ -70,17 +65,24 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
                     }
                 }
             } else {
-                console.log('adding rating 1');
                 newRatings.push({'user_id': Page.getUser()._id, 'rating': 1});
             }
             var docData = {'ratings': newRatings};
             Doc.update(Page.getDoc()._id, docData).then(function (response) {
-                Page.setDoc(response.data);
-                $scope.docRating = 1;
-                $scope.displayInfoPopup("Doc Rated Up",
-                        "\"" + $scope.docTitle + "\" by " +
-                        $scope.docAlias + ", " + $scope.docDate);
-                $scope.updateDocRatingButtons();
+                if (response.data) {
+                    Page.setDoc(response.data);
+                    $scope.docRating = 1;
+                    $scope.displayInfoPopup("Doc Rated Up",
+                            "\"" + $scope.docTitle.length > 25 ?
+                            $scope.docTitle.substring(0, 25) + "..." :
+                            $scope.docTitle + "\" by " +
+                            $scope.docAlias + ", " + $scope.docDate);
+                    $scope.updateDocRatingButtons();
+                } else {
+                    $scope.displayInfoPopup("Doc Missing",
+                            "Oops, it looks the Doc you were viewing does not exist anymore.");
+                    $scope.changePage('docboard');
+                }
             });
         }
     }
@@ -102,12 +104,20 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
             }
             var docData = {'ratings': newRatings};
             Doc.update(Page.getDoc()._id, docData).then(function (response) {
-                Page.setDoc(response.data);
-                $scope.docRating = -1;
-                $scope.displayInfoPopup("Doc Rated Down",
-                        "\"" + $scope.docTitle + "\" by " +
-                        $scope.docAlias + ", " + $scope.docDate);
-                $scope.updateDocRatingButtons();
+                if (response.data) {
+                    Page.setDoc(response.data);
+                    $scope.docRating = -1;
+                    $scope.displayInfoPopup("Doc Rated Down",
+                            "\"" + $scope.docTitle.length > 25 ?
+                            $scope.docTitle.substring(0, 25) + "..." :
+                            $scope.docTitle + "\" by " +
+                            $scope.docAlias + ", " + $scope.docDate);
+                    $scope.updateDocRatingButtons();
+                } else {
+                    $scope.displayInfoPopup("Doc Missing",
+                            "Oops, it looks the Doc you were viewing does not exist anymore.");
+                    $scope.changePage('docboard');
+                }
             });
         }
     }
@@ -122,7 +132,11 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
         document.execCommand('copy');
         toCopy.textContent = "";
         $scope.toggleDirectory();
-        $scope.displayInfoPopup("Doc Copied", $scope.docTitle + " by " + $scope.docAlias + ", " + $scope.docDate);
+        $scope.displayInfoPopup("Doc Copied",
+                "\"" + $scope.docTitle.length > 25 ?
+                $scope.docTitle.substring(0, 25) + "..." :
+                $scope.docTitle + " by " +
+                $scope.docAlias + ", " + $scope.docDate);
     }
 
     $scope.exportDoc = function () {
@@ -249,7 +263,9 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
             }
             ;
             var filename = $scope.docTitle.replace(/[\s+\t\n\\/:\"*?<>|]/g, '') + ".txt";
-            var data = "\"" + $scope.docTitle + "\" by " + $scope.docAlias
+            var data = "\"" + $scope.docTitle.length > 25 ?
+                    $scope.docTitle.substring(0, 25) + "..." :
+                    $scope.docTitle + "\" by " + $scope.docAlias
                     + ", " + $scope.docDate + "\n" + $scope.docBody;
             var blob = new Blob([data.replace(/([^\r])\n/g, "$1\r\n")], {type: "text/plain;charset=utf-8"});
             saveAs(blob, filename);
@@ -261,12 +277,20 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
     $scope.deleteDoc = function () {
         if (!$scope.mainCtrl.isProcessing) {
             $scope.mainCtrl.isProcessing = true;
-            if (Page.getDoc().author === Page.getUser()._id) {
+            if (Page.getDoc().author._id === Page.getUser()._id) {
                 Doc.delete(Page.getDoc()._id).then(function (response) {
-                    $scope.displayInfoPopup("Doc Deleted",
-                            "\"" + Page.getDoc().title + "\" by " +
-                            Page.getDoc().alias + ", " + Page.getDoc().date);
-                    $scope.changePage('docboard');
+                    if (response.data) {
+                        $scope.displayInfoPopup("Doc Deleted",
+                                "\"" + $scope.docTitle.length > 25 ?
+                                $scope.docTitle.substring(0, 25) + "..." :
+                                $scope.docTitle + "\" by " +
+                                $scope.docAlias + ", " + $scope.docDate);
+                        $scope.changePage('docboard');
+                    } else {
+                        $scope.displayInfoPopup("Doc Missing",
+                                "Oops, it looks the Doc you were viewing does not exist anymore.");
+                        $scope.changePage('docboard');
+                    }
                 });
             }
         }

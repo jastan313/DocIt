@@ -25,6 +25,7 @@ docSchema.post('save', function (next) {
     if (!this.published) {
         this.date = Date.now();
     }
+    this.save();
 });
 
 // Apply the uniqueValidator plugin to docSchema.

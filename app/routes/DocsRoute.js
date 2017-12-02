@@ -66,6 +66,9 @@ module.exports = function (app, Doc) {
         if (req.body.published) {
             doc.published = req.body.published;
         }
+        if (req.body.published) {
+            doc.published = req.body.published;
+        }
         doc.save(function (err, result) {
             if (err)
                 res.send(err);
@@ -98,10 +101,14 @@ module.exports = function (app, Doc) {
 
     // DELETE: Delete a doc
     app.delete('/api/docs/:id', function (req, res) {
-        Doc.remove(req.params.id, function (err, result) {
+        Doc.findByIdAndRemove(req.params.id, function (err, result) {
             if (err)
                 res.send(err);
-            res.json(result); // Return deleted doc
+            if (result) {
+                res.json({_id: result._id}); // Return the id of the deleted Doc
+            } else {
+                res.json(null);
+            }
         });
     });
 };

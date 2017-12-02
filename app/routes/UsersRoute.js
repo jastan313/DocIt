@@ -114,16 +114,14 @@ module.exports = function (app, User) {
 
     // DELETE: Delete a user
     app.delete('/api/users/:id', function (req, res) {
-        User.remove(req.params.id, function (err, result) {
+        User.findByIdAndRemove(req.params.id, function (err, result) {
             if (err)
                 res.send(err);
-            var user = {
-                "_id": result._id,
-                "alias": result.alias,
-                "email": result.email,
-                "login_attempts": result.login_attempts
+            if (result) {
+                res.json({_id: result._id}); // Return the id of the deleted User
+            } else {
+                res.json(null);
             }
-            res.json(user); // Return deleted user
         });
     });
 };

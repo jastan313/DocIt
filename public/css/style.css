@@ -285,6 +285,7 @@ button:hover {
 
 #docview-rateup-btn.ratedup {
     color: #003b00;
+    background-color: #72c2691a;
     border: 2px #003b00 inset;
 }
 #docview-rateup-btn.ratedup:hover {
@@ -294,6 +295,7 @@ button:hover {
 }
 #docview-ratedown-btn.rateddown {
     color: darkred;
+    background-color: #c6a2a233;
     border: 2px darkred inset;
 }
 #docview-ratedown-btn.rateddown:hover {

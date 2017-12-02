@@ -7,7 +7,7 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
 
         $scope.docAlias = Page.getUser().alias;
         var tempDate = new Date();
-        $scope.docDate = tempDate.getMonth()+1 +
+        $scope.docDate = tempDate.getMonth() + 1 +
                 "/" + tempDate.getDate() +
                 "/" + tempDate.getFullYear();
         $scope.docTitle = "Untitled";
@@ -56,11 +56,19 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                     'body': $scope.docBody
                 };
                 Doc.update(d._id, docData).then(function (response) {
-                    Page.setDoc(response.data);
-                    $scope.displayInfoPopup("Doc Updated",
-                            "\"" + Page.getDoc().title + "\" by " +
-                            Page.getDoc().author + ", " + Page.getDoc().date);
-                    $scope.displayDocit();
+                    if (response.data) {
+                        Page.setDoc(response.data);
+                        $scope.displayInfoPopup("Doc Updated",
+                                "\"" + $scope.docTitle.length > 25 ?
+                                $scope.docTitle.substring(0, 25) + "..." :
+                                $scope.docTitle + "\" by " +
+                                $scope.docAlias + ", " + Page.getDoc().date);
+                        $scope.displayDocit();
+                    } else {
+                        $scope.displayInfoPopup("Doc Missing",
+                                "Oops, it looks the Doc you were viewing does not exist anymore.");
+                        $scope.changePage('docboard');
+                    }
                 });
             }
             // If user is creating a new Doc
@@ -71,11 +79,19 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                     'body': $scope.docBody
                 };
                 Doc.create(docData).then(function (response) {
-                    Page.setDoc(response.data);
-                    $scope.displayInfoPopup("Doc Created",
-                            "\"" + Page.getDoc().title + "\" by " +
-                            Page.getDoc().author + ", " + Page.getDoc().date);
-                    $scope.displayDocit();
+                    if (response.data) {
+                        Page.setDoc(response.data);
+                        $scope.displayInfoPopup("Doc Created",
+                                "\"" + $scope.docTitle.length > 25 ?
+                                $scope.docTitle.substring(0, 25) + "..." :
+                                $scope.docTitle + "\" by " +
+                                $scope.docAlias + ", " + Page.getDoc().date);
+                        $scope.displayDocit();
+                    } else {
+                        $scope.displayInfoPopup("Doc Missing",
+                                "Oops, it looks the Doc you were viewing does not exist anymore.");
+                        $scope.changePage('docboard');
+                    }
                 });
             }
             $scope.toggleDirectory();
@@ -99,12 +115,20 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                         'published': true
                     };
                     Doc.update(d._id, docData).then(function (response) {
-                        Page.setDoc(response.data);
-                        $scope.displayInfoPopup("Doc Updated And Published",
-                                "\"" + Page.getDoc().title + "\" by " +
-                                Page.getDoc().author + ", " + Page.getDoc().date);
-                        $scope.objToString(response.data, 0);
-                        $scope.changePage('docview');
+                        if (response.data) {
+                            Page.setDoc(response.data);
+                            $scope.displayInfoPopup("Doc Updated And Published",
+                                    "\"" + $scope.docTitle.length > 25 ?
+                                    $scope.docTitle.substring(0, 25) + "..." :
+                                    $scope.docTitle + "\" by " +
+                                    $scope.docAlias + ", " + Page.getDoc().date);
+                            $scope.objToString(response.data, 0);
+                            $scope.changePage('docview');
+                        } else {
+                            $scope.displayInfoPopup("Doc Missing",
+                                    "Oops, it looks the Doc you were viewing does not exist anymore.");
+                            $scope.changePage('docboard');
+                        }
                     });
                 }
                 // If user is creating a new Doc
@@ -116,12 +140,20 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                         'published': true
                     };
                     Doc.create(docData).then(function (response) {
-                        Page.setDoc(response.data);
-                        $scope.displayInfoPopup("Doc Created And Published",
-                                "\"" + Page.getDoc().title + "\" by " +
-                                Page.getDoc().author + ", " + Page.getDoc().date);
-                        $scope.objToString(response.data, 0);
-                        $scope.changePage('docview');
+                        if (response.data) {
+                            Page.setDoc(response.data);
+                            $scope.displayInfoPopup("Doc Created And Published",
+                                    "\"" + $scope.docTitle.length > 25 ?
+                                    $scope.docTitle.substring(0, 25) + "..." :
+                                    $scope.docTitle + "\" by " +
+                                    $scope.docAlias + ", " + Page.getDoc().date);
+                            $scope.objToString(response.data, 0);
+                            $scope.changePage('docview');
+                        } else {
+                            $scope.displayInfoPopup("Doc Missing",
+                                    "Oops, it looks the Doc you were viewing does not exist anymore.");
+                            $scope.changePage('docboard');
+                        }
                     });
                 }
             }
@@ -266,16 +298,30 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
     $scope.deleteDoc = function () {
         if (!$scope.mainCtrl.isProcessing) {
             $scope.mainCtrl.isProcessing = true;
-            if (Page.getDoc()) {
-                Doc.delete(Page.getDoc()._id).then(function (doc) {
-                    User.updateByDoc(Page.getUser()._id, Page.getDoc()._id);
-                    $scope.displayInfoPopup("Doc Deleted", "\"" + Page.getDoc().title + "\" by: " +
-                            Page.getDoc().alias + ", " + Page.getDoc().date);
-                    $scope.changePage('docboard');
+            var doc = Page.getDoc();
+            if (doc) {
+                Doc.delete(Page.getDoc()._id).then(function (response) {
+                    if (response.data) {
+                        $scope.displayInfoPopup("Doc Deleted",
+                                "\"" + $scope.docTitle.length > 25 ?
+                                $scope.docTitle.substring(0, 25) + "..." :
+                                $scope.docTitle + "\" by " +
+                                $scope.docAlias + ", " + $scope.docDate);
+                        $scope.changePage('docboard');
+                    }
+                    else {
+                        $scope.displayInfoPopup("Doc Missing",
+                                "Oops, it looks the Doc you were viewing does not exist anymore.");
+                        $scope.changePage('docboard');
+                    }
                 });
             } else {
-                $scope.displayInfoPopup("Doc Draft Discarded", "\"" + Page.getDoc().title + "\" by: " +
-                        Page.getDoc().alias + ", " + Page.getDoc().date);
+                $scope.docTitle = $scope.docTitle.length > 0 ? $scope.docTitle : "Untitled";
+                $scope.displayInfoPopup("Doc Draft Discarded",
+                        "\"" + $scope.docTitle.length > 25 ?
+                        $scope.docTitle.substring(0, 25) + "..." :
+                        $scope.docTitle + "\" by " +
+                        $scope.docAlias + ", " + $scope.docDate);
                 $scope.changePage('docboard');
             }
         }

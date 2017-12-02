@@ -274,8 +274,9 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
             if (Page.getDoc().author._id === Page.getUser()._id) {
                 Doc.delete(Page.getDoc()._id).then(function (response) {
                     if (response.data) {
+                        $scope.displayInfoPopup("Doc Deleted",
                         Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
-                                Page.getDoc().author.alias, Doc.formatDate(Page.getDoc().date));
+                                Page.getDoc().author.alias, Doc.formatDate(Page.getDoc().date)));
                         $scope.changePage('docboard');
                     } else {
                         $scope.displayInfoPopup("Doc Missing",

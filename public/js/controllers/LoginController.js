@@ -5,7 +5,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function ($scope, 
         $scope.formPassword = 'testtest1';
     }
 
-    // Login Submit
+    // Submit login inputs to attempt login
     $scope.loginSubmit = function () {
         
         // Check if login is already processing
@@ -19,7 +19,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function ($scope, 
             var aliasFlag = aliasRegex.test($scope.formAlias);
             var passwordFlag = passwordRegex.test($scope.formPassword);
             
-            // Check if Alias and password inputs validate
+            // If form inputs validate
             if (aliasFlag && passwordFlag) {
                 // Retrieve user by Alias
                 User.getByAlias($scope.formAlias, $scope.formPassword).then(function (response) {
@@ -29,7 +29,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function ($scope, 
                     if (user.exists) {
                         
                         // If password authenticates, reset login_attempts, 
-                        // save user, and navigate to Docboard
+                        // set the user, and navigate to Docboard
                         if (user.auth) {
                             var userData = {"login_attempts": '0'};
                             User.update(user._id, userData).then(function (response) {
@@ -48,8 +48,8 @@ angular.module('LoginCtrl', []).controller('LoginController', function ($scope, 
                             User.update(user._id, userData).then(function (response) {
                                 var u = response.data;
                                 
-                                // If too many incorrect attempts, send account recovery email
-                                // and display info
+                                // If too many incorrect login attempts, send account 
+                                // recovery email, and display recovery info
                                 if (u.login_attempts === 0) {
                                     var emailData = {
                                         "from": "|DOCIT| <donotreply@docit.com>",
@@ -88,7 +88,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function ($scope, 
                 });
             }
             
-            // If Alias and/or password do not validate, display info
+            // If form input(s) do not validate, display validation info
             else {
                 if (!aliasFlag) {
                     $scope.mainCtrl.toFocus = "login-alias";

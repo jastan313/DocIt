@@ -1,4 +1,5 @@
 angular.module('SignupCtrl', []).controller('SignupController', function ($scope, Page, User) {
+    // Controller initialize
     $scope.init = function () {
         $scope.formEmail = '';
         $scope.formAlias = '';
@@ -6,9 +7,14 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
         $scope.formPasswordConfirm = '';
     }
 
+    // Submit signup inputs to attempt signup
     $scope.signupSubmit = function () {
+        
+        // Check if signup is already processing
         if (!$scope.mainCtrl.isProcessing) {
             $scope.mainCtrl.isProcessing = true;
+            
+            // Regexes to test credential validation
             var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             var aliasRegex = /^[A-Za-z0-9]{6,15}$/;
             var passwordRegex = /^[A-Za-z0-9$-/:-?{-~!"^_`\[\] ]{6,}$/;
@@ -16,7 +22,10 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
             var aliasFlag = aliasRegex.test($scope.formAlias);
             var passwordFlag = passwordRegex.test($scope.formPassword);
             var passwordMatchFlag = $scope.formPassword === $scope.formPasswordConfirm;
+            
+            // If form inputs validate
             if (emailFlag && aliasFlag && passwordFlag && passwordMatchFlag) {
+                // Attempt to create new user with input data
                 var userData = {
                     'alias': $scope.formAlias,
                     'email': $scope.formEmail,
@@ -24,15 +33,22 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
                 };
                 User.create(userData).then(function (response) {
                     var user = response.data;
+                    
+                    // If there was an error while attempting to create a new user,
+                    // compile a message, and display info
                     if (user.errors) {
                         var header = "";
                         var body = "";
+                        
+                        // If the email was already taken, add info to message
                         if (user.email_error) {
                             header += "Email";
                             body += "Unforunately, there is an existing account with the email address |" + $scope.formEmail + "|.\
                             Please signup using a different email or login to your existing account if this is your email.";
                             $scope.mainCtrl.toFocus = "signup-email";
                         }
+                        
+                        // If the Alias was already taken, add info to message
                         if (user.alias_error) {
                             var aliasBody = "Unforunately, there is an existing account with the Alias |" + $scope.formAlias + "|.\
                             Please signup using a different Alias or login to your existing account if this is your Alias.";
@@ -42,7 +58,11 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
                         }
                         header += " Taken";
                         $scope.displayInfoPopup(header, body);
-                    } else {
+                    } 
+                    
+                    // If creating user was successful, set the user, display
+                    // welcome info, and navigate to Docboard
+                    else {
                         Page.setUser(user);
                         $scope.displayInfoPopup("Account Signup and Welcome", "Your account has been successfully created.\n\n\
                         Hi, " + Page.getUser().alias + "! Welcome to |DOCIT|, a document-based web \
@@ -60,7 +80,10 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
                         $scope.changePage('docboard');
                     }
                 });
-            } else {
+            }
+            
+            // If form input(s) did not validate, display validation info
+            else {
                 if (!emailFlag) {
                     $scope.mainCtrl.toFocus = "signup-email";
                     $scope.displayInfoPopup("Email Validation:",

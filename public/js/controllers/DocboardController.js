@@ -1,5 +1,6 @@
 angular.module('DocboardCtrl', []).controller('DocboardController', function ($scope, Page, User, Doc) {
-    // Initialize Doc Archive and Doc Feed by GET requests
+    
+    // Controller initialize by populating Doc Archive and Doc Feed
     $scope.init = function () {
         $scope.alias = Page.getUser() ? Page.getUser().alias : "";
         $scope.docArchive = [];
@@ -9,7 +10,7 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
         $scope.getDocFeed(10, 7);
     }
 
-    // Displays overview help information
+    // Displays overview help info
     $scope.help = function () {
         $scope.displayInfoPopup("Help",
                 "Hi, " + Page.getUser().alias + "! Welcome to |DOCIT|, a document-based web \
@@ -29,9 +30,12 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
     // Populate Doc Archive with user's Docs
     $scope.getDocArchive = function () {
         var user = Page.getUser();
+        
+        // If user is set, get user's Docs
         if (user) {
             Doc.getByUserID(user._id).then(function (response) {
                 var docs = response.data;
+                // For each Doc, add formatted Doc to Doc Archive
                 for (var i = 0; i < docs.length; i++) {
                     var doc = docs[i];
                     var docRating = "Not Published";
@@ -53,7 +57,10 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
                     );
                 }
             });
-        } else {
+        } 
+        
+        // If user was not set somehow, navigate back to Login
+        else {
             Page.changePage("login");
         }
     };
@@ -63,6 +70,7 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
     $scope.getDocFeed = function (num, d) {
         Doc.getByRatingAndTime(num, d).then(function (response) {
             var docs = response.data;
+            // For each Doc, add formatted Doc to Doc Feed
             for (var i = 0; i < docs.length; i++) {
                 var doc = docs[i];
                 var docRating = docs[i].rating;
@@ -85,12 +93,19 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
         });
     };
 
-    // Go view the Doc in either Docit or Docview depending on published flag
+    // Go view the selected Doc in Docit/Docview
     $scope.goDoc = function (docID) {
+        
+        // If no Doc id parameter (null), user is writing a new Doc -
+        // navigate to Docit
         if (docID == null) {
             Page.setDoc(null);
             $scope.changePage('docit');
-        } else {
+        } 
+        
+        // Get the Doc by id, set the Doc, then navigate to Docit
+        // if not published, navigate to Docview if published
+        else {
             Doc.get(docID).then(function (response) {
                 Page.setDoc(response.data);
                 if (response.data.published) {

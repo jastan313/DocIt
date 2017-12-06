@@ -149,12 +149,12 @@ module.exports = function (app, User) {
             if (err)
                 res.send(err);
             
-            // If Doc delete successful, return id of deleted user
+            // If user delete successful, return id of deleted user
             if (result) {
                 res.json({_id: result._id});
             } 
             
-            // If Doc was already deleted, return null
+            // If user was already deleted, return null
             else {
                 res.json(null);
             }

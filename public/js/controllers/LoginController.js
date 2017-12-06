@@ -8,7 +8,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function ($scope, 
     // Submit login inputs to attempt login
     $scope.loginSubmit = function () {
         
-        // Check if login is already processing
+        // If login is not processing
         if (!$scope.mainCtrl.isProcessing) {
             // If not processing, toggle true
             $scope.mainCtrl.isProcessing = true;

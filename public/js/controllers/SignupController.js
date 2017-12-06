@@ -10,7 +10,7 @@ angular.module('SignupCtrl', []).controller('SignupController', function ($scope
     // Submit signup inputs to attempt signup
     $scope.signupSubmit = function () {
         
-        // Check if signup is already processing
+        // If signup is not processing
         if (!$scope.mainCtrl.isProcessing) {
             $scope.mainCtrl.isProcessing = true;
             

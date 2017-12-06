@@ -1,4 +1,5 @@
 angular.module('DocitCtrl', []).controller('DocitController', function ($scope, Page, User, Doc) {
+    // Controller initialize, display the Doc
     $scope.init = function () {
         $scope.MIN_BODY_LENGTH = 50;
         $scope.mainCtrl.directoryShow = false;
@@ -29,6 +30,7 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
         }
     }
 
+    // Copy Doc's formatted data to clipboard and display copy info
     $scope.copyDoc = function () {
         var copyText = Doc.createHeading($scope.docTitle, $scope.docAlias, $scope.docDate) +
                 "\n\n" + $scope.docBody;
@@ -44,49 +46,62 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                         $scope.docAlias, $scope.docDate));
     }
 
+    // Save the Doc
     $scope.saveDoc = function () {
+
+        // If Doc save is not processing
         if (!$scope.mainCtrl.isProcessing) {
             $scope.mainCtrl.isProcessing = true;
+
             var d = Page.getDoc();
+            // Format Doc title if it is empty string
             $scope.docTitle = $scope.docTitle.length > 0 ? $scope.docTitle : "Untitled";
+
             // If user is updating an existing Doc
             if (d) {
+                // Update the existing Doc with the current data
                 var docData = {
                     title: $scope.docTitle,
                     body: $scope.docBody
                 };
                 Doc.update(d._id, docData).then(function (response) {
+                    // If Doc update successful, set the updated Doc and
+                    // display update info
                     if (response.data) {
                         Page.setDoc(response.data);
                         $scope.displayDocit();
                         $scope.displayInfoPopup("Doc Updated",
                                 Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
                                         Page.getUser().alias, Doc.formatDate(Page.getDoc().date)));
-                    } else {
+                    }
+
+                    // If Doc was already deleted, display info and navigate
+                    // to Docboard
+                    else {
                         $scope.displayInfoPopup("Doc Missing",
                                 "Oops, it looks the Doc you were viewing does not exist anymore.");
                         $scope.changePage('docboard');
                     }
                 });
             }
+
             // If user is creating a new Doc
             else {
+                // Create a new Doc with the current data
                 var docData = {
                     title: $scope.docTitle,
                     author: Page.getUser()._id,
                     body: $scope.docBody
                 };
                 Doc.create(docData).then(function (response) {
+                    // If Doc create successful, set the new Doc and
+                    // display create info
                     if (response.data) {
                         Page.setDoc(response.data);
                         $scope.displayDocit();
                         $scope.displayInfoPopup("Doc Created",
                                 Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
                                         Page.getUser().alias, Doc.formatDate(Page.getDoc().date)));
-                    } else {
-                        $scope.displayInfoPopup("Doc Missing",
-                                "Oops, it looks the Doc you were viewing does not exist anymore.");
-                        $scope.changePage('docboard');
                     }
                 });
             }
@@ -94,31 +109,48 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
         }
     }
 
+    // Publish the Doc
     $scope.publishDoc = function () {
+
+        // If Doc publish is not processing
         if (!$scope.mainCtrl.isProcessing) {
             $scope.mainCtrl.isProcessing = true;
+
+            // If Doc's body data is less than the minimum
+            // required length, display requirement info
             if ($scope.docBody.length < $scope.MIN_BODY_LENGTH) {
                 $scope.displayInfoPopup("Doc Minimum Character Length",
                         "Doc's body requires a minimum of " + $scope.MIN_BODY_LENGTH +
                         "characters. Keep writing! You need at least " +
                         ($scope.MIN_BODY_LENGTH - $scope.docBody.length) + "more characters.");
-            } else {
+            }
+
+            // If Doc's body data meets the minimum required length, publish the Doc
+            else {
                 var d = Page.getDoc();
                 // If user is updating an existing Doc
                 if (d) {
+                    // Update the existing Doc with the current data
                     var docData = {
                         title: $scope.docTitle,
                         body: $scope.docBody,
                         published: true
                     };
                     Doc.update(d._id, docData).then(function (response) {
+
+                        // If Doc update successful, set the updated Doc, 
+                        // display update info, and navigate to Docview
                         if (response.data) {
                             Page.setDoc(response.data);
                             $scope.displayInfoPopup("Doc Updated And Published",
-                                Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
-                                        Page.getUser().alias, Doc.formatDate(Page.getDoc().date)));
+                                    Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
+                                            Page.getUser().alias, Doc.formatDate(Page.getDoc().date)));
                             $scope.changePage('docview');
-                        } else {
+                        }
+
+                        // If Doc was already deleted, display info and navigate
+                        // to Docboard
+                        else {
                             $scope.displayInfoPopup("Doc Missing",
                                     "Oops, it looks the Doc you were viewing does not exist anymore.");
                             $scope.changePage('docboard');
@@ -127,6 +159,7 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                 }
                 // If user is creating a new Doc
                 else {
+                    // Create a new Doc with the current data
                     var docData = {
                         title: $scope.docTitle,
                         author: Page.getUser()._id,
@@ -134,16 +167,14 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                         published: true
                     };
                     Doc.create(docData).then(function (response) {
+                        // If Doc create successful, set the new Doc, 
+                        // display create info, and navigate to Doview
                         if (response.data) {
                             Page.setDoc(response.data);
                             $scope.displayInfoPopup("Doc Created And Published",
-                                Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
-                                        Page.getUser().alias, Doc.formatDate(Page.getDoc().date)));
+                                    Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
+                                            Page.getUser().alias, Doc.formatDate(Page.getDoc().date)));
                             $scope.changePage('docview');
-                        } else {
-                            $scope.displayInfoPopup("Doc Missing",
-                                    "Oops, it looks the Doc you were viewing does not exist anymore.");
-                            $scope.changePage('docboard');
                         }
                     });
                 }
@@ -152,7 +183,10 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
         }
     }
 
+    // Export Doc's data to a .txt file using saveAs() and display export info
     $scope.exportDoc = function () {
+
+        // If export is not processing
         if (!$scope.mainCtrl.isProcessing) {
             $scope.mainCtrl.isProcessing = true;
             // Client-side file saver with custom filenames
@@ -286,24 +320,39 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
         }
     }
 
+    // Delete the Doc
     $scope.deleteDoc = function () {
+
+        // If Doc delete is not processing
         if (!$scope.mainCtrl.isProcessing) {
             $scope.mainCtrl.isProcessing = true;
             var doc = Page.getDoc();
+
+            // If deleting an existing Doc, delete the Doc
             if (doc) {
                 Doc.delete(Page.getDoc()._id).then(function (response) {
+                    // If Doc deleted successfully, display delete info and
+                    // navigate to Docboard
                     if (response.data) {
                         $scope.displayInfoPopup("Doc Deleted",
                                 Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
                                         Page.getUser().alias, Doc.formatDate(Page.getDoc().date)));
                         $scope.changePage('docboard');
-                    } else {
+                    }
+
+                    // If Doc was already deleted, display info and
+                    // navigate to Docboard
+                    else {
                         $scope.displayInfoPopup("Doc Missing",
                                 "Oops, it looks the Doc you were viewing does not exist anymore.");
                         $scope.changePage('docboard');
                     }
                 });
-            } else {
+            }
+
+            // If discarding a draft (deleting an unsaved Doc), display
+            // discard info and navigate to Docboard
+            else {
                 $scope.displayInfoPopup("Doc Draft Discarded",
                         Doc.createHeading(Doc.formatTitle($scope.docTitle),
                                 Page.getUser().alias,

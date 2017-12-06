@@ -1,4 +1,5 @@
 angular.module('DocviewCtrl', []).controller('DocviewController', function ($scope, Page, User, Doc) {
+    // Controller initialize, display the Doc
     $scope.init = function () {
         $scope.mainCtrl.directoryShow = false;
         $scope.showAuthorBtns = false;
@@ -8,36 +9,48 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
         $scope.displayDocview();
     }
 
+    // Display the published Doc if set
     $scope.displayDocview = function () {
         // Get the Doc we are looking at
         var doc = Page.getDoc();
+
+        // If Doc is set and published, display Doc's data
         if (doc && doc.published) {
-            // Data bind corresponding Doc data
+            // Data bind corresponding to the Doc's data
             $scope.docTitle = doc.title;
             $scope.docAlias = doc.author.alias;
             $scope.docDate = Doc.formatDate(doc.date);
             $scope.docBody = doc.body;
             var user = Page.getUser();
+
+            // If user is set, show author buttons and update user's
+            // current rating of this Doc
             if (user) {
-                // Add Edit button if user is the author of this Doc
+                // Add Delete button if user is the author of this Doc
                 $scope.showAuthorBtns = (doc.author._id === user._id);
 
                 // Check if user has rated this Doc
                 for (var i = 0; i < doc.ratings.length; i++) {
                     if (doc.ratings[i].user_id === user._id) {
+                        // Set user's current rating
                         $scope.docRating = parseInt(doc.ratings[i].rating);
                         break;
                     }
                 }
 
-                // Add styling to rating buttons if user has rated
+                // Add styling to rating buttons if user has rated this Doc
                 $scope.updateDocRatingButtons();
             }
-        } else {
+        }
+
+        // If Doc not set, navigate back to Docboard
+        else {
             $scope.changePage("docboard");
         }
     }
 
+    // Update rating button styling based on user's current rating of
+    // this Doc
     $scope.updateDocRatingButtons = function () {
         var rateUpBtn = document.getElementById('docview-rateup-btn');
         var rateDownBtn = document.getElementById('docview-ratedown-btn');
@@ -52,10 +65,17 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
         }
     }
 
+    // Rate this Doc up either by adding a new rating up or updating
+    // user's current rating from down to up
     $scope.rateUpDoc = function () {
+
+        // If user's current rating is not already up and 
+        // if rating up is not processing
         if ($scope.docRating !== 1 && !$scope.mainCtrl.isProcessing) {
             $scope.mainCtrl.isProcessing = true;
             var newRatings = Page.getDoc().ratings;
+
+            // If user has rated down on this Doc, update it to rate up
             if ($scope.docRating === -1) {
                 var userID = Page.getUser()._id;
                 for (var i = 0; i < newRatings.length; i++) {
@@ -64,11 +84,17 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
                         break;
                     }
                 }
-            } else {
+            }
+
+            // If user has not yet rated this Doc, add a new rating up
+            else {
                 newRatings.push({user_id: Page.getUser()._id, rating: 1});
             }
+            // Update Doc's rating
             var docData = {ratings: newRatings};
             Doc.update(Page.getDoc()._id, docData).then(function (response) {
+                // If Doc was updated successfully, set the new Doc, display
+                // rating up info, and update rate button styling
                 if (response.data) {
                     Page.setDoc(response.data);
                     $scope.docRating = 1;
@@ -76,7 +102,10 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
                             Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
                                     Page.getDoc().author.alias, Doc.formatDate(Page.getDoc().date)));
                     $scope.updateDocRatingButtons();
-                } else {
+                }
+
+                // If Doc was deleted already, display info, and navigate to Docboard
+                else {
                     $scope.displayInfoPopup("Doc Missing",
                             "Oops, it looks the Doc you were viewing does not exist anymore.");
                     $scope.changePage('docboard');
@@ -85,10 +114,17 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
         }
     }
 
+    // Rate this Doc down either by adding a new rating down or updating
+    // user's current rating from up to down
     $scope.rateDownDoc = function () {
+
+        // If user's current rating is not already down and 
+        // if rating down is not processing
         if ($scope.docRating !== -1 && !$scope.mainCtrl.isProcessing) {
             $scope.mainCtrl.isProcessing = true;
             var newRatings = Page.getDoc().ratings;
+
+            // If user has rated up on this Doc, update it to rate down
             if ($scope.docRating === 1) {
                 var userID = Page.getUser()._id;
                 for (var i = 0; i < newRatings.length; i++) {
@@ -97,11 +133,18 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
                         break;
                     }
                 }
-            } else {
+            }
+
+            // If user has not yet rated this Doc, add a new rating down
+            else {
                 newRatings.push({user_id: Page.getUser()._id, rating: -1});
             }
+            // Update Doc's ratings
             var docData = {ratings: newRatings};
             Doc.update(Page.getDoc()._id, docData).then(function (response) {
+                
+                // If Doc was updated successfully, set the new Doc, display
+                // rating up info, and update rate button styling
                 if (response.data) {
                     Page.setDoc(response.data);
                     $scope.docRating = -1;
@@ -109,7 +152,10 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
                             Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
                                     Page.getDoc().author.alias, Doc.formatDate(Page.getDoc().date)));
                     $scope.updateDocRatingButtons();
-                } else {
+                } 
+                
+                // If Doc was deleted already, display info, and navigate to Docboard
+                else {
                     $scope.displayInfoPopup("Doc Missing",
                             "Oops, it looks the Doc you were viewing does not exist anymore.");
                     $scope.changePage('docboard');
@@ -118,6 +164,7 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
         }
     }
 
+    // Copy Doc's formatted data to clipboard and display copy info
     $scope.copyDoc = function () {
         var copyText = Doc.createHeading($scope.docTitle, $scope.docAlias, $scope.docDate) +
                 "\n\n" + $scope.docBody;
@@ -133,7 +180,10 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
                         $scope.docAlias, $scope.docDate));
     }
 
+    // Export Doc's data to a .txt file using saveAs() and display export info
     $scope.exportDoc = function () {
+        
+        // If export is not processing
         if (!$scope.mainCtrl.isProcessing) {
             $scope.mainCtrl.isProcessing = true;
             // Client-side file saver with custom filenames
@@ -268,17 +318,29 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
         }
     }
 
+    // Delete the Doc (option only available if user is the Doc's author)
     $scope.deleteDoc = function () {
+        
+        // If Doc delete is not processing
         if (!$scope.mainCtrl.isProcessing) {
             $scope.mainCtrl.isProcessing = true;
+            
+            // If user is Doc's author
             if (Page.getDoc().author._id === Page.getUser()._id) {
+                // Delete the Doc
                 Doc.delete(Page.getDoc()._id).then(function (response) {
+                    // If Doc deleted successfully, display delete info and
+                    // navigate to Docboard
                     if (response.data) {
                         $scope.displayInfoPopup("Doc Deleted",
-                        Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
-                                Page.getDoc().author.alias, Doc.formatDate(Page.getDoc().date)));
+                                Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
+                                        Page.getDoc().author.alias, Doc.formatDate(Page.getDoc().date)));
                         $scope.changePage('docboard');
-                    } else {
+                    } 
+                    
+                    // If Doc was already deleted, display info and
+                    // navigate to Docboard
+                    else {
                         $scope.displayInfoPopup("Doc Missing",
                                 "Oops, it looks the Doc you were viewing does not exist anymore.");
                         $scope.changePage('docboard');

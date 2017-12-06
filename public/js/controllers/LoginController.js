@@ -33,7 +33,6 @@ angular.module('LoginCtrl', []).controller('LoginController', function ($scope, 
                         if (user.auth) {
                             var userData = {"login_attempts": '0'};
                             User.update(user._id, userData).then(function (response) {
-                                $scope.objToString(response.data);
                                 Page.setUser(response.data);
                                 $scope.changePage('docboard');
                             });

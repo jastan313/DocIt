@@ -52,11 +52,10 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
         // If Doc save is not processing
         if (!$scope.mainCtrl.isProcessing) {
             $scope.mainCtrl.isProcessing = true;
-
-            var d = Page.getDoc();
             // Format Doc title if it is empty string
             $scope.docTitle = $scope.docTitle.length > 0 ? $scope.docTitle : "Untitled";
 
+            var d = Page.getDoc();
             // If user is updating an existing Doc
             if (d) {
                 // Update the existing Doc with the current data
@@ -115,6 +114,8 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
         // If Doc publish is not processing
         if (!$scope.mainCtrl.isProcessing) {
             $scope.mainCtrl.isProcessing = true;
+            // Format Doc title if it is empty string
+            $scope.docTitle = $scope.docTitle.length > 0 ? $scope.docTitle : "Untitled";
 
             // If Doc's body data is less than the minimum
             // required length, display requirement info
@@ -122,11 +123,12 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                 $scope.displayInfoPopup("Doc Minimum Character Length",
                         "Doc's body requires a minimum of " + $scope.MIN_BODY_LENGTH +
                         "characters. Keep writing! You need at least " +
-                        ($scope.MIN_BODY_LENGTH - $scope.docBody.length) + "more characters.");
+                        ($scope.MIN_BODY_LENGTH - $scope.docBody.length) + " more characters.");
             }
 
             // If Doc's body data meets the minimum required length, publish the Doc
             else {
+                
                 var d = Page.getDoc();
                 // If user is updating an existing Doc
                 if (d) {

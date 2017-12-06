@@ -83,12 +83,13 @@ module.exports = function (app, Doc) {
 
             // If Doc create successful, populate author field
             // with (id and) alias, and return the new Doc
-            Doc.populate(result, {path: "author", select: 'alias'}, function (err, result) {
+            result.populate("author", "alias")
+                    .execPopulate().then(function (err, result) {
                 if (err)
                     res.send(err);
 
-                res.json(result); // Return the created doc
-            })
+                res.json(result); // Return the updated doc
+            });
         });
     });
 
@@ -96,6 +97,7 @@ module.exports = function (app, Doc) {
     app.put('/api/docs/:id', function (req, res) {
         // Doc find by its id
         Doc.findById(req.params.id, function (err, doc) {
+
             // Update fields if given and save the updated Doc
             if (req.body.title) {
                 doc.title = req.body.title;
@@ -103,24 +105,40 @@ module.exports = function (app, Doc) {
             if (req.body.body) {
                 doc.body = req.body.body;
             }
-
             if (req.body.published) {
                 doc.published = req.body.published;
             }
             if (req.body.ratings) {
                 doc.ratings = req.body.ratings;
             }
+
+            // If Doc is published, update its rating
+            if (doc.published) {
+                var totalRating = 0;
+                for (var i = 0; i < doc.ratings.length; i++) {
+                    totalRating += doc.ratings[i].rating;
+                }
+                doc.rating = totalRating;
+            }
+            
+            // If Doc is not published, update its date
+            else {
+                doc.date = Date.now();
+            }
+            
             doc.save(function (err, result) {
                 if (err)
                     res.send(err);
 
                 // If Doc update successful, populate author field
                 // with (id and) alias, and return the new Doc
-                Doc.populate(result, {path: "author", select: 'alias'}, function (err, result) {
+                result.populate("author", "alias")
+                        .execPopulate().then(function (err, result) {
                     if (err)
                         res.send(err);
+
                     res.json(result); // Return the updated doc
-                })
+                });
             });
         });
     });
@@ -130,12 +148,12 @@ module.exports = function (app, Doc) {
         Doc.findByIdAndRemove(req.params.id, function (err, result) {
             if (err)
                 res.send(err);
-            
+
             // If Doc delete successful, return id of deleted Doc
             if (result) {
                 res.json({_id: result._id});
-            } 
-            
+            }
+
             // If Doc was already deleted, return null
             else {
                 res.json(null);

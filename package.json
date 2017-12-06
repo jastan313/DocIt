@@ -30,6 +30,7 @@
     "mongoose-unique-validator": "^1.0.6"
   },
   "scripts": {
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "fix-memory-limit": "cross-env LIMIT=2048 increase-memory-limit"
   }
 }

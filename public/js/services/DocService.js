@@ -41,6 +41,8 @@ angular.module('DocService', []).factory('Doc', ['$http', function ($http) {
                 return $http.delete('/api/docs/' + id);
             },
 
+            // Formats title string by either returning 'Untitled' if input is
+            // empty string or truncating title string to maximum show length
             formatTitle: function (title) {
                 var TITLE_MAX_SHOW_LEN = 100;
                 if (title.length > 0) {
@@ -51,11 +53,13 @@ angular.module('DocService', []).factory('Doc', ['$http', function ($http) {
                 }
             },
 
+            // Formats date to Month/Date/Year
             formatDate: function (d) {
                 var date = new Date(d);
                 return date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
             },
 
+            // Creates a heading from a title, Alias, and date
             createHeading(title, alias, date) {
                 return "\"" + title + "\" by " + alias + ", " + date;
             }

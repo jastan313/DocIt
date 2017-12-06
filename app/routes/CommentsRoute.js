@@ -19,6 +19,7 @@ module.exports = function (app, Comment) {
 
     // POST: Create a comment
     app.post('/api/comments', function (req, res) {
+        // Create a comment with given information and save the new comment
         var comment = new Comment();
         comment.author = req.body.user_id;
         comment.doc = req.body.doc_id;
@@ -33,6 +34,7 @@ module.exports = function (app, Comment) {
     // PUT: Update a comment
     app.put('/api/comments/:id', function (req, res) {
         Comment.findById(req.params.id, function (err, comment) {
+            // Update the comment's text and save the updated comment
             comment.text = req.body.text;
             comment.save(function (err, result) {
                 if (err)
@@ -47,9 +49,14 @@ module.exports = function (app, Comment) {
         Comment.findByIdAndRemove(req.params.id, function (err, result) {
             if (err)
                 res.send(err);
+            
+            // If comment delete successful, return id of deleted comment
             if (result) {
-                res.json({_id: result._id}); // Return the id of the deleted Comment
-            } else {
+                res.json({_id: result._id});
+            } 
+            
+            // If comment was already deleted, return null
+            else {
                 res.json(null);
             }
         });

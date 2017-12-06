@@ -127,7 +127,6 @@ module.exports = function (app, Doc) {
 
     // DELETE: Delete a doc
     app.delete('/api/docs/:id', function (req, res) {
-        // Doc find by its id and delete it
         Doc.findByIdAndRemove(req.params.id, function (err, result) {
             if (err)
                 res.send(err);

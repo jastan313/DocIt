@@ -1,10 +1,9 @@
-// grab the mongoose module
 var mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 var Schema = mongoose.Schema;
 var objectId = Schema.ObjectId;
 
-// define comment schema
+// Comment schema definition
 var commentSchema = new Schema({
     id: {type: objectId, auto: true},
     author: {type: objectId, ref: 'User'},

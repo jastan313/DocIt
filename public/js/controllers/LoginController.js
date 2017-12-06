@@ -1,8 +1,8 @@
 angular.module('LoginCtrl', []).controller('LoginController', function ($scope, Page, User, Email) {
     // Controller initialize
     $scope.init = function () {
-        $scope.formAlias = 'testtest1';
-        $scope.formPassword = 'testtest1';
+        $scope.formAlias = '';
+        $scope.formPassword = '';
     }
 
     // Submit login inputs to attempt login

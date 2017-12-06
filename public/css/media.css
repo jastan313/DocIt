@@ -108,7 +108,7 @@ and (min-device-width : 320px)
 
     .doc-body {
         width: 104.4%;  /* Hide vertical scrollbar by increasing right-side page margin */
-        height: calc(100% - 52px - 10px);   /* Occupy parent's remaining height, 52px for header, 10px for extra space */
+        height: calc(100% - 52px - 20px);   /* Occupy parent's remaining height, 52px for header, 20px for extra space */
     }
     
     /**************************************************************
@@ -260,7 +260,7 @@ and (min-device-width : 321px)
 
     .doc-body {
         width: 102%;  /* Hide vertical scrollbar by increasing right-side page margin */
-        height: calc(100% - 42px - 10px);   /* Occupy parent's remaining height, 42px for header, 10px for extra space */
+        height: calc(100% - 42px - 20px);   /* Occupy parent's remaining height, 42px for header, 20px for extra space */
     }
     
     /**************************************************************
@@ -406,7 +406,7 @@ and (min-device-width : 321px)
 
     .doc-body {
         width: 104.4%;  /* Hide vertical scrollbar by increasing right-side page margin */
-        height: calc(100% - 50px - 10px);   /* Occupy parent's remaining height, 50px for header, 10px for extra space */
+        height: calc(100% - 50px - 20px);   /* Occupy parent's remaining height, 50px for header, 20px for extra space */
     }
     
     /**************************************************************
@@ -544,7 +544,7 @@ and (min-device-width : 768px)
 
     .doc-body {
         width: 102%;  /* Hide vertical scrollbar by increasing right-side page margin */
-        height: calc(100% - 43px - 10px);   /* Occupy parent's remaining height, 43px for header, 10px for extra space */
+        height: calc(100% - 43px - 20px);   /* Occupy parent's remaining height, 43px for header, 20px for extra space */
     }
     
     /**************************************************************
@@ -689,7 +689,7 @@ and (orientation : landscape) {
     
     .doc-body {
         width: 101.75%;  /* Hide vertical scrollbar by increasing right-side page margin */
-        height: calc(100% - 42px - 10px);   /* Occupy parent's remaining height, 42px for header, 10px for extra space */
+        height: calc(100% - 42px - 20px);   /* Occupy parent's remaining height, 42px for header, 20px for extra space */
     }
     
     /**************************************************************
@@ -826,7 +826,7 @@ and (orientation : landscape) {
 
     .doc-body {
         width: 101.75%;  /* Hide vertical scrollbar by increasing right-side page margin */
-        height: calc(100% - 44px - 20px);   /* Occupy parent's remaining height, 44px for header, 20px for bottom page margin */
+        height: calc(100% - 44px - 30px);   /* Occupy parent's remaining height, 44px for header, 30px for bottom page margin */
     }
 
     /**************************************************************

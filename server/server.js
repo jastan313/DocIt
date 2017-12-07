@@ -12,8 +12,8 @@ var nodemailer = require('nodemailer');
 var smtpTransport = nodemailer.createTransport({
     service: "Gmail",
     auth: {
-        user: "docit@gmail.com",
-        pass: "docitsmtptransport"
+        user: "noreply.docit@gmail.com",
+        pass: "docitapp1!"
     }
 });
 

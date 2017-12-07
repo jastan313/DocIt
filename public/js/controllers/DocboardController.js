@@ -113,9 +113,9 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
                 $scope.mainCtrl.docFeedNumItems + " Docs within the past " +
                 $scope.mainCtrl.docFeedTimeLimit +
                 " days.\n\nNote: Each attempt to load more Docs will increment \
-                the number of Docs loaded by |" + $scope.DOCFEED_NUM_MORE_DOCS
-                + "|" + " and the time threshold by |" + $scope.DOCFEED_NUM_MORE_DAYS
-                + "| days.");
+                the number of Docs loaded by (" + $scope.DOCFEED_NUM_MORE_DOCS
+                + ")" + " and the time threshold by (" + $scope.DOCFEED_NUM_MORE_DAYS
+                + ") days.");
         $scope.getDocFeed($scope.mainCtrl.docFeedNumItems,
                 $scope.mainCtrl.docFeedTimeLimit);
     }

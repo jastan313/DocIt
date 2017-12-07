@@ -51,7 +51,6 @@ angular.module('LoginCtrl', []).controller('LoginController', function ($scope, 
                                 // recovery email, and display recovery info
                                 if (u.login_attempts === 0) {
                                     var emailData = {
-                                        "from": "|DOCIT| <donotreply@docit.com>",
                                         "to": u.email,
                                         "subject": "|DOCIT| Account Recovery",
                                         "text": "Hello " + u.email + ",\n\n" +

@@ -2,7 +2,7 @@
   "name": "DocIt",
   "version": "1.0.0",
   "description" : "DOCIT: Anonymous Creative Writing Web App",
-  "main": "server.js",
+  "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js"
   },

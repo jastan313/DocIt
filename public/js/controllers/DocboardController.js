@@ -6,6 +6,8 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
         $scope.docArchive = [];
         $scope.docFeed = [];
         $scope.docFeedNumLoaded = 0;
+        $scope.DOCFEED_NUM_MORE_DOCS = 12;
+        $scope.DOCFEED_NUM_MORE_DAYS = 10;
 
         $scope.getDocArchive();
         $scope.getDocFeed($scope.mainCtrl.docFeedNumItems,
@@ -24,9 +26,14 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
         to start a new Doc draft. Creating a new Doc or selecting an existing Doc that has yet to \
         be published will direct you to |DOCIT|. Selecting a published Doc will direct you to \
         |DOCVIEW|.\n\nThe Doc Feed will show you recently published Docs by you and fellow writers, \
-        sorted by highest rating. Selecting any Doc in the Doc Feed will direct you to |DOCVIEW|.\n\n\
-        |DOCIT|: Using Docit, you will have the option to view, edit, save, export, and publish your \
-        Docs.\n\n|DOCVIEW|: Using Docview, you will be able to view and rate published-only Docs.");
+        sorted by highest rating. Selecting any Doc in the Doc Feed will direct you to |DOCVIEW|. \
+        Loading more Docs will increment the number of Docs loaded into the Doc Feed by " +
+        $scope.DOCFEED_NUM_MORE_DOCS + " items and the time threshold by " + $scope.DOCFEED_NUM_MORE_DAYS 
+        + " days. The Doc Feed is currently loading " + $scope.mainCtrl.docFeedNumItems
+        + " Docs within the past " + $scope.mainCtrl.docFeedTimeLimit + " days.\n\n|DOCIT|: \
+        Using Docit, you will have the option to view, edit, save, export, and publish \
+        your Docs.\n\n|DOCVIEW|: Using Docview, you will be able to view and rate \
+        published-only Docs.");
     }
 
     // Populate Doc Archive with user's Docs
@@ -72,6 +79,7 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
     $scope.getDocFeed = function (num, d) {
         Doc.getByRatingAndTime(num, d).then(function (response) {
             var docs = response.data;
+
             // For each Doc, add formatted Doc to Doc Feed
             for (var i = $scope.docFeedNumLoaded; i < docs.length; i++) {
                 var doc = docs[i];
@@ -99,8 +107,15 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
     // Increment number of items and lengthen the time threshold
     // for Doc Feed, then retrieve the Docs
     $scope.loadMoreDocFeed = function () {
-        $scope.mainCtrl.docFeedNumItems += 12; // add 12 more Docs
-        $scope.mainCtrl.docFeedTimeLimit += 14; // add 14 days to time threshold
+        $scope.mainCtrl.docFeedNumItems += $scope.DOCFEED_NUM_MORE_DOCS; // add more Docs
+        $scope.mainCtrl.docFeedTimeLimit += $scope.DOCFEED_NUM_MORE_DAYS; // add more days to time threshold
+        $scope.displayInfoPopup("Doc Feed", "Loading " +
+                $scope.mainCtrl.docFeedNumItems + " Docs within the past " +
+                $scope.mainCtrl.docFeedTimeLimit +
+                " days.\n\nNote: Each attempt to load more Docs will increment \
+                the number of Docs loaded by |" + $scope.DOCFEED_NUM_MORE_DOCS
+                + "|" + " and the time threshold by |" + $scope.DOCFEED_NUM_MORE_DAYS
+                + "| days.");
         $scope.getDocFeed($scope.mainCtrl.docFeedNumItems,
                 $scope.mainCtrl.docFeedTimeLimit);
     }

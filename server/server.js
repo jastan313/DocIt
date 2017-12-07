@@ -56,11 +56,13 @@ app.use(express.static('public'));
 app.use(methodOverride('X-HTTP-Method-Override'));
 
 // routes ==================================================
-require('../app/routes/IndexRoute')(app);
+
 require('../app/routes/EmailRoute')(app, smtpTransport);
 require('../app/routes/UsersRoute')(app, User);
 require('../app/routes/DocsRoute')(app, Doc);
-require('../app/routes/CommentsRoute')(app, Comment);   // configure our routes
+require('../app/routes/CommentsRoute')(app, Comment);
+require('../app/routes/IndexRoute')(app);
+// configure our routes
 
 
 // start app ===============================================

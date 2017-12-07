@@ -354,8 +354,23 @@ button:hover {
 
     /* See media.css for .doc-alias, .doc-date display */
 }
+
+.doc-rating {
+    display: inline-block;
+    font-size: 14px;
+    color: black;
+    text-shadow: 1px 1px #b1b1b1;
+}
+.doc-rating.ratedup {
+    color: #00870b;
+    text-shadow: .4px .4px #00c500;
+}
+.doc-rating.rateddown {
+    color: #a80000;
+    text-shadow: .4px .4px #d80000;
+}
+
 .doc-title {
-    font-style: italic;
     font-weight: bold;
 }
 

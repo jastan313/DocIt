@@ -4,8 +4,9 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
         $scope.mainCtrl.directoryShow = false;
         $scope.showAuthorBtns = false;
         $scope.copyText = "";
-
+        
         $scope.docRating = 0;
+        $scope.userRating = 0;
         $scope.displayDocview();
     }
 
@@ -21,6 +22,16 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
             $scope.docAlias = doc.author.alias;
             $scope.docDate = Doc.formatDate(doc.date);
             $scope.docBody = doc.body;
+            $scope.docRating = parseInt(doc.rating);
+            var ratingElement = document.getElementById("docview-rating");
+            ratingElement.className = "doc-rating";
+            if(doc.rating > 0) {
+                $scope.docRating = "+" + doc.rating;
+                ratingElement.classList.add("ratedup");
+            }
+            else if(doc.rating < 0) {
+                ratingElement.classList.add("rateddown");
+            }
             var user = Page.getUser();
 
             // If user is set, show author buttons and update user's
@@ -33,7 +44,7 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
                 for (var i = 0; i < doc.ratings.length; i++) {
                     if (doc.ratings[i].user_id === user._id) {
                         // Set user's current rating
-                        $scope.docRating = parseInt(doc.ratings[i].rating);
+                        $scope.userRating = parseInt(doc.ratings[i].rating);
                         break;
                     }
                 }
@@ -56,11 +67,11 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
         var rateDownBtn = document.getElementById('docview-ratedown-btn');
         rateUpBtn.className = "";
         rateDownBtn.className = "";
-        if ($scope.docRating == null || $scope.docRating === 0) {
+        if ($scope.userRating === 0) {
             // Don't add any button styling since user has not rated Doc yet
-        } else if ($scope.docRating > 0) {
+        } else if ($scope.userRating > 0) {
             rateUpBtn.classList.add('ratedup');
-        } else if ($scope.docRating < 0) {
+        } else if ($scope.userRating < 0) {
             rateDownBtn.classList.add('rateddown');
         }
     }
@@ -71,12 +82,12 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
 
         // If user's current rating is not already up and 
         // if rating up is not processing
-        if ($scope.docRating !== 1 && !$scope.mainCtrl.isProcessing) {
+        if ($scope.userRating !== 1 && !$scope.mainCtrl.isProcessing) {
             $scope.mainCtrl.isProcessing = true;
             var newRatings = Page.getDoc().ratings;
 
             // If user has rated down on this Doc, update it to rate up
-            if ($scope.docRating === -1) {
+            if ($scope.userRating === -1) {
                 var userID = Page.getUser()._id;
                 for (var i = 0; i < newRatings.length; i++) {
                     if (newRatings[i].user_id === userID) {
@@ -97,7 +108,7 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
                 // rating up info, and update rate button styling
                 if (response.data) {
                     Page.setDoc(response.data);
-                    $scope.docRating = 1;
+                    $scope.userRating = 1;
                     $scope.displayInfoPopup("Doc Rated Up",
                             Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
                                     Page.getDoc().author.alias, Doc.formatDate(Page.getDoc().date)));
@@ -120,12 +131,12 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
 
         // If user's current rating is not already down and 
         // if rating down is not processing
-        if ($scope.docRating !== -1 && !$scope.mainCtrl.isProcessing) {
+        if ($scope.userRating !== -1 && !$scope.mainCtrl.isProcessing) {
             $scope.mainCtrl.isProcessing = true;
             var newRatings = Page.getDoc().ratings;
 
             // If user has rated up on this Doc, update it to rate down
-            if ($scope.docRating === 1) {
+            if ($scope.userRating === 1) {
                 var userID = Page.getUser()._id;
                 for (var i = 0; i < newRatings.length; i++) {
                     if (newRatings[i].user_id === userID) {
@@ -147,7 +158,7 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
                 // rating up info, and update rate button styling
                 if (response.data) {
                     Page.setDoc(response.data);
-                    $scope.docRating = -1;
+                    $scope.userRating = -1;
                     $scope.displayInfoPopup("Doc Rated Down",
                             Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
                                     Page.getDoc().author.alias, Doc.formatDate(Page.getDoc().date)));

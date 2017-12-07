@@ -4,5 +4,8 @@ module.exports = function (app) {
     app.get('/', function (req, res) {
         res.sendFile(path.resolve('./public/views/index.html'));
     });
-};
 
+    app.get('*', function (req, res) {
+        res.redirect('back');
+    });
+};

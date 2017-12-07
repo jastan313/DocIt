@@ -39,8 +39,9 @@
         <div id="docview" class="doc">
             <div id="docview-header" class="doc-header highlight-enabled">
                 <h3 id="docview-alias" class="doc-alias highlight-enabled">ALIAS: {{ docAlias}}</h3>
-                <h3 id="docview-date" class="doc-date">DATE: {{ docDate}}</h3>
-                <h1 id="docview-title" class="doc-title">DOC: {{ docTitle}}</h1>
+                <h3 id="docview-date" class="doc-date"> DATE: {{ docDate }}</h3>
+                <div id="docview-title" class="doc-title">
+                    |<div id="docview-rating" class="doc-rating">{{ docRating }}</div>| DOC: {{ docTitle }}</div>
             </div>
             <textarea id="docview-body" class="doc-body" rows="20" cols="20" 
                       placeholder="It appears someone is coping with writer's block..." readonly

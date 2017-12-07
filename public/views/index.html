@@ -11,8 +11,8 @@
         <link rel="stylesheet" type="text/css" href="css/media.css"> <!-- media styles -->
 
         <!-- LIBRARY JS -->
-        <script src="js/libs/angular.min.js"></script>
-        <script src="js/libs/angular-route.min.js"></script>
+        <script src="libs/angular/angular.min.js"></script>
+        <script src="libs/angular-route/angular-route.min.js"></script>
 
         <!-- ANGULAR CONTROLLERS -->
         <script src="js/controllers/MainController.js"></script>
@@ -40,9 +40,9 @@
                 <div class='modal-header'>{{ mainCtrl.infoModalHeader}}</div>
                 <div class='modal-body'>{{ mainCtrl.infoModalBody}}</div>
                 <div class='modal-input-container' ng-show='mainCtrl.infoModalInputShow'>
-                <input id='info-modal-input' class='modal-input' placeholder='DELETE'
-                       ng-model='mainCtrl.infoModalInput' 
-                       ng-change='mainCtrl.checkInfoModalInput()'>
+                    <input id='info-modal-input' class='modal-input' placeholder='DELETE'
+                           ng-model='mainCtrl.infoModalInput' 
+                           ng-change='mainCtrl.checkInfoModalInput()'>
                 </div>
             </div>
         </div>

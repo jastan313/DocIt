@@ -24,10 +24,10 @@ var Comment = require('../app/models/CommentModel');
 
 // database =========================================
 // connect to our mongoDB database 
-var db = require('../config/db.js');
+var dbUrl = "mongodb://jastan313:docitmlab@ds123956.mlab.com:23956/docit-mlab";
 
 var mongooseStates = {0: 'Disconnected', 1: 'Connected', 2: 'Connecting', 3: 'Disconnecting'};
-mongoose.connect(db.url, {useMongoClient: true}, function (error) {
+mongoose.connect(dbUrl, {useMongoClient: true}, function (error) {
     if (error) {
         console.log("Mongoose Connection Error: " + error);
     } else {

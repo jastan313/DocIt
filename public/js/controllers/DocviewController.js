@@ -142,7 +142,7 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
             // Update Doc's ratings
             var docData = {ratings: newRatings};
             Doc.update(Page.getDoc()._id, docData).then(function (response) {
-                
+
                 // If Doc was updated successfully, set the new Doc, display
                 // rating up info, and update rate button styling
                 if (response.data) {
@@ -152,8 +152,8 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
                             Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
                                     Page.getDoc().author.alias, Doc.formatDate(Page.getDoc().date)));
                     $scope.updateDocRatingButtons();
-                } 
-                
+                }
+
                 // If Doc was deleted already, display info, and navigate to Docboard
                 else {
                     $scope.displayInfoPopup("Doc Missing",
@@ -182,7 +182,7 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
 
     // Export Doc's data to a .txt file using saveAs() and display export info
     $scope.exportDoc = function () {
-        
+
         // If export is not processing
         if (!$scope.mainCtrl.isProcessing) {
             $scope.mainCtrl.isProcessing = true;
@@ -318,13 +318,36 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
         }
     }
 
+    // Check info modal input to confirm deletion, if confirmed
+    // delete the Doc
+    $scope.mainCtrl.checkInfoModalInput = function () {
+        if ($scope.mainCtrl.infoModalInputShow) {
+            if ($scope.mainCtrl.infoModalInput === 'DELETE' ||
+                    $scope.mainCtrl.infoModalInput === 'delete') {
+                $scope.mainCtrl.infoModalInputShow = false;
+                $scope.deleteDoc();
+            }
+        }
+    }
+
+    // Prompt deletion confirmation
+    $scope.deleteDocAction = function () {
+        $scope.mainCtrl.infoModalInputShow = true;
+        $scope.displayInfoPopup("Doc Delete",
+                "You are attempting to delete the Doc:\n" +
+                Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
+                        Page.getUser().alias, Doc.formatDate(Page.getDoc().date))
+                + ".\n\n This action can not be reversed! Type 'DELETE' below to confirm.");
+        document.getElementById('info-modal-input').focus();
+    }
+
     // Delete the Doc (option only available if user is the Doc's author)
     $scope.deleteDoc = function () {
-        
+
         // If Doc delete is not processing
         if (!$scope.mainCtrl.isProcessing) {
             $scope.mainCtrl.isProcessing = true;
-            
+
             // If user is Doc's author
             if (Page.getDoc().author._id === Page.getUser()._id) {
                 // Delete the Doc
@@ -336,8 +359,8 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
                                 Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
                                         Page.getDoc().author.alias, Doc.formatDate(Page.getDoc().date)));
                         $scope.changePage('docboard');
-                    } 
-                    
+                    }
+
                     // If Doc was already deleted, display info and
                     // navigate to Docboard
                     else {

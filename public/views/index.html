@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,height=device-height initial-scale=1">
         <base href="/">
-        <title>{{ pageTitle }}</title>
+        <title>{{ mainCtrl.pageTitle}}</title>
 
         <!-- CSS-->
         <link rel="stylesheet" type="text/css" href="css/style.css"> <!-- custom styles -->
@@ -37,8 +37,13 @@
     <body>
         <div id="info-modal" class="modal" ng-click="checkInfoPopup($event)">
             <div class="modal-window">
-                <div class='modal-header'>{{ infoModalHeader }}</div>
-                <div class='modal-body'>{{ infoModalBody }}</div>
+                <div class='modal-header'>{{ mainCtrl.infoModalHeader}}</div>
+                <div class='modal-body'>{{ mainCtrl.infoModalBody}}</div>
+                <div class='modal-input-container' ng-show='mainCtrl.infoModalInputShow'>
+                <input id='info-modal-input' class='modal-input' placeholder='DELETE'
+                       ng-model='mainCtrl.infoModalInput' 
+                       ng-change='mainCtrl.checkInfoModalInput()'>
+                </div>
             </div>
         </div>
         <!-- ANGULAR DYNAMIC CONTENT -->

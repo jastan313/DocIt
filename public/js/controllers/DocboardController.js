@@ -7,7 +7,7 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
         $scope.docFeed = [];
 
         $scope.getDocArchive();
-        $scope.getDocFeed(10, 7);
+        $scope.getDocFeed(30, 10);
     }
 
     // Displays overview help info

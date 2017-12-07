@@ -16,10 +16,11 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
         $scope.mainCtrl.toFocus = null;
         $scope.mainCtrl.isProcessing = false;
         $scope.mainCtrl.directoryShow = false;
-
-        $scope.infoModalHeader = "";
-        $scope.infoModalBody = "";
-        $scope.pageTitle = "";
+        $scope.mainCtrl.infoModalHeader = "";
+        $scope.mainCtrl.infoModalBody = "";
+        $scope.mainCtrl.infoModalInput = "";
+        $scope.mainCtrl.modelInputShow = false;
+        $scope.mainCtrl.pageTitle = "";
 
         document.addEventListener('click', function (e) {
             var target = e.target;
@@ -36,7 +37,7 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
     // Utility function to change pages
     $scope.changePage = function (page) {
         if (Page.setPage(page)) {
-            $scope.pageTitle = Page.getTitle();
+            $scope.mainCtrl.pageTitle = Page.getTitle();
             $location.path(Page.getPage());
             $scope.mainCtrl.toFocus = null;
             $scope.mainCtrl.isProcessing = false;
@@ -45,8 +46,8 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
 
     // Displays the INFO popup with a given info string
     $scope.displayInfoPopup = function (header, body) {
-        $scope.infoModalHeader = "|INFO| " + header + ":";
-        $scope.infoModalBody = body;
+        $scope.mainCtrl.infoModalHeader = "|INFO| " + header + ":";
+        $scope.mainCtrl.infoModalBody = body;
         document.getElementById("info-modal").classList.add('open');
     }
 
@@ -55,16 +56,17 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
         var target = $event.currentTarget || $event.srcElement;
 
         // Close modal window when the backdrop is clicked
-        if (target.classList.contains('modal')) {
+        if (target.id === ('info-modal') && target == $event.target) {
             $scope.infoModalHeader = "";
             $scope.infoModalBody = "";
             document.getElementById("info-modal").classList.remove('open');
             if ($scope.mainCtrl.toFocus) {
                 document.getElementById($scope.mainCtrl.toFocus).focus();
                 $scope.mainCtrl.toFocus = null;
-
             }
             $scope.mainCtrl.isProcessing = false;
+            $scope.mainCtrl.infoModalInputShow = false;
+            $scope.mainCtrl.infoModalInput = "";
         }
     }
 

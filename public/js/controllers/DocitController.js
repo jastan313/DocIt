@@ -128,7 +128,7 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
 
             // If Doc's body data meets the minimum required length, publish the Doc
             else {
-                
+
                 var d = Page.getDoc();
                 // If user is updating an existing Doc
                 if (d) {
@@ -320,6 +320,29 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                     "File: " + filename + "\n\nNote: Exporting does not save the Doc.");
             $scope.toggleDirectory();
         }
+    }
+
+    // Check info modal input to confirm deletion, if confirmed
+    // delete the Doc
+    $scope.mainCtrl.checkInfoModalInput = function () {
+        if ($scope.mainCtrl.infoModalInputShow) {
+            if ($scope.mainCtrl.infoModalInput === 'DELETE' ||
+                    $scope.mainCtrl.infoModalInput === 'delete') {
+                $scope.mainCtrl.infoModalInputShow = false;
+                $scope.deleteDoc();
+            }
+        }
+    }
+
+    // Prompt deletion confirmation
+    $scope.deleteDocAction = function () {
+        $scope.mainCtrl.infoModalInputShow = true;
+        $scope.displayInfoPopup("Doc Delete",
+                "You are attempting to delete the Doc:\n" +
+                Doc.createHeading(Doc.formatTitle($scope.docTitle),
+                        Page.getUser().alias, $scope.docDate)
+                + ".\n\nThis action can not be reversed! Type 'DELETE' below to confirm.");
+        document.getElementById('info-modal-input').focus();
     }
 
     // Delete the Doc

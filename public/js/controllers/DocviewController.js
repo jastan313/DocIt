@@ -333,12 +333,11 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
     // Prompt deletion confirmation
     $scope.deleteDocAction = function () {
         $scope.mainCtrl.infoModalInputShow = true;
-        $scope.displayInfoPopup("Doc Delete",
-                "You are attempting to delete the Doc:\n" +
+        $scope.displayInfoPopup("Doc Delete Confirmation",
+                "You are attempting to delete the Doc:\n\n" +
                 Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
                         Page.getUser().alias, Doc.formatDate(Page.getDoc().date))
                 + ".\n\n This action can not be reversed! Type 'DELETE' below to confirm.");
-        document.getElementById('info-modal-input').focus();
     }
 
     // Delete the Doc (option only available if user is the Doc's author)

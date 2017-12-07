@@ -484,6 +484,11 @@ button:hover {
     /* See media.css for #docboard-feed height */
 }
 
+#docboard-loaddocfeed {
+    justify-content: center;
+    font-weight: bolder;
+}
+
 .docboard-feeddoc {
     margin: 0px 6px 12px 6px;
     text-align: center;  /* Create flex display for inner data */
@@ -504,6 +509,8 @@ button:hover {
     border: 2px black solid;
     cursor: pointer;
 }
+
+
 
 /**************************************************************
  *                    DOCIT + DOCVIEW + DOCBOARD              *

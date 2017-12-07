@@ -62,7 +62,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function ($scope, 
                                                 ".\n\nHave a great day and best of luck to your creative writing,\n|DOCIT|"
                                     };
                                     Email.create(emailData).then(function (response) {
-                                        console.log("email sent?");
+                                        $scope.mainCtrl.toFocus = "login-password";
                                         $scope.displayInfoPopup("Account Recovery",
                                                 "The provided Alias and password do not match. Due to  too many unsuccessful login attempts, an email has been sent to |"
                                                 + u.alias + "|\'s email address to recover the account. Please check your email for further help.");
@@ -71,6 +71,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function ($scope, 
                                 
                                 // Otherwise, password was still incorrect and display info
                                 else {
+                                    $scope.mainCtrl.toFocus = "login-password";
                                     $scope.displayInfoPopup("Account Credentials Do Not Match",
                                             "The provided Alias and password do not match. Please verify and enter your credentials again.\nNumber of attempts: ("
                                             + loginAttempts + "/5).\n\nNote: Upon reaching five (5) unsuccessful attempts, an account recovery email will be sent.");

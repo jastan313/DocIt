@@ -337,12 +337,11 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
     // Prompt deletion confirmation
     $scope.deleteDocAction = function () {
         $scope.mainCtrl.infoModalInputShow = true;
-        $scope.displayInfoPopup("Doc Delete",
-                "You are attempting to delete the Doc:\n" +
+        $scope.displayInfoPopup("Doc Delete Confirmation",
+                "You are attempting to delete the Doc:\n\n" +
                 Doc.createHeading(Doc.formatTitle($scope.docTitle),
                         Page.getUser().alias, $scope.docDate)
                 + ".\n\nThis action can not be reversed! Type 'DELETE' below to confirm.");
-        document.getElementById('info-modal-input').focus();
     }
 
     // Delete the Doc

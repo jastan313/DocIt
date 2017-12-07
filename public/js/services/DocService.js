@@ -16,7 +16,8 @@ angular.module('DocService', []).factory('Doc', ['$http', function ($http) {
                 return $http.get('/api/docs/items/' + num);
             },
 
-            // Call to get docs based on ratings within the past d days, limited to top num items
+            // Call to get docs based on ratings within the past d days, 
+            // limited to top num items
             getByRatingAndTime: function (num, d) {
                 return $http.get('/api/docs/items/' + num + "/days/" + d);
             },

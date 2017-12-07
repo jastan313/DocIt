@@ -1,13 +1,15 @@
 angular.module('DocboardCtrl', []).controller('DocboardController', function ($scope, Page, User, Doc) {
-    
+
     // Controller initialize by populating Doc Archive and Doc Feed
     $scope.init = function () {
         $scope.alias = Page.getUser() ? Page.getUser().alias : "";
         $scope.docArchive = [];
         $scope.docFeed = [];
+        $scope.docFeedNumLoaded = 0;
 
         $scope.getDocArchive();
-        $scope.getDocFeed(30, 10);
+        $scope.getDocFeed($scope.mainCtrl.docFeedNumItems,
+                $scope.mainCtrl.docFeedTimeLimit);
     }
 
     // Displays overview help info
@@ -30,7 +32,7 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
     // Populate Doc Archive with user's Docs
     $scope.getDocArchive = function () {
         var user = Page.getUser();
-        
+
         // If user is set, get user's Docs
         if (user) {
             Doc.getByUserID(user._id).then(function (response) {
@@ -57,8 +59,8 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
                     );
                 }
             });
-        } 
-        
+        }
+
         // If user was not set somehow, navigate back to Login
         else {
             Page.changePage("login");
@@ -71,7 +73,7 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
         Doc.getByRatingAndTime(num, d).then(function (response) {
             var docs = response.data;
             // For each Doc, add formatted Doc to Doc Feed
-            for (var i = 0; i < docs.length; i++) {
+            for (var i = $scope.docFeedNumLoaded; i < docs.length; i++) {
                 var doc = docs[i];
                 var docRating = docs[i].rating;
                 if (docRating === 0) {
@@ -89,20 +91,30 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
                             rating: docRating
                         }
                 );
+                $scope.docFeedNumLoaded++;
             }
         });
     };
 
+    // Increment number of items and lengthen the time threshold
+    // for Doc Feed, then retrieve the Docs
+    $scope.loadMoreDocFeed = function () {
+        $scope.mainCtrl.docFeedNumItems += 12; // add 12 more Docs
+        $scope.mainCtrl.docFeedTimeLimit += 14; // add 14 days to time threshold
+        $scope.getDocFeed($scope.mainCtrl.docFeedNumItems,
+                $scope.mainCtrl.docFeedTimeLimit);
+    }
+
     // Go view the selected Doc in Docit/Docview
     $scope.goDoc = function (docID) {
-        
+
         // If no Doc id parameter (null), user is writing a new Doc -
         // navigate to Docit
         if (docID == null) {
             Page.setDoc(null);
             $scope.changePage('docit');
-        } 
-        
+        }
+
         // Get the Doc by id, set the Doc, then navigate to Docit
         // if not published, navigate to Docview if published
         else {

@@ -21,6 +21,10 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
         $scope.mainCtrl.infoModalInput = "";
         $scope.mainCtrl.modelInputShow = false;
         $scope.mainCtrl.pageTitle = "";
+        
+        // parameters for docfeed loading
+        $scope.mainCtrl.docFeedNumItems = 12; // number of items to load
+        $scope.mainCtrl.docFeedTimeLimit = 30; // within the past n days
 
         document.addEventListener('click', function (e) {
             var target = e.target;
@@ -60,15 +64,20 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
             $scope.infoModalHeader = "";
             $scope.infoModalBody = "";
             document.getElementById("info-modal").classList.remove('open');
-            if ($scope.mainCtrl.toFocus) {
-                document.getElementById($scope.mainCtrl.toFocus).focus();
-                $scope.mainCtrl.toFocus = null;
-            }
             $scope.mainCtrl.isProcessing = false;
             $scope.mainCtrl.infoModalInputShow = false;
             $scope.mainCtrl.infoModalInput = "";
         }
     }
+
+    // Focuses on tag if there is an tag id set
+    $scope.focusTag = function () {
+        if ($scope.mainCtrl.toFocus) {
+            document.getElementById($scope.mainCtrl.toFocus).focus();
+            $scope.mainCtrl.toFocus = null;
+        }
+    }
+
 
     // Toggles directory options shown or not
     $scope.toggleDirectory = function () {

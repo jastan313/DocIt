@@ -1,15 +1,19 @@
 {
   "name": "DocIt",
   "version": "1.0.0",
+  "description" : "DOCIT: Anonymous Creative Writing Web App",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server/server.js"
+  },
   "keywords": [
-    "util",
-    "functional",
-    "server",
-    "client",
-    "browser"
+    "docit",
+    "anonymous",
+    "creative",
+    "writing",
+    "web application"
   ],
   "author": "Jason Tan",
-  "contributors": [],
   "dependencies": {
     "angular": "^1.6.7",
     "angular-route": "^1.6.7",
@@ -22,8 +26,7 @@
     "mongoose-unique-validator": "^1.0.6",
     "nodemailer": "4.4.0"
   },
-  "devDependencies": {},
-  "scripts": {
-    "start": "node server/server.js"
+  "engines": {
+    "node": "4.1.1"
   }
 }

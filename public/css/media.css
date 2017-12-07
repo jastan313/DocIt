@@ -8,92 +8,378 @@ and open the template in the editor.
     Author     : Jason Tan
 */
 
-/* Smartphones (portrait and landscape) ----------- */
-/* Portrait Focused Display */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px)  {
-    /**************************************************************
+/* Desktop screens ----------- */
+/* Static Focused Display */
+@media only screen  {
+     /**************************************************************
      *                             GENERAL                        *
      **************************************************************/
     #doc-container {
         /* Doc static width of 320px and 90% viewport height,
            and width:max-height ratio based on golden ratio , 1:1.618 */
-        width: 320px;
+        width: 800px;
         height: 90vh;
-        max-height: 517px;
+        min-width: 800px;
+        max-width: 800px;
+        min-height: 700px;
+        max-height: 1456px;
         
-        border: 5px solid gray;
+        border: 5px solid teal;
     }
 
     .typewriter {
-        letter-spacing: -1px;
-        border-right: 5px solid black;  /* The typewriter cursor */
+        letter-spacing: 1.5px;
+        border-right: 4px solid black;  /* The typewriter cursor */
     }
-    
     /**************************************************************
-     *                          SIGNUP/LOGIN                      *
+     *                         SIGNUP/LOGIN                      *
      **************************************************************/
     #login-container > h1, #signup-container > h1 {
-        font-size: 20px;
+        font-size: 30px;
     }
 
     #login-container > h2, #signup-container > h2 {
-        font-size: 10px;
+        font-size: 16px;
     }
     
     #login-form {
-        margin-top: 32%;
+        margin-top: 25%;
     }
     
     #signup-form {
-        margin-top: 14%;
+        margin-top: 21%;
     }
     
     #login-form > * {
-        font-size: 18px;
+        font-size: 28px;
     }
     
     #signup-form > * {
-        font-size: 15px;
+        font-size: 22px;
     }
 
-    #login-navigation > * {
-        font-size: 9px;
+    #login-navigation > *, #signup-navigation > * {
+        font-size: 17px;
     }
-    
-    #signup-navigation > * {
-        font-size: 10px;
-    }
-    
     /**************************************************************
      *                             DOCIT                          *
      **************************************************************/
     #docit-alias {
-        max-width: 220px;
+        max-width: 495px;
     }
     
     #docit-date {
-        max-width: 135px;
+        max-width: 185px;
     }
     
     #docit-title {
-        width: 275px;
+        width: 635px;
     }
 
     /**************************************************************
      *                            DOCVIEW                         *
      **************************************************************/
     #docview-alias {
-        max-width: 220px;
+        max-width: 495px;
     }
     
     #docview-date {
-        max-width: 140px;
+       max-width: 185px;
     }
     
     #docview-title {
-        max-width: 315px;
+        max-width: 690px;
+    }
+
+    /**************************************************************
+     *                        DOCIT + DOCVIEW                     *
+     **************************************************************/
+    .doc-alias, .doc-date, .doc-title {
+        margin: 0 0 4px 0;
+        font-size: 16px;
+    }
+
+    .doc-alias, .doc-date {
+        display: inline-block;
+    }
+
+    .doc-body {
+        width: 101.75%;  /* Hide vertical scrollbar by increasing right-side page margin */
+        height: calc(100% - 44px - 30px);   /* Occupy parent's remaining height, 44px for header, 30px for bottom page margin */
+    }
+
+    /**************************************************************
+     *                            DOCBOARD                        *
+     **************************************************************/
+    #docboard-docs-container > h2, #docboard-feed-container > h2 {
+        font-size: 18px;
+        margin: 10px 0px 10px 0px;
+    }
+
+    #docboard-header > * {
+        padding: 0 0 10px 0;
+    }
+
+    #docboard-header > h1 {
+        font-size: 26px;
+    }
+    
+    #docboard-alias {
+        font-size: 16px;
+        max-width: 540px;
+    }
+    
+    #docboard-docs {
+        height: 357px;
+    }
+    
+    #docboard-feed {
+        min-height: 174px;
+        height: calc(93vh - 530px);
+    }
+    
+    .docboard-mydoc, .docboard-feeddoc {
+        width: 177px;
+        height: 168px;
+    }
+    
+    /**************************************************************
+     *                    DOCIT + DOCVIEW + DOCBOARD              *
+     **************************************************************/
+}
+
+/* iPads (landscape) ----------- */
+/* Width-Scale Focused Display */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+    /**************************************************************
+     *                             GENERAL                        *
+     **************************************************************/
+    #doc-container {
+        /* Doc height:width ratio based on golden ratio, 1:1.618,
+           and 90% viewport width */
+        width: 90vw;
+        height: 55.623vw;
+        min-width: 768px;
+        max-width: 1004px;
+        max-height: 90vh;
+        
+        border: 5px solid pink;
+    }
+
+    .typewriter {
+        letter-spacing: 0.75px;
+        border-right: 3px solid black;  /* The typewriter cursor */
+    }
+    
+    /**************************************************************
+     *                          SIGNUP/LOGIN                      *
+     **************************************************************/
+    #login-container > h1, #signup-container > h1 {
+        font-size: calc(18px + 1.2vw);
+    }
+
+    #login-container > h2, #signup-container > h2 {
+        font-size: calc(9px + .7vw);
+    }
+    
+    #login-form {
+        margin-top: 8vw;
+    }
+    
+    #signup-form {
+        margin-top: 5.5vw;
+    }
+    
+    #login-form > * {
+        font-size: calc(11px + 1.6vw);
+    }
+    
+    #signup-form > * {
+        font-size: calc(6px + 1.4vw);
+    }
+
+    #login-navigation > * {
+        font-size: calc(9px + .5vw);
+    }
+    
+    #signup-navigation > * {
+        font-size: calc(10px + .6vw);
+    }
+    /**************************************************************
+     *                             DOCIT                          *
+     **************************************************************/
+    #docit-alias {
+        max-width: calc(75vw - 160px);
+    }
+    
+    #docit-date {
+        max-width: 175px;
+    }
+    
+    #docit-title {
+        width: calc(75vw - 30px);
+    }
+
+    /**************************************************************
+     *                            DOCVIEW                         *
+     **************************************************************/
+    #docview-alias {
+        max-width: calc(75vw - 160px);
+    }
+    
+    #docview-date {
+        max-width: 175px;
+    }
+    
+    #docview-title {
+        max-width: calc(75vw + 25px);
+    }
+    
+    /**************************************************************
+     *                        DOCIT + DOCVIEW                     *
+     **************************************************************/
+    .doc-alias, .doc-date, .doc-title {
+        margin: 0 0 4px 0;
+        font-size: 15px;
+    }
+
+    .doc-alias, .doc-date {
+        display: inline-block;
+    }
+    
+    .doc-body {
+        width: 101.75%;  /* Hide vertical scrollbar by increasing right-side page margin */
+        height: calc(100% - 42px - 20px);   /* Occupy parent's remaining height, 42px for header, 20px for extra space */
+    }
+    
+    /**************************************************************
+     *                            DOCBOARD                        *
+     **************************************************************/
+    #docboard-docs-container > h2, #docboard-feed-container > h2 {
+        font-size: 15px;
+        margin: 5px 0px 5px 0px;
+    }
+
+    #docboard-header > * {
+        padding: 0 0 2px 0;
+    }
+
+    #docboard-header > h1 {
+        font-size: 22px;
+    }
+
+    #docboard-alias {
+        font-size: 15px;
+        max-width: calc(83vw - 170px);
+    }
+    
+    #docboard-docs, #docboard-feed {
+        height: 175px;
+    }
+    
+    #docboard-feed {
+        height: calc(34vw - 100px);
+    }
+    
+    .docboard-mydoc, .docboard-feeddoc {
+        width: calc(22vw - 19px);
+        height: 169px;
+    }
+
+    /**************************************************************
+     *                    DOCIT + DOCVIEW + DOCBOARD              *
+     **************************************************************/
+}
+
+/* iPads (portrait and landscape (primarily portrait)) ----------- */
+/* Portrait Focused Display */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px),
+only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)
+and (orientation: portrait)
+{
+    /**************************************************************
+     *                             GENERAL                        *
+     **************************************************************/
+    #doc-container {
+        /* Doc static width of 768px and 90% viewport height,
+           and width:max-height ratio based on golden ratio , 1:1.618 */
+        width: 768px;
+        height: 90vh;
+        max-height: 1245px;
+        
+        border: 5px solid orange;
+    }
+
+    .typewriter {
+        letter-spacing: 0.5px;
+        border-right: 3px solid black;  /* The typewriter cursor */
+    }
+    
+    /**************************************************************
+     *                          SIGNUP/LOGIN                      *
+     **************************************************************/
+    #login-container > h1, #signup-container > h1 {
+        font-size: 32px;
+    }
+
+    #login-container > h2, #signup-container > h2 {
+        font-size: 17px;
+    }
+    
+    #login-form {
+        margin-top: 24%;
+    }
+    
+    #signup-form {
+        margin-top: 18%;
+    }
+    
+    #login-form > * {
+        font-size: 26px;
+    }
+    
+    #signup-form > * {
+        font-size: 22px;
+    }
+
+    #login-navigation > *, #signup-navigation > * {
+        font-size: 18px;
+    }
+    /**************************************************************
+     *                             DOCIT                          *
+     **************************************************************/
+    #docit-alias {
+        max-width: 460px;
+    }
+    
+    #docit-date {
+        max-width: 190px;
+    }
+    
+    #docit-title {
+        width: 600px;
+    }
+
+    /**************************************************************
+     *                            DOCVIEW                         *
+     **************************************************************/
+    #docview-alias {
+        max-width: 460px;
+    }
+    
+    #docview-date {
+        max-width: 190px;
+    }
+    
+    #docview-title {
+        max-width: 660px;
     }
     
     /**************************************************************
@@ -101,51 +387,51 @@ and (max-device-width : 480px)  {
      **************************************************************/
     .doc-alias, .doc-date, .doc-title {
         margin: 0 0 5px 0;
-        font-size: 12px;
+        font-size: 16px;
     }
 
     .doc-alias, .doc-date {
-        display: inherit;
+        display: inline-block;
     }
 
     .doc-body {
-        width: 104.4%;  /* Hide vertical scrollbar by increasing right-side page margin */
-        height: calc(100% - 52px - 20px);   /* Occupy parent's remaining height, 52px for header, 20px for extra space */
+        width: 102%;  /* Hide vertical scrollbar by increasing right-side page margin */
+        height: calc(100% - 43px - 20px);   /* Occupy parent's remaining height, 43px for header, 20px for extra space */
     }
     
     /**************************************************************
      *                            DOCBOARD                        *
      **************************************************************/
     #docboard-docs-container > h2, #docboard-feed-container > h2 {
-        font-size: 12px;
-        margin: 3px 0px 3px 0px;
+        font-size: 18px;
+        margin: 8px 0px 8px 0px;
     }
 
-    #docboard-header {
-        flex-direction: column;
-        align-items: left;
-    }
-    
     #docboard-header > * {
-        padding: 0 0 4px 0;
+        padding: 0 0 10px 0;
     }
 
     #docboard-header > h1 {
-        font-size: 14px;
+        font-size: 26px;
     }
 
     #docboard-alias {
-        font-size: 11px;
-        max-width: 240px;
+        font-size: 15px;
+        max-width: 520px;
     }
     
-    #docboard-docs, #docboard-feed {
-        height: 210px;
+    #docboard-docs {
+        height: 181px;
+    }
+    
+    #docboard-feed {
+        min-height: 174px;
+        height: calc(97vh - 390px);
     }
     
     .docboard-mydoc, .docboard-feeddoc {
-        width: 280px;
-        height: 203px;
+        width: 169px;
+        height: 170px;
     }
 
     /**************************************************************
@@ -457,92 +743,92 @@ and (orientation : landscape) {
      **************************************************************/
 }
 
-/* iPads (portrait and landscape (primarily portrait)) ----------- */
+/* Smartphones (portrait and landscape) ----------- */
 /* Portrait Focused Display */
 @media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px),
-only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px)
-and (orientation: portrait)
-{
+and (min-device-width : 320px) 
+and (max-device-width : 480px)  {
     /**************************************************************
      *                             GENERAL                        *
      **************************************************************/
     #doc-container {
-        /* Doc static width of 768px and 90% viewport height,
+        /* Doc static width of 320px and 90% viewport height,
            and width:max-height ratio based on golden ratio , 1:1.618 */
-        width: 768px;
+        width: 320px;
         height: 90vh;
-        max-height: 1245px;
+        max-height: 517px;
         
-        border: 5px solid orange;
+        border: 5px solid gray;
     }
 
     .typewriter {
-        letter-spacing: 0.5px;
-        border-right: 3px solid black;  /* The typewriter cursor */
+        letter-spacing: -1px;
+        border-right: 5px solid black;  /* The typewriter cursor */
     }
     
     /**************************************************************
      *                          SIGNUP/LOGIN                      *
      **************************************************************/
     #login-container > h1, #signup-container > h1 {
-        font-size: 32px;
+        font-size: 20px;
     }
 
     #login-container > h2, #signup-container > h2 {
-        font-size: 17px;
+        font-size: 10px;
     }
     
     #login-form {
-        margin-top: 24%;
+        margin-top: 32%;
     }
     
     #signup-form {
-        margin-top: 18%;
+        margin-top: 14%;
     }
     
     #login-form > * {
-        font-size: 26px;
+        font-size: 18px;
     }
     
     #signup-form > * {
-        font-size: 22px;
+        font-size: 15px;
     }
 
-    #login-navigation > *, #signup-navigation > * {
-        font-size: 18px;
+    #login-navigation > * {
+        font-size: 9px;
     }
+    
+    #signup-navigation > * {
+        font-size: 10px;
+    }
+    
     /**************************************************************
      *                             DOCIT                          *
      **************************************************************/
     #docit-alias {
-        max-width: 460px;
+        max-width: 220px;
     }
     
     #docit-date {
-        max-width: 190px;
+        max-width: 135px;
     }
     
     #docit-title {
-        width: 600px;
+        width: 275px;
     }
 
     /**************************************************************
      *                            DOCVIEW                         *
      **************************************************************/
     #docview-alias {
-        max-width: 460px;
+        max-width: 220px;
     }
     
     #docview-date {
-        max-width: 190px;
+        max-width: 140px;
     }
     
     #docview-title {
-        max-width: 660px;
+        max-width: 315px;
     }
     
     /**************************************************************
@@ -550,339 +836,53 @@ and (orientation: portrait)
      **************************************************************/
     .doc-alias, .doc-date, .doc-title {
         margin: 0 0 5px 0;
-        font-size: 16px;
+        font-size: 12px;
     }
 
     .doc-alias, .doc-date {
-        display: inline-block;
+        display: inherit;
     }
 
     .doc-body {
-        width: 102%;  /* Hide vertical scrollbar by increasing right-side page margin */
-        height: calc(100% - 43px - 20px);   /* Occupy parent's remaining height, 43px for header, 20px for extra space */
+        width: 104.4%;  /* Hide vertical scrollbar by increasing right-side page margin */
+        height: calc(100% - 52px - 20px);   /* Occupy parent's remaining height, 52px for header, 20px for extra space */
     }
     
     /**************************************************************
      *                            DOCBOARD                        *
      **************************************************************/
     #docboard-docs-container > h2, #docboard-feed-container > h2 {
-        font-size: 18px;
-        margin: 8px 0px 8px 0px;
+        font-size: 12px;
+        margin: 3px 0px 3px 0px;
     }
 
+    #docboard-header {
+        flex-direction: column;
+        align-items: left;
+    }
+    
     #docboard-header > * {
-        padding: 0 0 10px 0;
+        padding: 0 0 4px 0;
     }
 
     #docboard-header > h1 {
-        font-size: 26px;
+        font-size: 14px;
     }
 
     #docboard-alias {
-        font-size: 15px;
-        max-width: 520px;
-    }
-    
-    #docboard-docs {
-        height: 181px;
-    }
-    
-    #docboard-feed {
-        min-height: 174px;
-        height: calc(97vh - 390px);
-    }
-    
-    .docboard-mydoc, .docboard-feeddoc {
-        width: 169px;
-        height: 170px;
-    }
-
-    /**************************************************************
-     *                    DOCIT + DOCVIEW + DOCBOARD              *
-     **************************************************************/
-}
-
-/* iPads (landscape) ----------- */
-/* Width-Scale Focused Display */
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
-and (orientation : landscape) {
-    /**************************************************************
-     *                             GENERAL                        *
-     **************************************************************/
-    #doc-container {
-        /* Doc height:width ratio based on golden ratio, 1:1.618,
-           and 90% viewport width */
-        width: 90vw;
-        height: 55.623vw;
-        min-width: 768px;
-        max-width: 1004px;
-        max-height: 90vh;
-        
-        border: 5px solid pink;
-    }
-
-    .typewriter {
-        letter-spacing: 0.75px;
-        border-right: 3px solid black;  /* The typewriter cursor */
-    }
-    
-    /**************************************************************
-     *                          SIGNUP/LOGIN                      *
-     **************************************************************/
-    #login-container > h1, #signup-container > h1 {
-        font-size: calc(18px + 1.2vw);
-    }
-
-    #login-container > h2, #signup-container > h2 {
-        font-size: calc(9px + .7vw);
-    }
-    
-    #login-form {
-        margin-top: 8vw;
-    }
-    
-    #signup-form {
-        margin-top: 5.5vw;
-    }
-    
-    #login-form > * {
-        font-size: calc(11px + 1.6vw);
-    }
-    
-    #signup-form > * {
-        font-size: calc(6px + 1.4vw);
-    }
-
-    #login-navigation > * {
-        font-size: calc(9px + .5vw);
-    }
-    
-    #signup-navigation > * {
-        font-size: calc(10px + .6vw);
-    }
-    /**************************************************************
-     *                             DOCIT                          *
-     **************************************************************/
-    #docit-alias {
-        max-width: calc(75vw - 160px);
-    }
-    
-    #docit-date {
-        max-width: 175px;
-    }
-    
-    #docit-title {
-        width: calc(75vw - 30px);
-    }
-
-    /**************************************************************
-     *                            DOCVIEW                         *
-     **************************************************************/
-    #docview-alias {
-        max-width: calc(75vw - 160px);
-    }
-    
-    #docview-date {
-        max-width: 175px;
-    }
-    
-    #docview-title {
-        max-width: calc(75vw + 25px);
-    }
-    
-    /**************************************************************
-     *                        DOCIT + DOCVIEW                     *
-     **************************************************************/
-    .doc-alias, .doc-date, .doc-title {
-        margin: 0 0 4px 0;
-        font-size: 15px;
-    }
-
-    .doc-alias, .doc-date {
-        display: inline-block;
-    }
-    
-    .doc-body {
-        width: 101.75%;  /* Hide vertical scrollbar by increasing right-side page margin */
-        height: calc(100% - 42px - 20px);   /* Occupy parent's remaining height, 42px for header, 20px for extra space */
-    }
-    
-    /**************************************************************
-     *                            DOCBOARD                        *
-     **************************************************************/
-    #docboard-docs-container > h2, #docboard-feed-container > h2 {
-        font-size: 15px;
-        margin: 5px 0px 5px 0px;
-    }
-
-    #docboard-header > * {
-        padding: 0 0 2px 0;
-    }
-
-    #docboard-header > h1 {
-        font-size: 22px;
-    }
-
-    #docboard-alias {
-        font-size: 15px;
-        max-width: calc(83vw - 170px);
+        font-size: 11px;
+        max-width: 240px;
     }
     
     #docboard-docs, #docboard-feed {
-        height: 175px;
-    }
-    
-    #docboard-feed {
-        height: calc(34vw - 100px);
+        height: 210px;
     }
     
     .docboard-mydoc, .docboard-feeddoc {
-        width: calc(22vw - 19px);
-        height: 169px;
+        width: 280px;
+        height: 203px;
     }
 
-    /**************************************************************
-     *                    DOCIT + DOCVIEW + DOCBOARD              *
-     **************************************************************/
-}
-
-/* Desktop screens ----------- */
-/* Static Focused Display */
-@media only screen  {
-     /**************************************************************
-     *                             GENERAL                        *
-     **************************************************************/
-    #doc-container {
-        /* Doc static width of 320px and 90% viewport height,
-           and width:max-height ratio based on golden ratio , 1:1.618 */
-        width: 800px;
-        height: 90vh;
-        min-width: 800px;
-        max-width: 800px;
-        min-height: 700px;
-        max-height: 1456px;
-        
-        border: 5px solid teal;
-    }
-
-    .typewriter {
-        letter-spacing: 1.5px;
-        border-right: 4px solid black;  /* The typewriter cursor */
-    }
-    /**************************************************************
-     *                         SIGNUP/LOGIN                      *
-     **************************************************************/
-    #login-container > h1, #signup-container > h1 {
-        font-size: 30px;
-    }
-
-    #login-container > h2, #signup-container > h2 {
-        font-size: 16px;
-    }
-    
-    #login-form {
-        margin-top: 25%;
-    }
-    
-    #signup-form {
-        margin-top: 21%;
-    }
-    
-    #login-form > * {
-        font-size: 28px;
-    }
-    
-    #signup-form > * {
-        font-size: 22px;
-    }
-
-    #login-navigation > *, #signup-navigation > * {
-        font-size: 17px;
-    }
-    /**************************************************************
-     *                             DOCIT                          *
-     **************************************************************/
-    #docit-alias {
-        max-width: 495px;
-    }
-    
-    #docit-date {
-        max-width: 185px;
-    }
-    
-    #docit-title {
-        width: 635px;
-    }
-
-    /**************************************************************
-     *                            DOCVIEW                         *
-     **************************************************************/
-    #docview-alias {
-        max-width: 495px;
-    }
-    
-    #docview-date {
-       max-width: 185px;
-    }
-    
-    #docview-title {
-        max-width: 690px;
-    }
-
-    /**************************************************************
-     *                        DOCIT + DOCVIEW                     *
-     **************************************************************/
-    .doc-alias, .doc-date, .doc-title {
-        margin: 0 0 4px 0;
-        font-size: 16px;
-    }
-
-    .doc-alias, .doc-date {
-        display: inline-block;
-    }
-
-    .doc-body {
-        width: 101.75%;  /* Hide vertical scrollbar by increasing right-side page margin */
-        height: calc(100% - 44px - 30px);   /* Occupy parent's remaining height, 44px for header, 30px for bottom page margin */
-    }
-
-    /**************************************************************
-     *                            DOCBOARD                        *
-     **************************************************************/
-    #docboard-docs-container > h2, #docboard-feed-container > h2 {
-        font-size: 18px;
-        margin: 10px 0px 10px 0px;
-    }
-
-    #docboard-header > * {
-        padding: 0 0 10px 0;
-    }
-
-    #docboard-header > h1 {
-        font-size: 26px;
-    }
-    
-    #docboard-alias {
-        font-size: 16px;
-        max-width: 540px;
-    }
-    
-    #docboard-docs {
-        height: 357px;
-    }
-    
-    #docboard-feed {
-        min-height: 174px;
-        height: calc(93vh - 530px);
-    }
-    
-    .docboard-mydoc, .docboard-feeddoc {
-        width: 177px;
-        height: 168px;
-    }
-    
     /**************************************************************
      *                    DOCIT + DOCVIEW + DOCBOARD              *
      **************************************************************/

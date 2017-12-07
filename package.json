@@ -1,7 +1,7 @@
 {
   "name": "DocIt",
   "version": "1.0.0",
-  "description" : "DOCIT: Anonymous Creative Writing Web App",
+  "description": "DOCIT: Anonymous Creative Writing Web App",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js"
@@ -27,6 +27,7 @@
     "nodemailer": "4.4.0"
   },
   "engines": {
-    "node": "4.1.1"
+    "node": "6.11.4",
+    "npm": "3.10.10"
   }
 }

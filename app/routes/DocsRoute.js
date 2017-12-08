@@ -1,13 +1,4 @@
 module.exports = function (app, Doc) {
-    // GET: Get all docs
-    app.get('/api/docs', function (req, res) {
-        Doc.find(function (err, result) {
-            if (err)
-                res.send(err);
-            res.json(result); // Return all docs
-        });
-    });
-
     // GET: Get docs based on user id
     app.get('/api/docs/user/:id', function (req, res) {
         // Doc find by given user id, sorted by date
@@ -17,21 +8,6 @@ module.exports = function (app, Doc) {
                     if (err)
                         res.send(err);
                     res.json(result); // Return docs
-                });
-    });
-
-    // GET: Get docs based on ratings, limited to top num items
-    app.get('/api/docs/items/:num', function (req, res) {
-        // Doc find by published Docs, sorted by date, limited to num items,
-        // with the author field populated with (id and) alias
-        Doc.find({published: true})
-                .sort({'rating': -1})
-                .limit(parseInt(req.params.num))
-                .populate('author', 'alias')
-                .exec(function (err, result) {
-                    if (err)
-                        res.send(err);
-                    res.json(result); // Return selected docs
                 });
     });
 

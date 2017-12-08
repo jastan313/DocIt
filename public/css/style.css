@@ -361,11 +361,11 @@ button:hover {
     color: black;
     text-shadow: 1px 1px #b1b1b1;
 }
-.doc-rating.ratedup {
+.doc-rating.positive {
     color: #00870b;
     text-shadow: .4px .4px #00c500;
 }
-.doc-rating.rateddown {
+.doc-rating.negative {
     color: #a80000;
     text-shadow: .4px .4px #d80000;
 }
@@ -418,6 +418,21 @@ button:hover {
     margin: 0 12px 0 0;
 
     /* See media.css for #docboard-header > h1 font-size */
+}
+
+.user-rating {
+    display: inline-block;
+    font-size: 14px;
+    color: black;
+    text-shadow: 1px 1px #b1b1b1;
+}
+.user-rating.positive {
+    color: #00870b;
+    text-shadow: .4px .4px #00c500;
+}
+.user-rating.negative {
+    color: #a80000;
+    text-shadow: .4px .4px #d80000;
 }
 
 #docboard-alias {

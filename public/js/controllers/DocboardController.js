@@ -3,6 +3,7 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
     // Controller initialize by populating Doc Archive and Doc Feed
     $scope.init = function () {
         $scope.alias = Page.getUser() ? Page.getUser().alias : "";
+        $scope.userRating = 0;
         $scope.docArchive = [];
         $scope.docFeed = [];
         $scope.docFeedNumLoaded = 0;
@@ -28,9 +29,9 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
         |DOCVIEW|.\n\nThe Doc Feed will show you recently published Docs by you and fellow writers, \
         sorted by highest rating. Selecting any Doc in the Doc Feed will direct you to |DOCVIEW|. \
         Loading more Docs will increment the number of Docs loaded into the Doc Feed by " +
-        $scope.DOCFEED_NUM_MORE_DOCS + " items and the time threshold by " + $scope.DOCFEED_NUM_MORE_DAYS 
-        + " days. The Doc Feed is currently loading " + $scope.mainCtrl.docFeedNumItems
-        + " Docs within the past " + $scope.mainCtrl.docFeedTimeLimit + " days.\n\n|DOCIT|: \
+                $scope.DOCFEED_NUM_MORE_DOCS + " items and the time threshold by " + $scope.DOCFEED_NUM_MORE_DAYS
+                + " days. The Doc Feed is currently loading " + $scope.mainCtrl.docFeedNumItems
+                + " Docs within the past " + $scope.mainCtrl.docFeedTimeLimit + " days.\n\n|DOCIT|: \
         Using Docit, you will have the option to view, edit, save, export, and publish \
         your Docs.\n\n|DOCVIEW|: Using Docview, you will be able to view and rate \
         published-only Docs.");
@@ -44,11 +45,13 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
         if (user) {
             Doc.getByUserID(user._id).then(function (response) {
                 var docs = response.data;
+                $scope.userRating = 0;
                 // For each Doc, add formatted Doc to Doc Archive
                 for (var i = 0; i < docs.length; i++) {
                     var doc = docs[i];
                     var docRating = "Not Published";
                     if (doc.published) {
+                        $scope.userRating += doc.rating;
                         if (doc.rating === 0) {
                             docRating = "0 Rating";
                         } else if (doc.rating > 0) {
@@ -64,6 +67,14 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
                                 rating: docRating
                             }
                     );
+                }
+                var userRatingElement = document.getElementById("docboard-user-rating");
+                userRatingElement.className = "user-rating";
+                if ($scope.userRating > 0) {
+                    $scope.userRating = "+" + $scope.userRating;
+                    userRatingElement.classList.add("positive");
+                } else if ($scope.userRating < 0) {
+                    userRatingElement.classList.add("negative");
                 }
             });
         }

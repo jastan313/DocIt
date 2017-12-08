@@ -22,15 +22,15 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
             $scope.docAlias = doc.author.alias;
             $scope.docDate = Doc.formatDate(doc.date);
             $scope.docBody = doc.body;
-            $scope.docRating = parseInt(doc.rating);
+            $scope.docRating = doc.rating;
             var ratingElement = document.getElementById("docview-rating");
             ratingElement.className = "doc-rating";
             if(doc.rating > 0) {
                 $scope.docRating = "+" + doc.rating;
-                ratingElement.classList.add("ratedup");
+                ratingElement.classList.add("positive");
             }
             else if(doc.rating < 0) {
-                ratingElement.classList.add("rateddown");
+                ratingElement.classList.add("negative");
             }
             var user = Page.getUser();
 

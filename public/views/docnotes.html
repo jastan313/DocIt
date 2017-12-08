@@ -1,0 +1,45 @@
+<div id="doc-container" ng-controller="DocnotesController" ng-init="init()">
+    <div id="doc-content">
+        <button class="directory-btn"
+                type="button"
+                title="Directory options."
+                ng-show="!mainCtrl.directoryShow"
+                ng-click="toggleDirectory()"
+                >|DIRECTORY|</button>
+        <div class="directory highlight-disabled" ng-show="mainCtrl.directoryShow">
+
+            <div class="directory-opt" 
+                 title="Go back to Docview."
+                 ng-click="changePage('docview')">|BACK|</div>
+
+            <div class="directory-opt" 
+                 title="Go to Docboard."
+                 ng-click="changePage('docboard')">|DOCBOARD|</div>
+
+            <div class="directory-opt" 
+                 title="Log out current Alias."
+                 ng-click="changePage('login')">|LOGOUT|</div>
+        </div>
+
+        <div id="docnotes" class="doc">
+            <div id="docnotes-header" class="doc-header highlight-enabled">
+                <h3 id="docnotes-alias" class="doc-alias highlight-enabled">ALIAS: {{ docAlias}}</h3>
+                <h3 id="docnotes-date" class="doc-date"> DATE: {{ docDate}}</h3>
+                <div id="docnotes-title" class="doc-title">
+                    |<div id="docnotes-rating" class="doc-rating">{{ docRating}}</div>| DOC: {{ docTitle}}</div>
+            </div>    
+
+            <textarea id="docnotes-createnote" class="docnote-note" rows="20" cols="5" 
+                      ng-model="docnoteBody"></textarea>
+
+
+            <div id="docnotes-feed">
+                <textarea class="docnotes-note" 
+                          rows="20" cols="5" readonly 
+                          ng-repeat="note in docnotesFeed"
+                          ng-model="docnoteBody">
+                </textarea>
+            </div>
+        </div>
+    </div>
+</div>

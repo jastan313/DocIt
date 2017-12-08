@@ -20,7 +20,7 @@ var smtpTransport = nodemailer.createTransport({
 // models ===========================================
 var User = require('../app/models/UserModel');
 var Doc = require('../app/models/DocModel');
-var Comment = require('../app/models/CommentModel');
+var Note = require('../app/models/NoteModel');
 
 // database =========================================
 // connect to our mongoDB database 
@@ -60,7 +60,7 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 require('../app/routes/EmailRoute')(app, smtpTransport);
 require('../app/routes/UsersRoute')(app, User);
 require('../app/routes/DocsRoute')(app, Doc);
-require('../app/routes/CommentsRoute')(app, Comment);
+require('../app/routes/NotesRoute')(app, Note);
 require('../app/routes/IndexRoute')(app);
 // configure our routes
 

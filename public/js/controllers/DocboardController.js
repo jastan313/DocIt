@@ -1,4 +1,4 @@
-angular.module('DocboardCtrl', []).controller('DocboardController', function ($scope, Page, User, Doc) {
+angular.module('DocboardCtrl', []).controller('DocboardController', function ($scope, Page, Doc) {
 
     // Controller initialize by populating Doc Archive and Doc Feed
     $scope.init = function () {

@@ -1,19 +1,8 @@
 angular.module('DocService', []).factory('Doc', ['$http', function ($http) {
         return {
-
-            // Call to get all docs
-            get: function () {
-                return $http.get('/api/docs');
-            },
-
             // Call to get docs based on user id
             getByUserID: function (id) {
                 return $http.get('/api/docs/user/' + id);
-            },
-
-            // Call to get docs based on ratings, limited to top num items
-            getByRating: function (num) {
-                return $http.get('/api/docs/items/' + num);
             },
 
             // Call to get docs based on ratings within the past d days, 

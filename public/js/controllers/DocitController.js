@@ -1,4 +1,4 @@
-angular.module('DocitCtrl', []).controller('DocitController', function ($scope, Page, User, Doc) {
+angular.module('DocitCtrl', []).controller('DocitController', function ($scope, Page, Doc) {
     // Controller initialize, display the Doc
     $scope.init = function () {
         $scope.MIN_BODY_LENGTH = 50;

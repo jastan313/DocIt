@@ -1,4 +1,4 @@
-angular.module('DocviewCtrl', []).controller('DocviewController', function ($scope, Page, User, Doc) {
+angular.module('DocviewCtrl', []).controller('DocviewController', function ($scope, Page, Doc) {
     // Controller initialize, display the Doc
     $scope.init = function () {
         $scope.mainCtrl.directoryShow = false;

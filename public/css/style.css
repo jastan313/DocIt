@@ -336,7 +336,7 @@ button:hover {
 }
 
 /**************************************************************
- *                        DOCIT + DOCIEW                      *
+ *                         DOCIT + DOCIEW                     *
  **************************************************************/
 .doc {
     height: 100%;
@@ -543,7 +543,7 @@ button:hover {
 
 
 /**************************************************************
- *                    DOCIT + DOCVIEW + DOCBOARD              *
+ *            DOCIT + DOCVIEW + DOCNOTES + DOCBOARD           *
  **************************************************************/
 .directory-btn {
     padding: 8px 3px 7px 3px;
@@ -578,3 +578,49 @@ button:hover {
     cursor: pointer;
 }
 
+/**************************************************************
+ *                           DOCNOTES                         *
+ **************************************************************/
+#docnotes-header {
+    margin-bottom: 15px;
+}
+
+/* Area for docnotes, no background with vertical scrollability */
+#docnotes-feed {
+    margin: 10px 0 0 0;
+    border: 3px black solid;
+    padding: 15px 10px 20px 15px;
+    overflow-y: scroll;
+
+    height: calc(93vh - 145px);
+    /* See media.css for #docnotes-feed width, height */
+}
+
+#docnotes-createnote {
+    min-height: 100px;
+}
+
+.docnotes-note {
+    padding: 10px 15px 15px 15px;
+    margin-bottom: 15px;
+    border: 2px solid white;
+    box-shadow: 0px 7px 20px #bbbbbb, -2px 3px 7px black;
+}
+
+.note-alias, .note-date {
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: 0px 5px 10px 0px;
+    
+    /* See media.css for .note-alias, .note-date font-size */
+}
+
+.note-body {
+    word-wrap: break-word;
+    background-color: rgba(0,0,0,.05);
+    border: 0.4px solid rgba(0,0,0,.05);
+    
+    /* See media.css for .note-body font-size */
+}

@@ -8,7 +8,8 @@ angular.module('PageService', []).factory('Page', ['$rootScope', '$location', fu
             'signup': '|DOCIT| Signup',
             'docit': '|DOCIT| Docit',
             'docview': '|DOCIT| Docview',
-            'docboard': '|DOCIT| Docboard'};
+            'docboard': '|DOCIT| Docboard',
+            'docnotes': '|DOCIT| Docnotes'};
         pageObj.user = null;
         pageObj.doc = null;
         

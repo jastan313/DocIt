@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Jason%20Tan/Desktop/Projects/DocIt/app/routes/UsersRoute.js</file>
-            <file>file:/C:/Users/Jason%20Tan/Desktop/Projects/DocIt/public/views/index.html</file>
-            <file>file:/C:/Users/Jason%20Tan/Desktop/Projects/DocIt/public/js/services/PageService.js</file>
-            <file>file:/C:/Users/Jason%20Tan/Desktop/Projects/DocIt/public/css/media.css</file>
+            <file>file:/C:/Users/Jason%20Tan/Desktop/Projects/DocIt/public/css/style.css</file>
+            <file>file:/C:/Users/Jason%20Tan/Desktop/Projects/DocIt/public/js/controllers/DocboardController.js</file>
             <file>file:/C:/Users/Jason%20Tan/Desktop/Projects/DocIt/app/routes/IndexRoute.js</file>
-            <file>file:/C:/Users/Jason%20Tan/Desktop/Projects/DocIt/public/js/controllers/MainController.js</file>
-            <file>file:/C:/Users/Jason%20Tan/Desktop/Projects/DocIt/public/js/AppRoutes.js</file>
-            <file>file:/C:/Users/Jason%20Tan/Desktop/Projects/DocIt/server/server.js</file>
+            <file>file:/C:/Users/Jason%20Tan/Desktop/Projects/DocIt/public/views/docnotes_template.html</file>
         </group>
     </open-files>
 </project-private>

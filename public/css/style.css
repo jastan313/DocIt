@@ -336,7 +336,7 @@ button:hover {
 }
 
 /**************************************************************
- *                         DOCIT + DOCIEW                     *
+ *                    DOCIT + DOCIEW + DOCNOTES               *
  **************************************************************/
 .doc {
     height: 100%;
@@ -585,6 +585,18 @@ button:hover {
     margin-bottom: 15px;
 }
 
+#docnotes-alias {
+    /* See media.css for #docnotes-alias max-width */
+}
+
+#docnotes-date {
+    /* See media.css for #docnotes-date max-width */
+}
+
+#docnotes-title {
+    /* See media.css for #docnotes-title max-width */
+}
+
 /* Area for docnotes, no background with vertical scrollability */
 #docnotes-feed {
     margin: 10px 0 0 0;
@@ -592,12 +604,22 @@ button:hover {
     padding: 15px 10px 20px 15px;
     overflow-y: scroll;
 
-    height: calc(93vh - 145px);
-    /* See media.css for #docnotes-feed width, height */
+    height: calc(93vh - 160px);
+    /* See media.css for #docnotes-feed height */
+}
+
+/* Placeholder attribute (styling for div) */
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-text)
 }
 
 #docnotes-createnote {
-    min-height: 100px;
+    width: 100%;
+    min-height: 45px;
+    word-wrap: break-word;
+}
+#docnotes-createnote:hover {
+    cursor: url('../resources/pencil_cursor.cur'), auto;
 }
 
 .docnotes-note {
@@ -612,15 +634,16 @@ button:hover {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    margin: 0px 5px 10px 0px;
-    
-    /* See media.css for .note-alias, .note-date font-size */
+    margin: 0px 5px 5px 0px;
+
+    /* See media.css for .note-alias, .note-date font-size, max-width */
 }
 
 .note-body {
     word-wrap: break-word;
-    background-color: rgba(0,0,0,.05);
-    border: 0.4px solid rgba(0,0,0,.05);
-    
+    background-color: rgba(0,0,0,.025);
+    border: 0.4px solid rgba(0,0,0,.10);
+    font-weight: 100;
+
     /* See media.css for .note-body font-size */
 }

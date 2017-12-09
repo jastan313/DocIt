@@ -28,13 +28,17 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
         be published will direct you to |DOCIT|. Selecting a published Doc will direct you to \
         |DOCVIEW|.\n\nThe Doc Feed will show you recently published Docs by you and fellow writers, \
         sorted by highest rating. Selecting any Doc in the Doc Feed will direct you to |DOCVIEW|. \
-        Loading more Docs will increment the number of Docs loaded into the Doc Feed by " +
-                $scope.DOCFEED_NUM_MORE_DOCS + " items and the time threshold by " + $scope.DOCFEED_NUM_MORE_DAYS
-                + " days. The Doc Feed is currently loading " + $scope.mainCtrl.docFeedNumItems
-                + " Docs within the past " + $scope.mainCtrl.docFeedTimeLimit + " days.\n\n|DOCIT|: \
+        Loading more Docs will increment the number of Docs loaded into the Doc Feed by "
+                + $scope.DOCFEED_NUM_MORE_DOCS + " items and the time threshold by " 
+                + $scope.DOCFEED_NUM_MORE_DAYS + " days. The Doc Feed is currently loading " 
+                + $scope.mainCtrl.docFeedNumItems + " Docs within the past " + 
+                $scope.mainCtrl.docFeedTimeLimit + " days.\n\n|DOCIT|: \
         Using Docit, you will have the option to view, edit, save, export, and publish \
         your Docs.\n\n|DOCVIEW|: Using Docview, you will be able to view and rate \
-        published-only Docs.");
+        published-only Docs. From Docview you can navigate to |DOCNOTES|.\
+        \n\n|DOCNOTES|: Using Docnotes, you will have the option to share your own thoughts \
+        (whether that be an analysis, critique, interpretation, etc.) about the viewed Doc. From \
+        Docnotes, you will also be able to read other writers' notes.");
     }
 
     // Populate Doc Archive with user's Docs

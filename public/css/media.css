@@ -10,10 +10,11 @@ and open the template in the editor.
 
 /* Desktop screens ----------- */
 /* Static Focused Display */
-@media only screen  {
-     /**************************************************************
-     *                             GENERAL                        *
-     **************************************************************/
+@media only screen  
+{
+    /**************************************************************
+    *                             GENERAL                        *
+    **************************************************************/
     #doc-container {
         /* Doc static width of 320px and 90% viewport height,
            and width:max-height ratio based on golden ratio , 1:1.618 */
@@ -23,7 +24,7 @@ and open the template in the editor.
         max-width: 800px;
         min-height: 700px;
         max-height: 1456px;
-        
+
         /*border: 5px solid teal;*/
     }
 
@@ -41,19 +42,19 @@ and open the template in the editor.
     #login-container > h2, #signup-container > h2 {
         font-size: 16px;
     }
-    
+
     #login-form {
         margin-top: 25%;
     }
-    
+
     #signup-form {
         margin-top: 21%;
     }
-    
+
     #login-form > * {
         font-size: 28px;
     }
-    
+
     #signup-form > * {
         font-size: 22px;
     }
@@ -67,11 +68,11 @@ and open the template in the editor.
     #docit-alias {
         max-width: 495px;
     }
-    
+
     #docit-date {
         max-width: 185px;
     }
-    
+
     #docit-title {
         width: 635px;
     }
@@ -82,17 +83,17 @@ and open the template in the editor.
     #docview-alias {
         max-width: 495px;
     }
-    
+
     #docview-date {
-       max-width: 185px;
+        max-width: 185px;
     }
-    
+
     #docview-title {
         max-width: 690px;
     }
 
     /**************************************************************
-     *                        DOCIT + DOCVIEW                     *
+     *                    DOCIT + DOCIEW + DOCNOTES               *
      **************************************************************/
     .doc-alias, .doc-date, .doc-title {
         margin: 0 0 4px 0;
@@ -123,37 +124,67 @@ and open the template in the editor.
     #docboard-header > h1 {
         font-size: 26px;
     }
-    
+
     #docboard-alias {
         font-size: 16px;
         max-width: 540px;
     }
-    
+
     #docboard-docs {
         height: 174px;
     }
-    
+
     #docboard-feed {
         min-height: 174px;
         height: calc(93vh - 356px);
     }
-    
+
     .docboard-mydoc, .docboard-feeddoc {
         width: 177px;
         height: 168px;
     }
-    
+
     /**************************************************************
-     *                    DOCIT + DOCVIEW + DOCBOARD              *
+     *                           DOCNOTES                         *
      **************************************************************/
+    #docnotes-alias {
+        max-width: 535px;
+    }
+
+    #docnotes-date {
+        max-width: 145px;
+    }
+
+    #docnotes-title {
+        max-width: 690px;
+    }
+
+    #docnotes-feed {
+        height: calc(93vh - 145px);
+    }
+
+    .note-alias {
+        font-size: 13px;
+        max-width: 580px;
+    }
+
+    .note-date {
+        font-size: 13px;
+        max-width: 130px;
+    }
+
+    .note-body {
+        font-size: 12px;
+    }
 }
 
 /* iPads (landscape) ----------- */
 /* Width-Scale Focused Display */
-/@media only screen 
+@media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
-and (orientation : landscape) {
+and (orientation : landscape)
+{
     /**************************************************************
      *                             GENERAL                        *
      **************************************************************/
@@ -165,7 +196,7 @@ and (orientation : landscape) {
         min-width: 768px;
         max-width: 1004px;
         max-height: 90vh;
-        
+
         border: 5px solid pink;
     }
 
@@ -173,7 +204,7 @@ and (orientation : landscape) {
         letter-spacing: 0.75px;
         border-right: 3px solid black;  /* The typewriter cursor */
     }
-    
+
     /**************************************************************
      *                          SIGNUP/LOGIN                      *
      **************************************************************/
@@ -184,19 +215,19 @@ and (orientation : landscape) {
     #login-container > h2, #signup-container > h2 {
         font-size: calc(9px + .7vw);
     }
-    
+
     #login-form {
         margin-top: 8vw;
     }
-    
+
     #signup-form {
         margin-top: 5.5vw;
     }
-    
+
     #login-form > * {
         font-size: calc(11px + 1.6vw);
     }
-    
+
     #signup-form > * {
         font-size: calc(6px + 1.4vw);
     }
@@ -204,7 +235,7 @@ and (orientation : landscape) {
     #login-navigation > * {
         font-size: calc(9px + .5vw);
     }
-    
+
     #signup-navigation > * {
         font-size: calc(10px + .6vw);
     }
@@ -214,11 +245,11 @@ and (orientation : landscape) {
     #docit-alias {
         max-width: calc(75vw - 160px);
     }
-    
+
     #docit-date {
         max-width: 175px;
     }
-    
+
     #docit-title {
         width: calc(75vw - 30px);
     }
@@ -229,17 +260,17 @@ and (orientation : landscape) {
     #docview-alias {
         max-width: calc(75vw - 160px);
     }
-    
+
     #docview-date {
         max-width: 175px;
     }
-    
+
     #docview-title {
         max-width: calc(75vw + 25px);
     }
-    
+
     /**************************************************************
-     *                        DOCIT + DOCVIEW                     *
+     *                    DOCIT + DOCIEW + DOCNOTES               *
      **************************************************************/
     .doc-alias, .doc-date, .doc-title {
         margin: 0 0 4px 0;
@@ -249,12 +280,12 @@ and (orientation : landscape) {
     .doc-alias, .doc-date {
         display: inline-block;
     }
-    
+
     .doc-body {
         width: 101.75%;  /* Hide vertical scrollbar by increasing right-side page margin */
         height: calc(100% - 42px - 20px);   /* Occupy parent's remaining height, 42px for header, 20px for extra space */
     }
-    
+
     /**************************************************************
      *                            DOCBOARD                        *
      **************************************************************/
@@ -275,23 +306,52 @@ and (orientation : landscape) {
         font-size: 15px;
         max-width: calc(83vw - 170px);
     }
-    
+
     #docboard-docs, #docboard-feed {
         height: 175px;
     }
-    
+
     #docboard-feed {
         height: calc(34vw - 100px);
     }
-    
+
     .docboard-mydoc, .docboard-feeddoc {
         width: calc(22vw - 19px);
         height: 169px;
     }
 
     /**************************************************************
-     *                    DOCIT + DOCVIEW + DOCBOARD              *
+     *                           DOCNOTES                         *
      **************************************************************/
+    #docnotes-alias {
+        max-width: calc(75vw - 130px);
+    }
+
+    #docnotes-date {
+        max-width: 145px;
+    }
+
+    #docnotes-title {
+        max-width: calc(75vw + 30px);
+    }
+
+    #docnotes-feed {
+        height: calc(55vw - 100px);
+    }
+
+    .note-alias {
+        font-size: 13px;
+        max-width: calc(83vw - 160px);
+    }
+
+    .note-date {
+        font-size: 13px;
+        max-width: 130px;
+    }
+
+    .note-body {
+        font-size: 12px;
+    }
 }
 
 /* iPads (portrait and landscape (primarily portrait)) ----------- */
@@ -313,15 +373,14 @@ and (orientation: portrait)
         width: 768px;
         height: 90vh;
         max-height: 1245px;
-        
-        border: 5px solid orange;
+
     }
 
     .typewriter {
         letter-spacing: 0.5px;
         border-right: 3px solid black;  /* The typewriter cursor */
     }
-    
+
     /**************************************************************
      *                          SIGNUP/LOGIN                      *
      **************************************************************/
@@ -332,19 +391,19 @@ and (orientation: portrait)
     #login-container > h2, #signup-container > h2 {
         font-size: 17px;
     }
-    
+
     #login-form {
         margin-top: 24%;
     }
-    
+
     #signup-form {
         margin-top: 18%;
     }
-    
+
     #login-form > * {
         font-size: 26px;
     }
-    
+
     #signup-form > * {
         font-size: 22px;
     }
@@ -358,11 +417,11 @@ and (orientation: portrait)
     #docit-alias {
         max-width: 460px;
     }
-    
+
     #docit-date {
         max-width: 190px;
     }
-    
+
     #docit-title {
         width: 600px;
     }
@@ -373,17 +432,17 @@ and (orientation: portrait)
     #docview-alias {
         max-width: 460px;
     }
-    
+
     #docview-date {
         max-width: 190px;
     }
-    
+
     #docview-title {
         max-width: 660px;
     }
-    
+
     /**************************************************************
-     *                        DOCIT + DOCVIEW                     *
+     *                    DOCIT + DOCIEW + DOCNOTES               *
      **************************************************************/
     .doc-alias, .doc-date, .doc-title {
         margin: 0 0 5px 0;
@@ -398,7 +457,7 @@ and (orientation: portrait)
         width: 102%;  /* Hide vertical scrollbar by increasing right-side page margin */
         height: calc(100% - 43px - 20px);   /* Occupy parent's remaining height, 43px for header, 20px for extra space */
     }
-    
+
     /**************************************************************
      *                            DOCBOARD                        *
      **************************************************************/
@@ -419,24 +478,53 @@ and (orientation: portrait)
         font-size: 15px;
         max-width: 520px;
     }
-    
+
     #docboard-docs {
         height: 181px;
     }
-    
+
     #docboard-feed {
         min-height: 174px;
         height: calc(97vh - 390px);
     }
-    
+
     .docboard-mydoc, .docboard-feeddoc {
         width: 169px;
         height: 170px;
     }
 
     /**************************************************************
-     *                    DOCIT + DOCVIEW + DOCBOARD              *
+     *                           DOCNOTES                         *
      **************************************************************/
+    #docnotes-alias {
+        max-width: 500px;
+    }
+
+    #docnotes-date {
+        max-width: 145px;
+    }
+
+    #docnotes-title {
+        max-width: 660px;
+    }
+
+    #docnotes-feed {
+        height: calc(93vh - 145px);
+    }
+
+    .note-alias {
+        font-size: 13px;
+        max-width: 550px;
+    }
+
+    .note-date {
+        font-size: 13px;
+        max-width: 130px;
+    }
+
+    .note-body {
+        font-size: 12px;
+    }
 }
 
 /* Smartphones (landscape) ----------- */
@@ -444,7 +532,8 @@ and (orientation: portrait)
 /@media only screen 
 and (min-device-width : 320px)
 and (max-device-width: 736px)
-and (orientation : landscape) {
+and (orientation : landscape) 
+{
     /**************************************************************
      *                             GENERAL                        *
      **************************************************************/
@@ -456,7 +545,7 @@ and (orientation : landscape) {
         min-width: 321px;
         max-width: 700px;
         max-height: 90vh;
-        
+
         border: 5px solid red;
     }
 
@@ -464,14 +553,14 @@ and (orientation : landscape) {
         letter-spacing: 0.75px;
         border-right: 2px solid black;  /* The typewriter cursor */
     }
-    
+
     /**************************************************************
      *                          SIGNUP/LOGIN                      *
      **************************************************************/
     #login-container > h1 {
         font-size: calc(7px + 2vw);
     }
-    
+
     #signup-container > h1 {
         font-size: calc(7px + 2vw);
     }
@@ -479,23 +568,23 @@ and (orientation : landscape) {
     #login-container > h2 {
         font-size: calc(5px + 1vw);
     }
-    
+
     #signup-container > h2 {
         font-size: calc(2px + 1.4vw);
     }
-    
+
     #login-form {
         margin-top: 7%;
     }
-    
+
     #signup-form {
         margin-top: 4%
     }
-    
+
     #login-form > * {
         font-size: calc(1px + 2.6vw);
     }
-    
+
     #signup-form > * {
         font-size: calc( 2vw);
     }
@@ -503,7 +592,7 @@ and (orientation : landscape) {
     #login-navigation > * {
         font-size: calc(5px + 0.9vw);
     }
-    
+
     #signup-navigation > * {
         font-size: calc(2px + 1.4vw);
     }
@@ -513,11 +602,11 @@ and (orientation : landscape) {
     #docit-alias {
         max-width: calc(85vw - 250px);
     }
-    
+
     #docit-date {
         max-width: 175px;
     }
-    
+
     #docit-title {
         width: calc(85vw - 120px);
     }
@@ -528,17 +617,17 @@ and (orientation : landscape) {
     #docview-alias {
         max-width: calc(85vw - 250px);
     }
-    
+
     #docview-date {
         max-width: 175px;
     }
-    
+
     #docview-title {
         max-width: calc(85vw - 70px);
     }
-    
+
     /**************************************************************
-     *                        DOCIT + DOCVIEW                     *
+     *                    DOCIT + DOCIEW + DOCNOTES               *
      **************************************************************/
     .doc-alias, .doc-date, .doc-title {
         margin: 0 0 4px 0;
@@ -553,14 +642,14 @@ and (orientation : landscape) {
         width: 102%;  /* Hide vertical scrollbar by increasing right-side page margin */
         height: calc(100% - 42px - 20px);   /* Occupy parent's remaining height, 42px for header, 20px for extra space */
     }
-    
+
     /**************************************************************
      *                            DOCBOARD                        *
      **************************************************************/
     #docboard-docs-container, #docboard-feed-container {
         display: inline-block;
     }
-    
+
     #docboard-docs-container > h2, #docboard-feed-container > h2 {
         font-size: 16px;
         margin: 10px 0px 10px 0px;
@@ -578,28 +667,58 @@ and (orientation : landscape) {
         font-size: 14px;
         max-width: calc(85vw - 190px);
     }
-    
+
     #docboard-docs, #docboard-feed {
         width: 43vw;
         height: 40vw;
-        
+
     }
-    
+
     .docboard-mydoc, .docboard-feeddoc {
         width: 38.5vw;
         height: 39vw;
     }
 
     /**************************************************************
-     *                    DOCIT + DOCVIEW + DOCBOARD              *
+     *                           DOCNOTES                         *
      **************************************************************/
+    #docnotes-alias {
+        max-width: calc(85vw - 240px);
+    }
+
+    #docnotes-date {
+        max-width: 145px;
+    }
+
+    #docnotes-title {
+        max-width: calc(85vw - 85px);
+    }
+
+    #docnotes-feed {
+        height: calc(55vw - 100px);
+    }
+
+    .note-alias {
+        font-size: 13px;
+        max-width: calc(85vw - 195px);
+    }
+
+    .note-date {
+        font-size: 13px;
+        max-width: 130px;
+    }
+
+    .note-body {
+        font-size: 12px;
+    }
 }
 
 /* Smartphones (portrait) ----------- */
 /* Slight Width-Scale Focused Display */
 /@media only screen 
- and (max-device-width : 320px) 
- and (orientation: portrait) {
+and (max-device-width : 320px) 
+and (orientation: portrait) 
+{
     /**************************************************************
      *                             GENERAL                        *
      **************************************************************/
@@ -609,7 +728,7 @@ and (orientation : landscape) {
         height: 90vh;
         max-width: 320px;
         max-height: 453px;
-        
+
         border: 5px solid teak;
     }
 
@@ -617,7 +736,7 @@ and (orientation : landscape) {
         letter-spacing: -0.25px;
         border-right: 1px solid black;  /* The typewriter cursor */
     }
-    
+
     /**************************************************************
      *                          SIGNUP/LOGIN                      *
      **************************************************************/
@@ -628,15 +747,15 @@ and (orientation : landscape) {
     #login-container > h2 {
         font-size: calc(4px + .9vw);
     }
-    
+
     #signup-container > h2 {
         font-size: calc(8px + 0.7vw);
     }
-    
+
     #login-form {
         margin-top: 35%;
     }
-    
+
     #signup-form {
         margin-top: 18%;
     }
@@ -644,7 +763,7 @@ and (orientation : landscape) {
     #login-form > * {
         font-size: calc(11px + .8vw);
     }
-    
+
     #signup-form > * {
         font-size: calc(9px + .9vw);
     }
@@ -652,7 +771,7 @@ and (orientation : landscape) {
     #login-navigation > * {
         font-size: calc(6px + .4vw);
     }
-    
+
     #signup-navigation > * {
         font-size: calc(6px + .9vw);
     }
@@ -662,11 +781,11 @@ and (orientation : landscape) {
     #docit-alias {
         max-width: calc(60vw - 48px);
     }
-    
+
     #docit-date {
         max-width: 135px;
     }
-    
+
     #docit-title {
         width: calc(70vw - 25px);
     }
@@ -677,17 +796,17 @@ and (orientation : landscape) {
     #docview-alias {
         max-width: calc(60vw - 48px);
     }
-    
+
     #docview-date {
         max-width: 135px;
     }
-    
+
     #docview-title {
         max-width: calc(70vw + 12px);
     }
-    
+
     /**************************************************************
-     *                        DOCIT + DOCVIEW                     *
+     *                    DOCIT + DOCIEW + DOCNOTES               *
      **************************************************************/
     .doc-alias, .doc-date, .doc-title {
         margin: 0 0 4px 0;
@@ -702,7 +821,7 @@ and (orientation : landscape) {
         width: 104.4%;  /* Hide vertical scrollbar by increasing right-side page margin */
         height: calc(100% - 50px - 20px);   /* Occupy parent's remaining height, 50px for header, 20px for extra space */
     }
-    
+
     /**************************************************************
      *                            DOCBOARD                        *
      **************************************************************/
@@ -715,7 +834,7 @@ and (orientation : landscape) {
         flex-direction: column;
         align-items: left;
     }
-    
+
     #docboard-header > * {
         padding: 0 0 4px 0;
     }
@@ -728,26 +847,58 @@ and (orientation : landscape) {
         font-size: 11px;
         max-width: calc(70vw - 65px);
     }
-    
+
     #docboard-docs, #docboard-feed {
         height: 178px;
     }
-    
+
     .docboard-mydoc, .docboard-feeddoc {
         width: 280px;
         height: 172px;
     }
 
     /**************************************************************
-     *                    DOCIT + DOCVIEW + DOCBOARD              *
+     *                           DOCNOTES                         *
      **************************************************************/
+    #docnotes-alias {
+        max-width: calc(70vw - 85px);
+    }
+
+    #docnotes-date {
+        max-width: 115px;
+    }
+
+    #docnotes-title {
+        max-width: calc(70vw + 10px);
+    }
+
+    #docnotes-feed {
+        height: 345px;
+    }
+
+    .note-alias {
+        display: inherit;
+        font-size: 11px;
+        max-width: calc(70vw - 55px);
+    }
+
+    .note-date {
+        display: inherit;
+        font-size: 11px;
+        max-width: 115px;
+    }
+
+    .note-body {
+        font-size: 10px;
+    }
 }
 
 /* Smartphones (portrait and landscape) ----------- */
 /* Portrait Focused Display */
 /@media only screen 
 and (min-device-width : 320px) 
-and (max-device-width : 480px)  {
+ and (max-device-width : 480px) 
+{
     /**************************************************************
      *                             GENERAL                        *
      **************************************************************/
@@ -757,15 +908,13 @@ and (max-device-width : 480px)  {
         width: 320px;
         height: 90vh;
         max-height: 517px;
-        
-        border: 5px solid gray;
     }
 
     .typewriter {
         letter-spacing: -1px;
         border-right: 5px solid black;  /* The typewriter cursor */
     }
-    
+
     /**************************************************************
      *                          SIGNUP/LOGIN                      *
      **************************************************************/
@@ -776,19 +925,19 @@ and (max-device-width : 480px)  {
     #login-container > h2, #signup-container > h2 {
         font-size: 10px;
     }
-    
+
     #login-form {
         margin-top: 32%;
     }
-    
+
     #signup-form {
         margin-top: 14%;
     }
-    
+
     #login-form > * {
         font-size: 18px;
     }
-    
+
     #signup-form > * {
         font-size: 15px;
     }
@@ -796,22 +945,22 @@ and (max-device-width : 480px)  {
     #login-navigation > * {
         font-size: 9px;
     }
-    
+
     #signup-navigation > * {
         font-size: 10px;
     }
-    
+
     /**************************************************************
      *                             DOCIT                          *
      **************************************************************/
     #docit-alias {
         max-width: 220px;
     }
-    
+
     #docit-date {
         max-width: 135px;
     }
-    
+
     #docit-title {
         width: 275px;
     }
@@ -822,17 +971,17 @@ and (max-device-width : 480px)  {
     #docview-alias {
         max-width: 220px;
     }
-    
+
     #docview-date {
         max-width: 140px;
     }
-    
+
     #docview-title {
         max-width: 315px;
     }
-    
+
     /**************************************************************
-     *                        DOCIT + DOCVIEW                     *
+     *                    DOCIT + DOCIEW + DOCNOTES               *
      **************************************************************/
     .doc-alias, .doc-date, .doc-title {
         margin: 0 0 5px 0;
@@ -847,7 +996,7 @@ and (max-device-width : 480px)  {
         width: 104.4%;  /* Hide vertical scrollbar by increasing right-side page margin */
         height: calc(100% - 52px - 20px);   /* Occupy parent's remaining height, 52px for header, 20px for extra space */
     }
-    
+
     /**************************************************************
      *                            DOCBOARD                        *
      **************************************************************/
@@ -860,7 +1009,7 @@ and (max-device-width : 480px)  {
         flex-direction: column;
         align-items: left;
     }
-    
+
     #docboard-header > * {
         padding: 0 0 4px 0;
     }
@@ -873,17 +1022,48 @@ and (max-device-width : 480px)  {
         font-size: 11px;
         max-width: 240px;
     }
-    
+
     #docboard-docs, #docboard-feed {
         height: 210px;
     }
-    
+
     .docboard-mydoc, .docboard-feeddoc {
         width: 280px;
         height: 203px;
     }
 
     /**************************************************************
-     *                    DOCIT + DOCVIEW + DOCBOARD              *
+     *                           DOCNOTES                         *
      **************************************************************/
+    #docnotes-alias {
+        max-width: 220px;
+    }
+
+    #docnotes-date {
+        max-width: 115px;
+    }
+
+    #docnotes-title {
+        max-width: 310px;
+    }
+
+    #docnotes-feed {
+        height: 405px;
+    }
+
+    .note-alias {
+        display: inherit;
+        font-size: 11px;
+        max-width: 550px;
+    }
+
+    .note-date {
+        display: inherit;
+        font-size: 11px;
+        max-width: 115px;
+    }
+
+    .note-body {
+        font-size: 10px;
+    }
 }

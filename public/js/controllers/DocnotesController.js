@@ -1,4 +1,5 @@
 angular.module('DocnotesCtrl', []).controller('DocnotesController', function ($scope, Page, Doc, Note) {
+    // Controller initialize, display Doc header and Docnotes feed
     $scope.init = function () {
         $scope.mainCtrl.directoryShow = false;
         $scope.MIN_BODY_LENGTH = 10;
@@ -7,10 +8,11 @@ angular.module('DocnotesCtrl', []).controller('DocnotesController', function ($s
         $scope.displayDocnotes();
     }
 
+    // Display Doc header with Doc data
     $scope.displayDocnotes = function () {
         var doc = Page.getDoc();
 
-        // If Doc is set and published, display Doc's notes
+        // If Doc is set and published, display Doc's data
         if (doc && doc.published) {
             // Data bind corresponding to the Doc's data
             $scope.docTitle = doc.title;
@@ -44,11 +46,13 @@ angular.module('DocnotesCtrl', []).controller('DocnotesController', function ($s
     $scope.getDocnotesFeed = function () {
         var doc = Page.getDoc();
 
-        // If Doc is set and published, display Doc's notes
+        // If Doc is set, get Doc's notes
         if (doc && doc.published) {
             Note.get(doc._id).then(function (response) {
                 $scope.docnotesFeed = [];
                 var notes = response.data;
+                
+                // For each note, add formatted note to Docnotes Feed
                 for (var i = 0; i < notes.length; i++) {
                     var note = notes[i];
                     $scope.docnotesFeed.push({
@@ -63,7 +67,7 @@ angular.module('DocnotesCtrl', []).controller('DocnotesController', function ($s
 
     // Submit a new note
     $scope.submitNote = function () {
-        // If Doc save is not processing
+        // If note submit is not processing
         if (!$scope.mainCtrl.isProcessing) {
             $scope.mainCtrl.isProcessing = true;
             var noteBody = document.getElementById("docnotes-createnote").innerText;
@@ -86,7 +90,7 @@ angular.module('DocnotesCtrl', []).controller('DocnotesController', function ($s
                     body: noteBody
                 };
                 Note.create(noteData).then(function (response) {
-                    // If Note create successful, set the new Doc,
+                    // If note create successful, set the new Doc,
                     // refresh Docnotes view, and display create info
                     if (response.data) {
                         $scope.getDocnotesFeed();
@@ -100,5 +104,4 @@ angular.module('DocnotesCtrl', []).controller('DocnotesController', function ($s
             }
         }
     }
-})
-        ;
+});

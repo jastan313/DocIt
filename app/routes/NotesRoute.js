@@ -25,12 +25,5 @@ module.exports = function (app, Note) {
             res.json(result); // Return created note
         });
     });
-
-    // DELETE: Delete all notes based on doc id
-    app.delete('/api/notes/doc/:id', function (req, res) {
-        Note.deleteMany({doc: req.params.id}, function (err) {
-            res.send(err);
-        });
-    });
 };
 

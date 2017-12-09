@@ -8,6 +8,11 @@ angular.module('NoteService', []).factory('Note', ['$http', function ($http) {
             // Call to create a new note
             create: function (noteData) {
                 return $http.post('/api/notes', noteData);
+            },
+            
+            // Call to delete all notes based on doc id
+            delete: function(id) {
+                return $http.delete('/api/notes/doc/' + id);
             }
         }
     }]);

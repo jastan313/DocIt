@@ -23,7 +23,7 @@
             <div id="docboard-header">
                 <h1>|DOCBOARD|</h1>
                 <div id="docboard-alias">
-                    >> |<div id="docboard-user-rating" class="user-rating">{{ userRating }}</div>| {{ alias }}</div>
+                    >> |<div id="docboard-user-rating" class="user-rating">{{userRating}}</div>| {{alias}}</div>
             </div>
 
             <div id="docboard-docs-container">
@@ -32,9 +32,9 @@
                     <div id="docboard-createdoc" class="docboard-mydoc highlight-disabled" title="Create a new document." ng-click="goDoc(null)">+Create New Doc+</div>
                     <div class="docboard-mydoc" ng-repeat="doc in docArchive" ng-click="goDoc(doc._id)">
                         <div>
-                            <div class="docboard-doc-title">{{ doc.title }}</div>
-                            <div class="docboard-doc-date">{{ doc.date }}</div>
-                            <div class="docboard-doc-rating">{{ doc.rating }}</div>
+                            <div class="docboard-doc-title">{{doc.title}}</div>
+                            <div class="docboard-doc-date">{{doc.date}}</div>
+                            <div class="docboard-doc-rating">{{doc.rating}}</div>
                         </div>
                     </div>
                 </div>
@@ -45,10 +45,10 @@
                 <div id="docboard-feed">
                     <div class="docboard-feeddoc" ng-repeat="doc in docFeed" ng-click="goDoc(doc._id)">
                         <div>
-                            <div class="docboard-doc-title">{{ doc.title }}</div>
-                            <div class="docboard-doc-alias">|{{ doc.alias }}|</div>
-                            <div class="docboard-doc-date">{{ doc.date }}</div>
-                            <div class="docboard-doc-rating">{{ doc.rating }}</div>
+                            <div class="docboard-doc-title">{{doc.title}}</div>
+                            <div class="docboard-doc-alias">|{{doc.alias}}|</div>
+                            <div class="docboard-doc-date">{{doc.date}}</div>
+                            <div class="docboard-doc-rating">{{doc.rating}}</div>
                         </div>
                     </div>
                     <div id="docboard-loaddocfeed" class="docboard-mydoc highlight-disabled" title="Load more Docs to the Feed." ng-click="loadMoreDocFeed()">+Load More+</div>

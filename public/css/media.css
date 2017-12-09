@@ -74,7 +74,7 @@ and open the template in the editor.
     }
 
     #docit-title {
-        width: 635px;
+        width: 625px;
     }
 
     /**************************************************************
@@ -89,14 +89,14 @@ and open the template in the editor.
     }
 
     #docview-title {
-        max-width: 690px;
+        max-width: 680px;
     }
 
     /**************************************************************
      *                    DOCIT + DOCIEW + DOCNOTES               *
      **************************************************************/
     .doc-alias, .doc-date, .doc-title {
-        margin: 0 0 4px 0;
+        margin-bottom: 4px;
         font-size: 16px;
     }
 
@@ -156,7 +156,7 @@ and open the template in the editor.
     }
 
     #docnotes-title {
-        max-width: 690px;
+        max-width: 680px;
     }
 
     #docnotes-feed {
@@ -165,7 +165,7 @@ and open the template in the editor.
 
     .note-alias {
         font-size: 13px;
-        max-width: 580px;
+        max-width: 575px;
     }
 
     .note-date {
@@ -251,7 +251,7 @@ and (orientation : landscape)
     }
 
     #docit-title {
-        width: calc(75vw - 30px);
+        width: calc(75vw - 40px);
     }
 
     /**************************************************************
@@ -266,7 +266,7 @@ and (orientation : landscape)
     }
 
     #docview-title {
-        max-width: calc(75vw + 25px);
+        max-width: calc(75vw + 15px);
     }
 
     /**************************************************************
@@ -332,7 +332,7 @@ and (orientation : landscape)
     }
 
     #docnotes-title {
-        max-width: calc(75vw + 30px);
+        max-width: calc(75vw + 20px);
     }
 
     #docnotes-feed {
@@ -341,7 +341,7 @@ and (orientation : landscape)
 
     .note-alias {
         font-size: 13px;
-        max-width: calc(83vw - 160px);
+        max-width: calc(83vw - 165px);
     }
 
     .note-date {
@@ -423,7 +423,7 @@ and (orientation: portrait)
     }
 
     #docit-title {
-        width: 600px;
+        width: 590px;
     }
 
     /**************************************************************
@@ -438,7 +438,7 @@ and (orientation: portrait)
     }
 
     #docview-title {
-        max-width: 660px;
+        max-width: 650px;
     }
 
     /**************************************************************
@@ -505,7 +505,7 @@ and (orientation: portrait)
     }
 
     #docnotes-title {
-        max-width: 660px;
+        max-width: 650px;
     }
 
     #docnotes-feed {
@@ -514,7 +514,7 @@ and (orientation: portrait)
 
     .note-alias {
         font-size: 13px;
-        max-width: 550px;
+        max-width: 545px;
     }
 
     .note-date {
@@ -608,7 +608,7 @@ and (orientation : landscape)
     }
 
     #docit-title {
-        width: calc(85vw - 120px);
+        width: calc(85vw - 130px);
     }
 
     /**************************************************************
@@ -623,7 +623,7 @@ and (orientation : landscape)
     }
 
     #docview-title {
-        max-width: calc(85vw - 70px);
+        max-width: calc(85vw - 80px);
     }
 
     /**************************************************************
@@ -691,7 +691,7 @@ and (orientation : landscape)
     }
 
     #docnotes-title {
-        max-width: calc(85vw - 85px);
+        max-width: calc(85vw - 95px);
     }
 
     #docnotes-feed {
@@ -700,7 +700,7 @@ and (orientation : landscape)
 
     .note-alias {
         font-size: 13px;
-        max-width: calc(85vw - 195px);
+        max-width: calc(85vw - 200px);
     }
 
     .note-date {
@@ -787,7 +787,7 @@ and (orientation: portrait)
     }
 
     #docit-title {
-        width: calc(70vw - 25px);
+        width: calc(70vw - 35px);
     }
 
     /**************************************************************
@@ -802,7 +802,7 @@ and (orientation: portrait)
     }
 
     #docview-title {
-        max-width: calc(70vw + 12px);
+        max-width: calc(70vw + 2px);
     }
 
     /**************************************************************
@@ -869,7 +869,7 @@ and (orientation: portrait)
     }
 
     #docnotes-title {
-        max-width: calc(70vw + 10px);
+        max-width: calc(70vw + 0px);
     }
 
     #docnotes-feed {
@@ -879,7 +879,7 @@ and (orientation: portrait)
     .note-alias {
         display: inherit;
         font-size: 11px;
-        max-width: calc(70vw - 55px);
+        max-width: calc(70vw - 60px);
     }
 
     .note-date {
@@ -962,7 +962,7 @@ and (min-device-width : 320px)
     }
 
     #docit-title {
-        width: 275px;
+        width: 265px;
     }
 
     /**************************************************************
@@ -977,7 +977,7 @@ and (min-device-width : 320px)
     }
 
     #docview-title {
-        max-width: 315px;
+        max-width: 305px;
     }
 
     /**************************************************************
@@ -1044,7 +1044,7 @@ and (min-device-width : 320px)
     }
 
     #docnotes-title {
-        max-width: 310px;
+        max-width: 300px;
     }
 
     #docnotes-feed {
@@ -1054,7 +1054,7 @@ and (min-device-width : 320px)
     .note-alias {
         display: inherit;
         font-size: 11px;
-        max-width: 550px;
+        max-width: 545px;
     }
 
     .note-date {

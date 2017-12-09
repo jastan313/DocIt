@@ -9,6 +9,10 @@
         <div class="directory highlight-disabled" ng-show="mainCtrl.directoryShow">
 
             <div class="directory-opt" 
+                 title="Submit note."
+                 ng-click="submitNote()">|SUBMIT|</div>
+
+            <div class="directory-opt" 
                  title="Go back to Docview."
                  ng-click="changePage('docview')">|BACK|</div>
 
@@ -23,22 +27,27 @@
 
         <div id="docnotes" class="doc">
             <div id="docnotes-header" class="doc-header highlight-enabled">
-                <h3 id="docnotes-alias" class="doc-alias highlight-enabled">ALIAS: {{ docAlias}}</h3>
-                <h3 id="docnotes-date" class="doc-date"> DATE: {{ docDate}}</h3>
+                <h3 id="docnotes-alias" class="doc-alias highlight-enabled">ALIAS: {{docAlias}}  </h3>
+                <h3 id="docnotes-date" class="doc-date">DATE: {{docDate}}</h3>
                 <div id="docnotes-title" class="doc-title">
-                    |<div id="docnotes-rating" class="doc-rating">{{ docRating}}</div>| DOC: {{ docTitle}}</div>
+                    |<div id="docnotes-rating" class="doc-rating">{{docRating}}</div>| DOC: {{docTitle}}</div>
             </div>    
-
-            <textarea id="docnotes-createnote" class="docnote-note" rows="20" cols="5" 
-                      ng-model="docnoteBody"></textarea>
-
-
             <div id="docnotes-feed">
-                <textarea class="docnotes-note" 
-                          rows="20" cols="5" readonly 
-                          ng-repeat="note in docnotesFeed"
-                          ng-model="docnoteBody">
-                </textarea>
+                <div class="docnotes-note">
+                    <div class="note-header">
+                        <div class="note-alias">ALIAS: {{noteAlias}}</div><div class="note-date">DATE: {{noteDate}}</div>
+                    </div>
+                    <div id="docnotes-createnote" class="note-body"
+                         contenteditable="true"
+                         data-text="Share your thoughts and type a note here..."></div>
+                </div>
+
+                <div class="docnotes-note" ng-repeat="note in docnotesFeed">
+                    <div class="note-header">
+                        <div class="note-alias">ALIAS: {{note.alias}}</div><div class="note-date">DATE: {{note.date}}</div>
+                    </div>
+                    <div class="note-body">{{note.body}}</div>
+                </div>
             </div>
         </div>
     </div>

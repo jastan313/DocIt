@@ -64,8 +64,8 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                     body: $scope.docBody
                 };
                 Doc.update(d._id, docData).then(function (response) {
-                    // If Doc update successful, set the updated Doc and
-                    // display update info
+                    // If Doc update successful, set the updated Doc,
+                    // refresh Docit view, and display update info
                     if (response.data) {
                         Page.setDoc(response.data);
                         $scope.displayDocit();
@@ -93,8 +93,8 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                     body: $scope.docBody
                 };
                 Doc.create(docData).then(function (response) {
-                    // If Doc create successful, set the new Doc and
-                    // display create info
+                    // If Doc create successful, set the new Doc,
+                    // refresh Docit view, and display create info
                     if (response.data) {
                         Page.setDoc(response.data);
                         $scope.displayDocit();

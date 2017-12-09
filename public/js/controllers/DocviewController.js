@@ -5,7 +5,6 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
         $scope.showAuthorBtns = false;
         $scope.copyText = "";
         
-        $scope.docRating = 0;
         $scope.userRating = 0;
         $scope.displayDocview();
     }

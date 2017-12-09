@@ -4,6 +4,7 @@ module.exports = function (app, Note) {
         // Notes find by given doc id, sorted by date
         Note.find({doc: req.params.id})
                 .sort({'date': -1})
+                .populate('author', 'alias')
                 .exec(function (err, result) {
                     if (err)
                         res.send(err);
@@ -26,7 +27,7 @@ module.exports = function (app, Note) {
     });
 
     // DELETE: Delete all notes based on doc id
-    app.post('/api/notes/doc/:id', function (req, res) {
+    app.delete('/api/notes/doc/:id', function (req, res) {
         Note.deleteMany({doc: req.params.id}, function (err) {
             res.send(err);
         });

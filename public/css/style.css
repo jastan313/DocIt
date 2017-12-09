@@ -342,6 +342,10 @@ button:hover {
     height: 100%;
 }
 
+.doc-alias {
+    margin-right: 8px;
+}
+
 .doc-alias, .doc-date, .doc-title {
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -609,8 +613,10 @@ button:hover {
 }
 
 /* Placeholder attribute (styling for div) */
-[contentEditable=true]:empty:not(:focus):before{
-    content:attr(data-text)
+[contentEditable=true]:empty:before{
+    text-align: center;
+    content:attr(data-text);
+    display: block; /* For Firefox */
 }
 
 #docnotes-createnote {
@@ -634,7 +640,7 @@ button:hover {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    margin: 0px 5px 5px 0px;
+    margin: 0px 10px 5px 0px;
 
     /* See media.css for .note-alias, .note-date font-size, max-width */
 }

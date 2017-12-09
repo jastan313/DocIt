@@ -1,4 +1,4 @@
-module.exports = function (app, Doc) {
+module.exports = function (app, Doc, Note) {
     // GET: Get docs based on user id
     app.get('/api/docs/user/:id', function (req, res) {
         // Doc find by given user id, sorted by date
@@ -96,12 +96,12 @@ module.exports = function (app, Doc) {
                 }
                 doc.rating = totalRating;
             }
-            
+
             // If Doc is not published, update its date
             else {
                 doc.date = Date.now();
             }
-            
+
             doc.save(function (err, result) {
                 if (err)
                     res.send(err);
@@ -125,9 +125,15 @@ module.exports = function (app, Doc) {
             if (err)
                 res.send(err);
 
-            // If Doc delete successful, return id of deleted Doc
+            // If Doc delete successful, delete any related notes,
+            // and return id of deleted Doc
             if (result) {
-                res.json({_id: result._id});
+                Note.deleteMany({doc: req.params.id}, function (err) {
+                    if (err) {
+                        res.send(err);
+                    }
+                    res.json({_id: result._id});
+                });
             }
 
             // If Doc was already deleted, return null

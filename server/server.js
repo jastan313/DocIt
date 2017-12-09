@@ -59,7 +59,7 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 
 require('../app/routes/EmailRoute')(app, smtpTransport);
 require('../app/routes/UsersRoute')(app, User);
-require('../app/routes/DocsRoute')(app, Doc);
+require('../app/routes/DocsRoute')(app, Doc, Note);
 require('../app/routes/NotesRoute')(app, Note);
 require('../app/routes/IndexRoute')(app);
 // configure our routes

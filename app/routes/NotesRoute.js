@@ -8,7 +8,17 @@ module.exports = function (app, Note) {
                 .exec(function (err, result) {
                     if (err)
                         res.send(err);
-                    res.json(result); // Return docs
+                    res.json(result); // Return notes
+                });
+    });
+
+    // GET: Get note count based on doc id
+    app.get('/api/notes/doc/:id/count', function (req, res) {
+        Note.count({doc: req.params.id})
+                .exec(function (err, result) {
+                    if (err)
+                        res.send(err);
+                    res.json(result); // Return note count
                 });
     });
 

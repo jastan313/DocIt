@@ -36,9 +36,11 @@ module.exports = function (app, Doc, Note) {
         Doc.findById(req.params.id)
                 .populate('author', 'alias')
                 .exec(function (err, result) {
-                    if (err)
+                    if (err) {
                         res.send(err);
-                    res.json(result); // Return the specific doc
+                    }
+                    res.json(result);// Return the doc
+
                 });
     });
 

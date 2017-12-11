@@ -4,6 +4,11 @@ angular.module('NoteService', []).factory('Note', ['$http', function ($http) {
             get: function (id) {
                 return $http.get('/api/notes/doc/' + id);
             },
+            
+            // Call to get a note count based on doc id
+            getCount: function (id) {
+                return $http.get('/api/notes/doc/' + id + "/count");
+            },
 
             // Call to create a new note
             create: function (noteData) {

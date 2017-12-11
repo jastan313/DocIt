@@ -1,13 +1,13 @@
-angular.module('DocviewCtrl', []).controller('DocviewController', function ($scope, Page, Doc) {
+angular.module('DocviewCtrl', []).controller('DocviewController', function ($scope, Page, Doc, Note) {
     // Controller initialize, display the Doc
     $scope.init = function () {
         $scope.mainCtrl.directoryShow = false;
         $scope.showAuthorBtns = false;
         $scope.copyText = "";
-        
+
         $scope.userRating = 0;
         $scope.displayDocview();
-    }
+    };
 
     // Display the published Doc if set
     $scope.displayDocview = function () {
@@ -16,48 +16,53 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
 
         // If Doc is set and published, display Doc's data
         if (doc && doc.published) {
-            // Data bind corresponding to the Doc's data
-            $scope.docTitle = doc.title;
-            $scope.docAlias = doc.author.alias;
-            $scope.docDate = Doc.formatDate(doc.date);
-            $scope.docBody = doc.body;
-            $scope.docRating = doc.rating;
-            var ratingElement = document.getElementById("docview-rating");
-            ratingElement.className = "doc-rating";
-            if(doc.rating > 0) {
-                $scope.docRating = "+" + doc.rating;
-                ratingElement.classList.add("positive");
-            }
-            else if(doc.rating < 0) {
-                ratingElement.classList.add("negative");
-            }
-            var user = Page.getUser();
-
-            // If user is set, show author buttons and update user's
-            // current rating of this Doc
-            if (user) {
-                // Add Delete button if user is the author of this Doc
-                $scope.showAuthorBtns = (doc.author._id === user._id);
-
-                // Check if user has rated this Doc
-                for (var i = 0; i < doc.ratings.length; i++) {
-                    if (doc.ratings[i].user_id === user._id) {
-                        // Set user's current rating
-                        $scope.userRating = parseInt(doc.ratings[i].rating);
-                        break;
-                    }
+            // Get the Doc's current number of notes
+            Note.getCount(doc._id).then(function (response) {
+                var noteCount = response.data;
+                
+                // Data bind corresponding to the Doc's data
+                $scope.docTitle = doc.title;
+                $scope.docAlias = doc.author.alias;
+                $scope.docDate = Doc.formatDate(doc.date);
+                $scope.docBody = doc.body;
+                $scope.docRating = doc.rating;
+                $scope.docNoteCount = noteCount !== 1 ? noteCount + " Notes" : noteCount + " Note";
+                var ratingElement = document.getElementById("docview-rating");
+                ratingElement.className = "doc-rating";
+                if (doc.rating > 0) {
+                    $scope.docRating = "+" + doc.rating;
+                    ratingElement.classList.add("positive");
+                } else if (doc.rating < 0) {
+                    ratingElement.classList.add("negative");
                 }
+                var user = Page.getUser();
 
-                // Add styling to rating buttons if user has rated this Doc
-                $scope.updateDocRatingButtons();
-            }
+                // If user is set, show author buttons and update user's
+                // current rating of this Doc
+                if (user) {
+                    // Add Delete button if user is the author of this Doc
+                    $scope.showAuthorBtns = (doc.author._id === user._id);
+
+                    // Check if user has rated this Doc
+                    for (var i = 0; i < doc.ratings.length; i++) {
+                        if (doc.ratings[i].user_id === user._id) {
+                            // Set user's current rating
+                            $scope.userRating = parseInt(doc.ratings[i].rating);
+                            break;
+                        }
+                    }
+
+                    // Add styling to rating buttons if user has rated this Doc
+                    $scope.updateDocRatingButtons();
+                }
+            });
         }
 
         // If Doc not set, navigate back to Docboard
         else {
             $scope.changePage("docboard");
         }
-    }
+    };
 
     // Update rating button styling based on user's current rating of
     // this Doc
@@ -73,7 +78,7 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
         } else if ($scope.userRating < 0) {
             rateDownBtn.classList.add('rateddown');
         }
-    }
+    };
 
     // Rate this Doc up either by adding a new rating up or updating
     // user's current rating from down to up
@@ -122,7 +127,7 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
                 }
             });
         }
-    }
+    };
 
     // Rate this Doc down either by adding a new rating down or updating
     // user's current rating from up to down
@@ -172,7 +177,7 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
                 }
             });
         }
-    }
+    };
 
     // Copy Doc's formatted data to clipboard and display copy info
     $scope.copyDoc = function () {
@@ -188,7 +193,7 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
         $scope.displayInfoPopup("Doc Copied",
                 Doc.createHeading(Doc.formatTitle($scope.docTitle),
                         $scope.docAlias, $scope.docDate));
-    }
+    };
 
     // Export Doc's data to a .txt file using saveAs() and display export info
     $scope.exportDoc = function () {
@@ -317,9 +322,9 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
             }
             ;
             var filename = $scope.docTitle.replace(/[\s+\t\n\\/:\"*?<>|]/g, '') + ".txt";
-            var data = "\"" + $scope.docTitle.length > 25 ?
-                    $scope.docTitle.substring(0, $scope.mainCtrl.DOC_TITLE_MAX_SHOW_LENGTH) + "..." :
-                    $scope.docTitle + "\" by " + $scope.docAlias
+            var formattedTitle = "\"" + $scope.docTitle.substring(0, $scope.mainCtrl.DOC_TITLE_MAX_SHOW_LENGTH) + "...\"";
+            var data = $scope.docTitle.length > 25 ?
+                    formattedTitle : "\"" + $scope.docTitle + "\" by " + $scope.docAlias
                     + ", " + $scope.docDate + "\n" + $scope.docBody;
             var blob = new Blob([data.replace(/([^\r])\n/g, "$1\r\n")], {type: "text/plain;charset=utf-8"});
             saveAs(blob, filename);
@@ -338,7 +343,7 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
                 $scope.deleteDoc();
             }
         }
-    }
+    };
 
     // Prompt deletion confirmation
     $scope.deleteDocAction = function () {
@@ -348,7 +353,7 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
                 Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
                         Page.getUser().alias, Doc.formatDate(Page.getDoc().date))
                 + ".\n\n This action can not be reversed! Type 'DELETE' below to confirm.");
-    }
+    };
 
     // Delete the Doc (option only available if user is the Doc's author)
     $scope.deleteDoc = function () {
@@ -380,5 +385,5 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
                 });
             }
         }
-    }
+    };
 });

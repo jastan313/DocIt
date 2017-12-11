@@ -283,6 +283,13 @@ button:hover {
     /* See media.css for #docview-alias, #docview-date, #docview-title width, max-width */
 }
 
+.doc-notecount {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: bold;
+    text-shadow: .65px .65px #ccc8c8;
+}
+
 #docview-directory-rating-container {
     display: inline-block;
     padding: 0;
@@ -362,8 +369,8 @@ button:hover {
 .doc-rating {
     display: inline-block;
     font-size: 14px;
-    color: black;
-    text-shadow: 1px 1px #b1b1b1;
+    color: #848282;
+    text-shadow: 1px 1px #c3c3c3;
 }
 .doc-rating.positive {
     color: #00870b;

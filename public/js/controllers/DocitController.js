@@ -312,7 +312,9 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
             }
             ;
             var filename = $scope.docTitle.replace(/[\s+\t\n\\/:\"*?<>|]/g, '') + ".txt";
-            var data = "\"" + $scope.docTitle + "\" by " + $scope.docAlias
+            var formattedTitle = "\"" + $scope.docTitle.substring(0, $scope.mainCtrl.DOC_TITLE_MAX_SHOW_LENGTH) + "...\"";
+            var data = $scope.docTitle.length > 25 ?
+                    formattedTitle : "\"" + $scope.docTitle + "\" by " + $scope.docAlias
                     + ", " + $scope.docDate + "\n" + $scope.docBody;
             var blob = new Blob([data.replace(/([^\r])\n/g, "$1\r\n")], {type: "text/plain;charset=utf-8"});
             saveAs(blob, filename);

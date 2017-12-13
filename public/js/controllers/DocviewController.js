@@ -113,11 +113,10 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
                 if (response.data) {
                     Page.setDoc(response.data);
                     $cookies.putObject('docitDoc', Page.getDoc());
-                    $scope.userRating = 1;
+                    $scope.displayDocview();
                     $scope.displayInfoPopup("Doc Rated Up",
                             Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
                                     Page.getDoc().author.alias, Doc.formatDate(Page.getDoc().date)));
-                    $scope.updateDocRatingButtons();
                 }
 
                 // If Doc was deleted already, display info, and navigate to Docboard
@@ -158,17 +157,15 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
             // Update Doc's ratings
             var docData = {ratings: newRatings};
             Doc.update(Page.getDoc()._id, docData).then(function (response) {
-
                 // If Doc was updated successfully, set the new Doc, display
                 // rating up info, and update rate button styling
                 if (response.data) {
                     Page.setDoc(response.data);
                     $cookies.putObject('docitDoc', Page.getDoc());
-                    $scope.userRating = -1;
+                    $scope.displayDocview();
                     $scope.displayInfoPopup("Doc Rated Down",
                             Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
                                     Page.getDoc().author.alias, Doc.formatDate(Page.getDoc().date)));
-                    $scope.updateDocRatingButtons();
                 }
 
                 // If Doc was deleted already, display info, and navigate to Docboard

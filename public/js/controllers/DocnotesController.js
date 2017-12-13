@@ -1,4 +1,4 @@
-angular.module('DocnotesCtrl', []).controller('DocnotesController', function ($scope, Page, Doc, Note) {
+angular.module('DocnotesCtrl', []).controller('DocnotesController', function ($scope, $cookies, Page, Doc, Note) {
     // Controller initialize, display Doc header and Docnotes feed
     $scope.init = function () {
         $scope.mainCtrl.directoryShow = false;
@@ -88,6 +88,7 @@ angular.module('DocnotesCtrl', []).controller('DocnotesController', function ($s
                 Doc.get(Page.getDoc()._id).then(function (response) {
                     if (response.data) {
                         Page.setDoc(response.data);
+                        $cookies.putObject('docitDoc', Page.getDoc());
                         var noteData = {
                             author: Page.getUser()._id,
                             doc: Page.getDoc()._id,
@@ -97,7 +98,7 @@ angular.module('DocnotesCtrl', []).controller('DocnotesController', function ($s
                             // If note create successful, set the new Doc,
                             // refresh Docnotes view, and display create info
                             if (response.data) {
-                                $scope.getDocnotesFeed();
+                                $scope.displayDocnotes();
                                 $scope.displayInfoPopup("Note Submitted",
                                         "Doc: " + Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
                                                 Page.getUser().alias, Doc.formatDate(Page.getDoc().date))

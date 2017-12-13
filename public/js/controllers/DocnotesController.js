@@ -1,4 +1,4 @@
-angular.module('DocnotesCtrl', []).controller('DocnotesController', function ($scope, $cookies, Page, Doc, Note) {
+angular.module('DocnotesCtrl', []).controller('DocnotesController', function ($scope, Page, Cookie, Doc, Note) {
     // Controller initialize, display Doc header and Docnotes feed
     $scope.init = function () {
         $scope.mainCtrl.directoryShow = false;
@@ -88,7 +88,7 @@ angular.module('DocnotesCtrl', []).controller('DocnotesController', function ($s
                 Doc.get(Page.getDoc()._id).then(function (response) {
                     if (response.data) {
                         Page.setDoc(response.data);
-                        $cookies.putObject('docitDoc', Page.getDoc());
+                        Cookie.setDoc(Page.getDoc(), 15);
                         var noteData = {
                             author: Page.getUser()._id,
                             doc: Page.getDoc()._id,

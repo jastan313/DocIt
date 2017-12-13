@@ -1,4 +1,4 @@
-angular.module('MainCtrl', []).controller('MainController', function ($scope, $cookies, $location, Page) {
+angular.module('MainCtrl', []).controller('MainController', function ($scope, $location, Page, Cookie) {
 
     $scope.objToString = function (obj, level) {
         for (var key in obj) {
@@ -36,14 +36,12 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $c
             }
         });
 
-        //$cookies.remove('docitPage');
-        //$cookies.remove('docitUser');
-        //$cookies.remove('docitDoc');
+        Cookie.clear();
 
         // Check if there was a session, navigate accordingly
-        var userCookie = $cookies.getObject('docitUser');
-        var docCookie = $cookies.getObject('docitDoc');
-        var pageCookie = $cookies.get('docitPage');
+        var userCookie = Cookie.getUser();
+        var docCookie = Cookie.getDoc();
+        var pageCookie = Cookie.getPage();
 
         if (userCookie) {
             Page.setUser(userCookie);
@@ -68,27 +66,21 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $c
         if (Page.setPage(page)) {
 
             // Update session info
-            $cookies.put('docitPage', Page.getPage());
-            var userCookie = $cookies.getObject('docitUser');
-            var docCookie = $cookies.getObject('docitDoc');
+            Cookie.setDoc(Page.getPage());
+            var userCookie = Cookie.getUser();
+            var docCookie = Cookie.getDoc();
             if (page === 'login' || page === 'signup') {
-                if (userCookie) {
-                    $cookies.remove('docitUser');
-                }
-                if (docCookie) {
-                    $cookies.remove('docitDoc');
-                }
+                Cookie.removeUser();
+                Cookie.removeDoc();
             } else if (page === 'docboard') {
                 if (!Page.getUser()) {
                     $scope.changePage('login');
                 }
-                $cookies.putObject('docitUser', Page.getUser());
-                if (docCookie) {
-                    $cookies.remove('docitDoc');
-                }
+                Cookie.setUser(Page.getUser());
+                Cookie.removeDoc();
             } else {
-                $cookies.putObject('docitUser', Page.getUser());
-                $cookies.putObject('docitDoc', Page.getDoc());
+                Cookie.setUser(Page.getUser());
+                Cookie.setDoc(Page.getDoc(), 15);
             }
 
             $scope.mainCtrl.pageTitle = Page.getTitle();
@@ -97,6 +89,7 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $c
             $scope.mainCtrl.isProcessing = false;
         }
     };
+    
 
     // Displays the INFO popup with a given info string
     $scope.displayInfoPopup = function (header, body) {

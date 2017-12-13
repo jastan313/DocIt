@@ -1,4 +1,4 @@
-angular.module('DocviewCtrl', []).controller('DocviewController', function ($scope, $cookies, Page, Doc, Note) {
+angular.module('DocviewCtrl', []).controller('DocviewController', function ($scope, Page, Cookie, Doc, Note) {
     // Controller initialize, display the Doc
     $scope.init = function () {
         $scope.mainCtrl.directoryShow = false;
@@ -112,7 +112,7 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
                 // rating up info, and update rate button styling
                 if (response.data) {
                     Page.setDoc(response.data);
-                    $cookies.putObject('docitDoc', Page.getDoc());
+                    Cookie.setDoc(Page.getDoc(), 15);
                     $scope.displayDocview();
                     $scope.displayInfoPopup("Doc Rated Up",
                             Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
@@ -161,7 +161,7 @@ angular.module('DocviewCtrl', []).controller('DocviewController', function ($sco
                 // rating up info, and update rate button styling
                 if (response.data) {
                     Page.setDoc(response.data);
-                    $cookies.putObject('docitDoc', Page.getDoc());
+                    Cookie.setDoc(Page.getDoc(), 15);
                     $scope.displayDocview();
                     $scope.displayInfoPopup("Doc Rated Down",
                             Doc.createHeading(Doc.formatTitle(Page.getDoc().title),

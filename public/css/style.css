@@ -201,6 +201,35 @@ button:hover {
     display: block;
 }
 
+/* An infrequent black glow to buttons */
+@keyframes button-glow {
+    0% {
+        color: black;
+        background: white;
+        border: 2px black solid;
+    }
+    70% {
+        color: black;
+        background: white;
+        border: 2px black solid;
+    }
+    85% {
+        color: white;
+        background: black;
+        border: 2px black ridge;
+    }
+    95% {
+        color: white;
+        background: black;
+        border: 2px black ridge;
+    }
+    100% {
+        color: black;
+        background: white;
+        border: 2px black solid;
+    }
+}
+
 /**************************************************************
  *                          SIGNUP/LOGIN                      *
  **************************************************************/
@@ -256,6 +285,13 @@ button:hover {
     display: inline-block;
 
     /* See media.css for #login-navigation > *, #signup-navigation > * font-size */
+}
+
+.submit-btn {
+    animation: 15s button-glow infinite;
+}
+.submit-btn:hover {
+    animation: 0;
 }
 
 /**************************************************************
@@ -558,6 +594,10 @@ button:hover {
  **************************************************************/
 .directory-btn {
     padding: 8px 3px 7px 3px;
+    animation: 15s button-glow infinite;
+}
+.directory-btn:hover {
+    animation: 0;
 }
 
 .directory-btn, .directory {

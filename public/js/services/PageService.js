@@ -12,7 +12,7 @@ angular.module('PageService', []).factory('Page', ['$rootScope', '$location', fu
             'docnotes': '|DOCIT| Docnotes'};
         pageObj.user = null;
         pageObj.doc = null;
-        
+
         // Sets the current page; resets user and/or Doc
         // if applicable
         pageObj.setPage = function (page) {

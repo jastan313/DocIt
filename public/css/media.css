@@ -23,7 +23,7 @@ and open the template in the editor.
         min-width: 800px;
         max-width: 800px;
         min-height: 700px;
-        max-height: 1456px;
+        max-height: 920px;
 
         /*border: 5px solid teal;*/
     }
@@ -137,6 +137,7 @@ and open the template in the editor.
     #docboard-feed {
         min-height: 174px;
         height: calc(93vh - 356px);
+        max-height: 552px;
     }
 
     .docboard-mydoc, .docboard-feeddoc {
@@ -897,7 +898,7 @@ and (orientation: portrait)
 /* Portrait Focused Display */
 /@media only screen 
 and (min-device-width : 320px) 
- and (max-device-width : 480px) 
+and (max-device-width : 480px) 
 {
     /**************************************************************
      *                             GENERAL                        *

@@ -1,5 +1,6 @@
 angular.module('DocItApp',
-        ['ngRoute',
+        ['ngCookies',
+            'ngRoute',
             'appRoutes',
             'MainCtrl',
             'LoginCtrl',

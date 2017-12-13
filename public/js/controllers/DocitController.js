@@ -1,4 +1,4 @@
-angular.module('DocitCtrl', []).controller('DocitController', function ($scope, Page, Doc) {
+angular.module('DocitCtrl', []).controller('DocitController', function ($scope, $cookies, Page, Doc) {
     // Controller initialize, display the Doc
     $scope.init = function () {
         $scope.MIN_BODY_LENGTH = 50;
@@ -68,6 +68,7 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                     // refresh Docit view, and display update info
                     if (response.data) {
                         Page.setDoc(response.data);
+                        $cookies.putObject('docitDoc', Page.getDoc());
                         $scope.displayDocit();
                         $scope.displayInfoPopup("Doc Updated",
                                 Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
@@ -97,6 +98,7 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                     // refresh Docit view, and display create info
                     if (response.data) {
                         Page.setDoc(response.data);
+                        $cookies.putObject('docitDoc', Page.getDoc());
                         $scope.displayDocit();
                         $scope.displayInfoPopup("Doc Created",
                                 Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
@@ -144,6 +146,7 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                         // display update info, and navigate to Docview
                         if (response.data) {
                             Page.setDoc(response.data);
+                            $cookies.putObject('docitDoc', Page.getDoc());
                             $scope.displayInfoPopup("Doc Updated And Published",
                                     Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
                                             Page.getUser().alias, Doc.formatDate(Page.getDoc().date)));
@@ -173,6 +176,7 @@ angular.module('DocitCtrl', []).controller('DocitController', function ($scope, 
                         // display create info, and navigate to Doview
                         if (response.data) {
                             Page.setDoc(response.data);
+                            $cookies.putObject('docitDoc', Page.getDoc());
                             $scope.displayInfoPopup("Doc Created And Published",
                                     Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
                                             Page.getUser().alias, Doc.formatDate(Page.getDoc().date)));

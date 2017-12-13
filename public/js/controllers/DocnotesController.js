@@ -51,7 +51,7 @@ angular.module('DocnotesCtrl', []).controller('DocnotesController', function ($s
             Note.get(doc._id).then(function (response) {
                 $scope.docnotesFeed = [];
                 var notes = response.data;
-                
+
                 // For each note, add formatted note to Docnotes Feed
                 for (var i = 0; i < notes.length; i++) {
                     var note = notes[i];
@@ -75,32 +75,45 @@ angular.module('DocnotesCtrl', []).controller('DocnotesController', function ($s
             // If note's body data is less than the minimum
             // required length, display requirement info
             if (noteBody.length < $scope.MIN_BODY_LENGTH) {
+                var requiredCharacters = $scope.MIN_BODY_LENGTH - noteBody.length;
                 $scope.displayInfoPopup("Note Minimum Character Length",
                         "Note's body requires a minimum of " + $scope.MIN_BODY_LENGTH +
-                        "characters. Keep writing! You need at least " +
-                        ($scope.MIN_BODY_LENGTH - noteBody.length) + " more characters.");
+                        " characters. Keep writing! You need at least " +
+                        requiredCharacters + " more " +
+                        (requiredCharacters > 1 ? "characters." : "character."));
             }
 
             // If note's body data meets the minimum required length, submit the note
             else {
-                var d = Page.getDoc();
-                var noteData = {
-                    author: Page.getUser()._id,
-                    doc: Page.getDoc()._id,
-                    body: noteBody
-                };
-                Note.create(noteData).then(function (response) {
-                    // If note create successful, set the new Doc,
-                    // refresh Docnotes view, and display create info
+                Doc.get(Page.getDoc()._id).then(function (response) {
                     if (response.data) {
-                        $scope.getDocnotesFeed();
-                        $scope.displayInfoPopup("Note Submitted",
-                                "Doc: " + Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
-                                        Page.getUser().alias, Doc.formatDate(Page.getDoc().date))
-                                + "\n\nNote: " + noteBody);
-                        document.getElementById("docnotes-createnote").innerText = "";
+                        Page.setDoc(response.data);
+                        var noteData = {
+                            author: Page.getUser()._id,
+                            doc: Page.getDoc()._id,
+                            body: noteBody
+                        };
+                        Note.create(noteData).then(function (response) {
+                            // If note create successful, set the new Doc,
+                            // refresh Docnotes view, and display create info
+                            if (response.data) {
+                                $scope.getDocnotesFeed();
+                                $scope.displayInfoPopup("Note Submitted",
+                                        "Doc: " + Doc.createHeading(Doc.formatTitle(Page.getDoc().title),
+                                                Page.getUser().alias, Doc.formatDate(Page.getDoc().date))
+                                        + "\n\nNote: " + noteBody);
+                                document.getElementById("docnotes-createnote").innerText = "";
+                            }
+                        });
+                    } else {
+                        // If Doc was already deleted, display info,
+                        // and navigate to docboard
+                        $scope.displayInfoPopup("Doc Missing",
+                                "Oops, it looks the Doc you tried to write a note for does not exist anymore.");
+                        $scope.changePage('docboard');
                     }
                 });
+
             }
         }
     }

@@ -149,11 +149,23 @@ angular.module('DocboardCtrl', []).controller('DocboardController', function ($s
         // if not published, navigate to Docview if published
         else {
             Doc.get(docID).then(function (response) {
-                Page.setDoc(response.data);
-                if (response.data.published) {
-                    $scope.changePage('docview');
+                if (response.data) {
+                    Page.setDoc(response.data);
+                    if (response.data.published) {
+                        $scope.changePage('docview');
+                    } else {
+                        $scope.changePage('docit');
+                    }
                 } else {
-                    $scope.changePage('docit');
+                    // If Doc was already deleted, display info
+                    $scope.displayInfoPopup("Doc Missing",
+                            "Oops, it looks the Doc you were viewing does not exist anymore.");
+                    $scope.docArchive = [];
+                    $scope.docFeed = [];
+                    $scope.docFeedNumLoaded = 0;
+                    $scope.getDocArchive();
+                    $scope.getDocFeed($scope.mainCtrl.docFeedNumItems,
+                            $scope.mainCtrl.docFeedTimeLimit);
                 }
             });
         }

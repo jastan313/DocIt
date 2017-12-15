@@ -36,27 +36,14 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
             }
         });
 
-        Cookie.clear();
-
         // Check if there was a session, navigate accordingly
         var userCookie = Cookie.getUser();
-        var docCookie = Cookie.getDoc();
-        var pageCookie = Cookie.getPage();
-
         if (userCookie) {
             Page.setUser(userCookie);
+            $scope.changePage('docboard');
         }
-        if (docCookie) {
-            Page.setDoc(docCookie);
-        }
-        if (userCookie && pageCookie) {
-            $scope.changePage(pageCookie);
-        } else {
-            if (pageCookie === 'signup') {
-                $scope.changePage('signup');
-            } else {
-                $scope.changePage('login');
-            }
+        else {
+            $scope.changePage('login');
         }
     };
 
@@ -65,21 +52,16 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
         if (Page.setPage(page)) {
 
             // Update session info
-            Cookie.setPage(Page.getPage());
             var userCookie = Cookie.getUser();
-            var docCookie = Cookie.getDoc();
             if (page === 'login' || page === 'signup') {
                 Cookie.removeUser();
-                Cookie.removeDoc();
             } else if (page === 'docboard') {
                 if (!Page.getUser()) {
                     $scope.changePage('login');
                 }
                 Cookie.setUser(Page.getUser());
-                Cookie.removeDoc();
             } else {
                 Cookie.setUser(Page.getUser());
-                Cookie.setDoc(Page.getDoc(), 15);
             }
 
             $scope.mainCtrl.pageTitle = Page.getTitle();
@@ -92,13 +74,6 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
 
     // Displays the INFO popup with a given info string
     $scope.displayInfoPopup = function (header, body) {
-        var userCookie = Cookie.getUser();
-        var docCookie = Cookie.getDoc();
-        var pageCookie = Cookie.getPage();
-        console.log("user : " + userCookie);
-        console.log("doc : " + docCookie);
-        console.log("page : " + pageCookie);
-
         $scope.mainCtrl.infoModalHeader = "|INFO| " + header + ":";
         $scope.mainCtrl.infoModalBody = body;
         document.getElementById("info-modal").classList.add('open');

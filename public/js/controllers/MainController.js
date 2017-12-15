@@ -54,8 +54,7 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
         } else {
             if (pageCookie === 'signup') {
                 $scope.changePage('signup');
-            } 
-            else {
+            } else {
                 $scope.changePage('login');
             }
         }
@@ -66,7 +65,7 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
         if (Page.setPage(page)) {
 
             // Update session info
-            Cookie.setDoc(Page.getPage());
+            Cookie.setPage(Page.getPage());
             var userCookie = Cookie.getUser();
             var docCookie = Cookie.getDoc();
             if (page === 'login' || page === 'signup') {
@@ -89,10 +88,17 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, $l
             $scope.mainCtrl.isProcessing = false;
         }
     };
-    
+
 
     // Displays the INFO popup with a given info string
     $scope.displayInfoPopup = function (header, body) {
+        var userCookie = Cookie.getUser();
+        var docCookie = Cookie.getDoc();
+        var pageCookie = Cookie.getPage();
+        console.log("user : " + userCookie);
+        console.log("doc : " + docCookie);
+        console.log("page : " + pageCookie);
+
         $scope.mainCtrl.infoModalHeader = "|INFO| " + header + ":";
         $scope.mainCtrl.infoModalBody = body;
         document.getElementById("info-modal").classList.add('open');

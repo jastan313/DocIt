@@ -9,8 +9,8 @@ angular.module('CookieService', []).factory('Cookie', ['$cookies', function ($co
             return $cookies.getObject('docitDoc');
         };
 
-        cookieObj.getDoc = function () {
-            return $cookies.getObject('docitPage');
+        cookieObj.getPage = function () {
+            return $cookies.get('docitPage');
         };
 
         cookieObj.setUser = function (user, duration) {
@@ -35,9 +35,9 @@ angular.module('CookieService', []).factory('Cookie', ['$cookies', function ($co
             if (duration) {
                 var expireDate = new Date();
                 expireDate.setMinutes(expireDate.getMinutes() + duration);
-                $cookies.putObject('docitPage', {'expires': expireDate});
+                $cookies.put('docitPage', {'expires': expireDate});
             }
-            $cookies.putObject('docitPage', page);
+            $cookies.put('docitPage', page);
         };
 
         cookieObj.removeUser = function () {
